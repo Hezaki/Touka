@@ -19,6 +19,6 @@
 #   };
 # in
 {
-  environment.systemPackages = with pkgs; [ distrobox podman podman ];
+  environment.systemPackages = with pkgs; [ distrobox podman podman-compose ];
 }
 

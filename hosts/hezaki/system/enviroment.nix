@@ -77,13 +77,13 @@
   };
 
   users.users.root = {
-   initialPassword = "710100281000000";
+   initialPassword = "password :)";
    shell = pkgs.zsh;
   };
 
   users.users.hezaki = {
    isNormalUser = true;
-   initialPassword = "heartpex";
+   initialPassword = "bro...";
    home = "/home/hezaki";
    extraGroups = [ "wheel" "adbusers" "podman" "docker" ];
    shell = pkgs.zsh;
