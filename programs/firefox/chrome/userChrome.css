@@ -1,0 +1,111 @@
+#sidebar-box,
+  .sidebar-panel[lwt-sidebar-brighttext] {
+    background-color: var(--base_color1) !important;
+}
+
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+    display: none; /* remove sidebar header */
+  }
+
+.sidebar-splitter {
+  /* display: none;  remove sidebar split line */
+  min-width: 1px !important;
+  max-width: 1px !important;
+}
+
+#urlbar .urlbar-input-box {
+  text-align: left !important;
+}
+
+
+* {
+  font-family: JetBrainsMono Nerd Font Mono !important;
+  font-size: 12pt !important;
+}
+
+/* #nav-bar { visibility: collapse !important; } */
+/* hide horizontal tabs at the top of the window */
+#TabsToolbar > * {
+  visibility: collapse;
+}
+
+/* hide navigation bar when it is not focused; use Ctrl+L to get focus */
+#main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) {
+  margin-top: -45px;
+}
+#navigator-toolbox {
+  transition: 0.2s margin-top ease-out;
+}
+
+#navigator-toolbox:focus-within > #nav-bar,
+#navigator-toolbox:hover > #nav-bar
+{
+  margin-top: 0;
+  margin-bottom: var(--navbar-margin);
+  z-index: 100;
+  opacity: 1;
+}
+ 
+#main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+    visibility: collapse !important;
+}
+ 
+/* Sidebar min and max width removal */
+#sidebar {
+    max-width: none !important;
+    min-width: 0px !important;
+}
+/* Hide splitter, when using Tree Style Tab. */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
+    display: none !important;
+}
+/* Hide sidebar header, when using Tree Style Tab. */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+    visibility: collapse;
+}
+ 
+/* Shrink sidebar until hovered, when using Tree Style Tab. */
+:root {
+    --thin-tab-width: 30px;
+    --wide-tab-width: 200px;
+}
+#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
+    min-width: var(--wide-tab-width) !important;
+    max-width: none !important;
+}
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+    position: relative !important;
+    transition: all 100ms !important;
+    min-width: var(--thin-tab-width) !important;
+    max-width: var(--thin-tab-width) !important;
+}
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
+    transition: all 100ms !important;
+    min-width: var(--wide-tab-width) !important;
+    max-width: var(--wide-tab-width) !important;
+    margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+    z-index: 1;
+}
+
+#back-button { display: none; }
+#forward-button { display: none; }
+#reload-button { display: none; }
+#stop-button { display: none; }
+#home-button { display: none; }
+#downloads-button { display: none; }
+#library-button { display: none; }
+#identity-box { display: none; }
+#pageActionButton { display: none; }
+#pocket-button { display: none; }
+#urlbar-zoom-button { display: none; }
+#tracking-protection-icon-container { display: none !important; }
+#reader-mode-button{ display: none !important; }
+#star-button { display: none; }
+#star-button-box { display: none; }
+#urlbar-go-button { display: none; }
+#userContext-label, #userContext-indicator { display: none !important;}
+#fxa-toolbar-menu-button { display: none; }
+#nav-bar-overflow-button { display: none !important; }
+#PanelUI-button { display: none; }
+#customizableui-special-spring1,
+#customizableui-special-spring2 { display: none; }

@@ -67,6 +67,13 @@ return require('packer').startup {
       end
     }
     use {
+      "nvim-neorg/neorg",
+      run = ":Neorg sync-parsers", -- This is the important bit!
+      config = function()
+        require("neorg").setup {}
+      end,
+    }
+    use {
       'akinsho/bufferline.nvim',
       config = function()
         require('plugins.bufferline')
@@ -74,12 +81,6 @@ return require('packer').startup {
     }
 
     -- completion, lsp
-    -- use {
-    --   'neovim/nvim-lspconfig',
-    --   config = function()
-    --     require('nvim-lspconfig').setup()
-    --   end
-    -- }
     use {
       'yamatsum/nvim-cursorline',
       config = function()

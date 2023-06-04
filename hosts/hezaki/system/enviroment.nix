@@ -1,6 +1,8 @@
-{ config, pkgs, inputs, ... }: 
-
-{
+{ config, pkgs, inputs, ... }: let
+  username = "hezaki";
+  passroot = "password";
+  passuser = "password";
+in {
   imports = [ 
     inputs.home-manager.nixosModules.home-manager 
   ];
@@ -20,7 +22,7 @@
   nix = {
     settings = {
       trusted-users = [ 
-        "hezaki"
+        "username"
         "root"
       ];
       trusted-substituters = [
@@ -56,7 +58,7 @@
     nix-tree
     killall
     unzip
-    rnix-lsp
+    fzf
     zip
     unrar
     neovim
@@ -77,15 +79,19 @@
   };
 
   users.users.root = {
-   initialPassword = "password :)";
+   initialPassword = passroot;
    shell = pkgs.zsh;
   };
 
-  users.users.hezaki = {
+  users.users.${username} = {
    isNormalUser = true;
-   initialPassword = "bro...";
-   home = "/home/hezaki";
-   extraGroups = [ "wheel" "adbusers" "podman" "docker" ];
+   initialPassword = passuser;
+   home = "/home/${username}";
+   extraGroups = [
+    "wheel"
+    "adbusers"
+    "podman"
+   ];
    shell = pkgs.zsh;
   };
 

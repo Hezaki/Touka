@@ -1,38 +1,40 @@
-{ config, pkgs, inputs, ... }:
-
-{
-  home-manager.users.hezaki = {
-    home.username = "hezaki";
-    home.homeDirectory = "/home/hezaki";
-    home.stateVersion = "23.05";
-    home.packages = with pkgs; [
-      yarn
-      android-tools
-      dconf
-      inkscape
-      dunst
-      rofi-wayland
-      imv
-      fractal
-      gtklock
-      distrobox 
-      foot
-      kotatogram-desktop
-      slurp
-      grim
-      swaybg
-      libnotify
-      scrcpy
-      libsixel
-      zathura
-      gnome.zenity
-      ppsspp-sdl-wayland
-      transmission-gtk
-      obs-studio
-      mpv
-      prismlauncher
-      proton-ge-custom
-    ];
+{ config, pkgs, inputs, ... }: let
+  username = "hezaki";
+in {
+  home-manager.users.${username} = {
+    home = {
+      username = username;
+      homeDirectory = "/home/${username}";
+      stateVersion = "23.05";
+      packages = with pkgs; [
+        home-manager
+        yarn
+        android-tools
+        dconf
+        inkscape
+        dunst
+        rofi-wayland
+        imv
+        fractal
+        gtklock
+        distrobox 
+        kotatogram-desktop
+        slurp
+        grim
+        swaybg
+        libnotify
+        scrcpy
+        libsixel
+        zathura
+        gnome.zenity
+        ppsspp-sdl-wayland
+        transmission-gtk
+        obs-studio
+        mpv
+        prismlauncher
+        proton-ge-custom
+      ];
+    };
 
   imports = [
     ../../programs/foot/default.nix

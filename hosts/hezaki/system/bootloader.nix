@@ -2,11 +2,13 @@
 
 {
   boot = {
-   loader.grub.enable = true;
-   loader.grub.version = 2;
-   loader.grub.device = "/dev/sda";
-   loader.grub.splashImage = null;
-   loader.timeout = 1;
+   loader = {
+     grub.enable = true;
+     grub.version = 2;
+     grub.device = "/dev/sda";
+     grub.splashImage = null;
+     timeout = 1;
+   };
    kernelPackages = pkgs.linuxPackages_xanmod_latest;
    kernelParams = [ "quiet" ];
    consoleLogLevel = 0;

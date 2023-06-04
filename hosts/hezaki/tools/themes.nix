@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [ 
-    papirus-icon-theme
+    gruvbox-gtk-theme
   ];
 
   gtk = {
@@ -14,9 +14,6 @@
     cursorTheme = {
       name = "gruvboxc";
       size = 24;
-    };
-    iconTheme = {
-      name = "papirus-icon-theme";
     };
   };
 

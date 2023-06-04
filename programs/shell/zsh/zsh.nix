@@ -1,6 +1,12 @@
-{ config, pkgs, inputs, ... }:
-
-{ 
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  username = "hezaki";
+  email = "email";
+in { 
   programs = {
     zsh = {
       enable = true;
@@ -125,8 +131,8 @@
     # Utilites
     git = {
       enable = true;
-      userName  = "hezaki";
-      userEmail = "poshelnahui228@gmail.com";
+      userName  = username;
+      userEmail = email;
       aliases = {
         s = "status";
       };

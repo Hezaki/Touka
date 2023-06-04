@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
-
-{ 
+{ config, pkgs, ... }: let
+  hostname = "hlcwlk";
+in { 
   networking = {
-    hostName = "hlcwlk";
+    hostName = hostname;
     networkmanager = {
       enable = true;
       insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
@@ -12,14 +12,4 @@
       extraConfig = "noarp";
     };
   };
-  
-  systemd = {
-    targets.network-online.wantedBy = pkgs.lib.mkForce [];
-    services = {
-      NetworkManager-wait-online.wantedBy = pkgs.lib.mkForce []; # Normally ["network-online.target"]
-      NetworkManager-wait-online.enable = false;
-      systemd-udev-settle.enable = false;
-    };
-  };
-
 }

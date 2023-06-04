@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; with python311Packages; [
+  home.packages = with pkgs; [
     gcc
     gnumake
     pkg-config
