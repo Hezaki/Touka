@@ -50,7 +50,7 @@
           blur_passes = 0
           blur_new_optimizations = true
           drop_shadow = true
-          shadow_range = 14
+          shadow_range = 16
           shadow_render_power = 2
           col.shadow = rgb(101010)
       }
@@ -75,7 +75,7 @@
 
       windowrule = workspace 2, firefox
       windowrule = float,^(firefox)$
-      windowrule = size 1200 600, ^(firefox)$
+      windowrule = size 1200 640, ^(firefox)$
       windowrule = float,^(kotatogramdesktop)$
       windowrule = workspace 3, kotatogramdesktop
       windowrule = size 1000 600, ^(kotatogramdesktop)$

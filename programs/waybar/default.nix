@@ -113,7 +113,7 @@
           border-color: #282828;
           border-style: solid;
           border-radius: 20 20 0 0px;
-          box-shadow: 1 1 3 1px #151515;
+          box-shadow: 1 1 5 1px #101010;
         }
 
         #workspaces button {
