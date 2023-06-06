@@ -52,6 +52,7 @@ in {
     ../../devlop/C/default.nix
     ../../devlop/Java/default.nix
     ../../devlop/Python/default.nix
+    ../../virtualization/containers.nix
     ./tools/themes.nix
    ];
   };

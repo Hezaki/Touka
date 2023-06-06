@@ -5,7 +5,7 @@
   ...
 }: let
   username = "hezaki";
-  email = "email";
+  email = "email...";
 in { 
   programs = {
     zsh = {

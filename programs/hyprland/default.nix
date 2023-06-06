@@ -28,7 +28,7 @@
 
       general {
           gaps_in = 5
-          gaps_out = 10
+          gaps_out = 23
           border_size = 3
           col.active_border = rgb(1d2021)
           col.inactive_border = rgb(1d2021)
@@ -74,14 +74,9 @@
       }
 
       windowrule = workspace 2, firefox
-      windowrule = float,^(firefox)$
-      windowrule = size 1200 640, ^(firefox)$
-      windowrule = float,^(kotatogramdesktop)$
       windowrule = workspace 3, kotatogramdesktop
-      windowrule = size 1000 600, ^(kotatogramdesktop)$
-      windowrule = center, ^(kotatogramdesktop)$
-      windowrule = workspace 4, org.prismlauncher.PrismLaunche
-      windowrule = center, ^(org.prismlauncher.PrismLaunche)&
+      windowrule = workspace 4, org.pwmt.zathura 
+      windowrule = workspace 5, org.prismlauncher.PrismLaunche
 
       binds {
           workspace_back_and_forth = true

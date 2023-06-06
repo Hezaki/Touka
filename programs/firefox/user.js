@@ -413,3 +413,5 @@ user_pref("browser.contentblocking.report.vpn-promo.url", "");
 user_pref("browser.contentblocking.report.vpn-android.url", "");
 user_pref("browser.contentblocking.report.vpn-ios.url", "");
 user_pref("browser.privatebrowsing.promoEnabled", false);
+
+// hnhx thx <3

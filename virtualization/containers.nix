@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ distrobox podman podman-compose ];
+  home.packages = with pkgs; [ distrobox podman podman-compose ];
 }
 

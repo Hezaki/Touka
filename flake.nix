@@ -34,18 +34,16 @@
           ./hosts/hezaki/tools/default.nix
           ./hosts/hezaki/system/default.nix
           ./hosts/hezaki/home.nix
-          ./virtualization/containers.nix
         ];
       };
     };
-    
-    homeConfigurations = {
-      ${username} = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/hezaki/home.nix
-        ];
-      };
-    };
+    # homeConfigurations = {
+    #   ${username} = home-manager.lib.homeManagerConfiguration {
+    #     extraSpecialArgs = { inherit inputs; };
+    #     modules = [
+    #       ./hosts/hezaki/home.nix
+    #     ];
+    #   };
+    # };
   };
 }
