@@ -48,12 +48,14 @@ in {
         "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       ];
       auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
     };
   };
 
   environment.systemPackages = with pkgs; [
     home-manager
     iftop
+    git
     neofetch
     nix-tree
     killall

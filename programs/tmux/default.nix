@@ -19,7 +19,6 @@
       set -g status-left-length 20
       set -sa terminal-overrides "*:Tc"
 
-      # set -g window-status-current-format " #I  #W "
       set -g status-left "#{tmux_mode_indicator} "
       set -g status-right '%H:%M:%S  %a %h-%d '
 
@@ -29,6 +28,9 @@
       set -g @mode_indicator_copy_prompt " COPY "
       set -g @mode_indicator_sync_prompt " SYNC "
       set -g @mode_indicator_empty_prompt " TMUX "
+      
+      set -g pane-border-style "fg=color0"
+      set -g pane-active-border-style "bg=default fg=color0"
 
       set -g @mode_indicator_prefix_mode_style 'bg=color,fg=color10'
       set -g @mode_indicator_copy_mode_style 'bg=color,fg=color3'

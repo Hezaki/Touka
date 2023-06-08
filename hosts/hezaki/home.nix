@@ -8,9 +8,9 @@ in {
       stateVersion = "23.05";
       packages = with pkgs; [
         home-manager
-        yarn
         android-tools
         dconf
+        neovim
         inkscape
         dunst
         rofi-wayland
@@ -49,10 +49,12 @@ in {
     ../../programs/zathura/default.nix
     ../../programs/neofetch/default.nix
     ../../programs/waybar/default.nix
+    ../../programs/mpv/default.nix
     ../../devlop/C/default.nix
     ../../devlop/Java/default.nix
     ../../devlop/Python/default.nix
-    ../../virtualization/containers.nix
+    ../../devlop/JavaScript/default.nix
+    ../../virtualisation/containers/containers.nix
     ./tools/themes.nix
    ];
   };

@@ -5,8 +5,6 @@
     inputs.hyprland.homeManagerModules.default
   ];
 
-  home.file.".config/hypr/resize_v2".source = ./resize_v2;
-
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
@@ -75,6 +73,9 @@
 
       windowrule = workspace 2, firefox
       windowrule = workspace 3, kotatogramdesktop
+      windowrule = float,^(.kotatogram-desktop-wrapped)$
+      windowrule = size 890 535, ^(.kotatogram-desktop-wrapped)$
+      windowrule = center, ^(.kotatogram-desktop-wrapped)$
       windowrule = workspace 4, org.pwmt.zathura 
       windowrule = workspace 5, org.prismlauncher.PrismLaunche
 
@@ -88,7 +89,8 @@
       bind = $mod, W, killactive, 
       bind = $mod, M, exit, 
       bind = $mod, S, togglefloating, 
-      bind = $mod, D, exec, rofi -show drun # g-c ~/.config/hypr/wofi/config -s ~/.config/hypr/wofi/style.css
+      bind = $mod, D, exec, rofi -show drun # g-c ~/.config/hypr/wofi/config -s 
+      ~/.config/hypr/wofi/style.css
       bind = $mod, F, fullscreen,
 
       binde =, F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
@@ -100,11 +102,11 @@
       bind = ALT, S, exec, gtklock -d
       bind = $mod, B, exec, killall -SIGUSR1 waybar
 
-      binde = $mod, l, exec, $resize_v2 addright
-      binde = $mod, h, exec, $resize_v2 addleft
-      binde = $mod, j, exec, $resize_v2 adddown
-      binde = $mod, k, exec, $resize_v2 addup
-    
+      binde = $mod, H, resizeactive, -20 0
+      binde = $mod, L, resizeactive, 20 0
+      binde = $mod, J, resizeactive, 0 -20
+      binde = $mod, K, resizeactive, 0 20
+
       bind = $mod, 1, workspace, 1
       bind = $mod, 2, workspace, 2
       bind = $mod, 3, workspace, 3

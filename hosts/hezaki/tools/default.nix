@@ -32,6 +32,11 @@
     # ipafont
   ];
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
+
   imports = [
     ./pipewire.nix
     ./variables.nix

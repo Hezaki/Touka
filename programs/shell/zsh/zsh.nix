@@ -5,12 +5,13 @@
   ...
 }: let
   username = "hezaki";
-  email = "email...";
+  email = "email";
 in { 
   programs = {
     zsh = {
       enable = true;
       shellAliases = {
+        update = "doas nixos-rebuild switch";
         ls = "lsd -F";
         l = "lsd -l";
         ll = "lsd -ll";
@@ -18,6 +19,7 @@ in {
         cat = "bat --theme gruvbox-dark";
         tree = "lsd --tree";
         doas = "doas ";
+        sudo = "sudo ";
         vi = "nvim -p";
         box = "distrobox";
         md = "mkdir";
@@ -25,7 +27,6 @@ in {
         "..." = "cd ../../";
         ":q" = "exit";
         ":wq" = "exit";
-        neofetchd = "neofetch --config /home/hezaki/.config/neofetch/c2.conf";
       };
       # Plugins
       plugins = [

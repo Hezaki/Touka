@@ -88,6 +88,12 @@ return require('packer').startup {
       end
     }
     use {
+      'neovim/nvim-lspconfig',
+      config = function()
+        require('plugins.nvim-lspconfig')
+      end
+    }
+    use {
       'windwp/nvim-autopairs',
       config = function()
         require('nvim-autopairs').setup()
@@ -106,6 +112,14 @@ return require('packer').startup {
         require('Comment').setup()
       end
     }
+
+        -- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
     if packer_bootstrap then
       require('packer').sync()
