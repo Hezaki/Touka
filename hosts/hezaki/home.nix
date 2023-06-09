@@ -10,7 +10,6 @@ in {
         home-manager
         android-tools
         dconf
-        neovim
         inkscape
         dunst
         rofi-wayland

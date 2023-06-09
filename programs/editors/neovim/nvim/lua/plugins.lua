@@ -67,13 +67,6 @@ return require('packer').startup {
       end
     }
     use {
-      "nvim-neorg/neorg",
-      run = ":Neorg sync-parsers", -- This is the important bit!
-      config = function()
-        require("neorg").setup {}
-      end,
-    }
-    use {
       'akinsho/bufferline.nvim',
       config = function()
         require('plugins.bufferline')
@@ -112,14 +105,6 @@ return require('packer').startup {
         require('Comment').setup()
       end
     }
-
-        -- install without yarn or npm
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
-
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
     if packer_bootstrap then
       require('packer').sync()

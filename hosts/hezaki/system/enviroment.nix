@@ -56,8 +56,11 @@ in {
     home-manager
     iftop
     git
+    gcc
     neofetch
     nix-tree
+    rnix-lsp
+    nodePackages_latest.pyright
     killall
     unzip
     fzf
