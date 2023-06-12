@@ -14,16 +14,16 @@ in {
         dunst
         rofi-wayland
         imv
-        fractal
         gtklock
         distrobox 
-        kotatogram-desktop
+        joplin-desktop
+        telegram-desktop
         slurp
         grim
         swaybg
         libnotify
         scrcpy
-        libsixel
+        ueberzugpp
         zathura
         gnome.zenity
         ppsspp-sdl-wayland

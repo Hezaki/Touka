@@ -23,8 +23,11 @@ lsp_installer.setup {
 }
 
 local servers = {
-  "sumneko_lua",
+  "lua_ls",
   "pyright",
+  "rnix",
+  "tailwindcss",
+  ""
 }
 
 for _, a in ipairs(servers) do

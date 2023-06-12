@@ -7,6 +7,33 @@ in {
     inputs.home-manager.nixosModules.home-manager 
   ];
 
+  environment.systemPackages = with pkgs; [
+    home-manager
+    iftop
+    git
+    gcc
+    neofetch
+    nix-tree
+    rnix-lsp
+    nodePackages_latest.pyright
+    killall
+    unzip
+    fzf
+    zip
+    unrar
+    neovim
+    tmux
+    wget
+    tree
+    doas
+    lsd
+    p7zip
+    ranger
+    bat
+    brillo
+    htop
+  ];
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true; 
@@ -15,10 +42,16 @@ in {
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "openssl-1.1.1u"
+      ];
+    };
   };
 
+  nixpkgs.config.
   nix = {
     settings = {
       trusted-users = [ 
@@ -51,33 +84,6 @@ in {
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    home-manager
-    iftop
-    git
-    gcc
-    neofetch
-    nix-tree
-    rnix-lsp
-    nodePackages_latest.pyright
-    killall
-    unzip
-    fzf
-    zip
-    unrar
-    neovim
-    tmux
-    wget
-    tree
-    doas
-    lsd
-    p7zip
-    ranger
-    bat
-    brillo
-    htop
-  ];
 
   programs = {
     zsh.enable = true;

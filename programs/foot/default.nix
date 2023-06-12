@@ -9,7 +9,6 @@
     app-id = "Terminal";
     title = "Terminal";
     font = "JetBrainsMono NerdFont:Medium:size=10";
-    initial-window-size-pixels = "1000x600";
    };
    colors = {
     foreground = "ebdbb2";

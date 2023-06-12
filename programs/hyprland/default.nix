@@ -27,12 +27,12 @@
       general {
           gaps_in = 5
           gaps_out = 23
-          border_size = 3
+          border_size = 4
           col.active_border = rgb(1d2021)
           col.inactive_border = rgb(1d2021)
           layout = master
-          cursor_inactive_timeout= 3
-          apply_sens_to_raw= 0
+          cursor_inactive_timeout = 3
+          apply_sens_to_raw = 0
       }
 
       misc { 
@@ -49,7 +49,7 @@
           blur_new_optimizations = true
           drop_shadow = true
           shadow_range = 16
-          shadow_render_power = 2
+          shadow_render_power = 3
           col.shadow = rgb(101010)
       }
 
@@ -72,40 +72,43 @@
       }
 
       windowrule = workspace 2, firefox
-      windowrule = workspace 3, kotatogramdesktop
-      windowrule = float,^(.kotatogram-desktop-wrapped)$
-      windowrule = size 890 535, ^(.kotatogram-desktop-wrapped)$
-      windowrule = center, ^(.kotatogram-desktop-wrapped)$
+      windowrule = workspace 3, org.telegram.desktop
       windowrule = workspace 4, org.pwmt.zathura 
-      windowrule = workspace 5, org.prismlauncher.PrismLaunche
+      windowrule = workspace 5, org.prismlauncher.PrismLauncher
 
       binds {
           workspace_back_and_forth = true
+          allow_workspace_cycles = true
       }
 
       $mod = SUPER
 
       bind = $mod, RETURN, exec, foot -e tmux
+
       bind = $mod, W, killactive, 
       bind = $mod, M, exit, 
       bind = $mod, S, togglefloating, 
-      bind = $mod, D, exec, rofi -show drun # g-c ~/.config/hypr/wofi/config -s 
-      ~/.config/hypr/wofi/style.css
       bind = $mod, F, fullscreen,
 
       binde =, F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
       binde =, F12, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 3%+
-      binde =, F10, exec, wpctl set-mute @DEFAULT_AUDIO_SINK toggle
 
-      bind =,Print,exec,grim -c $HOME/Screenshots/$(date +'%s.png')
-      bind = $mod, Print, exec, grim -g "$(slurp)" $HOME/Screenshots/$(date +'%s.png')
+      bind = $mod, D, exec, rofi -show drun
       bind = ALT, S, exec, gtklock -d
       bind = $mod, B, exec, killall -SIGUSR1 waybar
 
-      binde = $mod, H, resizeactive, -20 0
-      binde = $mod, L, resizeactive, 20 0
-      binde = $mod, J, resizeactive, 0 -20
-      binde = $mod, K, resizeactive, 0 20
+      bind = ,Print, exec, grim -c $HOME/Screenshots/$(date +'%s.png')
+      bind = $mod, Print, exec, grim -g "$(slurp)" $HOME/Screenshots/$(date +'%s.png')
+
+      bind = $mod, H, movefocus, l
+      bind = $mod, J, movefocus, d
+      bind = $mod, L, movefocus, r
+      bind = $mod, K, movefocus, u
+
+      binde = $mod SHIFT, H, resizeactive, -20 0
+      binde = $mod SHIFT, J, resizeactive, 0 -20
+      binde = $mod SHIFT, K, resizeactive, 0 20
+      binde = $mod SHIFT, L, resizeactive, 20 0
 
       bind = $mod, 1, workspace, 1
       bind = $mod, 2, workspace, 2

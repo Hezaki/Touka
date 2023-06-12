@@ -78,6 +78,8 @@ in {
         bindkey '^[[1;5D' vi-backward-word
         bindkey '^f' beginning-of-line
 
+        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
+
         export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
          --color=fg:#bdae93,bg:#1d2021,hl:#83a598
          --color=fg+:#ebdbb2,bg+:#1d2021,hl+:#83a598

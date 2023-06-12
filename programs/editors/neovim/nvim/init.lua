@@ -1,4 +1,3 @@
-
 fn = vim.fn
 api = vim.api
 cmd = vim.cmd
