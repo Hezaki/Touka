@@ -12,6 +12,8 @@ in {
     iftop
     git
     gcc
+    cargo 
+    rustc
     neofetch
     nix-tree
     rnix-lsp

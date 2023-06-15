@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   systemd = {
     targets.network-online.wantedBy = pkgs.lib.mkForce [];
     services = {
@@ -9,4 +7,7 @@
       systemd-udev-settle.enable = false;
     };
   };
+  services.udev.packages = with pkgs; [
+    android-udev-rules
+  ];
 }
