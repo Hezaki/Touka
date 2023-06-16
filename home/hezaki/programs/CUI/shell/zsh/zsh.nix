@@ -129,7 +129,7 @@ in {
           fi
         }
 
-        source /etc/nixos/programs/CUI/shell/zsh/local/zsh-auto-notify/auto-notify.plugin.zsh
+        source /etc/nixos/home/hezaki/programs/CUI/shell/zsh/local/zsh-auto-notify/auto-notify.plugin.zsh
         # tmux plugin
         sh /etc/nixos/home/hezaki/programs/CUI/tmux/local/mode_indicator.tmux
 

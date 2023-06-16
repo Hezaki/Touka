@@ -10,9 +10,6 @@
     title = "Terminal";
     font = "JetBrainsMono NerdFont:Medium:size=10";
    };
-   default = {
-    pad = "10x10";
-   };
    colors = {
     foreground = "ebdbb2";
     background = "1d2021";

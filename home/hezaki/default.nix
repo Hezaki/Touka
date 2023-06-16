@@ -27,9 +27,12 @@ in {
       gnome.zenity
       ppsspp-sdl-wayland
       transmission-gtk
-      obs-studio
       mpv
       prismlauncher
+      hyprpicker
+      wl-clipboard
+      wf-recorder
+      gtkcord4
     ];
   };
 
@@ -57,6 +60,6 @@ in {
 
     ./virtualisation/containers
 
-    ./tools/themes.nix
+    ./themes/themes.nix
    ];
 }
