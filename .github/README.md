@@ -4,22 +4,27 @@
 
 ## <p align="center">Hezaki Dotfiles</p>
 
-![Screenshot](./1.png)
-![Screenshot](./2.png)
-![Screenshot](./3.png)
+![Screenshot](.github/1.png)
+![Screenshot](.github/2.png)
+![Screenshot](.github/3.png)
 
 ### Infomation
-> - This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
-> - Build host:
->> `nixos-rebuild switch --flake .#hlcwlk`
-> - But you can use aliases:
->> `nixos-update`
-> - Build home-manager:
->> `home-manager switch --flake .#hezaki`
-> - And similarly:
->> `home-update`
-> - To make the home-manager work:
->> `su root -c chown -R hezaki:users /etc/nixos` 
+> This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
+> #
+> Build host:
+>> ```nixos-rebuild switch --flake .#hlcwlk```
+> #
+> But you can use aliases
+>> ```nixos-update```
+> #
+> Build home-manager:
+>> ```home-manager switch --flake .#hezaki```
+> #
+> And similarly:
+>> ```home-update```
+> #
+> To make the home-manager work:
+>> ```su root -c chown -R hezaki:users /etc/nixos/``` 
 
 ### Software
 > - **Wayland compositor** - [Hyprland](https://hyprland.org/)
@@ -40,3 +45,4 @@
 ### Thanks 
 > - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
 > - [Thank you for your help](https://codeberg.org/ghosty)
+kkk
