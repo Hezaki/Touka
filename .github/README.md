@@ -4,21 +4,21 @@
 
 ## <p align="center">Hezaki Dotfiles</p>
 
-![Screenshot](.github/1.png)
-![Screenshot](.github/2.png)
-![Screenshot](.github/3.png)
+![Screenshot](./1.png)
+![Screenshot](./2.png)
+![Screenshot](./3.png)
 
 ### Infomation
-> This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
-> Build host:
+> - This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
+> - Build host:
 >> `nixos-rebuild switch --flake .#hlcwlk`
-> But you can use aliases:
+> - But you can use aliases:
 >> `nixos-update`
-> Build home-manager:
+> - Build home-manager:
 >> `home-manager switch --flake .#hezaki`
-> And similarly:
+> - And similarly:
 >> `home-update`
-> To make the home-manager work:
+> - To make the home-manager work:
 >> `su root -c chown -R hezaki:users /etc/nixos` 
 
 ### Software
