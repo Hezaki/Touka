@@ -4,9 +4,9 @@
 
 ## <p align="center">Hezaki Dotfiles</p>
 
-![Screenshot](.github/1.png)
-![Screenshot](.github/2.png)
-![Screenshot](.github/3.png)
+![Screenshot](./1.png)
+![Screenshot](./2.png)
+![Screenshot](./3.png)
 
 ### Infomation
 This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
