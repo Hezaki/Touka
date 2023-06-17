@@ -8,7 +8,7 @@
 ![Screenshot](./2.png)
 ![Screenshot](./3.png)
 
-### Infomation
+### Information
 This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
 
 Build host:
