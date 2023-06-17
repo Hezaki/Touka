@@ -39,7 +39,7 @@ To make the home-manager work:
 - **Terminal** - [Foot](https://codeberg.org/dnkl/foot)
 - **Editor** - [Neovim](https://neovim.io/)
 - **Shell** - [Zsh](https://www.zsh.org/)
-- **Notifications** - [Dunst](https://github.com/dunst-project/dunst))
+- **Notifications** - [Dunst](https://github.com/dunst-project/dunst)
 - **Launcher** - [Rofi](https://github.com/lbonn/rofi)
 - **Wallpaper** - `.github/wallpaper.png`
 
