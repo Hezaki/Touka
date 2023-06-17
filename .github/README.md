@@ -10,11 +10,12 @@
 
 ### Infomation
 This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
+
 Build host:
 ```bash
     nixos-rebuild switch --flake .#hlcwlk
 ```
-But you can use aliases
+But you can use aliases:
 ```bash 
     nixos-update
 ```
