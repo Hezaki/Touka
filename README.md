@@ -8,20 +8,20 @@
 ![Screenshot](.github/2.png)
 ![Screenshot](.github/3.png)
 
-#### Infomation
-> This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
-> Build host:
-> `nixos-rebuild switch --flake .#hlcwlk`
-> But you can use aliases
-> `nixos-update`
-> Build home-manager:
-> `home-manager switch --flake .#hezaki`
-> And similarly:
-> `home-update`
-> To make the home-manager work:
-> `su root -c chown -R hezaki:users /etc/nixos` 
+### Infomation
+> - This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
+> - Build host:
+>> `nixos-rebuild switch --flake .#hlcwlk`
+> - But you can use aliases
+>> `nixos-update`
+> - Build home-manager:
+>> `home-manager switch --flake .#hezaki`
+> - And similarly:
+>> `home-update`
+> - To make the home-manager work:
+>> `su root -c chown -R hezaki:users /etc/nixos` 
 
-#### Software
+### Software
 > - **Wayland compositor** - [Hyprland](https://hyprland.org/)
 > - **Bar** - [Waybar](https://github.com/Alexays/Waybar)
 > - **Browser** - [Firefox](https://www.mozilla.org/)
@@ -32,11 +32,11 @@
 > - **Launcher** - [Rofi](https://github.com/lbonn/rofi)
 > - **Wallpaper** - `.github/wallpaper.png`
 
-#### Plans
+### Plans
 > - [ ] Add a new host for ARM.
 > - [ ] Add local packages.
 > - [ ] Update hyprland config.
 
-#### Thanks 
+### Thanks 
 > - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
 > - [Thank you for your help](https://codeberg.org/ghosty)
