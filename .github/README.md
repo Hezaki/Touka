@@ -29,7 +29,7 @@ And similarly:
 ```
 To make the home-manager work:
 ```bash 
-    su root -c chown -R hezaki:users /etc/nixos/ 
+    su root -c chown -R hezaki:users /etc/nixos/home 
 ``` 
 
 ### Software
