@@ -13,23 +13,23 @@ This is my NixOS configuration, it is divided into nixosConfiguration and homeCo
 
 Build host:
 ```bash
-    nixos-rebuild switch --flake .#hlcwlk
+nixos-rebuild switch --flake .#hlcwlk
 ```
 But you can use aliases:
 ```bash 
-    nixos-update
+nixos-update
 ```
 Build home-manager:
 ```bash 
-    home-manager switch --flake .#hezaki
+home-manager switch --flake .#hezaki
 ```
 And similarly:
 ```bash 
-    home-update
+home-update
 ```
 To make the home-manager work:
 ```bash 
-    su root -c chown -R hezaki:users /etc/nixos/home 
+sudo chown -R hezaki:users /etc/nixos/home  
 ``` 
 
 ### Software
