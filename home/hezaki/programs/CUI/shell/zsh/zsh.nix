@@ -33,7 +33,7 @@ in {
         "cd ...." = "cd ../../../";
         ":q" = "exit";
         ":wq" = "exit";
-        "flake-update" = "nix flake update"
+        "flake-update" = "nix flake update";
         "nixos-update" = "doas nixos-rebuild switch";
         "home-update" = "home-manager switch --flake /etc/nixos/.";
       };
