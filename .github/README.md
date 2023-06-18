@@ -29,7 +29,7 @@ home-update
 ```
 To make the home-manager work:
 ```bash 
-sudo chown -R hezaki:users /etc/nixos/home  
+doas chown -R hezaki:users /etc/nixos  
 ``` 
 
 ### Software
