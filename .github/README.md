@@ -52,3 +52,4 @@ doas chown -R hezaki:users /etc/nixos
 ### Thanks 
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
 - [Thank you for your help](https://codeberg.org/ghosty)
+- [Best user.js firefox](https://github.com/hnhx/user.js)
