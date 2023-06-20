@@ -46,7 +46,7 @@ doas chown -R hezaki:users /etc/nixos
 ### Plans
 1. - [ ] Add a new host for ARM.
 1. - [ ] Add local packages.
-1. - [ ] Update hyprland config.
+1. - [x] Update hyprland config.
 1. - [ ] Install nix-colors. :)
 
 ### Thanks 
