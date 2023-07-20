@@ -1,0 +1,22 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces))
+
+(deflisten workspaces :initial "(box (label :text \"        \" ))"
+	`python ../scripts/workspaces.py`)
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "20px"
+                               :width "90%"
+                               :height "30px"
+                               :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  (bar))

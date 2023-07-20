@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+function is_mute {
+	wpctl status | grep MUTED
+}
+
+function send_notification {
+	volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F':' '{print $2}')
+
+	# Send the notification
+	dunstify "volume $volume%" -t 1200 -a volume -r 5555
+}
+
+case $1 in
+up)
+	# Unmute
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 >/dev/null
+	# +10%
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+ >/dev/null
+	send_notification
+	;;
+down)
+	# Unmute
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 >/dev/null
+	# -5%
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%- >/dev/null
+	send_notification
+	;;
+mute)
+	# Toggle mute
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle >/dev/null
+
+	if is_mute; then
+		dunstify "Mute" -r 5555
+	else
+		send_notification
+	fi
+	;;
+esac

@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }: let
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
   username = "hezaki";
 in {
   home = {
@@ -7,22 +12,28 @@ in {
     stateVersion = "23.05";
     packages = with pkgs; [
       home-manager
+      hyprland
+      xdg-desktop-portal-gtk
       android-tools
       dconf
       pass
       inkscape
-      dunst
+      blockbench-electron
       rofi-wayland
+      eww-wayland
       imv
-      distrobox 
-      joplin-desktop
+      distrobox
+      dunst
+      kotatogram-desktop
       telegram-desktop
+      logseq
       slurp
       grim
       swaybg
+      cliphist
+      translate-shell
       libnotify
       scrcpy
-      ueberzugpp
       zathura
       gnome.zenity
       ppsspp-sdl-wayland
@@ -32,7 +43,7 @@ in {
       hyprpicker
       wl-clipboard
       wf-recorder
-      gtkcord4
+      wineWowPackages.waylandFull
     ];
   };
 
@@ -42,24 +53,24 @@ in {
     ./devlop/Python
     ./devlop/JavaScript
 
-    ./programs/CUI/tmux
-    ./programs/CUI/shell
-    ./programs/CUI/ranger
-    ./programs/CUI/editors/neovim
-    ./programs/CUI/neofetch
+    ./programs/cui/tmux
+    ./programs/cui/shell
+    ./programs/cui/ranger
+    ./programs/cui/editors/neovim
+    ./programs/cui/neofetch
 
-    ./programs/GUI/gtklock
-    ./programs/GUI/zathura
-    ./programs/GUI/hyprland 
-    ./programs/GUI/mpv
-    ./programs/GUI/waybar
-    ./programs/GUI/firefox
-    ./programs/GUI/foot
-    ./programs/GUI/rofi
-    ./programs/GUI/dunst
+    ./programs/gui/zathura
+    ./programs/gui/hyprland
+    ./programs/gui/mpv
+    ./programs/gui/waybar
+    ./programs/gui/eww
+    ./programs/gui/firefox
+    ./programs/gui/foot
+    ./programs/gui/rofi
+    ./programs/gui/dunst
 
     ./virtualisation/containers
 
     ./themes/themes.nix
-   ];
+  ];
 }

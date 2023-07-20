@@ -1,29 +1,26 @@
-{ config, pkgs, ... }:
-
-{
-  home.packages = with pkgs; [ 
-    gruvbox-gtk-theme
-  ];
+{ config, pkgs, ... }: {
+  home.pointerCursor = {
+    package = pkgs.catppuccin-cursors.mochaLavender;
+    name = "Catppuccin-Mocha-Lavender-Cursors"; 
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
   gtk = {
     enable = true;
     font.name = "JetBrainsMono 11";
     theme = {
-      name = "gruvbox";
+      name = "Catppuccin-Mocha-Compact-Lavender-dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        size = "compact";
+        variant = "mocha";
+      };
     };
-    cursorTheme = {
-      name = "gruvboxc";
-      size = 24;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
   };
 
   home.sessionVariables = {
-    XCURSOR_THEME="gruvboxc";
     XCURSOR_SIZE="24";
   };
 }
