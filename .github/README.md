@@ -9,24 +9,23 @@
 ![Screenshot](./3.png)
 
 ### Information
-This is my NixOS configuration, it is divided into nixosConfiguration and homeConfiguration, you can build them separately.
+This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager
 
 Build host:
 ```bash
-nixos-rebuild switch --flake .#hlcwlk
+nixos-rebuild switch --flake .#hlcwlk      # or nixos-update
 ```
-But you can use aliases:
-```bash 
-nixos-update
+
+Build nix-on-droid:
+```bash
+nix-on-droid switch --flake .#ktsrgi       # or nix-update
 ```
+
 Build home-manager:
 ```bash 
-home-manager switch --flake .#hezaki
+home-manager switch --flake .#hezaki       # or home-update
 ```
-And similarly:
-```bash 
-home-update
-```
+
 To make the home-manager work:
 ```bash 
 doas chown -R hezaki:users /etc/nixos  
@@ -44,7 +43,7 @@ doas chown -R hezaki:users /etc/nixos
 - **Wallpaper** - `.github/wallpaper.png`
 
 ### Plans
-1. - [ ] Add a new host for ARM.
+1. - [x] Add a new host for ARM.
 1. - [ ] Add local packages.
 1. - [x] Update hyprland config.
 1. - [ ] Install nix-colors. :)
