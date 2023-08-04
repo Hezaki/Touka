@@ -1,5 +1,7 @@
 
 wl-copy &
 
-swaybg -i ~/.walppapi/Untitled.png &
+waybar &
+
+swaybg -i ~/.walppapi/dev.png &
 

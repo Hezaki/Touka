@@ -35,10 +35,9 @@
   },
   "custom/launcher": {
     "format": "<span font='14'></span> {}",
-    "on-click": "foot -e doas nvim /etc/nixos"
   },
   "custom/separator": {
-    "format": "<span foreground='#ebdbb2'>|</span>",
+    "format": "<span foreground='#cdd6f4'>|</span>",
     "interval": 1
   },
   "height": 1,
@@ -59,7 +58,7 @@
   "modules-left": [
     "custom/launcher",
     "custom/separator",
-    "wlr/workspaces",
+    "hyprland/workspaces",
     "pulseaudio",
     "hyprland/language"
   ],
@@ -93,7 +92,7 @@
       ""
     ]
   },
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "active-only": false,
     "all-outputs": true,
     "...": "...",

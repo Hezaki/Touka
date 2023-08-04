@@ -1,9 +1,4 @@
 { config, pkgs, ... }: {
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    "radeon"
-  ];
-
   environment.systemPackages = with pkgs; [
     libva
     libva-utils
@@ -24,11 +19,16 @@
     };
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    jetbrains-mono
-    # ipafont
-  ];
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    pulse.enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+  };
 
   xdg.portal = {
     enable = true;

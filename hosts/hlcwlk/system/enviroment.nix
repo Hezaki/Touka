@@ -1,5 +1,6 @@
 { config, pkgs, inputs, ... }: let
   username = "hezaki";
+  hostname = "hlcwlk";
   passroot = "password";
   passuser = "password";
 in {
@@ -36,6 +37,18 @@ in {
     brillo
     htop
   ];
+
+  networking = {
+    hostName = hostname;
+    networkmanager = {
+      enable = true;
+      insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
+    };
+    dhcpcd = {
+      wait = "background";
+      extraConfig = "noarp";
+    };
+  };
 
   home-manager = {
     useGlobalPkgs = true;
@@ -75,9 +88,22 @@ in {
     };
   };
 
+  documentation = {
+    enable = true;
+    doc.enable = false;
+    man.enable = true;
+    dev.enable = false;
+  };
+
   time.timeZone = "Europe/Samara";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = { LANG = "en_US.UTF-8"; };
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    jetbrains-mono
+    ipafont
+  ];
 }

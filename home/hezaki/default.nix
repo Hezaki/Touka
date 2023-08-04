@@ -15,16 +15,17 @@ in {
       hyprland
       xdg-desktop-portal-gtk
       android-tools
+      inxi
       dconf
+      socat
       pass
       inkscape
       blockbench-electron
       rofi-wayland
       eww-wayland
-      imv
+      swayimg
       distrobox
       dunst
-      kotatogram-desktop
       telegram-desktop
       logseq
       slurp
@@ -40,9 +41,11 @@ in {
       transmission-gtk
       mpv
       prismlauncher
+      glfw-wayland
       hyprpicker
       wl-clipboard
       wf-recorder
+      appimage-run
       wineWowPackages.waylandFull
     ];
   };
@@ -61,9 +64,9 @@ in {
 
     ./programs/gui/zathura
     ./programs/gui/hyprland
+    ./programs/gui/gnome 
     ./programs/gui/mpv
     ./programs/gui/waybar
-    ./programs/gui/eww
     ./programs/gui/firefox
     ./programs/gui/foot
     ./programs/gui/rofi

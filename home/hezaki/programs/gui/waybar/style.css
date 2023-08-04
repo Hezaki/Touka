@@ -10,8 +10,8 @@ window#waybar {
 }
 
 window#waybar > box {
-  margin: 0px 0px 5px 0px;
-  background-color: #1E1E28;
+  margin: 0px 0px 6px 0px;
+  background-color: #1e1e2e;
   border-top: 0px;
   /* border-color: #282828; */
   border-style: solid;
@@ -75,7 +75,7 @@ window#waybar > box {
 }
 
 #custom-separator {
-  background: #cdd6f4;
+  background: #1E1E28;
   padding: 0 0.6em;
   margin-right: 0px;
   margin-left: 0px;
@@ -111,7 +111,7 @@ window#waybar > box {
   margin-left: 4px;
   margin-top: 4px;
   margin-bottom: 4px;
-  background: radial-gradient(circle, #313244)
+  background: radial-gradient(circle, #1e1e2e)
 }
 
 #language {
@@ -132,7 +132,7 @@ window#waybar > box {
 }
 
 #custom-launcher {
-  background: #1E1E28;
+  background: #313244;
   padding: 0 0.6em;
   margin-left: 10px;
   margin-right: 0px;

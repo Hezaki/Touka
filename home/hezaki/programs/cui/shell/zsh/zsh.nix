@@ -2,7 +2,7 @@
   config, pkgs, inputs, ...
 }: let
   username = "hezaki";
-  email = "leronpro10@gmail.com";
+  email = "email";
 in { 
   programs = {
     zsh = {
@@ -23,6 +23,7 @@ in {
         rmd = "rmdir -v";
         mv = "mv -v";
         cp = "cp -v";
+        gpp = "g++";
         ".." = "cd ..";
         "..." = "cd ../../";
         "...." = "cd ../../../";

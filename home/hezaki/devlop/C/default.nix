@@ -5,7 +5,7 @@
     gcc
     gnumake
     pkg-config
-    glib
+    glibc
   ];
 }
 
