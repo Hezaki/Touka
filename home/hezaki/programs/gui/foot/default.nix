@@ -22,4 +22,7 @@
    };
   };
  };
+ home.packages = with pkgs; [
+  libsixel
+ ];
 }
