@@ -27,6 +27,7 @@ in {
       distrobox
       dunst
       telegram-desktop
+      webcord-vencord
       logseq
       slurp
       grim

@@ -93,9 +93,7 @@
     ]
   },
   "hyprland/workspaces": {
-    "active-only": false,
     "all-outputs": true,
-    "...": "...",
     "format": "{icon}",
     "format-icons": {
       "active": "",

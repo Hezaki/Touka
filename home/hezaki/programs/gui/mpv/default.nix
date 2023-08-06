@@ -1,5 +1,5 @@
 { lib, pkgs, user, ... }:
 
 {
-  home.file.".config/mpv/input.conf".source = ./config/input.conf;
+  home.file.".config/mpv/input.conf".source = ./input.conf;
 }
