@@ -9,7 +9,7 @@
 ![Screenshot](./3.png)
 
 ### Information
-This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager
+This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager. I am constantly updating the configuration, I love Nix very interesting. I used to sit on Artix Linux, then I got bored of sitting on it and I decided to try something new, and that's how I got acquainted with NixOS. It has a lot of advantages, for example, declarativeness and configuration can be run on almost any distribution, even on Alpine. It is very easy to make your own packages on it, it is convenient to build docker containers on it, you can safely roll back the system to your previous configuration, you can even separate the config of your entire system from users. You can have 10 users who will not contact each other in any way, their own packages for each user and their own settings. That is, you can easily make several different users, for study, for games, and so on. You will not have such a problem here that you forgot which packages you installed into the system, because everything is written in your own configuration. Also, configuration rollback can be combined with btrfs snapshots, it's very convenient! (Just so far it's not in my configuration, oops.). A huge repository, more than aur, you can still add additional repositories, like NUR, just seas of packages. Your configuration outside of nix can easily be made declarative using the home.file or xdg.file functions, not all programs support full nix configuration. The configuration can be done for multiple hosts, as did (nixos and nix-on-droid), it's very convenient! Also, in a sense, thanks to the rollback of configurations, your system is practically unkillable, so your system will be able to live on your PC for a long time. Update error? Not a problem, roll back. Wrong code so much that your grub is broken? Just change the code in livecd and rebuild in it without entering the chroot (only mount). I'm sure I don't know much about nix yet, so that's not all it has to offer, which is why I love nix so much. Read the documentation, look at other people's configurations, consult people and then you will be able to learn nix and write your own configuration, this is much better than completely taking someone else's))
 
 Build host:
 ```bash
@@ -31,6 +31,168 @@ To make the home-manager work:
 doas chown -R hezaki:users /etc/nixos  
 ``` 
 
+### Layout
+
+<details>
+<br>
+```bash
+Touka
+├── flake.lock
+├── flake.nix
+├── home
+│   ├── hezaki
+│   │   ├── default.nix
+│   │   ├── devlop
+│   │   │   ├── C
+│   │   │   │   └── default.nix
+│   │   │   ├── Java
+│   │   │   │   └── default.nix
+│   │   │   ├── JavaScript
+│   │   │   │   └── default.nix
+│   │   │   └── Python
+│   │   │       └── default.nix
+│   │   ├── programs
+│   │   │   ├── cui
+│   │   │   │   ├── editors
+│   │   │   │   │   └── neovim
+│   │   │   │   │       └── default.nix
+│   │   │   │   ├── neofetch
+│   │   │   │   │   ├── alpine.conf
+│   │   │   │   │   ├── arch.conf
+│   │   │   │   │   ├── config.conf
+│   │   │   │   │   └── default.nix
+│   │   │   │   ├── ranger
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   ├── commands.py
+│   │   │   │   │   │   ├── plugins
+│   │   │   │   │   │   │   ├── __init__.py
+│   │   │   │   │   │   │   ├── __pycache__
+│   │   │   │   │   │   │   │   ├── __init__.cpython-310.opt-1.pyc
+│   │   │   │   │   │   │   │   └── __init__.cpython-310.pyc
+│   │   │   │   │   │   │   └── ranger_devicons
+│   │   │   │   │   │   │       ├── CONTRIBUTING.MD
+│   │   │   │   │   │   │       ├── devicons.py
+│   │   │   │   │   │   │       ├── __init__.py
+│   │   │   │   │   │   │       ├── LICENSE
+│   │   │   │   │   │   │       ├── LICENSE_NERDFONT
+│   │   │   │   │   │   │       ├── __pycache__
+│   │   │   │   │   │   │       │   ├── devicons.cpython-310.opt-1.pyc
+│   │   │   │   │   │   │       │   ├── devicons.cpython-310.pyc
+│   │   │   │   │   │   │       │   ├── __init__.cpython-310.opt-1.pyc
+│   │   │   │   │   │   │       │   └── __init__.cpython-310.pyc
+│   │   │   │   │   │   │       ├── README.md
+│   │   │   │   │   │   │       └── screenshot.png
+│   │   │   │   │   │   └── rc.conf
+│   │   │   │   │   └── default.nix
+│   │   │   │   ├── shell
+│   │   │   │   │   ├── default.nix
+│   │   │   │   │   └── zsh
+│   │   │   │   │       ├── default.nix
+│   │   │   │   │       └── local
+│   │   │   │   │           └── zsh-auto-notify
+│   │   │   │   │               ├── auto-notify.plugin.zsh
+│   │   │   │   │               ├── CHANGELOG.md
+│   │   │   │   │               ├── img
+│   │   │   │   │               │   └── notification-example.png
+│   │   │   │   │               ├── ISSUE_TEMPLATE.md
+│   │   │   │   │               ├── LICENSE
+│   │   │   │   │               ├── README.rst
+│   │   │   │   │               └── tests
+│   │   │   │   │                   ├── test_auto_notify_format.zunit
+│   │   │   │   │                   ├── test_auto_notify_send.zunit
+│   │   │   │   │                   ├── test_is_auto_notify_ignored.zunit
+│   │   │   │   │                   └── test_plugin.zunit
+│   │   │   │   └── tmux
+│   │   │   │       ├── default.nix
+│   │   │   │       └── local
+│   │   │   │           └── mode_indicator.tmux
+│   │   │   └── gui
+│   │   │       ├── dunst
+│   │   │       │   ├── default.nix
+│   │   │       │   └── dunstrc
+│   │   │       ├── firefox
+│   │   │       │   ├── chrome
+│   │   │       │   │   ├── bg.png
+│   │   │       │   │   ├── userChrome.css
+│   │   │       │   │   └── userContent.css
+│   │   │       │   └── default.nix
+│   │   │       ├── foot
+│   │   │       │   └── default.nix
+│   │   │       ├── gnome
+│   │   │       │   └── default.nix
+│   │   │       ├── hyprland
+│   │   │       │   ├── autostart.sh
+│   │   │       │   ├── binds.conf
+│   │   │       │   ├── decoration.conf
+│   │   │       │   ├── default.nix
+│   │   │       │   ├── hyprland.conf
+│   │   │       │   ├── rules.conf
+│   │   │       │   └── settings.conf
+│   │   │       ├── mpv
+│   │   │       │   ├── default.nix
+│   │   │       │   └── input.conf
+│   │   │       ├── rofi
+│   │   │       │   ├── config.rasi
+│   │   │       │   ├── default.nix
+│   │   │       │   └── themes
+│   │   │       │       └── colors.rasi
+│   │   │       ├── waybar
+│   │   │       │   ├── config.jsonc
+│   │   │       │   ├── default.nix
+│   │   │       │   └── style.css
+│   │   │       └── zathura
+│   │   │           ├── default.nix
+│   │   │           └── zathurarc
+│   │   ├── themes
+│   │   │   └── themes.nix
+│   │   └── virtualisation
+│   │       └── containers
+│   │           ├── alpine.nix
+│   │           ├── archlinux.nix
+│   │           └── default.nix
+│   └── misato
+│       └── programs
+│           ├── neofetch
+│           │   ├── alpine.conf
+│           │   ├── arch.conf
+│           │   ├── config.conf
+│           │   └── default.nix
+│           ├── ranger
+│           │   ├── config
+│           │   │   ├── commands.py
+│           │   │   ├── plugins
+│           │   │   │   ├── __init__.py
+│           │   │   │   └── __pycache__
+│           │   │   │       ├── __init__.cpython-310.opt-1.pyc
+│           │   │   │       └── __init__.cpython-310.pyc
+│           │   │   └── rc.conf
+│           │   └── default.nix
+│           ├── shell
+│           │   ├── default.nix
+│           │   └── zsh
+│           │       └── zsh.nix
+│           └── tmux
+│               ├── default.nix
+│               └── local
+│                   └── mode_indicator.tmux
+└── hosts
+    ├── hlcwlk
+    │   ├── default.nix
+    │   └── system
+    │       ├── enviroment.nix
+    │       ├── hardware.nix
+    │       ├── nixc.nix
+    │       ├── systemd.nix
+    │       └── variables.nix
+    └── ktsrgi
+        └── default.nix
+
+57 directories, 93 files
+```
+
+<details>
+<br>
+
 ### Software
 - **Wayland compositor** - [Hyprland](https://hyprland.org/)
 - **Bar** - [Waybar](https://github.com/Alexays/Waybar)
@@ -44,11 +206,11 @@ doas chown -R hezaki:users /etc/nixos
 
 ### Plans
 1. - [x] Add a new host for ARM.
-1. - [ ] Add local packages.
 1. - [x] Update hyprland config.
 1. - [ ] Install nix-colors. :)
+1. - [ ] Make btrfs snapshots.
+1. - [ ] Make btrfs snapshots.
 
 ### Thanks 
+- [Thank you for your help <3](https://codeberg.org/ghosty)
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
-- [Thank you for your help](https://codeberg.org/ghosty)
-- [Best user.js firefox](https://github.com/hnhx/user.js)
