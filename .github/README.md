@@ -32,9 +32,6 @@ doas chown -R hezaki:users /etc/nixos
 ``` 
 
 ### Layout
-
-<details>
-<br>
 ```bash
 Touka
 ├── flake.lock
@@ -189,9 +186,6 @@ Touka
 
 57 directories, 93 files
 ```
-
-<details>
-<br>
 
 ### Software
 - **Wayland compositor** - [Hyprland](https://hyprland.org/)
