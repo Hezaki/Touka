@@ -7,12 +7,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     hyprland.url = "github:hyprwm/Hyprland/";
-    hypr-contrib.url = "github:hyprwm/contrib";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland-contrib.url = "github:hyprwm/contrib";
 
     nixvim.url = "github:pta2002/nixvim";
 

@@ -18,13 +18,14 @@
         LegacyProfiles = true;
         ManualAppUpdateOnly = true;
         Homepage = {
+          # "none" / "homepage" / "previous-session" / "homepage-locked"
           Startpage = "none";
         };
 
         SearchEngines = {
           Add = [
             {
-              Name = "librex";
+              Name = "LibreX";
               Description = "LibreX search";
               Alias = "!lx";
               URLTemplate = "https://search.pabloferreiro.es/search.php?q={searchTerms}";
@@ -35,14 +36,8 @@
               Alias = "!nix";
               URLTemplate = "https://search.nixos.org/packages?&query={searchTerms}";
             }
-            {
-              Name = "codeberg";
-              Description = "Git repository";
-              Alias = "!git";
-              URLTemplate = "https://codeberg.org/";
-            }
           ];
-          Default = "librex";
+          Default = "LibreX";
           Remove = [
             "Google"
             "Bing"
@@ -60,22 +55,13 @@
             (name: cfg: {installation_mode = "force_installed";} // cfg);
         in
           mkForceInstalled {
-            # Theme
             "{0a2d1098-69a9-4e98-a62c-a861766ac24d}".install_url = "https://github.com/catppuccin/firefox/releases/download/old/catppuccin_mocha_lavender.xpi";
-            # Dark Reader
             "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-            # Ublock Origin
             "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            # SponsorBlock
             "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-            # Vimium
             "{d7742d87-e61d-4b78-b8a1-b469842139fa}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
-            # Tampermonkey
-            "fTampirefox@tampermonkey.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
-            # Stylus
+            "firefox@tampermonkey.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4114817/styl_us-1.5.33.xpi";
-            # Translate
-            "{e5b6e4ac-ec96-44f5-b257-e4d3c8291b41}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4135469/linguist_translator-5.0.7.xpi";
           };
 
         FirefoxHome = {

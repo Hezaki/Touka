@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, pkgs, inputs, ... }: {
   home.file = {
     ".config/hypr/hyprland.conf".source = ./hyprland.conf;
     ".config/hypr/settings.conf".source = ./settings.conf;

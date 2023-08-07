@@ -1,6 +1,6 @@
-{ ... }:
+{ config, inputs, ... }:
 {
   imports = [
-    ./zsh
+    ./zsh/zsh.nix
   ];
 }
