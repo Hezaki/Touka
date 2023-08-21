@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: let
+{ pkgs, inputs, ... }: let
   username = "hezaki";
   hostname = "hlcwlk";
   passroot = "password";
@@ -8,35 +8,34 @@ in {
     inputs.home-manager.nixosModules.home-manager 
   ];
 
-  environment.systemPackages = with pkgs; [
-    home-manager
-    vulkan-tools
-    iftop
-    git
-    gcc
-    cargo 
-    rustc
-    neofetch
-    nix-tree
-    rnix-lsp
-    nodePackages_latest.pyright
-    killall
-    unzip
-    fzf
-    zip
-    unrar
-    neovim
-    tmux
-    wget
-    tree
-    doas
-    lsd
-    p7zip
-    ranger
-    bat
-    brillo
-    htop
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      iftop
+      git
+      gcc
+      cargo 
+      rustc
+      neofetch
+      nix-tree
+      rnix-lsp
+      killall
+      unzip
+      fzf
+      zip
+      unrar
+      neovim
+      tmux
+      wget
+      tree
+      doas
+      lsd
+      p7zip
+      ranger
+      bat
+      brillo
+      htop
+    ];
+  };
 
   networking = {
     hostName = hostname;
@@ -75,6 +74,7 @@ in {
     "wheel"
     "adbusers"
     "podman"
+    "libvirtd"
    ];
    shell = pkgs.zsh;
   };
@@ -106,4 +106,25 @@ in {
     jetbrains-mono
     ipafont
   ];
+
+  console = {
+    colors = [
+      "1e1e2e" 
+      "181825" 
+      "313244" 
+      "45475a" 
+      "585b70" 
+      "cdd6f4" 
+      "f5e0dc" 
+      "b4befe" 
+      "f38ba8" 
+      "fab387" 
+      "f9e2af" 
+      "a6e3a1" 
+      "94e2d5" 
+      "89b4fa" 
+      "cba6f7" 
+      "f2cdcd"
+    ];
+  };
 }

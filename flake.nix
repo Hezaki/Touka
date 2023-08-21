@@ -5,9 +5,15 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nurpkgs.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nix-gaming.url = "github:fufexan/nix-gaming";
 
     hyprland.url = "github:hyprwm/Hyprland/";
-    hyprland-contrib.url = "github:hyprwm/contrib";
+    hypr-contrib.url = "github:hyprwm/contrib";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+    xdph = {
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixvim.url = "github:pta2002/nixvim";
 
@@ -23,12 +29,7 @@
     };
   };
 
-  outputs = {
-    self,
-    home-manager,
-    nix-on-droid,
-    ...
-  } @ inputs: let
+  outputs = { self, home-manager, nix-on-droid, ... } @ inputs: let
     inherit (self) outputs;
   in {
     nixosConfigurations = {

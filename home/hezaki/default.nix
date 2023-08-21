@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: let
+{ pkgs, lib, inputs, ... }: let
   username = "hezaki";
 in {
   home = {
@@ -16,6 +11,7 @@ in {
       xdg-desktop-portal-gtk
       android-tools
       inxi
+      imagemagick
       dconf
       socat
       pass
@@ -32,7 +28,7 @@ in {
       slurp
       grim
       swaybg
-      cliphist
+      nix-prefetch
       translate-shell
       libnotify
       scrcpy
@@ -41,22 +37,17 @@ in {
       ppsspp-sdl-wayland
       transmission-gtk
       mpv
+      ueberzugpp
       prismlauncher
       glfw-wayland
       hyprpicker
       wl-clipboard
       wf-recorder
       appimage-run
-      wineWowPackages.waylandFull
     ];
   };
 
   imports = [
-    ./devlop/C
-    ./devlop/Java
-    ./devlop/Python
-    ./devlop/JavaScript
-
     ./programs/cui/tmux
     ./programs/cui/shell
     ./programs/cui/ranger
@@ -64,17 +55,22 @@ in {
     ./programs/cui/neofetch
 
     ./programs/gui/zathura
-    ./programs/gui/hyprland
-    ./programs/gui/gnome 
     ./programs/gui/mpv
-    ./programs/gui/waybar
     ./programs/gui/firefox
     ./programs/gui/foot
-    ./programs/gui/rofi
-    ./programs/gui/dunst
+    ./programs/gui/webcord 
+
+    ./programs/wm/dunst
+    ./programs/wm/rofi
+    ./programs/wm/waybar
+    ./programs/wm/hyprland
+    ./programs/wm/gnome
 
     ./virtualisation/containers
+    ./virtualisation/qemu
 
     ./themes/themes.nix
+
+    ./devlop
   ];
 }

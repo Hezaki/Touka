@@ -1,22 +1,23 @@
-{
-  config, pkgs, inputs, ...
-}: let
+{ config, pkgs, inputs, ... }: let
   username = "hezaki";
   email = "email";
 in { 
   programs = {
     zsh = {
       enable = true;
+      profileExtra = ''
+        [ "$(tty)" = "/dev/tty1" ] && exec Hyprland
+      '';
       shellAliases = {
         ls = "lsd -F";
         l = "lsd -l";
         ll = "lsd -ll";
-        la = "lsd -la";
-        cat = "bat --theme gruvbox-dark";
+        la = "lsd -lA";
+        cd = "z";
+        cat = "bat";
         tree = "lsd --tree";
         doas = "doas ";
         sudo = "sudo ";
-        Neorg = "vi $HOME/Notes/";
         box = "distrobox";
         md = "mkdir -v";
         rm = "rm -v";
@@ -27,51 +28,60 @@ in {
         ".." = "cd ..";
         "..." = "cd ../../";
         "...." = "cd ../../../";
-        "cd ..." = "cd ../../";
-        "cd ...." = "cd ../../../";
         ":q" = "exit";
         ":wq" = "exit";
-        "flake-update" = "nix flake update";
+        "flake-update" = "nix flake update /etc/nixos";
         "nixos-update" = "doas nixos-rebuild switch";
         "home-update" = "home-manager switch --flake /etc/nixos/.";
       };
       # Plugins
-      plugins = [
-       {
-         name = "powerlevel10k";
-         src = pkgs.zsh-powerlevel10k;
-         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-       }
-       {
-         name = "zsh-autosuggestions";
-         src = pkgs.zsh-autosuggestions;
-         file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
-       }
-       {
-         name = "zsh-history-substring-search";
-         src = pkgs.zsh-history-substring-search;
-         file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
-       }
-       {
-         name = "zsh-autopair";
-         src = pkgs.zsh-autopair;
-         file = "share/zsh-autopair/zsh-autopair.zsh";
-       }
-       {
-         name = "fzf-tab";
-         src = pkgs.zsh-fzf-tab;
-         file = "share/fzf-tab/fzf-tab.zsh";
-       }
-       {
-         name = "zsh-syntax-highlighting";
-         src = pkgs.zsh-syntax-highlighting;
-         file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
-       }
-       {
-         name = "zsh-autopair";
-         src = pkgs.zsh-autopair;
-         file = "share/zsh/zsh-autopair/autopair.zsh";
-       }
+      plugins = with pkgs; [
+        {
+          name = "powerlevel10k";
+          src = zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+          name = "zsh-autosuggestions";
+          src = zsh-autosuggestions;
+          file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+        }
+        {
+          name = "zsh-history-substring-search";
+          src = zsh-history-substring-search;
+          file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
+        }
+        {
+          name = "zsh-autopair";
+          src = zsh-autopair;
+          file = "share/zsh-autopair/zsh-autopair.zsh";
+        }
+        {
+          name = "fzf-tab";
+          src = zsh-fzf-tab;
+          file = "share/fzf-tab/fzf-tab.zsh";
+        }
+        {
+          name = "zsh-syntax-highlighting";
+          src = zsh-syntax-highlighting;
+          file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+        }
+        {
+          name = "zsh-autopair";
+          src = zsh-autopair;
+          file = "share/zsh/zsh-autopair/autopair.zsh";
+        }
+      ] ++ [
+        {
+          name = "zsh-auto-notify";
+          file = "auto-notify.plugin.zsh";
+          src = fetchFromGitHub {
+            owner = "MichaelAquilina";
+            repo = "zsh-auto-notify";
+            rev = "22b2c61ed18514b4002acc626d7f19aa7cb2e34c";
+            hash = "sha256-x+6UPghRB64nxuhJcBaPQ1kPhsDx3HJv0TLJT5rjZpA=";
+          };
+        }
       ];
       # Config
       initExtra = ''
@@ -85,7 +95,7 @@ in {
         bindkey '^[[1;5D' vi-backward-word
         bindkey '^f' beginning-of-line
 
-        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
+        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black"
 
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#1e1e2e,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
@@ -127,9 +137,7 @@ in {
           fi
         }
 
-        source /etc/nixos/home/hezaki/programs/cui/shell/zsh/local/zsh-auto-notify/auto-notify.plugin.zsh
-        # tmux plugin
-        sh /etc/nixos/home/hezaki/programs/cui/tmux/local/mode_indicator.tmux
+        sh /etc/nixos/home/hezaki/programs/cui/tmux/local/mode_indicator.tmux 
 
         [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
       '';
@@ -137,7 +145,6 @@ in {
         size = 10000;
       };
     };
-    # Utilites
     git = {
       enable = true;
       userName  = username;
@@ -146,14 +153,9 @@ in {
         s = "status";
       };
     };
-    bat = {
-      enable = true;
-    };
-    lsd = {
-      enable = true;
-    };
-    fzf = {
-      enable = true;
-    };
+    fzf.enable = true;
+    bat.enable = true;
+    lsd.enable = true;
+    zoxide.enable = true;
   };
 }
