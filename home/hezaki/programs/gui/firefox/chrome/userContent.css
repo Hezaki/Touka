@@ -23,7 +23,7 @@
 body {
     background-color: #1E1E2E !important;
     background: #1E1E2E !important;
-    background: url("./bg.png") no-repeat fixed !important;
+    background: url("/etc/nixos/home/hezaki/themes/images/bg.png") no-repeat fixed !important;
     background-size: cover !important;
     --newtab-background-color: #1E1E2E !important;
     --newtab-background-color-secondary: #1E1E2E !important;

@@ -12,7 +12,7 @@
    loader = {
      grub.enable = true;
      grub.device = "/dev/sda";
-     grub.splashImage = null;
+     grub.splashImage = ./grubbg.png;
      timeout = 1;
    };
    initrd = {
