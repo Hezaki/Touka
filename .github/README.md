@@ -47,7 +47,6 @@ doas chown -R hezaki:users /etc/nixos
 1. - [x] Update hyprland config.
 1. - [ ] Install nix-colors. :)
 1. - [ ] Make btrfs snapshots.
-1. - [ ] Make btrfs snapshots.
 
 ### Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
