@@ -5,10 +5,9 @@
 ## Information 
 [<img src="https://nixos.org/logo/nixos-logo-only-hires.png" width="130" align="left" alt="NixOS">](https://nixos.org)
 
-This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager.
+<p style="text-align: center;">This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager. I love nix, i really love the nix and Marxism :)</p>
 
 #
-
 Build host:
 ```bash
 nixos-rebuild switch --flake .#hlcwlk   # or nixos-update
