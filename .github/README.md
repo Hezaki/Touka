@@ -1,15 +1,14 @@
-## Hello!
-[<img src="https://nixos.org/logo/nixos-logo-only-hires.png" width="130" align="left" alt="NixOS">](https://nixos.org)
+[<img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" align="center" width="500px" alt="NixOS logo"/>](https://nixos.org)
 
-<p style="text-align: center;">This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager. I love nix, i really love the nix and marxism</p>
-
----
+## <p align="center">Hezaki Dotfiles</p>
 
 ![Screenshot](./1.png)
 ![Screenshot](./2.png)
 ![Screenshot](./3.png)
 
-## Information 
+## Information
+This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager. I love nix, I really love nix, I really love marxism and nix.
+
 Build host:
 ```bash
 nixos-rebuild switch --flake .#hlcwlk   # or nixos-update
