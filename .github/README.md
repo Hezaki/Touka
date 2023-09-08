@@ -1,4 +1,6 @@
-[<img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" align="center" width="500px" alt="NixOS logo"/>](https://nixos.org)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
+</p>
 
 ## <p align="center">Hezaki Dotfiles</p>
 
