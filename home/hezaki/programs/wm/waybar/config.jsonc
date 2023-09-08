@@ -30,7 +30,7 @@
     "tooltip": false
   },
   "custom/date": {
-    "exec": "date +\" %e %b\"",
+    "exec": "date +\"󰸗%e %b\"",
     "interval": 1
   },
   "custom/launcher": {

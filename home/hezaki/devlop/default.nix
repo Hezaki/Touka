@@ -15,6 +15,9 @@
     # Python
     python311 
     nodePackages_latest.pyright
+
+    # Kotlin
+    kotlin
   ];
 }
 

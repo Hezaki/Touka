@@ -1,11 +1,11 @@
-{ pkgs, lib, inputs, ... }: let
+{ pkgs, inputs, ... }: let
   username = "hezaki";
 in {
   home = {
     username = username;
     homeDirectory = "/home/${username}";
-    stateVersion = "23.05";
-    packages = with pkgs; [
+    stateVersion = "23.11";
+    packages = with pkgs; with rPackages; [
       home-manager
       hyprland
       xdg-desktop-portal-gtk
@@ -44,7 +44,22 @@ in {
       wl-clipboard
       wf-recorder
       appimage-run
+      lzip
+      libreoffice
     ];
+  };
+
+  nixpkgs = {
+    overlays = [
+      inputs.chaotic.overlays.default
+      inputs.nur.overlay
+    ];
+  };
+
+  manual = {
+    html.enable = false;
+    json.enable = false;
+    manpages.enable = false;
   };
 
   imports = [
@@ -69,8 +84,7 @@ in {
     ./virtualisation/containers
     ./virtualisation/qemu
 
-    ./themes/themes.nix
-
+    ./themes
     ./devlop
   ];
 }

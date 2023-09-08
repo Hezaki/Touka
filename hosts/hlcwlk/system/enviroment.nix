@@ -61,6 +61,11 @@ in {
     zsh.enable = true;
   };
 
+  virtualisation = {
+    libvirtd.enable = true;
+    waydroid.enable = true;
+  };
+
   users.users.root = {
    initialPassword = passroot;
    shell = pkgs.zsh;

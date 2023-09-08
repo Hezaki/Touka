@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   programs.tmux = {
     enable = true;
     baseIndex = 1; 
@@ -16,6 +16,7 @@
       set -g status-style "default"
       set -g status-right-length 50
       set -g status-left-length 20
+      # set-option -g status-justify centre
       set -sa terminal-overrides "*:Tc"
 
       set -g status-left "#{tmux_mode_indicator} "

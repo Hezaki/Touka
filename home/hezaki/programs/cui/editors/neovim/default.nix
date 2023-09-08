@@ -19,6 +19,7 @@
       relativenumber = false;
       signcolumn = "yes";
       clipboard = "unnamedplus";
+      autoindent = "smartindent";
       numberwidth = 1;
       cmdheight = 0;
       scrolloff = 3;
@@ -71,6 +72,10 @@
     };
 
     plugins = {
+      markdown-preview = {
+        enable = true;
+        browser = "firefox";
+      };
       bufferline = {
         enable = true;
         bufferCloseIcon = " ";
@@ -101,6 +106,7 @@
       };
       nvim-tree = {
         enable = true;
+        disableNetrw = true;
       };
       telescope = {
         enable = true;
@@ -174,7 +180,7 @@
       };
     };
 
-    extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = with pkgs; with pkgs.vimPlugins; [
       catppuccin-nvim
     ];
 
@@ -188,18 +194,18 @@
       require("catppuccin").setup {
         color_overrides = {
           mocha = {
-           base = "#1e1e2e",
-           mantle = "#1e1e2e",
-           crust = "#1e1e2e",
+           base = "#1e1e2e";
+           mantle = "#1e1e2e";
+           crust = "#1e1e2e";
           },
         },
       }
 
       local signs = {
-        Error = " ",
-        Warn = " ",
-        Hint = "",
-        Info = " ",
+        Error = " ";
+        Warn = " ";
+        Hint = "";
+        Info = " ";
       }
 
       for type, icon in pairs(signs) do
@@ -212,31 +218,31 @@
       ]])
 
       local modes = {
-        ['n']    = 'NORMAL',
-        ['no']   = 'NORMAL',
-        ['nov']  = 'NORMAL',
-        ['noV']  = 'NORMAL',
-        ['no'] = 'NORMAL',
-        ['niI']  = 'NORMAL',
-        ['niR']  = 'NORMAL',
-        ['niV']  = 'NORMAL',
+        ['n']    = 'NORMAL';
+        ['no']   = 'NORMAL';
+        ['nov']  = 'NORMAL';
+        ['noV']  = 'NORMAL';
+        ['no'] = 'NORMAL';
+        ['niI']  = 'NORMAL';
+        ['niR']  = 'NORMAL';
+        ['niV']  = 'NORMAL';
 
-        ['i']   = 'INSERT',
-        ['ic']  = 'INSERT',
-        ['ix']  = 'INSERT',
-        ['s']   = 'INSERT',
-        ['S']   = 'INSERT',
+        ['i']   = 'INSERT';
+        ['ic']  = 'INSERT';
+        ['ix']  = 'INSERT';
+        ['s']   = 'INSERT';
+        ['S']   = 'INSERT';
 
-        ['v']   = 'VISUAL',
-        ['V']   = 'VISUAL',
-        ['']  = 'VISUAL',
-        ['r']   = 'VISUAL',
-        ['r?']  = 'VISUAL',
+        ['v']   = 'VISUAL';
+        ['V']   = 'VISUAL';
+        ['']  = 'VISUAL';
+        ['r']   = 'VISUAL';
+        ['r?']  = 'VISUAL';
 
-        ['c']   = 'TERMINAl',
-        ['t']   = 'TERMINAL',
-        ['!']   = 'TERMINAL',
-        ['R']   = 'TERMINAL',
+        ['c']   = 'TERMINAl';
+        ['t']   = 'TERMINAL';
+        ['!']   = 'TERMINAL';
+        ['R']   = 'TERMINAL';
       }
 
       local icons = {
