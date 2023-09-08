@@ -1,11 +1,8 @@
 {
-  description = "Hezaki configuration";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nurpkgs.url = "github:nix-community/NUR";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nur.url = "github:nix-community/NUR";
 
     hyprland.url = "github:hyprwm/Hyprland/";
     hypr-contrib.url = "github:hyprwm/contrib";

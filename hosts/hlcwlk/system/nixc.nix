@@ -1,4 +1,4 @@
-{ config, outputs, inputs, ... }: {
+{ outputs, inputs, ... }: {
   nix = {
     settings = {
       trusted-users = [ 
@@ -42,8 +42,8 @@
       ];
       overlays = [
         outputs.overlays.default
-        inputs.nur.overlay.default
         inputs.chaotic.overlays.default
+        inputs.nurpkgs.overlay
       ];
     };
   };

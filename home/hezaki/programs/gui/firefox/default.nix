@@ -24,12 +24,6 @@
         SearchEngines = {
           Add = [
             {
-              Name = "librex";
-              Description = "LibreX search";
-              Alias = "!lx";
-              URLTemplate = "https://search.pabloferreiro.es/search.php?q={searchTerms}";
-            }
-            {
               Name = "mynixos";
               Description = "MyNixOS saerch";
               Alias = "!nix";
@@ -42,14 +36,14 @@
               URLTemplate = "https://codeberg.org/";
             }
           ];
-          Default = "librex";
+          Default = "DuckDuckGo";
           Remove = [
             "Google"
             "Bing"
             "Amazon.com"
             "eBay"
             "Twitter"
-            "DuckDuckGo"
+            # "DuckDuckGo"
             "Wikipedia"
           ];
         };

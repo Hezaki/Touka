@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   environment.variables = {
     XDG_CURRENT_DESKTOP="Hyprland";
     XDG_SESSION_TYPE="wayland";

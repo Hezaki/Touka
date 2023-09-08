@@ -9,5 +9,6 @@
     qemu
     libvirt
     virt-manager 
+    win-virtio
   ];
 }
