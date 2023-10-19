@@ -3,5 +3,5 @@ wl-copy &
 
 waybar &
 
-swaybg -i ~/.walppapi/dev.png &
+swaybg -i ~/.walppapi/cat_leaves.png &
 

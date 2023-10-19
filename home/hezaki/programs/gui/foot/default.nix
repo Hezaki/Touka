@@ -6,7 +6,7 @@
    main = {
     app-id = "Terminal";
     title = "Terminal";
-    font = "JetBrainsMono NerdFont:Medium:size=10.5";
+    font = "JetBrainsMono NerdFont:Medium:size=10.6";
    };
    colors = {
     foreground = "cdd6f4";

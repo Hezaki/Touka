@@ -10,13 +10,20 @@
     extraConfig = ''
       set-option -g prefix C-a
 
+      bind r set -g status
+
+      set-window-option -g mode-keys vi
+      bind-key -T copy-mode-vi "v" send -X begin-selection
+      bind-key -T copy-mode-vi "y" send -X copy-selection
+
+      set -g base-index 1 
+      setw -g pane-base-index 2
       set -g status on
       set -g status-justify left
       set -g status-position bottom
       set -g status-style "default"
       set -g status-right-length 50
       set -g status-left-length 20
-      # set-option -g status-justify centre
       set -sa terminal-overrides "*:Tc"
 
       set -g status-left "#{tmux_mode_indicator} "
@@ -35,7 +42,7 @@
       set -g @mode_indicator_sync_mode_style 'bg=color,fg=color14'
       set -g @mode_indicator_empty_mode_style 'bg=color,fg=color4'
     '';
-    plugins = with pkgs.tmuxPlugins; [
+    plugins = with pkgs; with pkgs.tmuxPlugins; [
       pain-control
       mode-indicator
       yank

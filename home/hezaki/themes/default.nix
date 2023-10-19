@@ -34,12 +34,17 @@
       '';
     };
     iconTheme = {
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "lavender";
+      };
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
     };
   };
 
   home.sessionVariables = {
     XCURSOR_SIZE="24";
+    GTK_THEME = "${config.gtk.theme.name}";
+    GTK_USE_PORTAL = "1";
   };
 }

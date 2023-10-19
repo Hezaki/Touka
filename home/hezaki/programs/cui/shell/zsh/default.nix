@@ -1,5 +1,5 @@
 { config, pkgs, inputs, ... }: let
-  username = "hezaki";
+  username = "username";
   email = "email";
 in { 
   programs = {
@@ -14,7 +14,6 @@ in {
         ll = "lsd -ll";
         la = "lsd -lA";
         cd = "z";
-        cat = "bat";
         tree = "lsd --tree";
         doas = "doas ";
         sudo = "sudo ";
@@ -25,6 +24,8 @@ in {
         mv = "mv -v";
         cp = "cp -v";
         gpp = "g++";
+        eng = "trans :en -shell -brief -no-auto -e google";
+        rus = "trans :ru -shell -brief -no-auto -e google";
         ".." = "cd ..";
         "..." = "cd ../../";
         "...." = "cd ../../../";
@@ -40,6 +41,11 @@ in {
           name = "powerlevel10k";
           src = zsh-powerlevel10k;
           file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+          name = "zsh-vi-mode";
+          src = zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.zsh";
         }
         {
           name = "zsh-autosuggestions";
@@ -88,6 +94,7 @@ in {
         export EDITOR='nvim'
         export AUTO_NOTIFY_THRESHOLD=60
         export AUTO_NOTIFY_TITLE="%command finished"
+        export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
 
         bindkey '^H' vi-backward-kill-word
         bindkey '^w' vi-backward-kill-word
@@ -101,7 +108,7 @@ in {
         --color=bg+:#1e1e2e,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
         --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-        
+
         _fix_cursor() {
            echo -ne "\033[4 q"
         }
@@ -137,7 +144,7 @@ in {
           fi
         }
 
-        sh /etc/nixos/home/hezaki/programs/cui/tmux/local/mode_indicator.tmux 
+        tmux run-shell /nix/store/23jh5aycx6iicd3pkyymalsjm0yk0az5-tmuxplugin-mode-indicator-unstable-2021-10-01/share/tmux-plugins/mode-indicator/mode_indicator.tmux
 
         [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
       '';
@@ -154,7 +161,6 @@ in {
       };
     };
     fzf.enable = true;
-    bat.enable = true;
     lsd.enable = true;
     zoxide.enable = true;
   };
