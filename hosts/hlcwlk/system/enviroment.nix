@@ -10,14 +10,12 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
+      home-manager
       iftop
       git
       gcc
-      cargo 
-      rustc
       neofetch
       nix-tree
-      rnix-lsp
       killall
       unzip
       fzf
@@ -27,12 +25,8 @@ in {
       tmux
       wget
       tree
-      doas
       lsd
       p7zip
-      ranger
-      bat
-      brillo
       htop
     ];
   };
@@ -88,7 +82,7 @@ in {
     doas = {
     enable = true;
       extraConfig = ''
-      permit persist keepenv :wheel
+        permit persist keepenv :wheel
       '';
     };
   };

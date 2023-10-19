@@ -24,16 +24,46 @@
         SearchEngines = {
           Add = [
             {
-              Name = "mynixos";
+              Name = "Mynixos";
               Description = "MyNixOS saerch";
-              Alias = "!nix";
+              Alias = "!mynix";
               URLTemplate = "https://mynixos.com/search?q={searchTerms}";
             }
             {
-              Name = "codeberg";
+              Name = "Nix";
+              Description = "NixOS search";
+              Alias = "!nix";
+              URLTemplate = "https://search.nixos.org/packages/search?q={searchTerms}";
+            }
+            {
+              Name = "NixVim";
+              Description = "NixVim options";
+              Alias = "!nixvi";
+              URLTemplate = "https://nix-community.github.io/nixvim";
+            }
+            {
+              Name = "Codeberg";
               Description = "Git repository";
               Alias = "!git";
-              URLTemplate = "https://codeberg.org/";
+              URLTemplate = "https://codeberg.org";
+            }
+            {
+              Name = "Samara University";
+              Description = "Personal account";
+              Alias = "!ssau";
+              URLTemplate = "https://cabinet.ssau.ru";
+            }
+            {
+              Name = "Webref";
+              Description = "CSS/HTML helepr";
+              Alias = "!web";
+              URLTemplate = "https://webref.ru/";
+            }
+            {
+              Name = "BAI chat";
+              Description = "ChatGPT";
+              Alias = "!bai";
+              URLTemplate = "https://chatbot.theb.ai";
             }
           ];
           Default = "DuckDuckGo";
