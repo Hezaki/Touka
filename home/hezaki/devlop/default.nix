@@ -14,10 +14,10 @@
 
     # Python
     python311 
-    nodePackages_latest.pyright
 
-    # Kotlin
-    kotlin
+    # Docker
+    distrobox
+    podman
+    podman-compose 
   ];
 }
-

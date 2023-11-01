@@ -2,7 +2,6 @@
   imports = [
     ./system/systemd.nix
     ./system/enviroment.nix
-    ./system/nixc.nix
     ./system/hardware.nix
     ./system/variables.nix
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -12,7 +11,7 @@
    loader = {
      grub.enable = true;
      grub.device = "/dev/sda";
-     grub.splashImage = ./grubbg.png;
+     grub.splashImage = /etc/nixos/home/hezaki/themes/images/grubbg.png;
      timeout = 1;
    };
    initrd = {

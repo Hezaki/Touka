@@ -7,8 +7,6 @@
     ];
 
     flake = {
-      overlays = import ./overall/overlays { inherit inputs; };
-
       nixosConfigurations = {
         hlcwlk = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
@@ -34,15 +32,15 @@
             ./hosts/ktsrgi
           ];
         };
-      };      
+      };
     };
 
-    perSystem = { config, inputs', pkgs, system, nixvim, ... }: {
+    perSystem = { inputs', pkgs, system, ... }: {
       imports = [
         {
           _module.args.pkgs = import inputs.nixpkgs {
             config.allowUnfree = true;
-            config.allowUnsupportedSystem = true;
+            home-manager.users.hezaki.nixpkgs.config.allowUnfree = true;
             inherit system;
           };
         }
@@ -63,6 +61,10 @@
     hyprland = {
       url = "github:hyprwm/Hyprland/";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
     };
     hypr-contrib = {
       url = "github:hyprwm/contrib";
