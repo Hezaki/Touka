@@ -5,10 +5,9 @@
     Install.WantedBy = ["graphical-session.target"];
   };
 in {
-  imports = [ ./binds.nix ];
+  imports = [ ./binds.nix ./autostart.nix ];
   home = {
-    file = { ".config/hypr/autostart.sh".source = ./autostart.sh; };
-    packages = with pkgs; [ wl-clipboard ];
+    packages = with pkgs; [ waypaper wl-clipboard ];
   };
 
   systemd.user.services = {
@@ -34,8 +33,9 @@ in {
     package = inputs.hyprland.packages.${pkgs.system}.default;
     enableNvidiaPatches = false;
     systemd.enable = false;
-    plugins = [
-      inputs.hycov.packages.${pkgs.system}.hycov
+    plugins = with inputs; [
+      hycov.packages.${pkgs.system}.hycov
+      hyprfocus.packages.${pkgs.system}.hyprfocus
     ];
     extraConfig = 
       ''
@@ -118,12 +118,15 @@ in {
           shadow_range = 10
           shadow_render_power = 2
           col.shadow = rgb(101010)
-          blur:enabled = false
+          blur {
+            enabled = false
+            new_optimizations = true
+          }
         }
 
         animations {
           enabled = true
-          bezier = myBezier, 0.13,0.99,0.29,1.1
+          bezier = myBezier, 0.05, 0.9, 0.1, 1.1
           animation = windows, 1, 7, myBezier
           animation = windowsOut, 1, 7, default, popin 80%
           animation = border, 1, 10, default
@@ -137,6 +140,25 @@ in {
             overview_gappi = 9
             hotarea_size = 5
             enable_hotarea = 1 
+          }
+          hyprfocus {
+            enabled = true
+
+            keyboard_focus_animation = flash
+            mouse_focus_animation = flash
+
+            bezier = bezIn, 0.5,0.0,1.0,0.5
+            bezier = bezOut, 0.0,0.5,0.5,1.0
+
+            flash {
+                flash_opacity = 0.7
+
+                in_bezier = bezIn
+                in_speed = 0.5
+
+                out_bezier = bezOut
+                out_speed = 3
+            }
           }
         }
     '';

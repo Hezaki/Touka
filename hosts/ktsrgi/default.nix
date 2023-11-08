@@ -27,7 +27,7 @@
     imports = [
       ../../home/hezaki/programs/terminal/shell/zsh
       ../../home/hezaki/programs/terminal/tmux
-      ../../home/misato/programs/neofetch 
+      ../../home/misato/programs/fastfetch 
       ../../home/misato/programs/ranger 
     ];
   };

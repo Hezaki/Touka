@@ -13,12 +13,12 @@ pkgs.dockerTools.buildImage {
     arch = "x86_64";
   };
 
-  runAsRoot = ''
-    #!${pkgs.runtimeShell}
-    ${pkgs.dockerTools.shadowSetup}
-    pacman -Syu git neofetch --noconfirm
-    cd /etc
-    git clone https://codeberg.org/hezaki/archd.git
-    rm -rf .git
-  '';
+  # runAsRoot = ''
+  #   #!${pkgs.runtimeShell}
+  #   ${pkgs.dockerTools.shadowSetup}
+  #   pacman -Syu git neofetch --noconfirm
+  #   cd /etc
+  #   git clone https://codeberg.org/hezaki/archd.git
+  #   rm -rf .git
+  # '';
 }

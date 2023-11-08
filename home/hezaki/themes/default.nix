@@ -1,10 +1,10 @@
 { config, pkgs, ... }: {
-  home.pointerCursor = {
+  home.pointerCursor = { 
+    name = "Catppuccin-Mocha-Lavender-Cursors";
     package = pkgs.catppuccin-cursors.mochaLavender;
-    name = "Catppuccin-Mocha-Lavender-Cursors"; 
-    size = 24;
     gtk.enable = true;
     x11.enable = true;
+    size = 24;
   };
 
   gtk = {
@@ -34,17 +34,16 @@
       '';
     };
     iconTheme = {
+      name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
         flavor = "mocha";
         accent = "lavender";
       };
-      name = "Papirus-Dark";
     };
   };
 
   home.sessionVariables = {
     XCURSOR_SIZE="24";
     GTK_THEME = "${config.gtk.theme.name}";
-    GTK_USE_PORTAL = "1";
   };
 }

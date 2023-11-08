@@ -1,4 +1,5 @@
-{
+{ pkgs, ... }: {
+  home.packages = [ pkgs.ranger ];
   xdg.configFile = {
     "ranger/rc.conf".text = ''
       set preview_images true

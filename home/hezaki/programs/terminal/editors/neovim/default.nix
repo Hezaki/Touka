@@ -239,15 +239,15 @@
         sources = {
           code_actions = {
             statix.enable = true;
+            eslint.enable = true;
           };
           diagnostics = {
-            statix.enable = false;
-            deadnix.enable = false;
+            statix.enable = true;
+            deadnix.enable = true;
           };
           formatting = {
             alejandra.enable = true;
             stylua.enable = true;
-            shfmt.enable = false;
             nixpkgs_fmt.enable = true;
             prettier.enable = true;
           };
@@ -256,26 +256,28 @@
       lspkind = {
         enable = true;
         mode = "symbol_text";
-        cmp.enable = true;
-        cmp.ellipsisChar = "...";
-        cmp.menu = {
-          buffer = "[Buffer]";
-          nvim_lsp = "[LSP]";
-          path = "[Path]";
-          luasnip = "[LuaSnip]";
-          nvim_lua = "[Lua]";
-          cmdline = "[Cmd]";
-          latex_symbols = "[Latex]";
+        cmp = {
+          enable = true;
+          ellipsisChar = "...";
+          menu = {
+            buffer = "[Buffer]";
+            nvim_lsp = "[LSP]";
+            path = "[Path]";
+            luasnip = "[LuaSnip]";
+            nvim_lua = "[Lua]";
+            cmdline = "[Cmd]";
+            latex_symbols = "[Latex]";
+          };
+          maxWidth = 50;
+          after = ''
+            function(entry, vim_item, kind)
+              local strings = vim.split(kind.kind, "%s", { trimempty = true })
+              kind.kind = " " .. strings[1] .. " "
+              kind.menu = "   " .. strings[2]
+              return kind
+            end
+          '';
         };
-        cmp.maxWidth = 50;
-        cmp.after = ''
-          function(entry, vim_item, kind)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. strings[1] .. " "
-            kind.menu = "   " .. strings[2]
-            return kind
-          end
-        '';
       };
       nvim-cmp = {
         enable = true;

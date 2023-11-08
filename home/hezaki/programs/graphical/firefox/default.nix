@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-  home.file.".mozilla/firefox/hezaki.default-release/chrome".source = ./chrome;
   home.packages = with pkgs; [
     (wrapFirefox firefox-esr-115-unwrapped {
       extraPolicies = {
@@ -365,4 +364,128 @@
       };
     })
   ];
+  home.file = {
+    ".mozilla/firefox/hezaki.default-release/chrome/userChrome.css".text = ''
+      * {
+        font-family: JetBrainsMono Nerd Font Mono !important;
+        font-size: 12pt !important;
+      }
+
+      #TabsToolbar > * {
+        visibility: collapse;
+      }
+
+      /* hide navigation bar when it is not focused; use Ctrl+L to get focus */
+      #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) {
+        margin-top: -45px;
+      }
+
+      #navigator-toolbox {
+        transition: 0.2s margin-top ease-out;
+      }
+
+      #navigator-toolbox:focus-within > #nav-bar,
+      #navigator-toolbox:hover > #nav-bar
+      {
+        margin-top: 0;
+        margin-bottom: var(--navbar-margin);
+        z-index: 100;
+        opacity: 1;
+      }
+       
+      #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+        visibility: collapse !important;
+      }
+       
+      /* Sidebar min and max width removal */
+      #sidebar {
+        max-width: none !important;
+        min-width: 0px !important;
+      }
+
+      #back-button { display: none; }
+      #forward-button { display: none; }
+      #reload-button { display: none; }
+      #stop-button { display: none; }
+      #home-button { display: none; }
+      #downloads-button { display: none; }
+      #library-button { display: none; }
+      #identity-box { display: none; }
+      #pageActionButton { display: none; }
+      #pocket-button { display: none; }
+      #urlbar-zoom-button { display: none; }
+      #tracking-protection-icon-container { display: none !important; }
+      #reader-mode-button{ display: none !important; }
+      #star-button { display: none; }
+      #star-button-box { display: none; }
+      #urlbar-go-button { display: none; }
+      #userContext-label, #userContext-indicator { display: none !important;}
+      #fxa-toolbar-menu-button { display: none; }
+      #nav-bar-overflow-button { display: none !important; }
+      #PanelUI-button { display: none; }
+      #customizableui-special-spring1,
+      #customizableui-special-spring2 { display: none; }
+    '';
+    ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text = ''
+      * {
+        font-family: JetBrainsMono Nerd Font Mono;
+      }
+
+      @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
+        :root {
+            --in-content-page-background: #1E1E2E !important;
+            --logo-and-wordmark{ display: none !important; }
+        }
+      }
+
+      @-moz-document url-prefix(about:home), url-prefix(about:newtab){
+
+        /* show nightly logo instead of default firefox logo in newtabpage */
+        .search-wrapper .logo-and-wordmark .logo {
+            background-size: auto !important;
+            background-size: 82px !important;
+            display: inline-block !important;
+            height: 82px !important;
+            width: 82px !important;
+        }
+
+        body {
+            background-color: #1E1E2E !important;
+            background: #1E1E2E !important;
+            background: url("/etc/nixos/home/hezaki/themes/images/bg.png") no-repeat fixed !important;
+            background-size: cover !important;
+            --newtab-background-color: #1E1E2E !important;
+            --newtab-background-color-secondary: #1E1E2E !important;
+        }
+
+        body[lwt-newtab-brighttext] {
+            --newtab-background-color: #1E1E2E !important;
+            --newtab-background-color-secondary: #1E1E2E !important;
+
+        }
+
+        .top-site-outer .top-site-icon {
+            background-color: #1E1E2E !important;
+
+        }
+
+        .top-site-outer .tile {
+            background-color: #1E1E2E !important;
+        }
+
+        .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
+            background: #1E1E2E !important;
+        }
+
+        .top-site-outer .context-menu-button:is(:active, :focus) {
+            background-color: #1E1E2E !important;
+        }
+
+        .search-wrapper .search-handoff-button {
+            border-radius: 40px !important;
+            background-color: #1E1E2E !important;
+        }
+      }
+    '';
+  };
 }

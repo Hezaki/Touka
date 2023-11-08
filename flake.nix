@@ -1,5 +1,5 @@
 {
-  outputs = { self, flake-parts, home-manager, nix-on-droid, ... } @ inputs: 
+  outputs = { flake-parts, home-manager, nix-on-droid, ... } @ inputs: 
   flake-parts.lib.mkFlake { inherit inputs; } { 
     systems = [
       "x86_64-linux"
@@ -35,12 +35,12 @@
       };
     };
 
-    perSystem = { inputs', pkgs, system, ... }: {
+    perSystem = { inputs, pkgs, system, ... }: {
       imports = [
         {
           _module.args.pkgs = import inputs.nixpkgs {
-            config.allowUnfree = true;
             home-manager.users.hezaki.nixpkgs.config.allowUnfree = true;
+            config.allowUnfree = true;
             inherit system;
           };
         }
@@ -66,6 +66,10 @@
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprfocus = {
+      url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +79,8 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags.url = "github:Aylur/ags";
 
     nixvim.url = "github:pta2002/nixvim";
 
