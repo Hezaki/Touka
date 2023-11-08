@@ -36,7 +36,7 @@
       set -g @mode_indicator_empty_prompt " TMUX "
       
       set -g pane-border-style "fg=color0"
-      set -g pane-active-border-style "bg=color0 fg=color0"
+      set -g pane-active-border-style "fg=color0"
       set -g mode-style "bg=#313244 fg=yellow" 
       set -g status-style bg=#1E1E2E
 

@@ -13,7 +13,7 @@ in {
     nix-tree
     iftop
     htop
-    neofetch
+    fastfetch
     killall
     unzip
     zip

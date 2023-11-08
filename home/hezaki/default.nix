@@ -10,6 +10,7 @@
       inxi
       dconf
       socat
+      sassc
       slurp
       swaybg
       scrcpy
@@ -18,13 +19,12 @@
       swayimg
       zathura
       nix-init
-      # obsidian
+      onefetch
       libnotify
       winetricks
       hyprpicker
       ueberzugpp
       wf-recorder
-      libreoffice
       glfw-wayland
       appimage-run
       home-manager
@@ -42,7 +42,8 @@
 
   imports = [
     ./programs/terminal/tmux
-    ./programs/terminal/neofetch
+    ./programs/terminal/ranger
+    ./programs/terminal/fastfetch
     ./programs/terminal/shell/zsh
     ./programs/terminal/editors/neovim
 
@@ -52,6 +53,7 @@
     ./programs/graphical/firefox
     ./programs/graphical/webcord 
 
+    ./programs/desktop/ags
     ./programs/desktop/rofi
     ./programs/desktop/dunst
     ./programs/desktop/waybar

@@ -8,12 +8,13 @@
     bind = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
     bind = $mod, F, fullscreen,
+    bind = $mod, C, centerwindow,
 
     binde =, F12, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
     binde =, F11, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
-    bind = $mod SHIFT, R, exec, hyprctl reload
+    bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
     bind = $mod, D, exec, rofi -drun-use-desktop-cache -show drun
     bind = ALT, P, exec, hyprpicker -a
 
@@ -25,6 +26,8 @@
     binde = $mod, Tab, changegroupactive, f
     binde = $modSHIFT, Tab, changegroupactive, b
 
+    bind = $mod, ESCAPE, hycov:toggleoverview
+    
     bind = $mod, H, movefocus, l
     bind = $mod, J, movefocus, d
     bind = $mod, L, movefocus, r
@@ -40,8 +43,6 @@
     binde = $mod SHIFT, K, resizeactive, 0 20
     binde = $mod SHIFT, L, resizeactive, 20 0
 
-    bind = $mod, ESCAPE, hycov:toggleoverview
-    
     bind = $mod, 1, workspace, 1
     bind = $mod, 2, workspace, 2
     bind = $mod, 3, workspace, 3

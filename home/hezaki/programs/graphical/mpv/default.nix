@@ -1,3 +1,8 @@
 {
-  home.file.".config/mpv/input.conf".source = ./input.conf;
+  programs.mpv = {
+    enable = true;
+    bindings = {
+      "r" = "cycle-values video-rotate 90 180 270 0";
+    };
+  };
 }
