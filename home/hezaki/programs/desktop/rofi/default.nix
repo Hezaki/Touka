@@ -15,7 +15,7 @@
 	      display-drun: "";
 	      drun-display-format: "{name}";
 	      modi: "drun";
-	      show-icons: false;
+	      show-icons: true;
       }
 
       * {
@@ -29,7 +29,7 @@
       }
 
       window {
-	      width: 250px;
+	      width: 500px;
 	      border-radius: 16;
 	      border: 3;
         border-color: @accent;
@@ -47,7 +47,7 @@
 	      scrollbar: false;
 	      padding: 2 0;
 	      background-color: @background;
-	      columns: 1;
+	      columns: 2;
 	      lines: 6;
 	      margin: 0 0 5 0;
       }
@@ -72,7 +72,7 @@
 	      text-color: @foreground;
 	      placeholder-color: @accent;
 	      border-radius: 16;
-	      placeholder: "Waiting...";
+	      placeholder: "Hello!!!!!";
 	      blink: false;
 	      padding: 4 4 4 6;
       }

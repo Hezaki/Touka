@@ -4,6 +4,8 @@
 
     bind = $mod, RETURN, exec, foot -e tmux
 
+    bind = ctrlALT, ESCAPE, exec, systemctl suspend
+
     bind = $mod, W, killactive, 
     bind = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
@@ -14,12 +16,16 @@
     binde =, F11, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
-    bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
-    bind = $mod, D, exec, rofi -drun-use-desktop-cache -show drun
-    bind = ALT, P, exec, hyprpicker -a
+    bind = ALT, I, exec, hyprctl keyword general:cursor_inactive_timeout 0
+    bind = ALT, U, exec, hyprctl keyword general:cursor_inactive_timeout 3
 
-    bind = ,Print, exec, wayshot -f $HOME/Screenshots/$(date +'%s.png') | wl-copy
-    bind = $mod, Print, exec, wayshot -s "$(slurp -d)" -f $HOME/Screenshots/$(date +'%s.png') | wl-copy
+    bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
+    bind = $mod, D, exec, rofi -show drun
+    bind = ALT, P, exec, hyprpicker -a
+    bind = ALT, G, exec, gtklock -s ~/.config/gtklock/style.css
+
+    bind = ,Print, exec, grimblast copysave screen $HOME/Screenshots/$(date +'%s.png')
+    bind = $mod, Print, exec, grimblast --freeze copysave area $HOME/Screenshots/$(date +'%s.png')
     bind = $mod, F9, exec, wf-recorder
 
     bind = $mod, G, togglegroup

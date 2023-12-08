@@ -88,6 +88,14 @@
         };
       }
       {
+        key = "fg";
+        action = ":Telescope live_grep<CR>";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+      {
         key ="ff";
         action = ":Telescope find_files<CR>";
         options = {
@@ -115,14 +123,49 @@
 
     plugins = {
       nix.enable = true;
+      leap.enable = true;
 	    emmet.enable = true;
       luasnip.enable = true;
       gitsigns.enable = true;
-      telescope.enable = true;
       ts-autotag.enable = true;
       comment-nvim.enable = true;
-      nvim-autopairs.enable = true;
-      nvim-colorizer.enable = true;
+      nvim-autopairs = {
+        enable = true;
+        checkTs = true;
+      };
+      nvim-colorizer = {
+        enable = true;
+        userDefaultOptions = {
+          tailwind = true;
+          sass.enable = true;
+          css = true;
+        };
+      };
+      telescope = {
+        enable = true;
+        extensions.frecency.enable = true;
+        extraOptions = {
+          pickers.colorscheme.enable_preview = true;
+        };
+        defaults = {
+          prompt_prefix = " ";
+          selection_caret = "❯ ";
+          path_display = [
+            "truncate"
+          ];
+          layout_config = {
+            horizontal = {
+              preview_width = 0.55;
+            };
+            vertical = {
+              mirror = false;
+            };
+            width = 0.87;
+            height = 0.80;
+            preview_cutoff = 120;
+          };
+        };
+      };
       indent-blankline = { 
         enable = true;
         scope.enabled = false;
@@ -236,10 +279,11 @@
       };
       none-ls = {
         enable = true;
+        cmd = ["bash -c nvim"];
+        debug = true;
         sources = {
           code_actions = {
             statix.enable = true;
-            eslint.enable = true;
           };
           diagnostics = {
             statix.enable = true;
@@ -330,19 +374,19 @@
         };
         mapping = {
           "<TAB>" = "cmp.mapping(function(fallback)
-                      if cmp.visible() then
-                        cmp.select_next_item()
-                      else
-                        fallback()
-                      end
-                    end)";
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                fallback()
+              end
+            end)";
           "<S-Tab>" = "cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                          cmp.select_prev_item()
-                        else
-                          fallback()
-                        end
-                      end)";
+              if cmp.visible() then
+                cmp.select_prev_item()
+              else
+                fallback()
+              end
+            end)";
           "<ESC>" = "cmp.mapping.abort()";
           "<C-Space>" = "cmp.mapping.complete()";
           "<CR>" = "cmp.mapping.confirm({ select = true })";
@@ -368,6 +412,7 @@
       cmd = vim.cmd
       opt = vim.opt
       g = vim.g
+      o = vim.o
 
       require("zen-mode").setup {
         window = {
@@ -376,22 +421,13 @@
       }
 
  	    require("catppuccin").setup {
+        term_colors = true,
 	      color_overrides = {
-	        mocha = {
-	         base = "#1e1e2e";
-	         mantle = "#1e1e2e";
-	         crust = "#1e1e2e";
-	        };
+	        mocha = { base = "#1e1e2e"; mantle = "#1e1e2e"; crust = "#1e1e2e"; };
 	      };
 	    }
 
-      local signs = {
-        Error = "";
-        Warn = "";
-        Hint = "";
-        Info = "";
-      }
-
+      local signs = { Error = ""; Warn = ""; Hint = ""; Info = ""; }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})

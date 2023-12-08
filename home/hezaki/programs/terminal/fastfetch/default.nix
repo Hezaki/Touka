@@ -14,10 +14,7 @@
         "kernel",
         "wm",
         "shell",
-        {
-          "type": "packages",
-          "format": ">3"
-        },
+        "uptime",
         "memory",
       ]
     }

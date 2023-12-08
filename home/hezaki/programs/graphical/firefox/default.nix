@@ -23,28 +23,10 @@
         SearchEngines = {
           Add = [
             {
-              Name = "Mynixos";
-              Description = "MyNixOS saerch";
-              Alias = "!mynix";
-              URLTemplate = "https://mynixos.com/search?q={searchTerms}";
-            }
-            {
               Name = "Nix";
               Description = "NixOS search";
               Alias = "!nix";
               URLTemplate = "https://search.nixos.org/packages/search?q={searchTerms}";
-            }
-            {
-              Name = "NixVim";
-              Description = "NixVim options";
-              Alias = "!nixvi";
-              URLTemplate = "https://nix-community.github.io/nixvim";
-            }
-            {
-              Name = "Codeberg";
-              Description = "Git repository";
-              Alias = "!git";
-              URLTemplate = "https://codeberg.org";
             }
             {
               Name = "Samara University";
@@ -63,6 +45,12 @@
               Description = "ChatGPT";
               Alias = "!bai";
               URLTemplate = "https://chatbot.theb.ai";
+            }
+            {
+              Name = "YandexGPT";
+              Description = "Alisa";
+              Alias = "!yagpt";
+              URLTemplate = "https://ya.ru/alisa_davay_pridumaem";
             }
           ];
           Default = "DuckDuckGo";
@@ -98,7 +86,7 @@
             # Stylus
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4114817/styl_us-1.5.33.xpi";
             # Translate
-            "{e5b6e4ac-ec96-44f5-b257-e4d3c8291b41}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4135469/linguist_translator-5.0.7.xpi";
+            "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
           };
 
         FirefoxHome = {
@@ -122,6 +110,8 @@
         };
 
         Preferences = {
+          "browser.startup.homepage" = "https://duckduckgo.com";
+          # "browser.startup.homepage" = "file:///etc/nixos/home/hezaki/programs/graphical/firefox/index.html";
           "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";

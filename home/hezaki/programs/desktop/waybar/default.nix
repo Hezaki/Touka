@@ -38,7 +38,7 @@
           "interval": 1
         },
         "custom/launcher": {
-          "format": "<span font='14'></span> {}",
+          "format": "<span foreground='#89b4fa' font='14'></span> {}",
         },
         "custom/separator": {
           "format": "<span foreground='#cdd6f4'>|</span>",
@@ -55,24 +55,23 @@
           "format": "{}",
           "max-length": 35
         },
-        "layer": "bottom",
+        "layer": "top",
         "modules-center": [
-          "hyprland/window"
+          "hyprland/workspaces",
         ],
         "modules-left": [
           "custom/launcher",
           "custom/separator",
-          "hyprland/workspaces",
+          "hyprland/language",
           "pulseaudio",
-          "hyprland/language"
+          "temperature"
         ],
         "modules-right": [
           "custom/date",
           "clock#time",
-          "temperature",
           "battery"
         ],
-        "position": "bottom",
+        "position": "top",
         "pulseaudio": {
           "format": "{icon} {volume}%",
           "format-icons": {
@@ -85,7 +84,7 @@
             "headphone": " ",
             "headset": " "
           },
-          "format-muted": " muted",
+          "format-muted": "󰝟 mute",
           "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
           "scroll-step": 5
         },
@@ -97,13 +96,12 @@
           ]
         },
         "hyprland/workspaces": {
-          "all-outputs": true,
-          "format": "{icon}",
-          "format-icons": {
-            "active": "",
-            "default": "",
-            "urgent": ""
-          },
+          // "format": "{}",
+          // "format-icons": {
+          //   "active": "",
+          //   "default": "",
+          //   "urgent": ""
+          // },
         }
       }
     '';
@@ -120,41 +118,79 @@
       }
 
       window#waybar > box {
-        margin: 4px 150px 5px 150px;  /* 3 - 6 */
+        margin: 0px 0px 5px 0px;
         background-color: #1e1e2e;
         border-top: 0px;
-        /* border-color: #282828; */
         border-style: solid;
-        border-radius: 11 11 11 11px;
         box-shadow: 1 1 3 1px #101010;
-        /* box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1); */
+      }
+
+      #workspaces button label{
+        color: 	#CDD6F4;
+        font-weight: bolder;
+      }
+
+      #workspaces button.active label {
+        color: #313244;
+        font-weight: bolder;
       }
 
       #workspaces button {
-        padding: 0 0.5em;
-        /* margin-right: 0px; */
-        /* margin-left: 0px; */
-        color: #cdd6f4;
+        background-color: #45475a;
+        border-color: #45475a;
+        border-radius: 20px;
+        margin-right: 10px;
+        padding: 0px;
+        padding-right: 6px;
+        padding-left: 6px;
+        font-weight: bolder;
+        color: #313244;
+        transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.68);
       }
 
       #workspaces button.active {
-        color: #cdd6f4;
-        background: #313244;
+        padding-right: 14px;
+        padding-left: 14px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        background: rgb(203,166,247);
+        background: radial-gradient(circle, rgba(205, 214, 244, 1) 0%, rgba(137, 180, 250, 1) 50%, rgba(203, 166, 247, 1) 100%); 
+        background-size: 400% 400%;
+        animation: gradient 5s linear infinite;
+        transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
       }
 
-      #workspaces button.focused {
-        color: #cdd6f4;
-        background: #313244;
+      @keyframes gradient {
+	      0% {
+		      background-position: 0% 50%;
+	      }
+	      50% {
+		      background-position: 100% 30%;
+	      }
+	      100% {
+		      background-position: 0% 50%;
+	      }
       }
 
-      #workspaces button.urgent {
-        color: #cdd6f4;
-        background: #313244;
+      @keyframes gradient_f {
+	      0% {
+		      background-position: 0% 200%;
+	      }
+          50% {
+              background-position: 200% 0%;
+          }
+	      100% {
+		      background-position: 400% 200%;
+	      }
       }
 
-      #workspaces button:hover {
-        color: #cdd6f4;
-        background: #313244;
+      @keyframes gradient_f_nh {
+	      0% {
+		      background-position: 0% 200%;
+	      }
+	      100% {
+		      background-position: 200% 200%;
+	      }
       }
 
       #custom-date,
@@ -176,7 +212,6 @@
         margin-left: 4px;
         margin-top: 4px;
         margin-bottom: 4px;
-        /* border-radius: 11px; */
         border-style: solid;
       }
 
@@ -185,8 +220,9 @@
       }
 
       #custom-separator {
-        background: #1E1E28;
-        padding: 0 0.6em;
+        background:	#313244;
+        background-color: #1e1e2e;
+        padding: 0 0.3em;
         margin-right: 0px;
         margin-left: 0px;
         margin-top: 4px;
@@ -194,24 +230,24 @@
       }
 
       #pulseaudio {
-        margin-right: 2px;
-        margin-left: 2px;
+        margin-right: 0px;
+        margin-left: 0px;
       }
 
       #clock {
-        margin-right: 2px;
-        margin-left: 2px;
+        margin-right: 0px;
+        margin-left: 0px;
       }
 
       #custom-date {
-        margin-right: 2px;
-        margin-left: 2px;
+        margin-right: 0px;
+        margin-left: 0px;
         border-radius: 11 0 0 11px;
       }
 
       #battery {
-        margin-right: 11px;
-        margin-left: 2px;
+        margin-right: 7px;
+        margin-left: 0px;
         border-radius: 0 11 11 0px;
       }
 
@@ -221,38 +257,37 @@
         margin-left: 4px;
         margin-top: 4px;
         margin-bottom: 4px;
-        background: radial-gradient(circle, #1e1e2e)
+        background: radial-gradient(circle, #313244)
       }
 
       #language {
         padding: 0 0.6em;
-        margin-right: 2px;
-        margin-left: 2px;
+        margin-right: 0px;
+        margin-left: 0px;
+        margin-bottom: 4px;
+        border-radius: 11 0 0 11px;
+      }
+
+      #temperature {
+        padding: 0 0.6em;
+        margin-right: 0px;
+        margin-left: 0px;
         margin-top: 4px;
         margin-bottom: 4px;
         border-radius: 0 11 11 0px;
       }
 
-      #temperature {
-        padding: 0 0.6em;
-        margin-right: 2px;
-        margin-left: 2px;
-        margin-top: 4px;
-        margin-bottom: 4px;
-      }
-
       #custom-launcher {
-        background: #313244;
-        padding: 0 0.6em;
-        margin-left: 11px;
+        /* padding: 0 0.6em; */
+        margin-left: 7px;
         margin-right: 0px;
         border-radius: 12px;
       }
 
       #workspaces {
-        margin-right: 2px;
-        margin-left: 0px;
-        border-radius: 11 0 0 11px;
+        background: #1e1e2e;
+        margin-right: 10px;
+        margin-left: 25px;
       }
     '';
   };

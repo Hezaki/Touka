@@ -1,31 +1,11 @@
-{ inputs, pkgs, lib, ... }: let
-  mkGraphicalService = lib.recursiveUpdate {
-    Unit.PartOf = ["graphical-session.target"];
-    Unit.After = ["graphical-session.target"];
-    Install.WantedBy = ["graphical-session.target"];
-  };
-in {
+{ inputs, pkgs, ... }: {
   imports = [ ./binds.nix ./autostart.nix ];
   home = {
-    packages = with pkgs; [ waypaper wl-clipboard ];
-  };
-
-  systemd.user.services = {
-    cliphist = mkGraphicalService {
-      Unit.Description = "Clipboard history service";
-      Service = {
-        ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/sliphist store";
-        Restart = "always";
-      };
-    };
-
-    wl-clip-persist = mkGraphicalService {
-      Unit.Description = "Persistent clipboard for Wayland";
-      Service = {
-        ExecStart = "${pkgs.wl-clip-persist}/bin/wl-clip-persist --clipboard both";
-        Restart = "always";
-      };
-    };
+    packages = with pkgs; [
+      inputs.hypr-contrib.packages.${pkgs.system}.grimblast 
+      waypaper
+      wl-clipboard 
+    ];
   };
 
   wayland.windowManager.hyprland = {
@@ -33,7 +13,7 @@ in {
     package = inputs.hyprland.packages.${pkgs.system}.default;
     enableNvidiaPatches = false;
     systemd.enable = false;
-    plugins = with inputs; [
+    plugins = with inputs; with pkgs; [
       hycov.packages.${pkgs.system}.hycov
       hyprfocus.packages.${pkgs.system}.hyprfocus
     ];
@@ -45,11 +25,14 @@ in {
         source = ./binds.conf
 
         # rules
+        windowrule = float, title:^(Library)$
+        windowrule = move center 1, title:^(Library)$
         windowrule = workspace 2, firefox
         windowrule = workspace 3, org.telegram.desktop
-        windowrule = workspace 4, WebCord
-        windowrule = workspace 5, org.prismlauncher.PrismLauncher
-        windowrule = workspace 6, org.pwmt.zathura 
+        windowrule = workspace 4, title:^(Boxes)$
+        windowrule = workspace 4, org.prismlauncher.PrismLauncher
+        windowrule = workspace 5, org.pwmt.zathura 
+        windowrule = workspace 6, WebCord
 
         input {
           kb_layout = us,ru
@@ -66,8 +49,8 @@ in {
 
         general {
           gaps_in = 5
-          gaps_out = 16
-          border_size = 4
+          gaps_out = 10
+          border_size = 3
           col.active_border = rgb(1e1e2e)
           col.inactive_border = rgb(1e1e2e)
           layout = master
@@ -136,10 +119,10 @@ in {
 
         plugin {
           hycov {
-            overview_gappo = 42
+            overview_gappo = 35
             overview_gappi = 9
             hotarea_size = 5
-            enable_hotarea = 1 
+            enable_hotarea = 0 
           }
           hyprfocus {
             enabled = true

@@ -1,4 +1,4 @@
-{ pkgs, ... }: let
+{ pkgs, inputs, ... }: let
   username = "username";
   email = "email";
 in { 
@@ -8,24 +8,53 @@ in {
       profileExtra = ''
         [ "$(tty)" = "/dev/tty1" ] && exec Hyprland
       '';
+      plugins = with inputs; [
+        {
+          name = "powerlevel10k";
+          file = "powerlevel9k.zsh-theme";
+          src = powerlevel10k;
+        }
+        {
+          name = "zsh-autosuggestions";
+          file = "zsh-autosuggestions.plugin.zsh";
+          src = zsh-autosuggestions;
+        }
+        {
+          name = "zsh-history-substring-search";
+          file = "zsh-history-substring-search.plugin.zsh";
+          src = zsh-syntax-highlighting;
+        }
+        {
+          name = "zsh-syntax-highlighting";
+          file = "zsh-syntax-highlighting.plugin.zsh";
+          src = zsh-syntax-highlighting;
+        }
+        {
+          name = "fzf-tab";
+          file = "fzf-tab.plugin.zsh";
+          src = fzf-tab;
+        }
+        {
+          name = "zsh-auto-notify";
+          file = "zsh-auto-notify.plugin.zsh";
+          src = zsh-auto-notify;
+        }
+      ];
       shellAliases = {
-        ls = "lsd -F";
-        l = "lsd -l";
-        ll = "lsd -ll";
-        la = "lsd -lA";
-        cd = "z";
-        tree = "lsd --tree";
-        doas = "doas ";
-        sudo = "sudo ";
-        box = "distrobox";
-        md = "mkdir -v";
-        rm = "rm -v";
-        rmd = "rmdir -v";
-        mv = "mv -v";
-        cp = "cp -v";
-        gpp = "g++";
-        eng = "trans :en -shell -brief -no-auto -e google";
-        rus = "trans :ru -shell -brief -no-auto -e google";
+        "ls" = "lsd -F";
+        "l" = "lsd -l";
+        "la" = "lsd -lA";
+        "cd" = "z";
+        "tree" = "lsd --tree";
+        "doas" = "doas ";
+        "sudo" = "sudo ";
+        "box" = "distrobox";
+        "fetch" = "fastfetch";
+        "md" = "mkdir -v";
+        "mv" = "mv -v";
+        "cp" = "cp -v";
+        "gpp" = "g++";
+        "tsh" = "trans -shell";
         ".." = "cd ..";
         "..." = "cd ../../";
         "...." = "cd ../../../";
@@ -35,46 +64,6 @@ in {
         "nixos-update" = "doas nixos-rebuild switch";
         "home-update" = "home-manager switch --flake /etc/nixos/.";
       };
-      # Plugins
-      plugins = with pkgs; [
-        {
-          name = "powerlevel10k";
-          src = zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        }
-        {
-          name = "zsh-autosuggestions";
-          src = zsh-autosuggestions;
-          file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
-        }
-        {
-          name = "zsh-history-substring-search";
-          src = zsh-history-substring-search;
-          file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
-        }
-        {
-          name = "fzf-tab";
-          src = zsh-fzf-tab;
-          file = "share/fzf-tab/fzf-tab.zsh";
-        }
-        {
-          name = "zsh-syntax-highlighting";
-          src = zsh-syntax-highlighting;
-          file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
-        }
-      ] ++ [
-        {
-          name = "zsh-auto-notify";
-          file = "auto-notify.plugin.zsh";
-          src = fetchFromGitHub {
-            owner = "MichaelAquilina";
-            repo = "zsh-auto-notify";
-            rev = "22b2c61ed18514b4002acc626d7f19aa7cb2e34c";
-            hash = "sha256-x+6UPghRB64nxuhJcBaPQ1kPhsDx3HJv0TLJT5rjZpA=";
-          };
-        }
-      ];
-      # Config
       initExtra = ''
         export EDITOR='nvim'
         export AUTO_NOTIFY_THRESHOLD=60
@@ -82,6 +71,8 @@ in {
         export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
         export ZVM_VI_HIGHLIGHT_BACKGROUND=#313244
         export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
+        export PURE_PROMPT_SYMBOL=""
+        export PURE_PROMPT_VICMD_SYMBOL=""
 
         bindkey -v
         bindkey '^H' vi-backward-kill-word
@@ -91,11 +82,12 @@ in {
         bindkey '^f' beginning-of-line
 
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black"
-
+-
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#1e1e2e,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+        --layout=reverse"
 
         _fix_cursor() {
            echo -ne "\033[4 q"
