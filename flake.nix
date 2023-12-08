@@ -1,5 +1,5 @@
 {
-  outputs = { flake-parts, home-manager, nix-on-droid, ... } @ inputs: 
+  outputs = { flake-parts, home-manager, nix-on-droid, ... } @ inputs:
   flake-parts.lib.mkFlake { inherit inputs; } { 
     systems = [
       "x86_64-linux"
@@ -49,40 +49,52 @@
   };
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nur.url = "github:nix-community/NUR";
+
+    nixvim.url = "github:pta2002/nixvim";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nur.url = "github:nix-community/NUR";
-
     hyprland = {
       url = "github:hyprwm/Hyprland/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hycov = {
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
+
     hyprfocus = {
       url = "github:VortexCoyote/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
+
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpicker.url = "github:hyprwm/hyprpicker";
+
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags.url = "github:Aylur/ags";
-
-    nixvim.url = "github:pta2002/nixvim";
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming/d10b39b3e525907d904854b86803cf4b102daed9";
@@ -98,6 +110,41 @@
       url = "github:t184256/nix-on-droid/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
+    };
+
+    powerlevel10k = {
+      url = "github:romkatv/powerlevel10k";
+      flake = false;
+    };
+
+    zsh-autosuggestions = {
+      url = "github:zsh-users/zsh-autosuggestions";
+      flake = false;
+    };
+
+    zsh-syntax-highlighting = {
+      url = "github:zsh-users/zsh-syntax-highlighting";
+      flake = false;
+    };
+
+    fzf-tab = {
+      url = "github:Aloxaf/fzf-tab";
+      flake = false;
+    };
+
+    fzf-zsh-completions = {
+      url = "github:chitoku-k/fzf-zsh-completions";
+      flake = false;
+    };
+
+    zsh-history-substring-search = {
+      url = "github:zsh-users/zsh-history-substring-search";
+      flake = false;
+    };
+
+    zsh-auto-notify = {
+      url = "github:MichaelAquilina/zsh-auto-notify";
+      flake = false;
     };
   };
 }

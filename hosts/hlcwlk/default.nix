@@ -9,10 +9,12 @@
 
   boot = {
    loader = {
-     grub.enable = true;
-     grub.device = "/dev/sda";
-     grub.splashImage = /etc/nixos/home/hezaki/themes/images/grubbg.png;
-     timeout = 1;
+     grub = { 
+       enable = true;
+       device = "/dev/sda";
+       splashImage = /etc/nixos/home/hezaki/themes/images/grubbg.png;
+     };
+     timeout = 2;
    };
    initrd = {
     availableKernelModules = [
@@ -56,7 +58,7 @@
 
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 2048;
+    size = 5048;
   }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

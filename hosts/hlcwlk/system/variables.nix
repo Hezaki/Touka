@@ -18,6 +18,7 @@
     GLFW_IM_MODULE = "fcitx";
     MOZ_ENABLE_WAYLAND = "1";
     XMODIFIERS = "@im=fcitx";
-    QT_QPA_PLATFORMTHEME="xdgdesktopportal";
+    QT_QPA_PLATFORMTHEME="gtk3";
+    XCURSOR_SIZE="24";
   };
 }

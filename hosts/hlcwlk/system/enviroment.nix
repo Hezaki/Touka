@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: let
+{ lib, pkgs, inputs, ... }: let
   username = "hezaki";
   hostname = "hlcwlk";
   passroot = "password";
@@ -48,7 +48,6 @@ in {
 
   virtualisation = {
     libvirtd.enable = true;
-    waydroid.enable = true;
     lxd.enable = true;
   };
 
@@ -77,6 +76,7 @@ in {
       permit persist keepenv :wheel
       '';
     };
+    pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
   };
 
   documentation = {
