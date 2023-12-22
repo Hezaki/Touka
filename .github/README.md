@@ -49,6 +49,7 @@ doas chown -R hezaki:users /etc/nixos
   <summary><b>Plans</b></summary>
 <br>
 
+- [ ] Make extended readme
 - [ ] Create a script to run the config
 
 </br></details>
