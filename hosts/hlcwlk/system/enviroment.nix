@@ -34,6 +34,15 @@ in {
       wait = "background";
       extraConfig = "noarp";
     };
+    firewall = {
+      enable = true;
+      allowedTCPPortRanges = [ 
+        { from = 1714; to = 1764; }
+      ];  
+      allowedUDPPortRanges = [ 
+        { from = 1714; to = 1764; }
+      ];  
+    };
   };
 
   home-manager = {
@@ -71,11 +80,12 @@ in {
 
   security = {
     doas = {
-    enable = true;
+      enable = true;
       extraConfig = ''
-      permit persist keepenv :wheel
+        permit persist keepenv :wheel
       '';
     };
+    sudo.enable = false;
     pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
   };
 
@@ -136,6 +146,7 @@ in {
       "https://nix-community.cachix.org"
       "https://nyx.chaotic.cx"
       "https://nix-gaming.cachix.org"
+      "https://anyrun.cachix.org"
     ];
     trusted-public-keys = [
       "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
@@ -143,6 +154,7 @@ in {
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
     extra-trusted-public-keys = [
       "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="

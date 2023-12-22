@@ -2,9 +2,10 @@
   imports = [ ./binds.nix ./autostart.nix ];
   home = {
     packages = with pkgs; [
-      inputs.hypr-contrib.packages.${pkgs.system}.grimblast 
       waypaper
+      inputs.hypr-contrib.packages.${pkgs.system}.grimblast 
       wl-clipboard 
+      wf-recorder
     ];
   };
 
@@ -29,10 +30,12 @@
         windowrule = move center 1, title:^(Library)$
         windowrule = workspace 2, firefox
         windowrule = workspace 3, org.telegram.desktop
-        windowrule = workspace 4, title:^(Boxes)$
-        windowrule = workspace 4, org.prismlauncher.PrismLauncher
-        windowrule = workspace 5, org.pwmt.zathura 
-        windowrule = workspace 6, WebCord
+        windowrule = workspace 4, WebCord
+        windowrule = workspace 5, virt-manager
+        windowrule = workspace 5, org.prismlauncher.PrismLauncher
+        windowrule = workspace 6, org.pwmt.zathura 
+        windowrule = workspace 7, obsidian
+        windowrule = workspace 8, org.kde.kdeconnect.app
 
         input {
           kb_layout = us,ru
@@ -42,8 +45,8 @@
           repeat_rate = 50
           repeat_delay = 500
           touchpad {
-            natural_scroll = no
-            disable_while_typing = false
+            natural_scroll = false
+            disable_while_typing = true
           }
         }
 
@@ -53,7 +56,7 @@
           border_size = 3
           col.active_border = rgb(1e1e2e)
           col.inactive_border = rgb(1e1e2e)
-          layout = master
+          layout = dwindle
           cursor_inactive_timeout = 3
           apply_sens_to_raw = 0
         }
@@ -69,6 +72,10 @@
           background_color = rgb{1E1E2E}
         }
 
+        dwindle {
+          force_split = 2
+        }
+
         master {
           new_is_master = true
           allow_small_split = true
@@ -80,7 +87,7 @@
           col.border_inactive = rgb(2A2B3C)
           groupbar {
             render_titles = false
-            gradients = false
+            gradients = true
             col.active = rgb(89b4fa)
             col.inactive = rgb(45475a)
           }
@@ -98,9 +105,9 @@
         decoration {
           rounding = 2
           drop_shadow = true
-          shadow_range = 10
-          shadow_render_power = 2
-          col.shadow = rgb(101010)
+          shadow_range = 6
+          shadow_render_power = 1
+          col.shadow = rgb(15161A)
           blur {
             enabled = false
             new_optimizations = true

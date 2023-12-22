@@ -1,12 +1,10 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos-white.png" width="500px" alt="NixOS logo"/>
+  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/e3a74d1c40086393f2b1b9f218497da2db0ff3ae/logo/nixos.svg" width="500px" alt="NixOS logo"/>
 </p>
 
 ---
 
-![Screenshot](./1.png)
-![Screenshot](./2.png)
-![Screenshot](./3.png)
+![Screenshot](1.png)
 
 ## Information
 This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager. I love nix, I really love nix, I really love marxism and nix.
@@ -59,19 +57,20 @@ doas chown -R hezaki:users /etc/nixos
   <summary><b>More screenshots</b></summary>
 <br>
 
+* Neovim 
+![Screenshot](nvim.png)
+* Telescope.nvim
+![Screenshot](telescopeNvim.png)
 * Rofi
-![Screenshot](./one.png)
-* Just a screenshot
-![Screenshot](./two.png)
+![Screenshot](rofi.png)
+* Firefox
+![Screenshot](firefox.png)
 * Plugin [hycov](https://github.com/DreamMaoMao/hycov)
-![Screenshot](./three.png)
+![Screenshot](hycov.png)
+* Scrcpy
+![Screenshot](scrcpy.png)
 
 </br></details>
-
 ## Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
-
----
-<p align="center">From Hezaki.</p>
-
