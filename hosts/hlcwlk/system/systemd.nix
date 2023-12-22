@@ -8,7 +8,10 @@
     };
   };
 
-  services.udev.packages = with pkgs; [
-    android-udev-rules
-  ];
+  services = {
+    espanso.enable = true;
+    udev.packages = with pkgs; [
+      android-udev-rules
+    ];
+  };
 }

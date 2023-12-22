@@ -1,9 +1,9 @@
 { pkgs, inputs, ... }: {
   environment.packages = with pkgs; [
     neovim
-    ranger
+    joshuto
     tmux
-    neofetch
+    fastfetch
     openssh
     git
     python312

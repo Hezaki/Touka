@@ -39,6 +39,15 @@
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+    style = {
+      package = pkgs.catppuccin-kde;
+      name = "Catpuccin-Mocha-Dark";
+    };
+  };
+
   home.sessionVariables = {
     GTK_THEME = "${config.gtk.theme.name}";
   };

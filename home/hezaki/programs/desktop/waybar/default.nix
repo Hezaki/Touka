@@ -145,19 +145,18 @@
         padding-left: 6px;
         font-weight: bolder;
         color: #313244;
-        transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.68);
+        transition: all 0.3s ease-in-out;
       }
 
       #workspaces button.active {
-        padding-right: 14px;
-        padding-left: 14px;
+        min-width: 33px;
         padding-bottom: 0px;
         padding-top: 0px;
         background: rgb(203,166,247);
         background: radial-gradient(circle, rgba(205, 214, 244, 1) 0%, rgba(137, 180, 250, 1) 50%, rgba(203, 166, 247, 1) 100%); 
         background-size: 400% 400%;
         animation: gradient 5s linear infinite;
-        transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+        transition: all 0.3s ease-in-out;
       }
 
       @keyframes gradient {

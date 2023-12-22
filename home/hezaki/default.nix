@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
@@ -7,6 +7,7 @@
       fd
       duf
       mpv
+      tgpt
       ncdu
       inxi
       cava
@@ -18,18 +19,21 @@
       lutgen
       swayimg
       zathura
+      ansible
+      joshuto
       ripgrep
       nix-init
       htop-vim
       onefetch
-      xdg-utils
+      obsidian
+      kdenlive
+      libsecret
       libnotify
-      winetricks
       hyprpicker
       ueberzugpp
+      winetricks
       libreoffice
-      wf-recorder
-      eww-wayland
+      virt-manager
       glfw-wayland
       appimage-run
       home-manager
@@ -39,18 +43,23 @@
       android-tools
       prismlauncher
       webcord-vencord
+      espanso-wayland
       telegram-desktop
       transmission-gtk
-      gnome.gnome-boxes
+      libsForQt5.kdeconnect-kde
       wineWowPackages.stagingFull
-      inputs.anyrun.packages.${system}.anyrun
-      inputs.anyrun.packages.${system}.applications
+    ];
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-25.9.0"
     ];
   };
 
   imports = [
     ./programs/terminal/tmux
-    ./programs/terminal/ranger
     ./programs/terminal/fastfetch
     ./programs/terminal/shell/zsh
     ./programs/terminal/shell/translate-shell
@@ -67,6 +76,9 @@
     ./programs/desktop/waybar
     ./programs/desktop/hyprland
     ./programs/desktop/gtklock
+    ./programs/desktop/plasma
+
+    ./containers/archlinux.nix
 
     ./themes
     ./devlop
