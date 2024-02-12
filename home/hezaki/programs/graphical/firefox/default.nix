@@ -17,42 +17,10 @@
         LegacyProfiles = true;
         ManualAppUpdateOnly = true;
         Homepage = {
-          Startpage = "none";
+          Startpage = "previous-session";
         };
 
         SearchEngines = {
-          Add = [
-            {
-              Name = "Nix";
-              Description = "NixOS search";
-              Alias = "!nix";
-              URLTemplate = "https://search.nixos.org/packages/search?q={searchTerms}";
-            }
-            {
-              Name = "Samara University";
-              Description = "Personal account";
-              Alias = "!ssau";
-              URLTemplate = "https://cabinet.ssau.ru";
-            }
-            {
-              Name = "Webref";
-              Description = "CSS/HTML helepr";
-              Alias = "!web";
-              URLTemplate = "https://webref.ru/";
-            }
-            {
-              Name = "BAI chat";
-              Description = "ChatGPT";
-              Alias = "!bai";
-              URLTemplate = "https://chatbot.theb.ai";
-            }
-            {
-              Name = "YandexGPT";
-              Description = "Alisa";
-              Alias = "!yagpt";
-              URLTemplate = "https://ya.ru/alisa_davay_pridumaem";
-            }
-          ];
           Default = "DuckDuckGo";
           Remove = [
             "Google"
@@ -73,20 +41,26 @@
           mkForceInstalled {
             # Theme
             "{0a2d1098-69a9-4e98-a62c-a861766ac24d}".install_url = "https://github.com/catppuccin/firefox/releases/download/old/catppuccin_mocha_lavender.xpi";
+            # Tabs 
+            "treestyletab@piro.sakura.ne.jp".install_url = "https://addons.mozilla.org/firefox/downloads/file/4197314/tree_style_tab-3.9.19.xpi";
             # Dark Reader
             "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             # Ublock Origin
             "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             # SponsorBlock
             "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-            # Vimium
-            "{d7742d87-e61d-4b78-b8a1-b469842139fa}".install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+            # Vimium-C
+            "vimium-c@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/4210117/vimium_c-1.99.997.xpi";
+            # NewTab like Vimium-C
+            "newtab-adapter@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/3632463/newtab_adapter-1.3.0.xpi";
             # Tampermonkey
-            "fTampirefox@tampermonkey.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
+            "firefox@tampermonkey.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
             # Translate
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
             # Search by Image
             "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4189577/search_by_image-6.1.0.xpi";
+            # I don't care about Cookies
+            "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
           };
 
         FirefoxHome = {
@@ -110,8 +84,7 @@
         };
 
         Preferences = {
-          "browser.startup.homepage" = "https://duckduckgo.com";
-          # "browser.startup.homepage" = "file:///etc/nixos/home/hezaki/programs/graphical/firefox/index.html";
+          "browser.startup.homepage" = "https://duckduckgo.com/";
           "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";
@@ -342,6 +315,7 @@
           "devtools.debugger.remote-enabled" = false;
           "webchannel.allowObject.urlWhitelist" = "";
           "permissions.manager.defaultsUrl" = "";
+          "permissions.default.shortcuts" = "1";
           "pdfjs.enableScripting" = false;
           "permissions.delegation.enabled" = false;
           "browser.contentblocking.category" = "strict";
@@ -361,38 +335,11 @@
         font-size: 12pt !important;
       }
 
-      #TabsToolbar > * {
-        visibility: collapse;
+      #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+        display: none;
       }
 
-      /* hide navigation bar when it is not focused; use Ctrl+L to get focus */
-      #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) {
-        margin-top: -45px;
-      }
-
-      #navigator-toolbox {
-        transition: 0.2s margin-top ease-out;
-      }
-
-      #navigator-toolbox:focus-within > #nav-bar,
-      #navigator-toolbox:hover > #nav-bar
-      {
-        margin-top: 0;
-        margin-bottom: var(--navbar-margin);
-        z-index: 100;
-        opacity: 1;
-      }
-       
-      #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
-        visibility: collapse !important;
-      }
-       
-      /* Sidebar min and max width removal */
-      #sidebar {
-        max-width: none !important;
-        min-width: 0px !important;
-      }
-
+      #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) { visibility: collapse !important; }
       #back-button { display: none; }
       #forward-button { display: none; }
       #reload-button { display: none; }
@@ -420,6 +367,17 @@
       * {
         font-family: JetBrainsMono Nerd Font Mono;
       }
+      @-moz-document regexp("moz-extension://.+/sidebar/sidebar.html.*") {
+        :root,
+        #background {
+          background-color: #313244; /* https://github.com/piroor/treestyletab/blob/0eede581d763f92344fe64b1c042839f3b8ca955/webextensions/resources/ui-color.css#L198 */
+        }
+      }
+      @-moz-document regexp("moz-extension://.+/resources/group-tab.html.*") {
+        :root {
+          background: #313244 !important;
+        }
+      }
 
       @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
         :root {
@@ -429,24 +387,6 @@
       }
 
       @-moz-document url-prefix(about:home), url-prefix(about:newtab){
-
-        /* show nightly logo instead of default firefox logo in newtabpage */
-        .search-wrapper .logo-and-wordmark .logo {
-            background-size: auto !important;
-            background-size: 82px !important;
-            display: inline-block !important;
-            height: 82px !important;
-            width: 82px !important;
-        }
-
-        body {
-            background-color: #1E1E2E !important;
-            background: #1E1E2E !important;
-            background: url("/etc/nixos/home/hezaki/themes/images/bg.png") no-repeat fixed !important;
-            background-size: cover !important;
-            --newtab-background-color: #1E1E2E !important;
-            --newtab-background-color-secondary: #1E1E2E !important;
-        }
 
         body[lwt-newtab-brighttext] {
             --newtab-background-color: #1E1E2E !important;
@@ -476,6 +416,16 @@
             background-color: #1E1E2E !important;
         }
       }
+    '';
+    ".mozilla/firefox/hezaki.default-release/chrome/main.html".text = ''
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>hmpage</title> 
+      </head>
+        <body style="background: url('/etc/nixos/home/hezaki/themes/images/cat_leaves.png') no-repeat fixed !important; background-size: cover !important;">
+        </body>
+      </html>
     '';
   };
 }

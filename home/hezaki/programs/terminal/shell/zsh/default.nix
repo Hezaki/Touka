@@ -61,8 +61,9 @@ in {
         ":q" = "exit";
         ":wq" = "exit";
         "flake-update" = "nix flake update /etc/nixos";
-        "nixos-update" = "doas nixos-rebuild switch";
-        "home-update" = "home-manager switch --flake /etc/nixos/.";
+        "nixos-update" = "doas nixos-rebuild switch --fast";
+        "home-update" = "home-manager switch --flake /etc/nixos/.#hezaki";
+        "kali-update" = "home-manager switch --flake ~/.home/.#ktsrgi --extra-experimental-features 'nix-command flakes'";
       };
       initExtra = ''
         export EDITOR='nvim'
@@ -82,7 +83,7 @@ in {
         bindkey '^f' beginning-of-line
 
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black"
--
+
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#1e1e2e,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -138,6 +139,7 @@ in {
       userEmail = email;
       aliases = {
         s = "status";
+        c = "commit";
       };
     };
     fzf.enable = true;

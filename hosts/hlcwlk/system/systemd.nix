@@ -10,6 +10,7 @@
 
   services = {
     espanso.enable = true;
+    flatpak.enable = true;
     udev.packages = with pkgs; [
       android-udev-rules
     ];

@@ -72,7 +72,23 @@
         };
       }
       {
-        key = "<C-N>";
+        key = "<C-w>";
+        action = ":bw<CR>";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+      {
+        key = "<C-t>";
+        action = ":tabnew<CR>";
+        options = {
+          noremap = true;
+          silent = true;
+        };
+      }
+      {
+        key = "<C-n>";
         action = ":NvimTreeToggle<CR>";
         options = {
           noremap = true;
@@ -124,11 +140,20 @@
     plugins = {
       nix.enable = true;
       leap.enable = true;
-	    emmet.enable = true;
+      emmet.enable = true;
       luasnip.enable = true;
       gitsigns.enable = true;
       ts-autotag.enable = true;
       comment-nvim.enable = true;
+      markdown-preview = {
+        enable = true;
+        browser = "firefox";
+        highlightCss = "~/Documents/obsidian/Remotese./.obsidian/snippets/style.css";
+      };
+      obsidian = {
+        enable = true;
+        dir = "~/Documents/obsidian/Remotese.";
+      };
       nvim-autopairs = {
         enable = true;
         checkTs = true;
@@ -183,41 +208,41 @@
         };
       };
       barbar = {
-	      enable = true;
-	      animation = true;
-	      clickable = true;
-	      tabpages = false;
-	      semanticLetters = true;
-	      highlightVisible = false;
-	      excludeFileNames = ["alpha"];
-	      icons = {
-	        button = " ";
-	        diagnostics = {
-	          error.enable = false;
-	          hint.enable = true;
-	        };
-	        separator = {
-	          left = " ";
-	          right = "";
-	        };
-	        filetype = {
-	          enable = true;
-	          customColors = true;
-	        };
-	        modified.button = "●";
-	        pinned.button = "";
+        enable = true;
+        animation = true;
+        clickable = true;
+        tabpages = false;
+        semanticLetters = true;
+        highlightVisible = false;
+        excludeFileNames = ["alpha"];
+        icons = {
+          button = " ";
+          diagnostics = {
+            error.enable = false;
+            hint.enable = true;
+          };
+          separator = {
+            left = " ";
+            right = "";
+          };
+          filetype = {
+            enable = true;
+            customColors = true;
+          };
+          modified.button = "●";
+          pinned.button = "";
           inactive.button = " ";
-	      };
-	      maximumPadding = 1;
-	      minimumPadding = 1;
-	      maximumLength = 30;
-	      sidebarFiletypes = {
-	        "NvimTree" = {
-            event = "BufWipeout";
-            text = " 󰔱 Treexplorer";
-	        };
-	      };
-	    };
+        };
+        maximumPadding = 1;
+        minimumPadding = 1;
+        maximumLength = 30;
+        sidebarFiletypes = {
+        "NvimTree" = {
+          event = "BufWipeout";
+          text = " 󰔱 Treexplorer";
+          };
+        };
+      };
       cursorline = {
         enable = true;
         cursorline.enable = false;
@@ -386,16 +411,16 @@
 
       require("zen-mode").setup {
         window = {
-          width = .80 
+          width = .70 
         }
       }
 
- 	    require("catppuccin").setup {
+      require("catppuccin").setup {
         term_colors = true,
-	      color_overrides = {
-	        mocha = { base = "#1e1e2e"; mantle = "#1e1e2e"; crust = "#1e1e2e"; };
-	      };
-	    }
+        color_overrides = {
+          mocha = { base = "#1e1e2e"; mantle = "#1e1e2e"; crust = "#1e1e2e"; };
+        };
+      }
 
       local signs = { Error = ""; Warn = ""; Hint = ""; Info = ""; }
       for type, icon in pairs(signs) do
@@ -448,28 +473,28 @@
       }
 
       local icons = {
-        ['typescript']         = ' ';
-        ['python']             = ' ';
-        ['java']               = ' ';
-        ['html']               = ' ';
-        ['css']                = ' ';
-        ['scss']               = ' ';
-        ['javascript']         = ' ';
-        ['javascriptreact']    = ' ';
-        ['markdown']           = ' ';
-        ['sh']                 = ' ';
-        ['zsh']                = ' ';
-        ['vim']                = ' ';
-        ['rust']               = ' ';
-        ['cpp']                = ' ';
-        ['c']                  = ' ';
-        ['go']                 = ' ';
-        ['lua']                = ' ';
-        ['conf']               = ' ';
-        ['haskel']             = ' ';
-        ['ruby']               = ' ';
-        ['txt']                = ' ';
-        ['nix']                = ' '
+        ['typescript']         = '';
+        ['python']             = '';
+        ['java']               = '';
+        ['html']               = '';
+        ['css']                = '';
+        ['scss']               = '';
+        ['javascript']         = '';
+        ['javascriptreact']    = '';
+        ['markdown']           = '';
+        ['sh']                 = '';
+        ['zsh']                = '';
+        ['vim']                = '';
+        ['rust']               = '';
+        ['cpp']                = '';
+        ['c']                  = '';
+        ['go']                 = '';
+        ['lua']                = '';
+        ['conf']               = '';
+        ['haskel']             = '';
+        ['ruby']               = '';
+        ['txt']                = '';
+        ['nix']                = ''
       }
 
       local function color()

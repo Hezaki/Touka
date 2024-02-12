@@ -9,7 +9,7 @@
         # height = 320
         width = 220;
         height = 220;
-        origin = "bottom-right";
+        origin = "top-right";
         offset = "15x15";
         scale = 0;
         notification_limit = 0;

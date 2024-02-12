@@ -1,7 +1,9 @@
 {
   xdg.configFile."hypr/autostart.sh".text = ''
-    wl-copy &
     waybar &
-    swaybg -i /etc/nixos/home/hezaki/themes/images/wallpaper.png &
+    wl-copy &
+    dunst &
+    kdeconnect-cli &
+    swaybg -m fill -i /etc/nixos/home/hezaki/themes/images/canvasppuccin.png &
   '';
 }

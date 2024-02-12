@@ -9,11 +9,11 @@
       mpv
       tgpt
       ncdu
-      inxi
       cava
       dconf
       socat
       slurp
+      krita
       swaybg
       scrcpy
       lutgen
@@ -21,15 +21,14 @@
       zathura
       ansible
       joshuto
+      flatpak
       ripgrep
       nix-init
       htop-vim
       onefetch
       obsidian
-      kdenlive
       libsecret
       libnotify
-      hyprpicker
       ueberzugpp
       winetricks
       libreoffice
@@ -38,7 +37,6 @@
       appimage-run
       home-manager
       nix-prefetch
-      rofi-wayland
       gnome.zenity
       android-tools
       prismlauncher
@@ -46,6 +44,7 @@
       espanso-wayland
       telegram-desktop
       transmission-gtk
+      libsForQt5.kdenlive
       libsForQt5.kdeconnect-kde
       wineWowPackages.stagingFull
     ];
@@ -58,27 +57,39 @@
     ];
   };
 
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      builders-use-substitutes = true;
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+  };
+
   imports = [
     ./programs/terminal/tmux
     ./programs/terminal/fastfetch
     ./programs/terminal/shell/zsh
     ./programs/terminal/shell/translate-shell
     ./programs/terminal/editors/neovim
+    ./programs/terminal/editors/emacs
 
     ./programs/graphical/mpv
     ./programs/graphical/foot
     ./programs/graphical/zathura
     ./programs/graphical/firefox
     ./programs/graphical/webcord 
+    ./programs/graphical/telegram
 
-    ./programs/desktop/rofi
+    ./programs/desktop/anyrun
     ./programs/desktop/dunst
     ./programs/desktop/waybar
+    # ./programs/desktop/ags
     ./programs/desktop/hyprland
     ./programs/desktop/gtklock
-    ./programs/desktop/plasma
 
     ./containers/archlinux.nix
+    ./programs/flatpak
 
     ./themes
     ./devlop
