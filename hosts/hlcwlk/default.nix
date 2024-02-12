@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ inputs, config, lib, pkgs, modulesPath, ... }: {
   imports = [
     ./system/systemd.nix
     ./system/enviroment.nix
@@ -12,7 +12,9 @@
      grub = { 
        enable = true;
        device = "/dev/sda";
-       splashImage = /etc/nixos/home/hezaki/themes/images/grubbg.png;
+       useOSProber = lib.mkForce false;
+       efiSupport = lib.mkForce false;
+       splashImage = null;
      };
      timeout = 2;
    };
@@ -28,11 +30,19 @@
       "sd_mod"
       "sr_mod"
       "sdhci_pci"
+      "usb_storage"
     ];
     kernelModules = [ ];
    };
-   kernelPackages = pkgs.linuxPackages_xanmod_latest;
-   kernelParams = [ "quiet" ];
+   kernelPackages = inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos-lto;
+   kernelParams = [ 
+     "quiet"
+     "nowatchdog"
+     "page_alloc.shuffle=1"
+     "threadirqs"
+     "split_lock_detect=off"
+     "pci=pcie_bus_perf"
+   ];
    kernelModules = [
      "kvm-amd"
      "amdgpu"
@@ -59,7 +69,7 @@
 
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 5048;
+    size = 2048;
   }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -1,5 +1,5 @@
 {
-  outputs = { flake-parts, home-manager, nix-on-droid, ... } @ inputs:
+  outputs = { flake-parts, home-manager, ... } @ inputs:
   flake-parts.lib.mkFlake { inherit inputs; } { 
     systems = [
       "x86_64-linux"
@@ -26,10 +26,12 @@
         };
       };
 
-      nixOnDroidConfigurations = {
-        ktsrgi = nix-on-droid.lib.nixOnDroidConfiguration {
+      homeConfigurations = {
+        ktsrgi = home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
+          extraSpecialArgs = { inherit inputs; };
           modules = [
-            ./hosts/ktsrgi
+            ./home/ktsrgi
           ];
         };
       };
@@ -88,6 +90,11 @@
 
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ags = {
+      url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

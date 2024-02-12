@@ -1,33 +1,34 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/e3a74d1c40086393f2b1b9f218497da2db0ff3ae/logo/nixos.svg" width="500px" alt="NixOS logo"/>
-</p>
+<h1 align="center"> Touka </h1>
 
----
+<p align="center">
+This is my Nix configuration, for desktop and a small configuration for android
+</p>
 
 ![Screenshot](1.png)
 
-## Information
-This is my Nix configuration, it contains NixOS, Nix-on-droid along with Home-manager. I love nix, I really love nix, I really love marxism and nix.
+## ℹ️ Information
 
 Build host:
 ```bash
 nixos-rebuild switch --flake .#hlcwlk   # or nixos-update
 ```
 
-Build nix-on-droid:
-```bash
-nix-on-droid switch --flake .#ktsrgi    # or nix-update
-```
-
-Build home-manager:
+Build home-manager on desktop:
 ```bash 
 home-manager switch --flake .#hezaki    # or home-update
+```
+
+Build home-manager on android:
+```bash
+nix-on-droid switch --flake .#ktsrgi    # or nix-update
 ```
 
 To make the home-manager work:
 ```bash 
 doas chown -R hezaki:users /etc/nixos  
 ``` 
+
+Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com/wiki/Touka_Kirishima) from Tokyo Ghoul)))
 
 <details>
   <summary><b>Software</b></summary>
@@ -37,11 +38,11 @@ doas chown -R hezaki:users /etc/nixos
 - **Bar** - [Waybar](https://github.com/Alexays/Waybar)
 - **Browser** - [Firefox](https://www.mozilla.org/)
 - **Terminal** - [Foot](https://codeberg.org/dnkl/foot)
-- **Editor** - [Neovim](https://neovim.io/)
+- **Editor** - [Neovim](https://neovim.io/), [Emacs](https://www.gnu.org/software/emacs/)
 - **Shell** - [Zsh](https://www.zsh.org/)
 - **Notifications** - [Dunst](https://github.com/dunst-project/dunst)
-- **Launcher** - [Rofi](https://github.com/lbonn/rofi)
-- **Wallpaper** - `home/hezaki/themes/images/`
+- **Launcher** - [Anyrun](https://github.com/Kirottu/anyrun)
+- **Wallpapers** - `home/hezaki/themes/images/`
 
 <br></details>
 
@@ -60,18 +61,14 @@ doas chown -R hezaki:users /etc/nixos
 
 * Neovim 
 ![Screenshot](nvim.png)
-* Telescope.nvim
-![Screenshot](telescopeNvim.png)
-* Rofi
-![Screenshot](rofi.png)
+* Anyrun
+![Screenshot](anyrun.png)
 * Firefox
 ![Screenshot](firefox.png)
-* Plugin [hycov](https://github.com/DreamMaoMao/hycov)
-![Screenshot](hycov.png)
 * Scrcpy
 ![Screenshot](scrcpy.png)
 
 </br></details>
-## Thanks 
+## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)

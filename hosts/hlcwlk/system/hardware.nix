@@ -33,6 +33,14 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    configPackages = [ pkgs.gnome.gnome-session ];
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          chooser_type = "simple";
+        };
+      };
+    };
   };
 }

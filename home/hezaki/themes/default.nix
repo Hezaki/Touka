@@ -35,7 +35,7 @@
     };
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders;
+      package = pkgs.gnome.adwaita-icon-theme;
     };
   };
 

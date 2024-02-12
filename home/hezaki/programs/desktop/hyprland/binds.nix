@@ -16,16 +16,19 @@
     binde =, F11, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
+    bind = ALT, C, exec, dunstctl close-all
+    bind = ALT, A, exec, dunstctl history-pop
+
     bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
-    bind = $mod, D, exec, rofi -show drun
+    bind = $mod, D, exec, anyrun
     bind = ALT, P, exec, hyprpicker -a
-    bind = ALT, G, exec, gtklock -s ~/.config/gtklock/style.css
+    bind = ALT, G, exec, gtklock -i -s ~/.config/gtklock/style.css
 
     bind = ,Print, exec, grimblast copysave screen $HOME/Media/Screenshots/$(date +'%d%m%y%H-%s.png')
     bind = $mod, Print, exec, grimblast --freeze copysave area $HOME/Media/Screenshots/$(date +%d%m%y%H-%s.png)
 
-    bind =, F9, exec, wf-recorder -f $HOME/Media/Videos/$(date +%d%m%y%H.mkv)
-    bind = $mod, F9, exec, wf-recorder -g "$(slurp)" -f $HOME/Media/Videos/$(date +%d%m%y%H.mkv)
+    bind = $mod, F9, exec, wf-recorder -f $HOME/Media/Videos/$(date +%d%m%y%H.mkv)
+    bind = $mod SHIFT, F9, exec, wf-recorder -g "$(slurp)" -f $HOME/Media/Videos/$(date +%d%m%y%H.mkv)
     bind =, F8, exec, pkill wf-recorder
 
     bind = $mod, G, togglegroup
@@ -57,7 +60,6 @@
     bind = $mod, X, workspace, 6
     bind = $mod, C, workspace, 7
     bind = $mod, V, workspace, 8
-    bind = ALT, F, workspace, 9
 
     bind = $mod SHIFT, 1, movetoworkspace, 1
     bind = $mod SHIFT, 2, movetoworkspace, 2

@@ -2,7 +2,7 @@
   home.packages = with pkgs; [ gtklock ];
   xdg.configFile."gtklock/style.css".text = ''
     window {
-      background-image: url("/etc/nixos/home/hezaki/themes/images/wallpaper.png");
+      background-image: url("/etc/nixos/home/hezaki/themes/images/canvasppuccin.png");
     }
 
     #window-box {

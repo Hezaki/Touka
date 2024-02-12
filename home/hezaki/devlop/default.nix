@@ -1,21 +1,20 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # C
     gcc
     gnumake
     pkg-config
     glibc
 
-    # Java
     openjdk8-bootstrap
 
-    # JavaScript
     nodejs
 
-    # Python
-    python311 
+    python311Packages.ipython
 
-    # Docker
+    nginx
+
+    libressl
+
     distrobox
     podman
     podman-compose 
