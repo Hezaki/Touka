@@ -21,14 +21,20 @@
         };
 
         SearchEngines = {
-          Default = "DuckDuckGo";
+          Add = [
+            {
+              Name = "4get";
+              URLTemplate = "https://4get.ca/web?s=";
+            }
+          ];
+          Default = "4get";
           Remove = [
             "Google"
             "Bing"
             "Amazon.com"
             "eBay"
             "Twitter"
-            # "DuckDuckGo"
+            "DuckDuckGo"
             "Wikipedia"
           ];
         };
@@ -84,7 +90,7 @@
         };
 
         Preferences = {
-          "browser.startup.homepage" = "https://duckduckgo.com/";
+          "browser.startup.homepage" = "https://4get.ca/";
           "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";

@@ -1,7 +1,4 @@
-{ pkgs, inputs, ... }: let
-  username = "username";
-  email = "email";
-in { 
+{ pkgs, inputs, ... }: { 
   programs = {
     zsh = {
       enable = true;
@@ -95,11 +92,6 @@ in {
         }
         precmd_functions+=(_fix_cursor)
 
-        if command -v fzf-share >/dev/null; then
-          source "$(fzf-share)/key-bindings.zsh"
-          source "$(fzf-share)/completion.zsh"
-        fi
-
         xf ()
         {
           if [ -f $1 ] ; then
@@ -126,23 +118,10 @@ in {
         }
 
         tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
-
         [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
       '';
-      history = {
-        size = 10000;
-      };
+      history.size = 10000;
     };
-    git = {
-      enable = true;
-      userName  = username;
-      userEmail = email;
-      aliases = {
-        s = "status";
-        c = "commit";
-      };
-    };
-    fzf.enable = true;
     lsd.enable = true;
     zoxide.enable = true;
   };

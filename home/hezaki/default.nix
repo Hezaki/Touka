@@ -7,30 +7,27 @@
       fd
       duf
       mpv
-      tgpt
       ncdu
       cava
       dconf
       socat
-      slurp
-      krita
+      # krita
       swaybg
       scrcpy
       lutgen
       swayimg
       zathura
-      ansible
+      # ansible
       joshuto
-      flatpak
       ripgrep
+      bottles
       nix-init
       htop-vim
       onefetch
-      obsidian
+      # obsidian
       libsecret
       libnotify
       ueberzugpp
-      winetricks
       libreoffice
       virt-manager
       glfw-wayland
@@ -46,7 +43,6 @@
       transmission-gtk
       libsForQt5.kdenlive
       libsForQt5.kdeconnect-kde
-      wineWowPackages.stagingFull
     ];
   };
 
@@ -67,6 +63,9 @@
   };
 
   imports = [
+    ./programs/terminal/bat
+    ./programs/terminal/fzf
+    ./programs/terminal/git
     ./programs/terminal/tmux
     ./programs/terminal/fastfetch
     ./programs/terminal/shell/zsh

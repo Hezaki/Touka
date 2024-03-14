@@ -35,28 +35,29 @@
           ];
         };
       };
-    };
 
-    perSystem = { inputs, pkgs, system, ... }: {
-      imports = [
-        {
-          _module.args.pkgs = import inputs.nixpkgs {
-            home-manager.users.hezaki.nixpkgs.config.allowUnfree = true;
-            config.allowUnfree = true;
-            inherit system;
-          };
-        }
-      ];
+      homeConfigurations = {
+        samatovna = home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./home/samatovna
+          ];
+        };
+      };
     };
   };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nur.url = "github:nix-community/NUR";
+    flatpaks.url = "github:gmodena/nix-flatpak";
 
+    nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixvim.url = "github:pta2002/nixvim";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    stylix.url = "github:danth/stylix";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -70,11 +71,6 @@
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -103,20 +99,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-gaming = {
-      url = "github:fufexan/nix-gaming/d10b39b3e525907d904854b86803cf4b102daed9";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-on-droid = {
-      url = "github:t184256/nix-on-droid/release-22.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
 
     powerlevel10k = {
@@ -153,5 +138,20 @@
       url = "github:MichaelAquilina/zsh-auto-notify";
       flake = false;
     };
+  };
+
+  nixConfig = {
+    # trusted-users = [ "root" "@wheel" ];
+    # extra-substituters = [
+    #   "https://nix-community.cachix.org"
+    #   "https://hyprland.cachix.org"
+    # ];
+    # extra-trusted-public-keys = [
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #   "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    # ];
+    builders-use-substitutes = true;
+    auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
   };
 }

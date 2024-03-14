@@ -4,6 +4,7 @@
     extraConfig = ''
       set font JetBrainsMono
       set font 10
+      set guioptions ""
 
       map D set "first-page-column 1:1"
       map <C-d> set "first-page-column 1:2"
@@ -23,11 +24,11 @@
       set statusbar-fg		          "#CDD6F4"
       set statusbar-bg		          "#1E1E2E"
 
-      set notification-bg		        "#313244"
+      set notification-bg		        "#1E1E2E"
       set notification-fg		        "#CDD6F4"
-      set notification-error-bg	    "#313244"
+      set notification-error-bg	    "#1E1E2E"
       set notification-error-fg	    "#F38BA8"
-      set notification-warning-bg	  "#313244"
+      set notification-warning-bg	  "#1E1E2E"
       set notification-warning-fg	  "#FAE3B0"
 
       set inputbar-fg			          "#CDD6F4"

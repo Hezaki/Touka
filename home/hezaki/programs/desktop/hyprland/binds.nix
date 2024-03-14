@@ -35,8 +35,6 @@
     binde = $mod, Tab, changegroupactive, f
     binde = $modSHIFT, Tab, changegroupactive, b
 
-    bind = $mod, ESCAPE, hycov:toggleoverview
-    
     bind = $mod, H, movefocus, l
     bind = $mod, J, movefocus, d
     bind = $mod, L, movefocus, r

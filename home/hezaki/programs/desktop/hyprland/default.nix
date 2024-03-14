@@ -15,7 +15,6 @@
     enableNvidiaPatches = false;
     systemd.enable = false;
     plugins = with inputs; with pkgs; [
-      hycov.packages.${pkgs.system}.hycov
       hyprfocus.packages.${pkgs.system}.hyprfocus
     ];
     extraConfig = 
@@ -79,7 +78,7 @@
         disable_hyprland_logo = true
         animate_manual_resizes = true
         animate_mouse_windowdragging = true
-        background_color = rgb{1E1E2E}
+        background_color = rgb(1E1E2E)
       }
 
       dwindle {
@@ -125,28 +124,22 @@
         animation = workspaces, 1, 6, myBezier, slide
       }
 
-      plugin {
-        hycov {
-          overview_gappo = 23
-          overview_gappi = 9
-          hotarea_size = 5
-          enable_hotarea = 0
-        }
-        hyprfocus {
-          enabled = true
-          keyboard_focus_animation = flash
-          mouse_focus_animation = flash
-          bezier = bezIn, 0.5,0.0,1.0,0.5
-          bezier = bezOut, 0.0,0.5,0.5,1.0
-          flash {
-              flash_opacity = 0.7
-              in_bezier = bezIn
-              in_speed = 0.5
-              out_bezier = bezOut
-              out_speed = 3
-          }
-        }
-      }
+      # plugin {
+      #   hyprfocus {
+      #     enabled = true
+      #     keyboard_focus_animation = flash
+      #     mouse_focus_animation = flash
+      #     bezier = bezIn, 0.5,0.0,1.0,0.5
+      #     bezier = bezOut, 0.0,0.5,0.5,1.0
+      #     flash {
+      #         flash_opacity = 0.7
+      #         in_bezier = bezIn
+      #         in_speed = 0.5
+      #         out_bezier = bezOut
+      #         out_speed = 3
+      #     }
+      #   }
+      # }
     '';
   };
 }
