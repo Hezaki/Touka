@@ -1,28 +1,20 @@
-{
-  xdg.configFile."ansible/flatpak.yml".text = ''
----
-- name: flatpak
-  hosts: 127.0.0.1
+{ inputs, ...}: {
+  imports = [
+    inputs.flatpaks.homeManagerModules.nix-flatpak
+  ];
 
-  tasks:
-    - name: addFlathub
-      community.general.flatpak_remote:
-        name: flathub
-        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-        state: present
-
-    - name: addFlathubBeta
-      community.general.flatpak_remote:
-        name: flathubBeta
-        flatpakrepo_url: https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-        state: present
-
-    - name: flatpakPermissions
-      shell: doas flatpak override --filesystem=host
-
-    - name: installBlockbench
-      community.general.flatpak
-        name: net.blockbench.Blockbench
-        state: present
-    '';
+  services.flatpak = {
+    enable = true;
+    update.onActivation = true;
+    packages = [
+      "net.blockbench.Blockbench"
+      "io.github.tdesktop_x64.TDesktop"
+    ];
+    overrides = {
+      global = {
+        Context.sockets = ["wayland" "!fallback-x11"];
+        Context.filesystem = "home";
+      };
+    };
+  };
 }

@@ -1,6 +1,7 @@
-{ pkgs, lib, inputs, ... }: let
-  username = "hezaki";
-  hostname = "hlcwlk";
+{ pkgs, inputs, ... }: let
+  user = "hezaki";
+  user2 = "samatovna";
+  host = "hlcwlk";
   passroot = "password";
   passuser = "password";
 in {
@@ -47,7 +48,6 @@ in {
 
   home-manager = {
     useGlobalPkgs = true;
-    useUserPackages = true; 
     extraSpecialArgs = {
       inherit inputs;
     };
@@ -63,22 +63,31 @@ in {
     lxd.enable = true;
   };
 
-  users.users.root = {
-    initialPassword = passroot;
-    shell = pkgs.zsh;
-  };
+  users.users = {
+    ${username} = {
+      isNormalUser = true;
+      initialPassword = passuser;
+      home = "/home/${username}";
+      extraGroups = [
+        "wheel"
+      ];
+      shell = pkgs.zsh;
+    };
 
-  users.users.${username} = {
-    isNormalUser = true;
-    initialPassword = passuser;
-    home = "/home/${username}";
-    extraGroups = [
-      "wheel"
-      "adbusers"
-      "podman"
-      "libvirtd"
-    ];
-    shell = pkgs.zsh;
+    ${username1} = {
+      isNormalUser = true;
+      initialPassword = passuser;
+      home = "/home/${username1}";
+      extraGroups = [
+        "wheel"
+      ];
+      shell = pkgs.zsh;
+    };
+
+    root = {
+      initialPassword = passroot;
+      shell = pkgs.zsh;
+    };
   };
 
   security = {
@@ -89,19 +98,18 @@ in {
       '';
     };
     sudo.enable = false;
-    pam.services.gtklock.text = lib.readFile "${pkgs.gtklock}/etc/pam.d/gtklock";
   };
 
   documentation = {
     enable = true;
     doc.enable = false;
-    man.enable = false;
+    man.enable = true;
     dev.enable = false;
   };
 
   time.timeZone = "Europe/Samara";
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "ru_RU.UTF-8";
     extraLocaleSettings = { LANG = "en_US.UTF-8"; };
   };
 
@@ -111,27 +119,6 @@ in {
     ipafont
     noto-fonts-emoji
   ];
-
-  console = {
-    colors = [
-      "1e1e2e" 
-      "181825" 
-      "313244" 
-      "45475a" 
-      "585b70" 
-      "cdd6f4" 
-      "f5e0dc" 
-      "b4befe" 
-      "f38ba8" 
-      "fab387" 
-      "f9e2af" 
-      "a6e3a1" 
-      "94e2d5" 
-      "89b4fa" 
-      "cba6f7" 
-      "f2cdcd"
-    ];
-  };
 
   nix.settings = {
     builders-use-substitutes = true;

@@ -18,11 +18,6 @@ Build home-manager on desktop:
 home-manager switch --flake .#hezaki    # or home-update
 ```
 
-Build home-manager on android:
-```bash
-nix-on-droid switch --flake .#ktsrgi    # or nix-update
-```
-
 To make the home-manager work:
 ```bash 
 doas chown -R hezaki:users /etc/nixos  

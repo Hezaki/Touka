@@ -12,7 +12,6 @@
       lsp-mode
       lsp-ui
 			company
-			orderless
 			telega
 			flycheck
 			catppuccin-theme
@@ -29,8 +28,7 @@
 
       (custom-set-faces)
 
-			(setq standard-indent 2)
-			(set-frame-font "JetBrainsMono NF 11" nil t)
+			(set-frame-font "JetBrainsMono NF 10" nil t)
 			(load-theme 'catppuccin :no-confirm)
 			(set-frame-parameter nil 'internal-border-width 0)
 			(setq pixel-resolution-fine-flag t)
@@ -38,8 +36,6 @@
       (setq evil-want-keybinding nil)
       (setq-default tab-width 2)
 			(setq line-spacing 0)
-			(setq completion-styles '(orderless basic)
-				completion-category-overrides '((file (styles basic partial-completion))))
       (evil-mode t)
 			(smooth-scrolling-mode t)
 			(vertico-mode t)

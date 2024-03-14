@@ -47,10 +47,6 @@
           mkForceInstalled {
             # Theme
             "{0a2d1098-69a9-4e98-a62c-a861766ac24d}".install_url = "https://github.com/catppuccin/firefox/releases/download/old/catppuccin_mocha_lavender.xpi";
-            # Tabs 
-            "treestyletab@piro.sakura.ne.jp".install_url = "https://addons.mozilla.org/firefox/downloads/file/4197314/tree_style_tab-3.9.19.xpi";
-            # Dark Reader
-            "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             # Ublock Origin
             "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             # SponsorBlock
@@ -59,8 +55,6 @@
             "vimium-c@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/4210117/vimium_c-1.99.997.xpi";
             # NewTab like Vimium-C
             "newtab-adapter@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/3632463/newtab_adapter-1.3.0.xpi";
-            # Tampermonkey
-            "firefox@tampermonkey.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
             # Translate
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
             # Search by Image
@@ -90,7 +84,6 @@
         };
 
         Preferences = {
-          "browser.startup.homepage" = "https://4get.ca/";
           "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";
@@ -334,104 +327,4 @@
       };
     })
   ];
-  home.file = {
-    ".mozilla/firefox/hezaki.default-release/chrome/userChrome.css".text = ''
-      * {
-        font-family: JetBrainsMono Nerd Font Mono !important;
-        font-size: 12pt !important;
-      }
-
-      #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-        display: none;
-      }
-
-      #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) { visibility: collapse !important; }
-      #back-button { display: none; }
-      #forward-button { display: none; }
-      #reload-button { display: none; }
-      #stop-button { display: none; }
-      #home-button { display: none; }
-      #downloads-button { display: none; }
-      #library-button { display: none; }
-      #identity-box { display: none; }
-      #pageActionButton { display: none; }
-      #pocket-button { display: none; }
-      #urlbar-zoom-button { display: none; }
-      #tracking-protection-icon-container { display: none !important; }
-      #reader-mode-button{ display: none !important; }
-      #star-button { display: none; }
-      #star-button-box { display: none; }
-      #urlbar-go-button { display: none; }
-      #userContext-label, #userContext-indicator { display: none !important;}
-      #fxa-toolbar-menu-button { display: none; }
-      #nav-bar-overflow-button { display: none !important; }
-      #PanelUI-button { display: none; }
-      #customizableui-special-spring1,
-      #customizableui-special-spring2 { display: none; }
-    '';
-    ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text = ''
-      * {
-        font-family: JetBrainsMono Nerd Font Mono;
-      }
-      @-moz-document regexp("moz-extension://.+/sidebar/sidebar.html.*") {
-        :root,
-        #background {
-          background-color: #313244; /* https://github.com/piroor/treestyletab/blob/0eede581d763f92344fe64b1c042839f3b8ca955/webextensions/resources/ui-color.css#L198 */
-        }
-      }
-      @-moz-document regexp("moz-extension://.+/resources/group-tab.html.*") {
-        :root {
-          background: #313244 !important;
-        }
-      }
-
-      @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
-        :root {
-            --in-content-page-background: #1E1E2E !important;
-            --logo-and-wordmark{ display: none !important; }
-        }
-      }
-
-      @-moz-document url-prefix(about:home), url-prefix(about:newtab){
-
-        body[lwt-newtab-brighttext] {
-            --newtab-background-color: #1E1E2E !important;
-            --newtab-background-color-secondary: #1E1E2E !important;
-
-        }
-
-        .top-site-outer .top-site-icon {
-            background-color: #1E1E2E !important;
-
-        }
-
-        .top-site-outer .tile {
-            background-color: #1E1E2E !important;
-        }
-
-        .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
-            background: #1E1E2E !important;
-        }
-
-        .top-site-outer .context-menu-button:is(:active, :focus) {
-            background-color: #1E1E2E !important;
-        }
-
-        .search-wrapper .search-handoff-button {
-            border-radius: 40px !important;
-            background-color: #1E1E2E !important;
-        }
-      }
-    '';
-    ".mozilla/firefox/hezaki.default-release/chrome/main.html".text = ''
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>hmpage</title> 
-      </head>
-        <body style="background: url('/etc/nixos/home/hezaki/themes/images/cat_leaves.png') no-repeat fixed !important; background-size: cover !important;">
-        </body>
-      </html>
-    '';
-  };
 }
