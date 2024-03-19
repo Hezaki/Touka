@@ -8,6 +8,15 @@
 
     flake = {
       nixosConfigurations = {
+        hlthink = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/hlthink
+          ];
+        };
+      };
+
+      nixosConfigurations = {
         hlcwlk = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
