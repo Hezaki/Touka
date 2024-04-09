@@ -18,5 +18,6 @@
     distrobox
     podman
     podman-compose 
+    nixd
   ];
 }

@@ -3,7 +3,7 @@
     enable = true;
     extraConfig = ''
       set font JetBrainsMono
-      set font 10
+      set font 12
       set guioptions ""
 
       map D set "first-page-column 1:1"
@@ -11,43 +11,47 @@
 
       set selection-clipboard clipboard
 
-      set default-fg                "#CDD6F4"
-      set default-bg 			          "#1E1E2E"
 
-      set completion-bg		          "#1E1E2E"
-      set completion-fg		          "#CDD6F4"
-      set completion-highlight-bg	  "#575268"
-      set completion-highlight-fg	  "#CDD6F4"
-      set completion-group-bg		    "#1E1E2E"
-      set completion-group-fg		    "#89B4FA"
+      set notification-error-bg       "#282828" # bg
+      set notification-error-fg       "#fb4934" # bright:red
+      set notification-warning-bg     "#282828" # bg
+      set notification-warning-fg     "#fabd2f" # bright:yellow
+      set notification-bg             "#282828" # bg
+      set notification-fg             "#b8bb26" # bright:green
 
-      set statusbar-fg		          "#CDD6F4"
-      set statusbar-bg		          "#1E1E2E"
+      set completion-bg               "#282828" # bg2
+      set completion-fg               "#ebdbb2" # fg
+      set completion-group-bg         "#3c3836" # bg1
+      set completion-group-fg         "#928374" # gray
+      set completion-highlight-bg     "#83a598" # bright:blue
+      set completion-highlight-fg     "#504945" # bg2
 
-      set notification-bg		        "#1E1E2E"
-      set notification-fg		        "#CDD6F4"
-      set notification-error-bg	    "#1E1E2E"
-      set notification-error-fg	    "#F38BA8"
-      set notification-warning-bg	  "#1E1E2E"
-      set notification-warning-fg	  "#FAE3B0"
+      # Define the color in index mode
+      set index-bg                    "#282828" # bg2
+      set index-fg                    "#ebdbb2" # fg
+      set index-active-bg             "#83a598" # bright:blue
+      set index-active-fg             "#1d2021" # bg2
 
-      set inputbar-fg			          "#CDD6F4"
-      set inputbar-bg 		          "#1E1E2E"
+      set inputbar-bg                 "#282828" # bg
+      set inputbar-fg                 "#ebdbb2" # fg
 
-      set recolor-lightcolor		    "#1E1E2E"
-      set recolor-darkcolor		      "#CDD6F4"
+      set statusbar-bg                "#282828" # bg2
+      set statusbar-fg                "#ebdbb2" # fg
 
-      set index-fg			            "#CDD6F4"
-      set index-bg			            "#1E1E2E"
-      set index-active-fg		        "#CDD6F4"
-      set index-active-bg		        "#313244"
+      set highlight-color             "#fabd2f" # bright:yellow
+      set highlight-active-color      "#fe8019" # bright:orange
 
-      set render-loading-bg		      "#1E1E2E"
-      set render-loading-fg		      "#1E1E2E"
+      set default-bg                  "#282828" # bg
+      set default-fg                  "#ebdbb2" # fg
+      set render-loading              true
+      set render-loading-bg           "#1d2021" # bg
+      set render-loading-fg           "#ebdbb2" # fg
 
-      set highlight-color		        "#575268"
-      set highlight-fg              "#F5C2E7"
-      set highlight-active-color	  "#F5C2E7"
+      # Recolor book content's color
+      set recolor-lightcolor          "#282828" # bg
+      set recolor-darkcolor           "#ebdbb2" # fg
+      set recolor                     "true"
+      # set recolor-keephue             true      # keep original color
     '';
   };
 }

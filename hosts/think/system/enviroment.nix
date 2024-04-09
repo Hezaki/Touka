@@ -1,32 +1,35 @@
 { pkgs, inputs, ... }: let
   user = "hezaki";
-  user1 = "samatovna";
-  thinkpad = "hlthink";
-  dell = "hlcwlk";
+  host = "think";
   passroot = "password";
   passuser = "password";
 in {
-  imports = [ 
-    inputs.home-manager.nixosModules.home-manager 
+  imports = with inputs; [ 
+    home-manager.nixosModules.home-manager 
+		chaotic.homeManagerModules.default 
   ];
 
-  environment.systemPackages = with pkgs; [
-    home-manager
-    nix-tree
-    iftop
-    htop
-    fastfetch
-    killall
-    unzip
-    zip
-    neovim
-    tmux
-    wget
-    tree
-    p7zip
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      home-manager
+      nix-tree
+      brillo
+      iftop
+      htop-vim
+      fastfetch
+      killall
+      unzip
+      zip
+      neovim
+      tmux
+      wget
+      tree
+      p7zip
+    ];
+  };
 
   networking = {
+    hostName = host;
     networkmanager = {
       enable = true;
       insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
@@ -56,11 +59,12 @@ in {
   programs = {
     zsh.enable = true;
     gamemode.enable = true;
+    steam.enable = true;
   };
 
   virtualisation = {
     libvirtd.enable = true;
-    lxd.enable = true;
+    waydroid.enable = true;
   };
 
   users.users = {
@@ -68,16 +72,6 @@ in {
       isNormalUser = true;
       initialPassword = passuser;
       home = "/home/${user}";
-      extraGroups = [
-        "wheel"
-      ];
-      shell = pkgs.zsh;
-    };
-
-    ${user1} = {
-      isNormalUser = true;
-      initialPassword = passuser;
-      home = "/home/${user1}";
       extraGroups = [
         "wheel"
       ];
@@ -95,6 +89,7 @@ in {
       enable = true;
       extraConfig = ''
         permit persist keepenv :wheel
+				permit nopass hezaki as root cmd brillo 
       '';
     };
     sudo.enable = false;
@@ -113,12 +108,16 @@ in {
     extraLocaleSettings = { LANG = "en_US.UTF-8"; };
   };
 
+
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     jetbrains-mono
     ipafont
     noto-fonts-emoji
   ];
+
+  nixpkgs.config.allowUnfree = true;
+	chaotic.nyx.cache.enable = true;
 
   nix.settings = {
     builders-use-substitutes = true;

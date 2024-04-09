@@ -5,6 +5,7 @@
     userEmail = "email";
     difftastic.enable = true;
     extraConfig = {
+      color.ui = true;
       init = {
         defaultBranch = "main";
       };

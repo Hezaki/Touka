@@ -1,22 +1,20 @@
 { inputs, pkgs, ... }: {
   imports = [ ./binds.nix ./autostart.nix ];
   home.packages = with pkgs; [
-    inputs.hypr-contrib.packages.${pkgs.system}.grimblast 
+    grimblast
     wl-clipboard 
     wf-recorder
     hyprpicker
+    hyprcursor
     waypaper
     gtklock
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enableNvidiaPatches = false;
     systemd.enable = false;
-    plugins = with inputs; with pkgs; [
-      hyprfocus.packages.${pkgs.system}.hyprfocus
-    ];
     extraConfig = 
       ''
       monitor=,preferred,auto,1
@@ -24,27 +22,36 @@
       exec = sh $HOME/.config/hypr/autostart.sh
       source = ./binds.conf
 
-      workspace = 1, monitor:LVDS-1, default:true
-      workspace = 2, monitor:LVDS-1, default:true
-      workspace = 3, monitor:LVDS-1, default:true
-      workspace = 4, monitor:LVDS-1, default:true
-      workspace = 5, monitor:LVDS-1, default:true
-      workspace = 6, monitor:LVDS-1, default:true
-      workspace = 7, monitor:LVDS-1, default:true
-      workspace = 8, monitor:LVDS-1, default:true
+      workspace = 1, monitor:eDP-1, default:true
+      workspace = 2, monitor:eDP-1, default:true
+      workspace = 3, monitor:eDP-1, default:true
+      workspace = 4, monitor:eDP-1, default:true
+      workspace = 5, monitor:eDP-1, default:true
+      workspace = 6, monitor:eDP-1, default:true
+      workspace = 7, monitor:eDP-1, default:true
+      workspace = 8, monitor:eDP-1, default:true
+      workspace = 9, monitor:eDP-1, default:true
+      workspace = 10, monitor:eDP-1, default:true
 
       # rules
       windowrule = float, title:^(Library)$
       windowrule = move center 1, title:^(Library)$
+			windowrule = size 482 271, title:^(Picture-in-Picture)$
+			windowrule = move 14 12, title:^(Picture-in-Picture)$
+      windowrule = float, title:^(Picture-in-Picture)$
       windowrule = workspace 2, firefox
       windowrule = workspace 3, org.telegram.desktop
       windowrule = workspace 4, WebCord
       windowrule = workspace 5, virt-manager
       windowrule = workspace 5, org.prismlauncher.PrismLauncher
       windowrule = workspace 5, libreoffice-writer
+      windowrule = workspace 5, steam
+      windowrule = workspace 5, lutris
       windowrule = workspace 6, org.pwmt.zathura 
-      windowrule = workspace 6, obsidian
-      windowrule = workspace 7, org.kde.kdeconnect.app
+      windowrule = workspace 7, emacs
+      windowrule = workspace 8, blender
+      windowrule = workspace 9, transmission-gtk
+      windowrule = workspace 10, YouTube Music
 
       input {
         kb_layout = us,ru
@@ -56,16 +63,21 @@
         force_no_accel = true
         touchpad {
           natural_scroll = false
-          disable_while_typing = true
+          disable_while_typing = false
         }
       }
 
+			device {
+				name = 2-elan-trackpoint
+				accel_profile = custom 1 1.2 1.5
+			}
+	
       general {
         gaps_in = 4
         gaps_out = 10
         border_size = 2
-        col.active_border = rgb(313244)
-        col.inactive_border = rgb(313244)
+        col.active_border = rgb(282828)
+        col.inactive_border = rgb(504945)
         layout = dwindle
         cursor_inactive_timeout = 3
         apply_sens_to_raw = 0
@@ -75,7 +87,6 @@
         vfr = true
         enable_swallow = true
         disable_splash_rendering = true
-        disable_hyprland_logo = true
         animate_manual_resizes = true
         animate_mouse_windowdragging = true
         background_color = rgb(1E1E2E)
@@ -87,13 +98,13 @@
       }
 
       group {
-        col.border_active = rgb(313244)
-        col.border_inactive = rgb(2A2B3C)
+        col.border_active = rgb(3C3836)
+        col.border_inactive = rgb(504945)
         groupbar {
           render_titles = false
           gradients = true
-          col.active = rgb(89b4fa)
-          col.inactive = rgb(45475a)
+          col.active = rgb(3C3836)
+          col.inactive = rgb(504945)
         }
       }
 
@@ -105,13 +116,14 @@
       decoration {
         rounding = 2
         drop_shadow = true
-        shadow_range = 6
+        shadow_range = 5
         shadow_render_power = 1
-        col.shadow = rgb(15161A)
+        col.shadow = rgb(1C1D1D)
         blur {
           enabled = false
           new_optimizations = true
         }
+        # screen_shader = ~/gg.glsl
       }
 
       animations {
@@ -123,23 +135,6 @@
         animation = fade, 1, 10, myBezier
         animation = workspaces, 1, 6, myBezier, slide
       }
-
-      # plugin {
-      #   hyprfocus {
-      #     enabled = true
-      #     keyboard_focus_animation = flash
-      #     mouse_focus_animation = flash
-      #     bezier = bezIn, 0.5,0.0,1.0,0.5
-      #     bezier = bezOut, 0.0,0.5,0.5,1.0
-      #     flash {
-      #         flash_opacity = 0.7
-      #         in_bezier = bezIn
-      #         in_speed = 0.5
-      #         out_bezier = bezOut
-      #         out_speed = 3
-      #     }
-      #   }
-      # }
     '';
   };
 }
