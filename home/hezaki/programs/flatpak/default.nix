@@ -7,7 +7,6 @@
     enable = true;
     update.onActivation = true;
     packages = [
-      "net.blockbench.Blockbench"
       "io.github.tdesktop_x64.TDesktop"
     ];
     overrides = {

@@ -9,12 +9,15 @@
     bind = $mod, W, killactive, 
     bind = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
-    bind = $mod, F, fullscreen,
+    bind = ALT, F, fullscreen,
     bind = $mod, A, pseudo,
 
-    binde =, F12, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
-    binde =, F11, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+    binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%+
+    binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    binde =, XF86MonBrightnessDown, exec, doas brillo -U 3
+    binde =, XF86MonBrightnessUp, exec, doas brillo -A 3 
 
     bind = ALT, C, exec, dunstctl close-all
     bind = ALT, A, exec, dunstctl history-pop
@@ -27,11 +30,7 @@
     bind = ,Print, exec, grimblast copysave screen $HOME/Media/Screenshots/$(date +'%d%m%y%H-%s.png')
     bind = $mod, Print, exec, grimblast --freeze copysave area $HOME/Media/Screenshots/$(date +%d%m%y%H-%s.png)
 
-    bind = $mod, F9, exec, wf-recorder -f $HOME/Media/Videos/$(date +%d%m%y%H.mkv)
-    bind = $mod SHIFT, F9, exec, wf-recorder -g "$(slurp)" -f $HOME/Media/Videos/$(date +%d%m%y%H.mkv)
-    bind =, F8, exec, pkill wf-recorder
-
-    bind = $mod, G, togglegroup
+    bind = ALT, G, togglegroup
     binde = $mod, Tab, changegroupactive, f
     binde = $modSHIFT, Tab, changegroupactive, b
 
@@ -58,6 +57,8 @@
     bind = $mod, X, workspace, 6
     bind = $mod, C, workspace, 7
     bind = $mod, V, workspace, 8
+    bind = $mod, F, workspace, 9
+    bind = $mod, G, workspace, 10
 
     bind = $mod SHIFT, 1, movetoworkspace, 1
     bind = $mod SHIFT, 2, movetoworkspace, 2
@@ -68,6 +69,7 @@
     bind = $mod SHIFT, C, movetoworkspace, 7
     bind = $mod SHIFT, V, movetoworkspace, 8
     bind = $mod SHIFT, F, movetoworkspace, 9
+    bind = $mod SHIFT, G, movetoworkspace, 10
 
     bindm = $mod, mouse:272, movewindow
     bindm = $mod, mouse:273, resizewindow

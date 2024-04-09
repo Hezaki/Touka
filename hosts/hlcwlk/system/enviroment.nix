@@ -1,6 +1,5 @@
 { pkgs, inputs, ... }: let
-  user = "hezaki";
-  user2 = "samatovna";
+  user = "samatovna";
   host = "hlcwlk";
   passroot = "password";
   passuser = "password";
@@ -26,7 +25,7 @@ in {
   ];
 
   networking = {
-    hostName = hostname;
+    hostName = host;
     networkmanager = {
       enable = true;
       insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
@@ -64,20 +63,10 @@ in {
   };
 
   users.users = {
-    ${username} = {
+    ${user} = {
       isNormalUser = true;
       initialPassword = passuser;
-      home = "/home/${username}";
-      extraGroups = [
-        "wheel"
-      ];
-      shell = pkgs.zsh;
-    };
-
-    ${username1} = {
-      isNormalUser = true;
-      initialPassword = passuser;
-      home = "/home/${username1}";
+      home = "/home/${user}";
       extraGroups = [
         "wheel"
       ];

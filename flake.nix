@@ -8,10 +8,10 @@
 
     flake = {
       nixosConfigurations = {
-        hlthink = inputs.nixpkgs.lib.nixosSystem {
+        think = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/hlthink
+            ./hosts/think
           ];
         };
       };
@@ -46,11 +46,11 @@
       };
 
       homeConfigurations = {
-        samatovna = home-manager.lib.homeManagerConfiguration {
+        smtvna = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs; };
           modules = [
-            ./home/samatovna
+            ./home/osmtvna
           ];
         };
       };
@@ -59,14 +59,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    flatpaks.url = "github:gmodena/nix-flatpak";
+    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
 
-    nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixvim.url = "github:pta2002/nixvim";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     stylix.url = "github:danth/stylix";
+    matugen.url = "github:/InioX/Matugen";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -150,15 +148,6 @@
   };
 
   nixConfig = {
-    # trusted-users = [ "root" "@wheel" ];
-    # extra-substituters = [
-    #   "https://nix-community.cachix.org"
-    #   "https://hyprland.cachix.org"
-    # ];
-    # extra-trusted-public-keys = [
-    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    #   "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    # ];
     builders-use-substitutes = true;
     auto-optimise-store = true;
     experimental-features = [ "nix-command" "flakes" ];

@@ -67,6 +67,8 @@
             "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4189577/search_by_image-6.1.0.xpi";
             # I don't care about Cookies
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
+            # Stylus
+            "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4232144/styl_us-1.5.46.xpi";
           };
 
         FirefoxHome = {
@@ -376,18 +378,18 @@
       @-moz-document regexp("moz-extension://.+/sidebar/sidebar.html.*") {
         :root,
         #background {
-          background-color: #313244; /* https://github.com/piroor/treestyletab/blob/0eede581d763f92344fe64b1c042839f3b8ca955/webextensions/resources/ui-color.css#L198 */
+          background-color: #504945; /* https://github.com/piroor/treestyletab/blob/0eede581d763f92344fe64b1c042839f3b8ca955/webextensions/resources/ui-color.css#L198 */
         }
       }
       @-moz-document regexp("moz-extension://.+/resources/group-tab.html.*") {
         :root {
-          background: #313244 !important;
+          background: #504945 !important;
         }
       }
 
       @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
         :root {
-            --in-content-page-background: #1E1E2E !important;
+            --in-content-page-background: #282828 !important;
             --logo-and-wordmark{ display: none !important; }
         }
       }
@@ -395,31 +397,31 @@
       @-moz-document url-prefix(about:home), url-prefix(about:newtab){
 
         body[lwt-newtab-brighttext] {
-            --newtab-background-color: #1E1E2E !important;
-            --newtab-background-color-secondary: #1E1E2E !important;
+            --newtab-background-color: #282828 !important;
+            --newtab-background-color-secondary: #282828 !important;
 
         }
 
         .top-site-outer .top-site-icon {
-            background-color: #1E1E2E !important;
+            background-color: #282828 !important;
 
         }
 
         .top-site-outer .tile {
-            background-color: #1E1E2E !important;
+            background-color: #282828 !important;
         }
 
         .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
-            background: #1E1E2E !important;
+            background: #282828 !important;
         }
 
         .top-site-outer .context-menu-button:is(:active, :focus) {
-            background-color: #1E1E2E !important;
+            background-color: #282828 !important;
         }
 
         .search-wrapper .search-handoff-button {
             border-radius: 40px !important;
-            background-color: #1E1E2E !important;
+            background-color: #282828 !important;
         }
       }
     '';

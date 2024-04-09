@@ -18,11 +18,11 @@
 				"<span color='#EBDBB2'>󰂁</span>",
 				"<span color='#EBDBB2'>󰂂</span>",
 				"<span color='#EBDBB2'>󰁹</span>"
-				],
+			],
 				"states": {
 				"critical": 15,
 				"warning": 30
-				}
+		  }
 		},
 		"battery#bat2": {
 				"bat": "bat2"
@@ -107,21 +107,21 @@
 				"on-click": "activate",
 				"format": "{icon}",
 				"format-icons": {
-				"1":"一",
-				"2":"二",
-				"3":"三",
-				"4":"四",
-				"5":"五",
-				"6":"六",
-				"7":"七",
-				"8":"八",
-				"9":"九",
-				"10":"十",
+				"1":"1",
+				"2":"2",
+				"3":"3",
+				"4":"4",
+				"5":"5",
+				"6":"6",
+				"7":"7",
+				"8":"8",
+				"9":"9",
+				"10":"10",
 				},
 				"persistent-workspaces": {
 				"eDP-1": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
 				},
-		  },
+		},
 		}
     '';
     "waybar/style.css".text = ''
@@ -147,7 +147,7 @@
       }
 
       #workspaces button {
-        background-color: #504945;
+        background-color: #665C54;
         border-radius: 20px;
         margin: 2px;
         padding: 0px;
@@ -155,6 +155,7 @@
         padding-left: 6px;
         color: #EFDEB5;
         min-height: 25px;
+        min-width: 20px
         transition: all 0.4s ease-in-out;
       }
 

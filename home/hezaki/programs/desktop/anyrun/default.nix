@@ -89,7 +89,7 @@
       }
 
       #match:selected {
-        background: #313244;
+        background: #504945;
       }
 
       #match {
@@ -105,11 +105,11 @@
       box#main {
         padding: 0px;
         margin-top: 160px;
-        box-shadow: 1 1 3 1px #101010;
-        background: rgba(30, 30, 46, 1);
+        box-shadow: 1 1 3 1px #1C1D1D;
+        background: #282828;
         border-radius: 9px;
         border: 2;
-        border-color: #313244;
+        border-color: #282828;
         border-style: solid;
       }
     '';

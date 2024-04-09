@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
@@ -6,42 +6,44 @@
     packages = with pkgs; [
       fd
       duf
+      bun
       mpv
       ncdu
       cava
+      loupe
       dconf
       socat
-      # krita
+      krita
       swaybg
       scrcpy
       lutgen
-      swayimg
+      lutris
+      blender
       zathura
-      # ansible
       joshuto
       ripgrep
       bottles
       nix-init
       htop-vim
       onefetch
-      # obsidian
       libsecret
       libnotify
       ueberzugpp
       libreoffice
       virt-manager
+      vulkan-tools
       glfw-wayland
       appimage-run
       home-manager
       nix-prefetch
       gnome.zenity
+      youtube-music
       android-tools
       prismlauncher
       webcord-vencord
       espanso-wayland
       telegram-desktop
       transmission-gtk
-      libsForQt5.kdenlive
       libsForQt5.kdeconnect-kde
     ];
   };
@@ -70,7 +72,6 @@
     ./programs/terminal/fastfetch
     ./programs/terminal/shell/zsh
     ./programs/terminal/shell/translate-shell
-    ./programs/terminal/editors/neovim
     ./programs/terminal/editors/emacs
 
     ./programs/graphical/mpv
@@ -79,16 +80,17 @@
     ./programs/graphical/firefox
     ./programs/graphical/webcord 
     ./programs/graphical/telegram
+    ./programs/graphical/obs-studio
 
     ./programs/desktop/anyrun
-    ./programs/desktop/dunst
+    ./programs/desktop/swaync
     ./programs/desktop/waybar
-    # ./programs/desktop/ags
+    ./programs/desktop/ags
     ./programs/desktop/hyprland
     ./programs/desktop/gtklock
 
     ./containers/archlinux.nix
-    ./programs/flatpak
+    # ./programs/flatpak
 
     ./themes
     ./devlop

@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.mochaLavender;
-    name = "Catppuccin-Mocha-Lavender-Cursors"; 
-    size = 24;
+    package = pkgs.capitaine-cursors-themed;
+    name = "Capitaine Cursors (Gruvbox)"; 
+    size = 22;
     gtk.enable = true;
     x11.enable = true;
   };
@@ -11,12 +11,8 @@
     enable = true;
     font.name = "JetBrainsMono 11";
     theme = {
-      name = "Catppuccin-Mocha-Compact-Lavender-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "lavender" ];
-        size = "compact";
-        variant = "mocha";
-      };
+      name = "Gruvbox-Dark-BL-LB";
+      package = pkgs.gruvbox-gtk-theme;
     };
     gtk3.extraConfig = {
       gtk-xft-antialias = 1;
@@ -35,16 +31,7 @@
     };
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.gnome.adwaita-icon-theme;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "qtct";
-    style = {
-      package = pkgs.catppuccin-kde;
-      name = "Catpuccin-Mocha-Dark";
+      package = pkgs.papirus-icon-theme;
     };
   };
 
