@@ -4,17 +4,31 @@
     package = pkgs.emacs29-pgtk;
     extraPackages = epkgs: with epkgs; [
       doom-themes
+      doom-modeline
       all-the-icons
-      nerd-icons
+      all-the-icons-dired
+      centaur-tabs
+      ligature
       dashboard
 
+      tree-sitter
+      tree-sitter-langs
+
       evil
-      evil-collection
-      company
-      company-box
+      evil-org
+      evil-anzu
+      slime
+      magit
+      beacon
+      gcmh
+      marginalia
       rainbow-mode
-      vertico
+      rainbow-delimiters
+      corfu
+      affe
+      counsel
       emojify-logos
+      vertico
       hl-todo
       vterm
       vterm-toggle
@@ -22,76 +36,26 @@
       lsp-ui
       lsp-mode
       pdf-tools
-      zoxide
       flycheck
       sideline-flycheck
       general
       nixos-options
-      auto-complete
+      password-store
+      telega
 
       org
-      toc-org
+      org-modern
       org-bullets
+      org-download
+      toc-org
+      org-roam
 			nix-mode
     ];
     extraConfig = ''
-       (set-frame-font "JetBrainsMono NF 13" nil t)
-       (setq doom-themes-enable-bold t
-             doom-themes-enable-italic t)
-       (load-theme 'doom-gruvbox :no-confirm)
-       (doom-themes-visual-bell-config)
-
-       (custom-set-faces
-             `(tab-bar ((t (:background ,(doom-color 'base02)))))
-             `(mode-line ((t (:background ,(doom-color 'base02))))))
-
-       (custom-set-variables
-             '(global-display-line-numbers-mode t)
-             '(global-visual-line-mode t)
-             '(global-tree-sitter-mode t)
-             '(menu-bar-mode nil)
-             '(tab-bar-new-button-show nil)
-             '(tab-bar-close-button-show nil)
-             '(tab-line-separator "")
-             '(scroll-bar-mode nil)
-             '(tab-bar-mode t)
-             '(tool-bar-mode nil)
-             '(recentf-mode t)
-             '(global-hl-line-mode t)
-             '(pixel-scroll-precision-mode t))
-
-       (global-set-key (kbd "C-=") 'text-scale-increase)
-       (global-set-key (kbd "C--") 'text-scale-decrease)
-
-       (setq redisplay-dont-pause t
-       	     scroll-margin 5
-             scroll-step 1
-             scroll-conservatively 10000
-             scrool-preserve-screen-position 1)
-
-       (set-window-margins (selected-window) 0 0)
-       (set-frame-parameter nil 'internal-border-width 0)
-       (setq-default tab-width 2)
-       (setq standard-indent 2
-             package-enable-at-startup nil
-             pixel-resolution-fine-flag t
-             select-enable-clipboard t
-             indent-line-function 'insert-tab
-             line-spacing 0
-             inhibit-startup-screen nil
-             make-backup-files nil
-             evil-want-keybinding nil
-             evil-undo-system 'undo-redo
-             evil-vsplit-window-right t
-             evil-split-window-below t)
-
-       (evil-mode t)
-       (evil-collection-init)
-
-       (global-company-mode t)
-       (global-flycheck-mode t)
-
-       (dashboard-setup-startup-hook)
+       (org-babel-load-file
+         (expand-file-name
+           "/etc/nixos/home/hezaki/programs/terminal/editors/emacs/config.org"
+         ))
     '';
   };
 }

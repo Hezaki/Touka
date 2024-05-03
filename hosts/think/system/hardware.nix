@@ -11,7 +11,7 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-	intel-media-driver
+	      intel-media-driver
       	amdvlk
       	libvdpau-va-gl
         vaapiVdpau

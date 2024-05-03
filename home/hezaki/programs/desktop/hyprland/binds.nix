@@ -12,12 +12,16 @@
     bind = ALT, F, fullscreen,
     bind = $mod, A, pseudo,
 
-    binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%+
-    binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%-
+    bind =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%+
+    bind =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-    binde =, XF86MonBrightnessDown, exec, doas brillo -U 3
-    binde =, XF86MonBrightnessUp, exec, doas brillo -A 3 
+    bind =, XF86MonBrightnessDown, exec, doas brillo -U 3
+    bind =, XF86MonBrightnessUp, exec, doas brillo -A 3 
+    bind =, XF86Favorites, exec, hyprlock
+    
+
+    bindl=,switch:[switch name],exec,hyprlock
 
     bind = ALT, C, exec, dunstctl close-all
     bind = ALT, A, exec, dunstctl history-pop
@@ -25,14 +29,13 @@
     bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
     bind = $mod, D, exec, anyrun
     bind = ALT, P, exec, hyprpicker -a
-    bind = ALT, G, exec, gtklock -i -s ~/.config/gtklock/style.css
+    # bind = ALT, G, exec, gtklock -i -s ~/.config/gtklock/style.css
 
     bind = ,Print, exec, grimblast copysave screen $HOME/Media/Screenshots/$(date +'%d%m%y%H-%s.png')
     bind = $mod, Print, exec, grimblast --freeze copysave area $HOME/Media/Screenshots/$(date +%d%m%y%H-%s.png)
 
     bind = ALT, G, togglegroup
-    binde = $mod, Tab, changegroupactive, f
-    binde = $modSHIFT, Tab, changegroupactive, b
+    bind = $mod, SPACE, exec, pypr layout_center toggle
 
     bind = $mod, H, movefocus, l
     bind = $mod, J, movefocus, d
