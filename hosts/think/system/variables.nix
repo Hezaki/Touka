@@ -21,5 +21,6 @@
     QT_QPA_PLATFORMTHEME="gtk3";
     XCURSOR_SIZE="24";
     RUST_BACKTRACE="full";
+    LIBVA_DRIVER_NAME = "iHD"; 
   };
 }

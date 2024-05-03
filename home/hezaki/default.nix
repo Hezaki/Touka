@@ -29,7 +29,10 @@
       libsecret
       libnotify
       ueberzugpp
+      blockbench
+      # easyeffects
       libreoffice
+      nvtop-intel
       virt-manager
       vulkan-tools
       glfw-wayland
@@ -40,6 +43,7 @@
       youtube-music
       android-tools
       prismlauncher
+      gnome-secrets
       webcord-vencord
       espanso-wayland
       telegram-desktop
@@ -77,7 +81,8 @@
     ./programs/graphical/mpv
     ./programs/graphical/foot
     ./programs/graphical/zathura
-    ./programs/graphical/firefox
+    ./programs/graphical/browser/firefox
+    ./programs/graphical/browser/chromium
     ./programs/graphical/webcord 
     ./programs/graphical/telegram
     ./programs/graphical/obs-studio
@@ -85,12 +90,8 @@
     ./programs/desktop/anyrun
     ./programs/desktop/swaync
     ./programs/desktop/waybar
-    ./programs/desktop/ags
     ./programs/desktop/hyprland
-    ./programs/desktop/gtklock
-
-    ./containers/archlinux.nix
-    # ./programs/flatpak
+    ./programs/desktop/hyprlock
 
     ./themes
     ./devlop

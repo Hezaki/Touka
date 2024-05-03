@@ -6,9 +6,7 @@
     difftastic.enable = true;
     extraConfig = {
       color.ui = true;
-      init = {
-        defaultBranch = "main";
-      };
+      init.defaultBranch = "main";
     };
     aliases = {
       s = "status";

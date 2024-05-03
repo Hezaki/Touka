@@ -4,6 +4,7 @@
     grimblast
     wl-clipboard 
     wf-recorder
+    pyprland
     hyprpicker
     hyprcursor
     waypaper
@@ -13,8 +14,9 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    enableNvidiaPatches = false;
-    systemd.enable = false;
+    # plugins = [
+    #   inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+    # ];
     extraConfig = 
       ''
       monitor=,preferred,auto,1
@@ -67,10 +69,12 @@
         }
       }
 
-			device {
-				name = 2-elan-trackpoint
-				accel_profile = custom 1 1.2 1.5
-			}
+      device {
+        name = tpps/2-elan-trackpoint
+        enabled = true
+        tap-to-click = true
+        accel_profile = adaptive
+      }
 	
       general {
         gaps_in = 4
@@ -87,8 +91,12 @@
         vfr = true
         enable_swallow = true
         disable_splash_rendering = true
+        disable_autoreload = true
+        disable_hyprland_logo = true
         animate_manual_resizes = true
         animate_mouse_windowdragging = true
+        enable_hyprcursor = true
+        hide_cursor_on_key_press = true
         background_color = rgb(1E1E2E)
       }
 
@@ -98,7 +106,7 @@
       }
 
       group {
-        col.border_active = rgb(3C3836)
+        col.border_active = rgb(3C3836) = true
         col.border_inactive = rgb(504945)
         groupbar {
           render_titles = false

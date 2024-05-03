@@ -61,14 +61,23 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim.url = "github:pta2002/nixvim";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     stylix.url = "github:danth/stylix";
-    matugen.url = "github:/InioX/Matugen";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
@@ -83,6 +92,11 @@
 
     hyprfocus = {
       url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
 

@@ -1,32 +1,24 @@
 { pkgs, inputs, ... }: let
   user = "hezaki";
   host = "think";
-  passroot = "password";
-  passuser = "password";
+  passroot = "71010028100000";
+  passuser = "heartpex";
 in {
   imports = with inputs; [ 
     home-manager.nixosModules.home-manager 
 		chaotic.homeManagerModules.default 
+    nix-ld.nixosModules.nix-ld
   ];
 
-  environment = {
-    systemPackages = with pkgs; [
-      home-manager
-      nix-tree
-      brillo
-      iftop
-      htop-vim
-      fastfetch
-      killall
-      unzip
-      zip
-      neovim
-      tmux
-      wget
-      tree
-      p7zip
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    nix-tree
+    brillo
+    iftop
+    htop-vim
+    fastfetch
+    vim
+    nh
+  ];
 
   networking = {
     hostName = host;
@@ -60,6 +52,11 @@ in {
     zsh.enable = true;
     gamemode.enable = true;
     steam.enable = true;
+    nix-ld.dev.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   virtualisation = {

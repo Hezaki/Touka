@@ -38,6 +38,7 @@
         }
       ];
       shellAliases = {
+        "e" = "emacs";
         "ls" = "lsd -F";
         "l" = "lsd -l";
         "la" = "lsd -lA";
@@ -45,7 +46,6 @@
         "tree" = "lsd --tree";
         "doas" = "doas ";
         "sudo" = "sudo ";
-        "box" = "distrobox";
         "fetch" = "fastfetch";
         "md" = "mkdir -v";
         "mv" = "mv -v";
@@ -60,7 +60,6 @@
         "flake-update" = "nix flake update /etc/nixos";
         "nixos-update" = "doas nixos-rebuild switch --fast";
         "home-update" = "home-manager switch --flake /etc/nixos/.#hezaki";
-        "kali-update" = "home-manager switch --flake ~/.home/.#ktsrgi --extra-experimental-features 'nix-command flakes'";
       };
       initExtra = ''
         export EDITOR='nvim'
@@ -81,11 +80,10 @@
 
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black"
 
-        export FZF_DEFAULT_OPTS=" \
-        --color=bg+:#1e1e2e,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
-        --layout=reverse"
+        export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+        " --color=bg+:#282828,bg:#282828,spinner:#8ec07c,hl:#83a598"\
+        " --color=fg:#bdae93,header:#83a598,info:#fabd2f,pointer:#8ec07c"\
+        " --color=marker:#8ec07c,fg+:#ebdbb2,prompt:#fabd2f,hl+:#83a598"
 
         _fix_cursor() {
            echo -ne "\033[4 q"
