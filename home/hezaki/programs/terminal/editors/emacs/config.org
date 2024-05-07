@@ -1,42 +1,7 @@
-#+TITLE: Emacs configuration
-#+AUTHOR: Hezaki
+#+title: Emacs
+#+author: Hezaki
 
-* Configuration :TOC:
-- [[#customization][Customization]]
-  - [[#font-and-theme][Font and theme]]
-  - [[#faces][Faces]]
-  - [[#variables][Variables]]
-  - [[#all-the-icons][All the icons]]
-  - [[#ligatures][Ligatures]]
-- [[#org][Org]]
-  - [[#org-modern][Org modern]]
-  - [[#evil-org-mode][Evil org mode]]
-  - [[#toc][TOC]]
-  - [[#org-level-headers][Org level headers]]
-  - [[#org-fonts][Org fonts]]
-  - [[#preserve-indentation-on-org-babel-tangle][Preserve Indentation On Org-Babel-Tangle]]
-- [[#development][Development]]
-  - [[#evil][Evil]]
-  - [[#anzu][Anzu]]
-  - [[#general][General]]
-  - [[#dashboard][Dashboard]]
-  - [[#corfu][Corfu]]
-  - [[#treesitter][Treesitter]]
-  - [[#rainbow-mode][Rainbow mode]]
-  - [[#beacon][Beacon]]
-  - [[#scrolling][Scrolling]]
-  - [[#basic][Basic]]
-  - [[#rainbow-delimiters][Rainbow delimiters]]
-  - [[#vertico][Vertico]]
-  - [[#flycheck][Flycheck]]
-  - [[#orderless][Orderless]]
-  - [[#lsp][Lsp]]
-  - [[#doom-modeline][Doom modeline]]
-  - [[#centaur-tabs][Centaur tabs]]
-  - [[#marginalia][Marginalia]]
-- [[#garbage-collection][Garbage collection]]
-
-* Customization
+* UI
 ** Font and theme
 #+begin_src emacs-lisp
 (set-frame-font "JetBrainsMono NF 13" nil t)
@@ -47,7 +12,6 @@
 (load-theme 'doom-gruvbox :no-confirm)
 (doom-themes-visual-bell-config)
 #+end_src
-
 ** Faces
 #+begin_src emacs-lisp
 (custom-set-faces
@@ -59,7 +23,6 @@
 	`(mode-line ((t (:background ,(doom-color 'base02)))))
 	`(doom-modeline-panel ((t (:background ,(doom-color 'base02))))))
 #+end_src
-
 ** Variables
 #+begin_src emacs-lisp
 (custom-set-variables
@@ -76,96 +39,117 @@
 	'(recentf-mode t)
 	'(global-hl-line-mode t)
 	'(pixel-scroll-precision-mode t))
+  '(highlight-indent-guides-method 'character)
 #+end_src
-
 ** All the icons
 #+begin_src emacs-lisp
 (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
 #+end_src
-
 ** Ligatures
 #+begin_src emacs-lisp
 (global-ligature-mode t)
 #+end_src
-
-* Org
+** Auto pair
+#+begin_src emacs-lisp
+(electric-pair-mode t)
+#+end_src
+** Scrolling
+#+begin_src emacs-lisp
+(setq scroll-step 1
+			scroll-margin 5
+      scroll-conservatively 10000
+      next-screen-context-lines 5
+      line-move-visual nil)
+#+end_src
+* Development
+** Evil
+#+begin_src emacs-lisp
+(evil-mode t)
+(setq evil-search-module 'evil-search)
+#+end_src
+*** Evil multiple cursors
+#+begin_src emacs-lisp
+(global-evil-mc-mode t)
+#+end_src
+*** Anzu
+#+BEGIN_src emacs-lisp
+(global-anzu-mode t)
+#+END_src
+** Org
 #+begin_src emacs-lisp
 (electric-indent-mode nil)
 (setq org-auto-align-tags nil
-			;; org-edit-src-content-indentation 0
+			org-edit-src-content-indentation 0
 			org-tags-column 0
 			org-auto-align-tags nil
 			org-catch-invisible-edits 'show-and-error
 			org-special-ctrl-a/e t
 			org-insert-heading-respect-content t
 			org-hide-emphasis-markers t
-			org-pretty-entities t)
+			org-pretty-entities t
+			org-startup-indented t
+      org-ellipsis " ▾"
+      org-hide-emphasis-markers t
+      org-pretty-entities t
+      org-src-fontify-natively t
+		  org-fontify-whole-heading-line t
+      org-fontify-quote-and-verse-blocks t
+		  org-edit-src-content-indentation 2
+      org-hide-block-startup nil
+      org-src-tab-acts-natively t
+      org-src-preserve-indentation nil
+      org-startup-folded t
+      org-cycle-separator-lines 2
+      org-hide-leading-stars t
+      org-highlight-latex-and-related '(native)
+      org-goto-auto-isearch nil)
 #+end_src
-
-** Org modern
+*** Org modern
 #+begin_src emacs-lisp
 (with-eval-after-load 'org (global-org-modern-mode))
 #+end_src
-
-** Evil org mode
+*** Evil org mode
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'evil-org-mode)
 #+end_src
-
-** TOC
+*** TOC
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'toc-org-mode)
 #+end_src
-
-** Org level headers
-#+BEGIN_src emacs-lisp
-(custom-set-faces
- '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
- '(org-level-2 ((t (:inherit outline-2 :height 1.6))))
- '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
- '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
- '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
- '(org-level-6 ((t (:inherit outline-5 :height 1.2))))
- '(org-level-6 ((t (:inherit outline-5 :height 1.1)))))
-#+end_src
-
-** Org fonts
+*** Org level headers
 #+begin_src emacs-lisp
-(defun dt/org-colors-gruvbox-dark ()
-  "Enable Gruvbox Dark colors for Org headers."
-  (interactive)
-  (dolist
-      (face
-       '((org-level-1 1.7 "#458588" ultra-bold)
-         (org-level-2 1.6 "#b16286" extra-bold)
-         (org-level-3 1.5 "#98971a" bold)
-         (org-level-4 1.4 "#fb4934" semi-bold)
-         (org-level-5 1.3 "#83a598" normal)
-         (org-level-6 1.2 "#d3869b" normal)
-         (org-level-7 1.1 "#d79921" normal)
-         (org-level-8 1.0 "#8ec07c" normal)))
-    (set-face-attribute (nth 0 face) nil :font doom-variable-pitch-font :weight (nth 3 face) :height (nth 1 face) :foreground (nth 2 face)))
-    (set-face-attribute 'org-table nil :font doom-font :weight 'normal :height 1.0 :foreground "#bfafdf"))
-#+end_src 
-
-** Preserve Indentation On Org-Babel-Tangle
+(custom-set-faces
+ '(org-level-1 ((t (:inherit outline-1 :height 1.180))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.140))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.120))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.080))))
+ '(org-level-6 ((t (:inherit outline-5 :height 1.040))))
+ '(org-level-6 ((t (:inherit outline-5 :height 1.020)))))
+#+end_src
+*** Preserve Indentation On Org-Babel-Tangle
 #+begin_src emacs-lisp
 (setq org-src-preserve-indentation t)
 #+end_src
-
-* Development
-** Evil
+*** Valign
 #+begin_src emacs-lisp
-(evil-mode t)
-(setq evil-want-integration t
-      evil-want-keybinding nil)
+(add-hook 'org-mode-hook #'valign-mode)
 #+end_src
+** Python
+#+begin_src emacs-lisp
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i")
+#+end_src
+** Affe
+#+begin_src emacs-lisp
+(defun affe-find-/ ()
+ (interactive)
+ (affe-find "/"))
 
-** Anzu
-#+BEGIN_src emacs-lisp
-(global-anzu-mode t)
-#+END_src
-
+(defun affe-grep-/ ()
+ (interactive)
+ (affe-grep "/"))
+#+end_src
 ** General
 #+begin_src emacs-lisp
 (general-define-key
@@ -173,11 +157,11 @@
 	"C-=" 'text-scale-increase
 	"C--" 'text-scale-decrease
 	"gc" 'comment-line
-	"ff" 'zoxide-find-file
+	"ff" 'affe-find-/
+	"fg" 'affe-grep-/
+	"tb" 'consult-buffer
 	"tt" 'vterm-toggle)
 #+end_src
-
-
 ** Dashboard
 #+begin_src emacs-lisp
 (dashboard-setup-startup-hook)
@@ -191,49 +175,44 @@
 			dashboard-set-heading-icons t
 			dashboard-set-file-icons t)
 #+end_src
-
 ** Corfu
 #+begin_src emacs-lisp
 (global-corfu-mode t)
+(corfu-history-mode t)
+(corfu-popupinfo-mode t)
 (setq corfu-auto t
+			corfu-cycle t
       corfu-auto-delay 0
       corfu-auto-prefix 1 
-      completion-styles '(basic)
       tab-always-indent 'complete)
 #+end_src
-
+*** Icons
+#+begin_src emacs-lisp
+(add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
+#+end_src
+** Eglot
+#+begin_src emacs-lisp
+(add-hook 'prog-mode-hook 'eglot-ensure)
+#+end_src
 ** Treesitter
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook #'tree-sitter-hl-mode)
 #+end_src
-
 ** Rainbow mode
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook #'rainbow-mode)
 #+end_src
-
 ** Beacon
 #+begin_src emacs-lisp
 (beacon-mode t)
 #+end_src
-
-** Scrolling
-#+begin_src emacs-lisp
-(setq redisplay-dont-pause t
-  		scroll-margin 5
-			scroll-step 1
-			scroll 100000
-			scrool-preserve-screen-position 1)
-#+end_src
-
 ** Basic
 #+begin_src emacs-lisp
-(electric-pair-mode t)
+(setq-default tab-width 2)
 (set-window-margins (selected-window) 0 0)
 (set-frame-parameter nil 'internal-border-width 0)
-(setq-default tab-width 2)
 (setq standard-indent 2
-    	inferior-lisp-program "sbcl"
+			e-short-answers t
 			inhibit-compacting-font-caches t
 			auto-save-interval 1000
 			package-enable-at-startup nil
@@ -244,41 +223,30 @@
 			inhibit-startup-screen t
 			make-backup-files nil)
 #+end_src
-
+** Slime
+#+begin_src emacs-lisp
+(setq inferior-lisp-program "sbcl")
+#+end_src
 ** Rainbow delimiters
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+end_src
-
-** Vertico
-#+begin_src emacs-lisp
-(vertico-mode t)
-(setq completion-in-region-function
-      (lambda (&rest args)
-        (apply (if vertico-mode
-          #'completion--in-region)
-        args)))
-#+end_src
-
 ** Flycheck
 #+begin_src emacs-lisp
 (global-flycheck-mode t)
 #+end_src
-
-
+** Vertico
+#+begin_src emacs-lisp
+(vertico-mode t)
+(vertico-reverse-mode t)
+#+end_src
 ** Orderless
 #+begin_src emacs-lisp
-(setq completion-styles '(orderless basic)
-			completion-category-defaults nil
-    	completion-category-overrides '((file (styles basic partial-completion))))
+(setq completion-styles '(orderless)
+      completion-category-overrides '((file (styles basic partial-completion)))
+			orderless-skip-highlighting (lambda () selectrum-is-active)
+			selectrum-highlight-candidates-function #'orderless-highlight-matches)
 #+end_src
-
-** Lsp
-#+begin_src emacs-lisp
-(lsp-ui-mode t)
-(setq lsp-ui-sideline-enable nil)
-#+end_src
-
 ** Doom modeline
 #+begin_src emacs-lisp
 (doom-modeline-mode 1)
@@ -289,22 +257,34 @@
 			doom-modeline-persp-name t
       doom-modeline-persp-icon t)
 #+end_src
-
 ** Centaur tabs
-#+begin_src emacs-lisp
-(centaur-tabs-mode t)
-(setq centaur-tabs-style "zigzag"
-			centaur-tabs-set-icons t
-			centaur-tabs-set-close-button nil
-			centaur-tabs-show-new-tab-button nil)
-#+end_src
-
+# #+begin_src emacs-lisp
+# (centaur-tabs-mode t)
+# (setq centaur-tabs-style "zigzag"
+# 			centaur-tabs-set-icons t
+# 			centaur-tabs-set-close-button nil
+# 			centaur-tabs-show-new-tab-button nil)
+# #+end_src
 ** Marginalia
 #+begin_src emacs-lisp
 (marginalia-mode t)
 #+end_src
-
-* Garbage collection
+** Emmet mode
+#+begin_src emacs-lisp
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook  'emmet-mode)
+#+end_src
+** Apheleia
+#+begin_src emacs-lisp
+(apheleia-global-mode t)
+#+end_src
+** Olivetti
+#+begin_src emacs-lisp
+(defun olivetti-start ()
+ (interactive)
+ (olivetti-set-width "110" && olivetti-mode))
+#+end_src
+** Garbage collection
 #+begin_src emacs-lisp
 (gcmh-mode t)
 (setq gc-cons-threshold 402653184
