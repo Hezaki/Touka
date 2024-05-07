@@ -29,65 +29,96 @@
 	'(recentf-mode t)
 	'(global-hl-line-mode t)
 	'(pixel-scroll-precision-mode t))
+  '(highlight-indent-guides-method 'character)
+
+(add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
 
 (global-ligature-mode t)
 
+(electric-pair-mode t)
+
+(setq scroll-step 1
+			scroll-margin 5
+      scroll-conservatively 10000
+      next-screen-context-lines 5
+      line-move-visual nil)
+
+(evil-mode t)
+(setq evil-search-module 'evil-search)
+
+(global-evil-mc-mode t)
+
+(global-anzu-mode t)
+
 (electric-indent-mode nil)
 (setq org-auto-align-tags nil
-			;; org-edit-src-content-indentation 0
+			org-edit-src-content-indentation 0
 			org-tags-column 0
 			org-auto-align-tags nil
 			org-catch-invisible-edits 'show-and-error
 			org-special-ctrl-a/e t
 			org-insert-heading-respect-content t
 			org-hide-emphasis-markers t
-			org-pretty-entities t)
+			org-pretty-entities t
+			org-startup-indented t
+      org-ellipsis " ▾"
+      org-hide-emphasis-markers t
+      org-pretty-entities t
+      org-src-fontify-natively t
+		  org-fontify-whole-heading-line t
+      org-fontify-quote-and-verse-blocks t
+		  org-edit-src-content-indentation 2
+      org-hide-block-startup nil
+      org-src-tab-acts-natively t
+      org-src-preserve-indentation nil
+      org-startup-folded t
+      org-cycle-separator-lines 2
+      org-hide-leading-stars t
+      org-highlight-latex-and-related '(native)
+      org-goto-auto-isearch nil)
 
 (with-eval-after-load 'org (global-org-modern-mode))
+(setq org-modern-block-fringe nil
+			org-modern-todo t
+			org-modern-table nil
+      org-modern-variable-pitch nil)
 
 (add-hook 'org-mode-hook 'evil-org-mode)
 
 (add-hook 'org-mode-hook 'toc-org-mode)
 
 (custom-set-faces
- '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
- '(org-level-2 ((t (:inherit outline-2 :height 1.6))))
- '(org-level-3 ((t (:inherit outline-3 :height 1.5))))
- '(org-level-4 ((t (:inherit outline-4 :height 1.4))))
- '(org-level-5 ((t (:inherit outline-5 :height 1.3))))
- '(org-level-6 ((t (:inherit outline-5 :height 1.2))))
- '(org-level-6 ((t (:inherit outline-5 :height 1.1)))))
-
-(defun dt/org-colors-gruvbox-dark ()
-  "Enable Gruvbox Dark colors for Org headers."
-  (interactive)
-  (dolist
-      (face
-       '((org-level-1 1.7 "#458588" ultra-bold)
-         (org-level-2 1.6 "#b16286" extra-bold)
-         (org-level-3 1.5 "#98971a" bold)
-         (org-level-4 1.4 "#fb4934" semi-bold)
-         (org-level-5 1.3 "#83a598" normal)
-         (org-level-6 1.2 "#d3869b" normal)
-         (org-level-7 1.1 "#d79921" normal)
-         (org-level-8 1.0 "#8ec07c" normal)))
-    (set-face-attribute (nth 0 face) nil :font doom-variable-pitch-font :weight (nth 3 face) :height (nth 1 face) :foreground (nth 2 face)))
-    (set-face-attribute 'org-table nil :font doom-font :weight 'normal :height 1.0 :foreground "#bfafdf"))
+ '(org-level-1 ((t (:inherit outline-1 :height 1.180))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.140))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.120))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.080))))
+ '(org-level-6 ((t (:inherit outline-5 :height 1.040))))
+ '(org-level-6 ((t (:inherit outline-5 :height 1.020)))))
 
 (setq org-src-preserve-indentation t)
 
-(evil-mode t)
-(setq evil-want-integration t
-      evil-want-keybinding nil)
+(add-hook 'org-mode-hook #'valign-mode)
 
-(global-anzu-mode t)
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i")
+
+(defun affe-find-/ ()
+ (interactive)
+ (affe-find "/"))
+
+(defun affe-grep-/ ()
+ (interactive)
+ (affe-grep "/"))
 
 (general-define-key
 	:states '(normal visual)
 	"C-=" 'text-scale-increase
 	"C--" 'text-scale-decrease
 	"gc" 'comment-line
-	"ff" 'zoxide-find-file
+	"ff" 'affe-find-/
+	"fg" 'affe-grep-/
+	"tb" 'consult-buffer
 	"tt" 'vterm-toggle)
 
 (dashboard-setup-startup-hook)
@@ -102,30 +133,29 @@
 			dashboard-set-file-icons t)
 
 (global-corfu-mode t)
+(corfu-history-mode t)
+(corfu-popupinfo-mode t)
 (setq corfu-auto t
+			corfu-cycle t
       corfu-auto-delay 0
       corfu-auto-prefix 1 
-      completion-styles '(basic)
       tab-always-indent 'complete)
 
-(add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
+(add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
+
+(add-hook 'prog-mode-hook 'eglot-ensure)
+
 (add-hook 'prog-mode-hook #'tree-sitter-hl-mode)
+
 (add-hook 'prog-mode-hook #'rainbow-mode)
 
 (beacon-mode t)
 
-(setq redisplay-dont-pause t
-  		scroll-margin 5
-			scroll-step 1
-			scroll 100000
-			scrool-preserve-screen-position 1)
-
-(electric-pair-mode t)
+(setq-default tab-width 2)
 (set-window-margins (selected-window) 0 0)
 (set-frame-parameter nil 'internal-border-width 0)
-(setq-default tab-width 2)
 (setq standard-indent 2
-    	inferior-lisp-program "sbcl"
+			e-short-answers t
 			inhibit-compacting-font-caches t
 			auto-save-interval 1000
 			package-enable-at-startup nil
@@ -136,23 +166,19 @@
 			inhibit-startup-screen t
 			make-backup-files nil)
 
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(setq inferior-lisp-program "sbcl")
 
-(vertico-mode t)
-(setq completion-in-region-function
-      (lambda (&rest args)
-        (apply (if vertico-mode
-          #'completion--in-region)
-        args)))
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (global-flycheck-mode t)
 
-(setq completion-styles '(orderless basic)
-			completion-category-defaults nil
-    	completion-category-overrides '((file (styles basic partial-completion))))
+(vertico-mode t)
+(vertico-reverse-mode t)
 
-(lsp-ui-mode t)
-(setq lsp-ui-sideline-enable nil)
+(setq completion-styles '(orderless)
+      completion-category-overrides '((file (styles basic partial-completion)))
+			orderless-skip-highlighting (lambda () selectrum-is-active)
+			selectrum-highlight-candidates-function #'orderless-highlight-matches)
 
 (doom-modeline-mode 1)
 (setq doom-modeline-icon t
@@ -162,13 +188,16 @@
 			doom-modeline-persp-name t
       doom-modeline-persp-icon t)
 
-(centaur-tabs-mode t)
-(setq centaur-tabs-style "zigzag"
-			centaur-tabs-set-icons t
-			centaur-tabs-set-close-button nil
-			centaur-tabs-show-new-tab-button nil)
-
 (marginalia-mode t)
+
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook  'emmet-mode)
+
+(apheleia-global-mode t)
+
+(defun olivetti-start ()
+ (interactive)
+ (olivetti-set-width "110" && olivetti-mode))
 
 (gcmh-mode t)
 (setq gc-cons-threshold 402653184

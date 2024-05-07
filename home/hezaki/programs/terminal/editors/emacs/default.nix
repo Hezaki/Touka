@@ -7,8 +7,9 @@
       doom-modeline
       all-the-icons
       all-the-icons-dired
-      centaur-tabs
+      # centaur-tabs
       ligature
+      valign
       dashboard
 
       tree-sitter
@@ -17,6 +18,7 @@
       evil
       evil-org
       evil-anzu
+      evil-mc
       slime
       magit
       beacon
@@ -25,31 +27,38 @@
       rainbow-mode
       rainbow-delimiters
       corfu
+      nerd-icons-corfu
+      emmet-mode
+      cape
+      eglot
       affe
-      counsel
+      consult
+      consult-eglot
       emojify-logos
       vertico
       hl-todo
       vterm
       vterm-toggle
-      lspce
-      lsp-ui
-      lsp-mode
       pdf-tools
       flycheck
       sideline-flycheck
       general
       nixos-options
       password-store
-      telega
+			orderless
+      apheleia
+      olivetti
 
       org
       org-modern
-      org-bullets
       org-download
+      org-present
+      org-auto-tangle
       toc-org
       org-roam
+      org-roam-ui
 			nix-mode
+      python
     ];
     extraConfig = ''
        (org-babel-load-file
