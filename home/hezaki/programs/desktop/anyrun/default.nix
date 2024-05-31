@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, config, ... }: {
   imports = [ inputs.anyrun.homeManagerModules.default ];
   programs.anyrun = {
     enable = true;
@@ -10,6 +10,9 @@
         shell
         symbols
         translate
+        kidex
+        dictionary
+        websearch
       ];
       closeOnClick = true;
       hidePluginInfo = true;
@@ -24,13 +27,13 @@
         Config(
           desktop_actions: false,
           max_entries: 10,
-          terminal: Some("footclient"),
+          terminal: Some("foot"),
         )
       '';
 
       "symbols.ron".text = ''
         Config(
-          prefix: ":sy",
+          prefix: ":emo",
 
           symbols: {
             // "name": "text to be copied"
@@ -45,7 +48,7 @@
         Config(
           prefix: ":tr",
           language_delimiter: ">",
-          max_entries: 8,
+          max_entries: 1,
         )
       '';
 
@@ -62,15 +65,15 @@
           shell: zsh,
         )
       '';
-      "nixos-options.ron".text = let
-        hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
-        options = builtins.toJSON {
-          ":hm" = [hm-options];
-        };
-      in ''
+      "kidex.ron".text = ''
         Config(
-          options: ${options},
-          min_score: 10,
+          max_entries: 6,
+        )
+      '';
+      "dictionary.ron".text = ''
+        Config(
+          prefix: ":def",
+          max_entries: 6,
         )
       '';
     };
@@ -89,7 +92,7 @@
       }
 
       #match:selected {
-        background: #504945;
+        background: #${config.lib.stylix.colors.base03};
       }
 
       #match {
@@ -106,10 +109,10 @@
         padding: 0px;
         margin-top: 160px;
         box-shadow: 1 1 3 1px #1C1D1D;
-        background: #282828;
+        background: #${config.lib.stylix.colors.base00};
         border-radius: 9px;
         border: 2;
-        border-color: #282828;
+        border-color: #${config.lib.stylix.colors.base00};
         border-style: solid;
       }
     '';

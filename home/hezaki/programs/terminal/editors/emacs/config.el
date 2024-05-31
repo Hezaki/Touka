@@ -1,21 +1,15 @@
 (set-frame-font "JetBrainsMono NF 13" nil t)
+(setq default-frame-alist '((font . "JetBrainsMono NF 13")))
 (setq global-prettify-symbols-mode t)
-(setq doom-themes-enable-bold t
-	  	doom-themes-enable-italic t
-			nerd-icons-font-family "JetBrainsMono NF")
-(load-theme 'doom-gruvbox :no-confirm)
-(doom-themes-visual-bell-config)
 
 (custom-set-faces
-  `(tab-bar ((t (:background ,(doom-color 'base02)))))
-	`(tab-line ((t (:background ,(doom-color 'base02)))))
-	`(org-block ((t (:background ,(doom-color 'base02)))))
-	`(centaur-tabs-default ((t (:background ,(doom-color 'base02)))))
-	`(centaur-tabs-unselected ((t (:background ,(doom-color 'base02)))))
-	`(mode-line ((t (:background ,(doom-color 'base02)))))
-	`(doom-modeline-panel ((t (:background ,(doom-color 'base02))))))
+  `(fringe ((t (:background ,#${config.lib.stylix.colors.base00}))))
+  `(org-block-begin-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
+  `(org-block-end-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
+  `(line-number ((t (:background ,#${config.lib.stylix.colors.base00})))))
 
 (custom-set-variables
+  '(inhibit-startup-screen t)
 	'(global-display-line-numbers-mode t)
 	'(global-visual-line-mode t)
 	'(global-tree-sitter-mode t)
@@ -43,10 +37,27 @@
       next-screen-context-lines 5
       line-move-visual nil)
 
-(evil-mode t)
-(setq evil-search-module 'evil-search)
+(setq-default tab-width 2)
+(set-window-margins (selected-window) 0 0)
+(set-frame-parameter nil 'internal-border-width 0)
+(setq standard-indent 2
+			e-short-answers t
+      blink-cursor-mode nil
+			inhibit-compacting-font-caches t
+			auto-save-interval 1000
+			package-enable-at-startup nil
+			pixel-resolution-fine-flag t
+			select-enable-clipboard t
+			indent-line-function 'insert-tab
+			line-spacing 0
+			make-backup-files nil)
 
-(global-evil-mc-mode t)
+(evil-mode t)
+(setq evil-search-module 'evil-search
+      evil-want-integration t
+      evil-want-keybinding nil)
+
+;; (evil-collection-init)
 
 (global-anzu-mode t)
 
@@ -78,10 +89,11 @@
       org-goto-auto-isearch nil)
 
 (with-eval-after-load 'org (global-org-modern-mode))
-(setq org-modern-block-fringe nil
-			org-modern-todo t
-			org-modern-table nil
-      org-modern-variable-pitch nil)
+
+(defun org-visual-mode ()
+  (olivetti-mode)
+  (setq-local display-line-numbers-type nil))
+(add-hook 'org-mode-hook 'org-visual-mode)
 
 (add-hook 'org-mode-hook 'evil-org-mode)
 
@@ -111,26 +123,25 @@
  (interactive)
  (affe-grep "/"))
 
+(defun vtermus ()
+ (kill-buffer "*scratch*")
+ (setq-local display-line-numbers-type nil)
+ (hl-line-mode nil))
+
+
+(add-hook 'vterm-mode-hook #'vtermus)
+
 (general-define-key
 	:states '(normal visual)
 	"C-=" 'text-scale-increase
 	"C--" 'text-scale-decrease
+  "M-\\" 'evil-window-vsplit
+  "M--" 'evil-window-split
 	"gc" 'comment-line
 	"ff" 'affe-find-/
 	"fg" 'affe-grep-/
-	"tb" 'consult-buffer
-	"tt" 'vterm-toggle)
-
-(dashboard-setup-startup-hook)
-(setq dashboard-set-heading-icons t
-			dashboard-set-file-icons t
-			dashboard-banner-logo-title "hezaki?"
-			dashboard-startup-banner 'logo
-			dashboard-center-content t
-			dashboard-show-shortcuts nil
-			dashboard-vertically-center-content t
-			dashboard-set-heading-icons t
-			dashboard-set-file-icons t)
+  "C-<tab>" 'evil-switch-to-windows-last-buffer
+	"ts" 'display-buffer)
 
 (global-corfu-mode t)
 (corfu-history-mode t)
@@ -145,35 +156,25 @@
 
 (add-hook 'prog-mode-hook 'eglot-ensure)
 
-(add-hook 'prog-mode-hook #'tree-sitter-hl-mode)
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 (add-hook 'prog-mode-hook #'rainbow-mode)
 
 (beacon-mode t)
 
-(setq-default tab-width 2)
-(set-window-margins (selected-window) 0 0)
-(set-frame-parameter nil 'internal-border-width 0)
-(setq standard-indent 2
-			e-short-answers t
-			inhibit-compacting-font-caches t
-			auto-save-interval 1000
-			package-enable-at-startup nil
-			pixel-resolution-fine-flag t
-			select-enable-clipboard t
-			indent-line-function 'insert-tab
-			line-spacing 0
-			inhibit-startup-screen t
-			make-backup-files nil)
-
 (setq inferior-lisp-program "sbcl")
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-(global-flycheck-mode t)
-
 (vertico-mode t)
 (vertico-reverse-mode t)
+(setq completion-in-region-function
+      (lambda (&rest args)
+        (apply (if vertico-mode
+                   #'consult-completion-in-region
+                 #'completion--in-region)
+               args)))
 
 (setq completion-styles '(orderless)
       completion-category-overrides '((file (styles basic partial-completion)))
@@ -195,9 +196,7 @@
 
 (apheleia-global-mode t)
 
-(defun olivetti-start ()
- (interactive)
- (olivetti-set-width "110" && olivetti-mode))
+(add-hook 'olivetti-mode-on-hook (lambda () (olivetti-set-width 100)))
 
 (gcmh-mode t)
 (setq gc-cons-threshold 402653184

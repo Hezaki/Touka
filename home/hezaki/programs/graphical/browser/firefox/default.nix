@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    (wrapFirefox firefox-esr-115-unwrapped {
+    (wrapFirefox firefox-unwrapped {
       extraPolicies = {
         CaptivePortal = false;
         DisableFirefoxStudies = true;
@@ -47,8 +47,6 @@
           mkForceInstalled {
             # Theme
             "{0a2d1098-69a9-4e98-a62c-a861766ac24d}".install_url = "https://github.com/catppuccin/firefox/releases/download/old/catppuccin_mocha_lavender.xpi";
-            # Tabs 
-            "treestyletab@piro.sakura.ne.jp".install_url = "https://addons.mozilla.org/firefox/downloads/file/4197314/tree_style_tab-3.9.19.xpi";
             # Dark Reader
             "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             # Ublock Origin
@@ -69,7 +67,10 @@
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
             # Stylus
             "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4232144/styl_us-1.5.46.xpi";
-            # PWA ...soon
+            # Youtube avatar fix (for russia)
+            "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
+            # ClearURLs
+            "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
           };
 
         FirefoxHome = {

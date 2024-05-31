@@ -2,9 +2,10 @@
   xdg.configFile."hypr/binds.conf".text = ''
     $mod = SUPER
 
-    bind = $mod, RETURN, exec, foot -e tmux new-session -t main
+    bindl=, switch:on:Lid Switch, exec, hyprctl keyword input:kb_variant = us && hyprlock 
 
-    bind = ctrlALT, ESCAPE, exec, systemctl suspend
+    bind = $mod, RETURN, exec, foot -e tmux new-session -t main
+    bind = $mod SHIFT, RETURN, exec, emacsclient -n -c
 
     bind = $mod, W, killactive, 
     bind = $mod, M, exit, 
@@ -12,30 +13,25 @@
     bind = ALT, F, fullscreen,
     bind = $mod, A, pseudo,
 
-    bind =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%+
-    bind =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 3%-
+    binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+
+    binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-    bind =, XF86MonBrightnessDown, exec, doas brillo -U 3
-    bind =, XF86MonBrightnessUp, exec, doas brillo -A 3 
-    bind =, XF86Favorites, exec, hyprlock
-    
-
-    bindl=,switch:[switch name],exec,hyprlock
-
-    bind = ALT, C, exec, dunstctl close-all
-    bind = ALT, A, exec, dunstctl history-pop
+    bind =, XF86MonBrightnessDown, exec, doas light -U 1
+    bind =, XF86MonBrightnessUp, exec, doas light -A 1
+    bind =, XF86Favorites, exec, hyprctl keyword input:kb_variant = us && hyprlock
 
     bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
     bind = $mod, D, exec, anyrun
-    bind = ALT, P, exec, hyprpicker -a
-    # bind = ALT, G, exec, gtklock -i -s ~/.config/gtklock/style.css
+    bind = $mod, P, exec, hyprpicker -a
 
-    bind = ,Print, exec, grimblast copysave screen $HOME/Media/Screenshots/$(date +'%d%m%y%H-%s.png')
+    bind = , Print, exec, grimblast copysave screen $HOME/Media/Screenshots/$(date +'%d%m%y%H-%s.png')
     bind = $mod, Print, exec, grimblast --freeze copysave area $HOME/Media/Screenshots/$(date +%d%m%y%H-%s.png)
 
+    bind =, Home, exec, wl-screenrec --audio -f $HOME/Media/Videos/$(date +%d%m%y%H-%s.mp4)
+    bind =, End, exec, pkill wl-screenrec
+
     bind = ALT, G, togglegroup
-    bind = $mod, SPACE, exec, pypr layout_center toggle
 
     bind = $mod, H, movefocus, l
     bind = $mod, J, movefocus, d

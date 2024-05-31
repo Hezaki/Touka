@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    (wrapFirefox firefox-esr-115-unwrapped {
+    (wrapFirefox firefox-unwrapped {
+      nativeMessagingHosts = [ pkgs.firefoxpwa ];
       extraPolicies = {
         CaptivePortal = false;
         DisableFirefoxStudies = true;

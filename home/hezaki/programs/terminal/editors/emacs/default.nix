@@ -3,22 +3,20 @@
     enable = true;
     package = pkgs.emacs29-pgtk;
     extraPackages = epkgs: with epkgs; [
-      doom-themes
+      # doom-themes
       doom-modeline
       all-the-icons
       all-the-icons-dired
-      # centaur-tabs
       ligature
       valign
-      dashboard
 
       tree-sitter
       tree-sitter-langs
 
       evil
+      evil-collection
       evil-org
       evil-anzu
-      evil-mc
       slime
       magit
       beacon
@@ -32,22 +30,21 @@
       cape
       eglot
       affe
-      consult
-      consult-eglot
+      buffer-expose
       emojify-logos
       vertico
       hl-todo
       vterm
-      vterm-toggle
+      eat
       pdf-tools
-      flycheck
-      sideline-flycheck
       general
       nixos-options
       password-store
 			orderless
       apheleia
       olivetti
+      dired-hacks-utils
+      telega
 
       org
       org-modern

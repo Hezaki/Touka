@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
     hyprlock
   ];
   xdg.configFile."hypr/hyprlock.conf".text = ''
     background {
       path = screenshot 
-      blur_passes = 2
+      blur_passes = 3
       blur_size = 3
       noise = 0.0117
       contrast = 0.8916
@@ -16,9 +16,9 @@
 
     input-field {
       size = 200, 50
-      outer_color = rgb(504945)
-      inner_color = rgb(282828)
-      font_color = rgb(EBDBB2)
+      outer_color = rgb(${config.lib.stylix.colors.base02})
+      inner_color = rgb(${config.lib.stylix.colors.base00})
+      font_color = rgb(${config.lib.stylix.colors.base06})
       rounding = -1
       halign = center
       valign = center
@@ -26,7 +26,7 @@
 
     label {
       text = What do you need from me!
-      color = rgb(EBDBB2)
+      color = rgb(${config.lib.stylix.colors.base06})
       font_size = 20
       font_family = JetBrainsMono
       position = 745, -510
@@ -36,7 +36,7 @@
 
     label {
       text = $TIME
-      color = rgb(EBDBB2)
+      color = rgb(${config.lib.stylix.colors.base06})
       font_size = 20
       font_family = JetBrainsMono
       position = -900, -510
