@@ -1,8 +1,8 @@
 { pkgs, inputs, ... }: let
   user = "samatovna";
   host = "hlcwlk";
-  passroot = "71010028100000";
-  passuser = "mironova";
+  passroot = "password";
+  passuser = "password";
 in {
   imports = [ 
     inputs.home-manager.nixosModules.home-manager 

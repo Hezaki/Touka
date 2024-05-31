@@ -1,28 +1,23 @@
-{ inputs, pkgs, ... }: {
-  imports = [ ./binds.nix ./autostart.nix ];
+{ pkgs, config, ... }: {
+  imports = [ ./rules.nix ./binds.nix ./autostart.nix ];
   home.packages = with pkgs; [
     grimblast
+    satty
     wl-clipboard 
-    wf-recorder
-    pyprland
+    wl-screenrec
     hyprpicker
     hyprcursor
-    waypaper
-    gtklock
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    # plugins = [
-    #   inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-    # ];
-    extraConfig = 
-      ''
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    extraConfig = ''
       monitor=,preferred,auto,1
 
       exec = sh $HOME/.config/hypr/autostart.sh
       source = ./binds.conf
+      source = ./rules.conf
 
       workspace = 1, monitor:eDP-1, default:true
       workspace = 2, monitor:eDP-1, default:true
@@ -35,56 +30,41 @@
       workspace = 9, monitor:eDP-1, default:true
       workspace = 10, monitor:eDP-1, default:true
 
-      # rules
-      windowrule = float, title:^(Library)$
-      windowrule = move center 1, title:^(Library)$
-			windowrule = size 482 271, title:^(Picture-in-Picture)$
-			windowrule = move 14 12, title:^(Picture-in-Picture)$
-      windowrule = float, title:^(Picture-in-Picture)$
-      windowrule = workspace 2, firefox
-      windowrule = workspace 3, org.telegram.desktop
-      windowrule = workspace 4, WebCord
-      windowrule = workspace 5, virt-manager
-      windowrule = workspace 5, org.prismlauncher.PrismLauncher
-      windowrule = workspace 5, libreoffice-writer
-      windowrule = workspace 5, steam
-      windowrule = workspace 5, lutris
-      windowrule = workspace 6, org.pwmt.zathura 
-      windowrule = workspace 7, emacs
-      windowrule = workspace 8, blender
-      windowrule = workspace 9, transmission-gtk
-      windowrule = workspace 10, YouTube Music
-
       input {
         kb_layout = us,ru
         kb_options = grp:caps_toggle
         follow_mouse = 1
-        sensitivity = -0.5
+        sensitivity = 0.6
         repeat_rate = 50
         repeat_delay = 500
-        force_no_accel = true
         touchpad {
           natural_scroll = false
           disable_while_typing = false
         }
       }
 
+      cursor {
+        enable_hyprcursor = true
+        inactive_timeout = 1
+      }
+
       device {
         name = tpps/2-elan-trackpoint
-        enabled = true
-        tap-to-click = true
-        accel_profile = adaptive
+        accel_profile = flat
       }
-	
+
+      device {
+        name = logitech-g304-1
+        sensitivity = -1
+      }
+
       general {
         gaps_in = 4
         gaps_out = 10
         border_size = 2
-        col.active_border = rgb(282828)
-        col.inactive_border = rgb(504945)
-        layout = dwindle
-        cursor_inactive_timeout = 3
-        apply_sens_to_raw = 0
+        col.active_border = rgb(${config.lib.stylix.colors.base00})
+        col.inactive_border = rgb(${config.lib.stylix.colors.base03})
+        layout = master
       }
 
       misc { 
@@ -95,26 +75,31 @@
         disable_hyprland_logo = true
         animate_manual_resizes = true
         animate_mouse_windowdragging = true
-        enable_hyprcursor = true
-        hide_cursor_on_key_press = true
-        background_color = rgb(1E1E2E)
+        background_color = rgb(${config.lib.stylix.colors.base00})
       }
 
       dwindle {
         force_split = 2
         preserve_split = true
+        default_split_ratio = 0.6
+        use_active_for_splits = false
       }
 
-      group {
-        col.border_active = rgb(3C3836) = true
-        col.border_inactive = rgb(504945)
-        groupbar {
-          render_titles = false
-          gradients = true
-          col.active = rgb(3C3836)
-          col.inactive = rgb(504945)
-        }
+      master {
+        always_center_master = true
+        mfact = 0.65
       }
+
+      # group {
+      #   col.border_active = rgb(3C3836) = true
+      #   col.border_inactive = rgb(504945)
+      #   groupbar {
+      #     render_titles = false
+      #     gradients = true
+      #     col.active = rgb(3C3836)
+      #     col.inactive = rgb(504945)
+      #   }
+      # }
 
       binds {
         workspace_back_and_forth = true
@@ -131,7 +116,7 @@
           enabled = false
           new_optimizations = true
         }
-        # screen_shader = ~/gg.glsl
+        # screen_shader = ~/flux.glsl.mustache
       }
 
       animations {
@@ -141,7 +126,7 @@
         animation = windowsOut, 1, 7, myBezier, popin 80%
         animation = border, 1, 10, myBezier
         animation = fade, 1, 10, myBezier
-        animation = workspaces, 1, 6, myBezier, slide
+        animation = workspaces, 1, 5, myBezier, slide
       }
     '';
   };

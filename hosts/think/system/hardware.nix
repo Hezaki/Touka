@@ -1,10 +1,4 @@
-{ pkgs, inputs, ... }: {
-  environment.systemPackages = with pkgs; [
-    libva
-    libva-utils
-    mesa
-  ];
-
+{ pkgs, ... }: {
   hardware = {
     opengl = {
       enable = true;
@@ -12,10 +6,10 @@
       driSupport32Bit = true;
       extraPackages = with pkgs; [
 	      intel-media-driver
-      	amdvlk
+        intel-vaapi-driver
       	libvdpau-va-gl
-        vaapiVdpau
         libdrm
+        libva
       ];
     };
     bluetooth.enable = true;
@@ -25,6 +19,8 @@
 
   security.rtkit.enable = true;
   services = {
+    emacs.enable = true;
+    ratbagd.enable = true;
     irqbalance.enable = true;
     fstrim.enable = true;
     dbus.implementation = "broker";
@@ -42,7 +38,8 @@
     };
     upower = {
       enable = true;
-      percentageCritical = 15;
+      percentageLow = 15;
+      usePercentageForPolicy = true;
     };
     tlp = { 
       enable = true;
@@ -62,16 +59,17 @@
     };
   };
 
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor = "performance";
+  };
+
   xdg.portal = {
     enable = true;
-    configPackages = [ pkgs.xdg-desktop-portal-wlr ];
-    wlr = {
-      enable = true;
-      settings = {
-        screencast = {
-          chooser_type = "simple";
-        };
-      };
-    };
+    wlr.enable = true;
+    configPackages = with pkgs; [
+      xdg-desktop-portal-hyprland
+    ];
   };
 }

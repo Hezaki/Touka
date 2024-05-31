@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: { 
+{ pkgs, inputs, config, ... }: { 
   programs = {
     zsh = {
       enable = true;
@@ -38,11 +38,12 @@
         }
       ];
       shellAliases = {
-        "e" = "emacs";
+        "e" = "emacsclient -n -c";
         "ls" = "lsd -F";
         "l" = "lsd -l";
         "la" = "lsd -lA";
         "cd" = "z";
+        "cat" = "bat";
         "tree" = "lsd --tree";
         "doas" = "doas ";
         "sudo" = "sudo ";
@@ -78,12 +79,10 @@
         bindkey '^[[1;5D' vi-backward-word
         bindkey '^f' beginning-of-line
 
-        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black"
+        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.lib.stylix.colors.base03}"
 
-        export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-        " --color=bg+:#282828,bg:#282828,spinner:#8ec07c,hl:#83a598"\
-        " --color=fg:#bdae93,header:#83a598,info:#fabd2f,pointer:#8ec07c"\
-        " --color=marker:#8ec07c,fg+:#ebdbb2,prompt:#fabd2f,hl+:#83a598"
+        # export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+        # " --color=bg+:#${config.lib.stylix.colors.base00},bg:#${config.lib.stylix.colors.base00},"\
 
         _fix_cursor() {
            echo -ne "\033[4 q"

@@ -1,8 +1,5 @@
 { pkgs, lib, ... }: {
-  home.packages = with pkgs; [
-    webcord-vencord
-  ];
-
+  home.packages = with pkgs; [ vesktop ];
   xdg.configFile = {
     "webcord/config.json".text = ''
       {

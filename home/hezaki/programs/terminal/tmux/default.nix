@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   programs.tmux = {
     enable = true;
     baseIndex = 1; 
@@ -28,17 +28,17 @@
       set -sa terminal-overrides "*:Tc"
 
       set -g status-left "#{tmux_mode_indicator} "
-      set -g status-right '%H:%M:%S  %a %h-%d '
+      set -g status-right ' '
 
       set -g @mode_indicator_prefix_prompt " WAIT "
       set -g @mode_indicator_copy_prompt " COPY "
       set -g @mode_indicator_sync_prompt " SYNC "
       set -g @mode_indicator_empty_prompt " TMUX "
       
-      set -g pane-border-style "fg=color0"
-      set -g pane-active-border-style "fg=color0"
-      set -g mode-style "bg=#3c3836 fg=yellow" 
-      set -g status-style bg=#282828
+      set -g pane-border-style "fg=#${config.lib.stylix.colors.base02}"
+      set -g pane-active-border-style "fg=#${config.lib.stylix.colors.base02}"
+      set -g mode-style "bg=color0 fg=yellow" 
+      set -g status-style bg=color0
 
       set -g @mode_indicator_prefix_mode_style 'bg=color,fg=color13'
       set -g @mode_indicator_copy_mode_style 'bg=color,fg=color3'

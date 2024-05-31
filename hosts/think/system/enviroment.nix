@@ -1,18 +1,18 @@
 { pkgs, inputs, ... }: let
   user = "hezaki";
   host = "think";
-  passroot = "71010028100000";
-  passuser = "heartpex";
+  passroot = "password";
+  passuser = "password";
 in {
   imports = with inputs; [ 
     home-manager.nixosModules.home-manager 
-		chaotic.homeManagerModules.default 
+    chaotic.homeManagerModules.default 
     nix-ld.nixosModules.nix-ld
   ];
 
   environment.systemPackages = with pkgs; [
     nix-tree
-    brillo
+    light
     iftop
     htop-vim
     fastfetch
@@ -51,8 +51,11 @@ in {
   programs = {
     zsh.enable = true;
     gamemode.enable = true;
-    steam.enable = true;
-    nix-ld.dev.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+    nix-ld.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -86,7 +89,7 @@ in {
       enable = true;
       extraConfig = ''
         permit persist keepenv :wheel
-				permit nopass hezaki as root cmd brillo 
+	      permit nopass hezaki as root cmd light
       '';
     };
     sudo.enable = false;
@@ -104,8 +107,7 @@ in {
     defaultLocale = "ru_RU.UTF-8";
     extraLocaleSettings = { LANG = "en_US.UTF-8"; };
   };
-
-
+	
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     jetbrains-mono
@@ -114,7 +116,7 @@ in {
   ];
 
   nixpkgs.config.allowUnfree = true;
-	chaotic.nyx.cache.enable = true;
+  chaotic.nyx.cache.enable = true;
 
   nix.settings = {
     builders-use-substitutes = true;

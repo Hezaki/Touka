@@ -1,39 +1,40 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
     stateVersion = "23.11";
     packages = with pkgs; [
+      gnome-decoder
       fd
       duf
       bun
       mpv
+      cemu 
       ncdu
       cava
+      btop
       loupe
       dconf
       socat
-      krita
       swaybg
       scrcpy
       lutgen
       lutris
+      weylus
+      muzika
       blender
       zathura
       joshuto
       ripgrep
-      bottles
       nix-init
       htop-vim
       onefetch
       libsecret
+      shell-gpt
       libnotify
       ueberzugpp
       blockbench
-      # easyeffects
       libreoffice
-      nvtop-intel
-      virt-manager
       vulkan-tools
       glfw-wayland
       appimage-run
@@ -43,16 +44,15 @@
       youtube-music
       android-tools
       prismlauncher
-      gnome-secrets
       webcord-vencord
       espanso-wayland
-      telegram-desktop
       transmission-gtk
-      libsForQt5.kdeconnect-kde
+      gnome.gnome-boxes
     ];
   };
 
   nixpkgs.config = {
+    allowBroken = true;
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
@@ -77,15 +77,14 @@
     ./programs/terminal/shell/zsh
     ./programs/terminal/shell/translate-shell
     ./programs/terminal/editors/emacs
+    # ./programs/terminal/espanso
 
     ./programs/graphical/mpv
     ./programs/graphical/foot
     ./programs/graphical/zathura
     ./programs/graphical/browser/firefox
-    ./programs/graphical/browser/chromium
-    ./programs/graphical/webcord 
+    ./programs/graphical/discord 
     ./programs/graphical/telegram
-    ./programs/graphical/obs-studio
 
     ./programs/desktop/anyrun
     ./programs/desktop/swaync

@@ -1,19 +1,30 @@
-{ config, pkgs, ... }: {
-  home.pointerCursor = {
-    package = pkgs.capitaine-cursors-themed;
-    name = "Capitaine Cursors (Gruvbox)"; 
-    size = 22;
-    gtk.enable = true;
-    x11.enable = true;
+{ pkgs, inputs, config, ... }: {
+  imports = [
+    inputs.stylix.homeManagerModules.stylix
+  ];
+
+  stylix = {
+    image = ./images/nebokakoeto.png;
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+    cursor = {
+      name = "GoogleDot-White";
+      package = pkgs.google-cursor;
+      size = 21;
+    };
+    fonts = {
+      serif = {
+        name = "JetBrainsMono";
+        package = pkgs.jetbrains-mono;
+      };
+      monospace = config.stylix.fonts.serif;
+      emoji.package = pkgs.noto-fonts-emoji;
+      sizes.terminal = 13;
+    };
   };
 
   gtk = {
     enable = true;
-    font.name = "JetBrainsMono 11";
-    theme = {
-      name = "Gruvbox-Dark-BL-LB";
-      package = pkgs.gruvbox-gtk-theme;
-    };
     gtk3.extraConfig = {
       gtk-xft-antialias = 1;
       gtk-xft-hinting = 1;
@@ -33,9 +44,5 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-  };
-
-  home.sessionVariables = {
-    GTK_THEME = "${config.gtk.theme.name}";
   };
 }
