@@ -1,0 +1,39 @@
+#+author: Hezaki
+#+OPTIONS: num:nil toc:nil ^:{} 
+
+#+html: <h1 align="center">Touka</h1>
+#+html: <p align="center">This is my Nix configuration, for desktop and a small configuration for android</p>
+#+html: <img src="1.png" aling="center" alt="screenshot hule">
+
+* ℹ️ Information
+Build host:
+#+begin_src shell
+nixos-rebuild switch --flake .#think # or nixos-update
+#+end_src
+
+Build home-manager on desktop:
+#+begin_src shell
+home-manager switch --flake .#hezaki  # or home-update
+#+end_src
+
+To make the home-manager work:
+#+begin_src shell
+doas chown -R hezaki:users /etc/nixos  
+#+end_src
+
+Why Touka? I'm just a big fan of [[https://tokyoghoul.fandom.com/wiki/Touka_Kirishima][Touka Kirishima]] from TK)))
+
+** ⚙️ Software
+- **Wayland compositor** - [[https://hyprland.org][Hyprland]]
+- **Bar** - [[https://github.com/Alexays/Waybar][Waybar]]
+- **Browser** - [[https://www.mozilla.org/][Firefox]]
+- **Terminal** - [[https://codeberg.org/dnkl/foot][Foot]]
+- **Editor** - [[https://www.gnu.org/software/emacs][Emacs]]
+- **Shell** - [[https://www.zsh.org/][Zsh]]
+- **Notifications** - [[https://github.com/ErikReider/SwayNotificationCenter][Swaync]]
+- **Launcher** - [[https://github.com/Kirottu/anyrun][Anyrun]]
+- **Wallpapers** - _home/hezaki/themes/images/_
+
+* ❤️ Thanks 
+- [[https://codeberg.org/ghosty][Thank you for your help <3]]
+- [[https://github.com/Manas140/Conscious/tree/main][Beautiful neovim configuration]]
