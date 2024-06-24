@@ -66,7 +66,10 @@
     };
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
+    xremap.url = "github:xremap/nix-flake";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -81,6 +84,11 @@
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
 
     xdph = {

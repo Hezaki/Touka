@@ -4,36 +4,29 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "23.11";
     packages = with pkgs; [
-      gnome-decoder
+      firefoxpwa
       fd
       duf
       bun
       mpv
-      cemu 
+      lsix
       ncdu
       cava
-      btop
-      loupe
+      piper
       dconf
       socat
       swaybg
       scrcpy
       lutgen
       lutris
-      weylus
-      muzika
+      swayimg
       blender
       zathura
-      joshuto
-      ripgrep
       nix-init
       htop-vim
       onefetch
-      libsecret
-      shell-gpt
       libnotify
       ueberzugpp
-      blockbench
       libreoffice
       vulkan-tools
       glfw-wayland
@@ -41,11 +34,9 @@
       home-manager
       nix-prefetch
       gnome.zenity
-      youtube-music
       android-tools
       prismlauncher
       webcord-vencord
-      espanso-wayland
       transmission-gtk
       gnome.gnome-boxes
     ];
@@ -55,7 +46,7 @@
     allowBroken = true;
     allowUnfree = true;
     permittedInsecurePackages = [
-      "electron-25.9.0"
+      "electron-28.3.1"
     ];
   };
 
@@ -71,26 +62,35 @@
   imports = [
     ./programs/terminal/bat
     ./programs/terminal/fzf
+    ./programs/terminal/lsd
     ./programs/terminal/git
     ./programs/terminal/tmux
+    ./programs/terminal/btop
+    ./programs/terminal/zoxide
     ./programs/terminal/fastfetch
+    ./programs/terminal/ripgrep
     ./programs/terminal/shell/zsh
     ./programs/terminal/shell/translate-shell
     ./programs/terminal/editors/emacs
-    # ./programs/terminal/espanso
 
     ./programs/graphical/mpv
     ./programs/graphical/foot
     ./programs/graphical/zathura
     ./programs/graphical/browser/firefox
-    ./programs/graphical/discord 
+    ./programs/graphical/vesktop
     ./programs/graphical/telegram
+    ./programs/graphical/blockbench
+    ./programs/graphical/prismlauncher
+    ./programs/graphical/youtube-music
+    ./programs/graphical/mangohud
 
+    ./programs/desktop/portals
     ./programs/desktop/anyrun
     ./programs/desktop/swaync
     ./programs/desktop/waybar
     ./programs/desktop/hyprland
     ./programs/desktop/hyprlock
+    ./programs/desktop/xremap
 
     ./themes
     ./devlop

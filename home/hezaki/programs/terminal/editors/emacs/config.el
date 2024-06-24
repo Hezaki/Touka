@@ -3,13 +3,12 @@
 (setq global-prettify-symbols-mode t)
 
 (custom-set-faces
-  `(fringe ((t (:background ,#${config.lib.stylix.colors.base00}))))
   `(org-block-begin-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
   `(org-block-end-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
+  `(mode-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
   `(line-number ((t (:background ,#${config.lib.stylix.colors.base00})))))
 
 (custom-set-variables
-  '(inhibit-startup-screen t)
 	'(global-display-line-numbers-mode t)
 	'(global-visual-line-mode t)
 	'(global-tree-sitter-mode t)
@@ -27,30 +26,33 @@
 
 (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
 
-(global-ligature-mode t)
-
-(electric-pair-mode t)
+(smartparens-global-mode t)
 
 (setq scroll-step 1
-			scroll-margin 5
+      scroll-margin 5
       scroll-conservatively 10000
       next-screen-context-lines 5
       line-move-visual nil)
 
-(setq-default tab-width 2)
+(set-fringe-mode 0)
+(savehist-mode t)
+(save-place-mode t)
+(global-auto-revert-mode t)
 (set-window-margins (selected-window) 0 0)
 (set-frame-parameter nil 'internal-border-width 0)
-(setq standard-indent 2
-			e-short-answers t
+(setq inhibit-startup-screen t
+      standard-indent 2
+      column-number-mode t
+      e-short-answers t
       blink-cursor-mode nil
-			inhibit-compacting-font-caches t
-			auto-save-interval 1000
-			package-enable-at-startup nil
-			pixel-resolution-fine-flag t
-			select-enable-clipboard t
-			indent-line-function 'insert-tab
-			line-spacing 0
-			make-backup-files nil)
+      inhibit-compacting-font-caches t
+      auto-save-interval 1000
+      package-enable-at-startup nil
+      pixel-resolution-fine-flag t
+      select-enable-clipboard t
+      indent-line-function 'insert-tab
+      line-spacing 0
+      make-backup-files nil)
 
 (evil-mode t)
 (setq evil-search-module 'evil-search
@@ -63,22 +65,22 @@
 
 (electric-indent-mode nil)
 (setq org-auto-align-tags nil
-			org-edit-src-content-indentation 0
-			org-tags-column 0
-			org-auto-align-tags nil
-			org-catch-invisible-edits 'show-and-error
-			org-special-ctrl-a/e t
-			org-insert-heading-respect-content t
-			org-hide-emphasis-markers t
-			org-pretty-entities t
-			org-startup-indented t
+	  org-edit-src-content-indentation 0
+	  org-tags-column 0
+	  org-auto-align-tags nil
+	  org-catch-invisible-edits 'show-and-error
+	  org-special-ctrl-a/e t
+	  org-insert-heading-respect-content t
+	  org-hide-emphasis-markers t
+	  org-pretty-entities t
+	  org-startup-indented t
       org-ellipsis " ▾"
       org-hide-emphasis-markers t
       org-pretty-entities t
       org-src-fontify-natively t
-		  org-fontify-whole-heading-line t
+      org-fontify-whole-heading-line t
       org-fontify-quote-and-verse-blocks t
-		  org-edit-src-content-indentation 2
+   	  org-edit-src-content-indentation 2
       org-hide-block-startup nil
       org-src-tab-acts-natively t
       org-src-preserve-indentation nil
@@ -88,7 +90,7 @@
       org-highlight-latex-and-related '(native)
       org-goto-auto-isearch nil)
 
-(with-eval-after-load 'org (global-org-modern-mode))
+(add-hook 'org-mode-hook #'org-bullets-mode)
 
 (defun org-visual-mode ()
   (olivetti-mode)
@@ -127,27 +129,25 @@
  (kill-buffer "*scratch*")
  (setq-local display-line-numbers-type nil)
  (hl-line-mode nil))
-
-
 (add-hook 'vterm-mode-hook #'vtermus)
 
 (general-define-key
 	:states '(normal visual)
 	"C-=" 'text-scale-increase
 	"C--" 'text-scale-decrease
-  "M-\\" 'evil-window-vsplit
-  "M--" 'evil-window-split
+    "M-\\" 'evil-window-vsplit
+    "M--" 'evil-window-split
 	"gc" 'comment-line
 	"ff" 'affe-find-/
 	"fg" 'affe-grep-/
-  "C-<tab>" 'evil-switch-to-windows-last-buffer
-	"ts" 'display-buffer)
+    "C-<tab>" 'evil-switch-to-windows-last-buffer
+	"ts" 'display-buffe)
 
 (global-corfu-mode t)
 (corfu-history-mode t)
 (corfu-popupinfo-mode t)
 (setq corfu-auto t
-			corfu-cycle t
+	  corfu-cycle t
       corfu-auto-delay 0
       corfu-auto-prefix 1 
       tab-always-indent 'complete)
@@ -178,15 +178,15 @@
 
 (setq completion-styles '(orderless)
       completion-category-overrides '((file (styles basic partial-completion)))
-			orderless-skip-highlighting (lambda () selectrum-is-active)
-			selectrum-highlight-candidates-function #'orderless-highlight-matches)
+      orderless-skip-highlighting (lambda () selectrum-is-active)
+	  selectrum-highlight-candidates-function #'orderless-highlight-matches)
 
 (doom-modeline-mode 1)
 (setq doom-modeline-icon t
-			doom-modeline-bar-width 0
-			doom-modeline-buffer-state-icon t
-			doom-modeline-major-mode-color-icon t
-			doom-modeline-persp-name t
+	  doom-modeline-bar-width 0
+	  doom-modeline-buffer-state-icon t
+	  doom-modeline-major-mode-color-icon t
+	  doom-modeline-persp-name t
       doom-modeline-persp-icon t)
 
 (marginalia-mode t)
@@ -200,11 +200,11 @@
 
 (gcmh-mode t)
 (setq gc-cons-threshold 402653184
-			gc-cons-percentage 0.4)
+	  gc-cons-percentage 0.4)
 (add-hook 'emacs-startup-hook
 	(lambda ()
 	(message "*** Emacs loaded in %s with %d garbage collections."
-			(format "%.2f seconds"
-			(float-time
-			(time-subtract after-init-time before-init-time)))
-			gcs-done)))
+	(format "%.2f seconds"
+	(float-time
+	(time-subtract after-init-time before-init-time)))
+	gcs-done)))

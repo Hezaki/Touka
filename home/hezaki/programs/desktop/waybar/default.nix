@@ -24,16 +24,16 @@
 			"format-alt": "{icon} {time} ",
 			"format-charging": "<span color='#${config.lib.stylix.colors.base06}'>󰂅</span> {capacity}%",
 			"format-icons": [
-			"<span color='#${config.lib.stylix.colors.base06}'>󰁺</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰁻</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰁼</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰁽</span>",
-		  "<span color='#${config.lib.stylix.colors.base06}'>󰁾</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰁿</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰂀</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰂁</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰂂</span>",
-			"<span color='#${config.lib.stylix.colors.base06}'>󰁹</span>"
+			  "󰁺",
+			  "󰁻",
+			  "󰁼",
+			  "󰁽",
+		    "󰁾",
+			  "󰁿",
+			  "󰂀",
+			  "󰂁",
+			  "󰂂",
+			  "󰁹"
 			],
 			"states": {
 			  "critical": 15,
@@ -44,33 +44,28 @@
 			"bat": "bat2"
 		},
 		"clock#time": {
-			"format": "<span color='#${config.lib.stylix.colors.base06}'></span> {:%H:%M:%S}",
+			"format": " {:%H:%M:%S}",
 			"interval": 1,
 			"tooltip": false
 		},
 		"custom/date": {
-			"exec": "date +\"<span color='#${config.lib.stylix.colors.base06}'>󰸘</span> %e %b\"",
+			"exec": "date +\"󰸘 %e %b\"",
 			"interval": 1
 		},
 		"custom/launcher": {
-			"format": "<span color='#${config.lib.stylix.colors.base06}' font='17'></span> {}",
+      "format": "<span color='#${config.lib.stylix.colors.base0C}' font='17'></span> {}",
 		},
 		"custom/separator": {
-			"format": "<span color='#${config.lib.stylix.colors.base06}'>|</span>",
+			"format": "/",
 			"interval": 1
 		},
 		"height": 1,
 		"hyprland/language": {
-			"format": "<span color='#${config.lib.stylix.colors.base06}'>󰌌</span> {}",
+			"format": "󰌌 {}",
 			"format-en": "US",
 			"format-ru": "RU",
       "keyboard-name": "at-translated-set-2-keyboard",
 			"interval": 1
-		},
-		"wlr/taskbar": {
-			"format": "{icon}",
-			"icon-size": 20,
-			"tooltip-format": "{title}",
 		},
 		"hyprland/window": {
 			"format": "{}",
@@ -78,7 +73,7 @@
 		},
 		"backlight": {
 			"device": "intel_backlight",
-			"format": "{icon}{percent}% ",
+			"format": "{icon}{percent}%",
 			"format-icons": [" ", " "]
 		},
 		"layer": "top",
@@ -86,10 +81,11 @@
 			"hyprland/workspaces",
 		],
 		"modules-left": [
-			"custom/launcher",
-			"hyprland/language",
+      "custom/launcher",
+      "custom/separator",
 			"pulseaudio",
-			"backlight"
+			"backlight",
+			"hyprland/language"
 		],
 		"modules-right": [
 			"custom/date",
@@ -101,23 +97,23 @@
 			"format": "{icon} {volume}%",
 			"format-icons": {
 		  "default": [
-			   "<span color='#${config.lib.stylix.colors.base06}'></span>",
-			   "<span color='#${config.lib.stylix.colors.base06}'></span>",
-			   "<span color='#${config.lib.stylix.colors.base06}'></span>"
+			   "",
+			   "",
+			   ""
 			 ],
-			"hands-free": "<span color='#${config.lib.stylix.colors.base06}'></span>",
-				"headphone": "<span color='#${config.lib.stylix.colors.base06}'></span>",
-				"headset": "<span color='#${config.lib.stylix.colors.base06}'></span>"
+			"hands-free": "",
+				"headphone": "",
+				"headset": ""
 			},
-			"format-muted": "<span color='#${config.lib.stylix.colors.base06}'>󰝟</span> mute",
+			"format-muted": "󰝟 mute",
 			"on-click": "wpctl set-mute @deFAULT_AUDIO_SINK@ toggle",
 			"scroll-step": 3
 		},
 		"temperature": {
-				"critical-threshold": 80,
-				"format": "{icon} {temperatureC}°C",
-				"format-icons": [
-			  "<span color='#${config.lib.stylix.colors.base06}'></span>"
+			"critical-threshold": 80,
+			"format": "{icon} {temperatureC}°C",
+			"format-icons": [
+			  ""
 			]
 		},
 		"hyprland/workspaces": {
@@ -232,12 +228,12 @@
 
       #custom-date,
       #battery,
+      #backlight
       #clock,
       #pulseaudio,
       #workspaces,
       #window,
       #language,
-      #temperature,
       #text,
       #custom-launcher,
       #custom-separator,
@@ -245,75 +241,56 @@
       #tray {
         color: #${config.lib.stylix.colors.base06};
         background: #${config.lib.stylix.colors.base00};
-        padding: 0 0.6em;
-        margin: 0 0 0 0px;
+        padding: 0 0.4em;
         padding-top: 0px;
         padding-bottom: 2px;
         border-style: solid;
         min-height: 30px;
       }
 
-      #tray {
-        margin-right: 6px;
-      }
-
-      #custom-separator {
-        padding: 0 3 0 0px;
-        background: #${config.lib.stylix.colors.base00};
-      }
-
-      #pulseaudio {
-        padding: 0 0.6em;
-        margin: 4 4 4 4px;
-        border-radius: 4 14 14 4px;
+      #battery {
+        margin: 3 4 3 4px;
+        padding: 0 0.4em;
       }
 
       #backlight {
-        padding: 0 0.6em;
-        margin: 4 4 4 4px;
-      }
-
-      #clock {
-        padding: 0 0.6em;
         margin: 3 4 3 4px;
-        border-radius: 4 14 14 4px;
+        padding: 0 0.4em;
       }
 
       #custom-date {
-        padding: 0 0.6em;
         margin: 3 4 3 4px;
-        border-radius: 14 4 4 14px;
+        padding: 0 0.4em;
       }
 
-      #battery {
-        padding: 0 0.6em;
-        margin: 3 6 3 4px;
-        border-radius: 14 14 14 14px;
+      #clock {
+        margin: 3 4 3 4px;
+        padding: 0 0.4em;
       }
 
       #language {
-        padding: 0 0.6em;
-        margin: 3 4 3 0px;
-        border-radius: 14 4 4 14px;
+        margin: 3 4 3 4px;
+        padding: 0 0.4em;
       }
 
-      #temperature {
-        padding: 0 0.6em;
+      #pulseaudio {
         margin: 3 4 3 4px;
-        border-radius: 14 14 14 14px;
+        padding: 0 0.4em;
+      }
+
+      #custom-separator {
+        padding: 0px;
+        margin: 0px;
       }
 
       #custom-launcher {
-        /* padding: 0 0.6em; */
         margin-left: 0px;
         margin-right: 0px;
-        padding: 0 0.6em;
-        border-radius: 0 20 0 0px;
+        padding-right: 0.6em;
+        border-radius: 0 20 20 0px;
       }
 
       #workspaces {
-        background: #${config.lib.stylix.colors.base00};
-        padding: 0em;
         margin: 3 0 3 0px;
         border-radius: 14 14 14 14px;
       }

@@ -2,10 +2,8 @@
   hardware = {
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
       extraPackages = with pkgs; [
-	      intel-media-driver
+        intel-media-driver
         intel-vaapi-driver
       	libvdpau-va-gl
         libdrm
@@ -15,11 +13,12 @@
     bluetooth.enable = true;
     pulseaudio.enable = false;
     system76.enableAll = true;
+    uinput.enable = true;
   };
 
   security.rtkit.enable = true;
   services = {
-    emacs.enable = true;
+    ollama.enable = true;
     ratbagd.enable = true;
     irqbalance.enable = true;
     fstrim.enable = true;
@@ -63,13 +62,5 @@
     enable = true;
     powertop.enable = true;
     cpuFreqGovernor = "performance";
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    configPackages = with pkgs; [
-      xdg-desktop-portal-hyprland
-    ];
   };
 }

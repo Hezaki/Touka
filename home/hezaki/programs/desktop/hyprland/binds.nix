@@ -11,7 +11,6 @@
     bind = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
     bind = ALT, F, fullscreen,
-    bind = $mod, A, pseudo,
 
     binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+
     binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-
@@ -25,13 +24,12 @@
     bind = $mod, D, exec, anyrun
     bind = $mod, P, exec, hyprpicker -a
 
-    bind = , Print, exec, grimblast copysave screen $HOME/Media/Screenshots/$(date +'%d%m%y%H-%s.png')
-    bind = $mod, Print, exec, grimblast --freeze copysave area $HOME/Media/Screenshots/$(date +%d%m%y%H-%s.png)
+    bind = , Print, exec, grimblast --notify copysave screen $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
+    bind = $mod, Print, exec, grimblast --notify --freeze copysave area $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
 
     bind =, Home, exec, wl-screenrec --audio -f $HOME/Media/Videos/$(date +%d%m%y%H-%s.mp4)
     bind =, End, exec, pkill wl-screenrec
-
-    bind = ALT, G, togglegroup
+    bind =, Insert, exec, swaync-client -t -sw
 
     bind = $mod, H, movefocus, l
     bind = $mod, J, movefocus, d
@@ -43,10 +41,10 @@
     bind = $mod CTRL, K, swapwindow, u
     bind = $mod CTRL, J, swapwindow, d
 
-    binde = $mod SHIFT, H, resizeactive, -20 0
-    binde = $mod SHIFT, J, resizeactive, 0 -20
-    binde = $mod SHIFT, K, resizeactive, 0 20
-    binde = $mod SHIFT, L, resizeactive, 20 0
+    binde = $mod SHIFT, H, resizeactive, -72 0
+    binde = $mod SHIFT, J, resizeactive, 0 -72
+    binde = $mod SHIFT, K, resizeactive, 0 72
+    binde = $mod SHIFT, L, resizeactive, 72 0
 
     bind = $mod, 1, workspace, 1
     bind = $mod, 2, workspace, 2
