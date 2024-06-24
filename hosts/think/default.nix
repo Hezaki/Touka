@@ -9,29 +9,37 @@
   ];
 
   boot = {
-   loader = {
-     systemd-boot = {
-			 enable = true;
-			 configurationLimit = 5;
-		 };
-     efi.canTouchEfiVariables = true;
-     timeout = 1;
-   };
-   initrd = {
-    systemd.enable = true;
-    availableKernelModules = [
-       "xhci_pci"
-       "ahci"
-       "ohci_pci"
-       "ehci_pci"
-       "pata_atiixp"
-       "ums_realtek"
-       "sd_mod"
-       "sr_mod"
-       "sdhci_pci"
-       "usb_storage"
-     ];
-   };
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+        memtest86 = {
+          enable = true;              
+          sortKey = "o_memtest86";    
+        };
+        netbootxyz = {
+          enable = true;
+          sortKey = "o_netbootxyz";
+        };
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 1;
+    };
+    initrd = {
+      systemd.enable = true;
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "ohci_pci"
+        "ehci_pci"
+        "pata_atiixp"
+        "ums_realtek"
+        "sd_mod"
+        "sr_mod"
+        "sdhci_pci"
+        "usb_storage"
+      ];
+    };
     kernelPackages = inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
     kernelParams = [ 
       "quiet"
@@ -53,5 +61,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

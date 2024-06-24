@@ -6,7 +6,6 @@
 in {
   imports = with inputs; [ 
     home-manager.nixosModules.home-manager 
-    chaotic.homeManagerModules.default 
     nix-ld.nixosModules.nix-ld
   ];
 
@@ -14,10 +13,8 @@ in {
     nix-tree
     light
     iftop
-    htop-vim
     fastfetch
     vim
-    nh
   ];
 
   networking = {
@@ -50,6 +47,10 @@ in {
 
   programs = {
     zsh.enable = true;
+    weylus = {
+      enable = true;
+      openFirewall = true;
+    };
     gamemode.enable = true;
     steam = {
       enable = true;
@@ -62,25 +63,26 @@ in {
     };
   };
 
-  virtualisation = {
-    libvirtd.enable = true;
-    waydroid.enable = true;
-  };
+  users = {
+    users = {
+      ${user} = {
+        isNormalUser = true;
+        initialPassword = passuser;
+        home = "/home/${user}";
+        extraGroups = [
+          "wheel"
+        ];
+        shell = pkgs.zsh;
+      };
 
-  users.users = {
-    ${user} = {
-      isNormalUser = true;
-      initialPassword = passuser;
-      home = "/home/${user}";
-      extraGroups = [
-        "wheel"
-      ];
-      shell = pkgs.zsh;
+      root = {
+        initialPassword = passroot;
+        shell = pkgs.zsh;
+      };
     };
-
-    root = {
-      initialPassword = passroot;
-      shell = pkgs.zsh;
+    groups = {
+      uinput.members = [ "hezaki" ];
+      input.members = [ "hezaki" ];
     };
   };
 
@@ -89,7 +91,7 @@ in {
       enable = true;
       extraConfig = ''
         permit persist keepenv :wheel
-	      permit nopass hezaki as root cmd light
+        permit nopass hezaki as root cmd light
       '';
     };
     sudo.enable = false;
@@ -110,13 +112,9 @@ in {
 	
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    jetbrains-mono
-    ipafont
     noto-fonts-emoji
+    ipafont
   ];
-
-  nixpkgs.config.allowUnfree = true;
-  chaotic.nyx.cache.enable = true;
 
   nix.settings = {
     builders-use-substitutes = true;

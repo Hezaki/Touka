@@ -4,6 +4,7 @@
   ];
 
   stylix = {
+    enable = true;
     image = ./images/nebokakoeto.png;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
@@ -14,13 +15,14 @@
     };
     fonts = {
       serif = {
-        name = "JetBrainsMono";
-        package = pkgs.jetbrains-mono;
+        name = "JetBrainsMono NerdFont";
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
       };
       monospace = config.stylix.fonts.serif;
       emoji.package = pkgs.noto-fonts-emoji;
       sizes.terminal = 13;
     };
+    targets.vesktop.enable = false;
   };
 
   gtk = {
@@ -45,4 +47,5 @@
       package = pkgs.papirus-icon-theme;
     };
   };
+  qt.enable = true;
 }

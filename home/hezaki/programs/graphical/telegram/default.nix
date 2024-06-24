@@ -13,14 +13,6 @@
             "keys": "ctrl+/"
           },
           {
-            "command": "next_chat",
-            "keys": "ctrl+tab"
-          },
-          {
-            "command": "previous_chat",
-            "keys": "ctrl+shift+tab"
-          },
-          {
             "command": "global_search",
             "keys": "ctrl+f"
           }

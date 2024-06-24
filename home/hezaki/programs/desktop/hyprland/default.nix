@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, inputs, ... }: {
   imports = [ ./rules.nix ./binds.nix ./autostart.nix ];
   home.packages = with pkgs; [
     grimblast
@@ -6,14 +6,13 @@
     wl-clipboard 
     wl-screenrec
     hyprpicker
-    hyprcursor
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    systemd.enable = true;
     extraConfig = ''
-      monitor=,preferred,auto,1
+      monitor=,highres,auto,1
 
       exec = sh $HOME/.config/hypr/autostart.sh
       source = ./binds.conf
@@ -43,10 +42,7 @@
         }
       }
 
-      cursor {
-        enable_hyprcursor = true
-        inactive_timeout = 1
-      }
+      # cursor:inactive_timeout = 1
 
       device {
         name = tpps/2-elan-trackpoint

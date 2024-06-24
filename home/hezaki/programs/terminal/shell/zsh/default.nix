@@ -39,15 +39,13 @@
       ];
       shellAliases = {
         "e" = "emacsclient -n -c";
-        "ls" = "lsd -F";
-        "l" = "lsd -l";
-        "la" = "lsd -lA";
         "cd" = "z";
         "cat" = "bat";
         "tree" = "lsd --tree";
         "doas" = "doas ";
         "sudo" = "sudo ";
         "fetch" = "fastfetch";
+        "df" = "duf";
         "md" = "mkdir -v";
         "mv" = "mv -v";
         "cp" = "cp -v";
@@ -119,7 +117,5 @@
       '';
       history.size = 10000;
     };
-    lsd.enable = true;
-    zoxide.enable = true;
   };
 }

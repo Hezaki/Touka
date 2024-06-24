@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
     (wrapFirefox firefox-unwrapped {
+      nativeMessagingHosts = [ pkgs.firefoxpwa ];
       extraPolicies = {
         CaptivePortal = false;
         DisableFirefoxStudies = true;
@@ -71,6 +72,8 @@
             "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
             # ClearURLs
             "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
+            # FirefoxPWA
+            "firefoxpwa@filips.si".install_url = "https://addons.mozilla.org/firefox/downloads/file/4293028/pwas_for_firefox-2.12.1.xpi";
           };
 
         FirefoxHome = {
@@ -375,55 +378,39 @@
     '';
     ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text = ''
       * {
-        font-family: JetBrainsMono Nerd Font Mono;
       }
-      @-moz-document regexp("moz-extension://.+/sidebar/sidebar.html.*") {
-        :root,
-        #background {
-          background-color: #504945; /* https://github.com/piroor/treestyletab/blob/0eede581d763f92344fe64b1c042839f3b8ca955/webextensions/resources/ui-color.css#L198 */
-        }
-      }
-      @-moz-document regexp("moz-extension://.+/resources/group-tab.html.*") {
-        :root {
-          background: #504945 !important;
-        }
-      }
-
       @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
         :root {
-            --in-content-page-background: #282828 !important;
+            --in-content-page-background: #${config.lib.stylix.colors.base00} !important;
             --logo-and-wordmark{ display: none !important; }
         }
       }
 
       @-moz-document url-prefix(about:home), url-prefix(about:newtab){
-
         body[lwt-newtab-brighttext] {
-            --newtab-background-color: #282828 !important;
-            --newtab-background-color-secondary: #282828 !important;
+            --newtab-background-color: #${config.lib.stylix.colors.base00} !important;
+            --newtab-background-color-secondary: #${config.lib.stylix.colors.base00} !important;
 
         }
 
         .top-site-outer .top-site-icon {
-            background-color: #282828 !important;
-
+            background-color: #${config.lib.stylix.colors.base00} !important;
         }
 
         .top-site-outer .tile {
-            background-color: #282828 !important;
+            background-color: #${config.lib.stylix.colors.base00} !important;
         }
 
         .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
-            background: #282828 !important;
+            background: #${config.lib.stylix.colors.base00} !important;
         }
 
         .top-site-outer .context-menu-button:is(:active, :focus) {
-            background-color: #282828 !important;
+            background-color: #${config.lib.stylix.colors.base00} !important;
         }
 
         .search-wrapper .search-handoff-button {
-            border-radius: 40px !important;
-            background-color: #282828 !important;
+            background-color: #${config.lib.stylix.colors.base00} !important;
         }
       }
     '';
