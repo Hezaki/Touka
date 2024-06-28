@@ -16,6 +16,7 @@
       buffer-expose
       insert-shebang
       magit
+      zoxide
       beacon
       gcmh
       marginalia

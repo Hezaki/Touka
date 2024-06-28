@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./zsh
+    ./translate-shell
+  ];
+}

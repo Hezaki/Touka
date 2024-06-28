@@ -1,10 +1,18 @@
-{ inputs, config, lib, pkgs, modulesPath, ... }: {
+{ inputs, config, lib, pkgs, modulesPath, ... }: let
+in {
   imports = [
-    ./system/systemd.nix
-    ./system/enviroment.nix
-    ./system/hardware.nix
-    ./system/variables.nix
-    ./system/filesystems.nix
+    ./systemd
+    ./enviroment/fonts
+    ./enviroment/local
+    ./enviroment/nix
+    ./enviroment/programs
+    ./enviroment/security
+    ./enviroment/users
+    ./enviroment/home-manager
+    ./enviroment/network
+    ./enviroment/variables
+    ./hardware
+    ./filesystem
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -62,4 +70,5 @@
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "24.05";
+
 }
