@@ -1,7 +1,4 @@
 { pkgs, ... }: {
-  programs.firefox = {
-    nativeMessagingHosts = [ pkgs.firefoxpwa ];
-  };
   home.packages = with pkgs; [
     (wrapFirefox firefox-unwrapped {
       extraPolicies = {

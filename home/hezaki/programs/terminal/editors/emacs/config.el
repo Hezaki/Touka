@@ -119,11 +119,11 @@
 
 (defun affe-find-/ ()
  (interactive)
- (affe-find "/"))
+ (affe-find "."))
 
 (defun affe-grep-/ ()
  (interactive)
- (affe-grep "/"))
+ (affe-grep "."))
 
 (defun vtermus ()
  (kill-buffer "*scratch*")

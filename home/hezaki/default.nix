@@ -4,7 +4,7 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "23.11";
     packages = with pkgs; [
-      firefoxpwa
+      easyeffects
       fd
       duf
       bun
@@ -19,6 +19,7 @@
       scrcpy
       lutgen
       lutris
+      bottles
       swayimg
       blender
       zathura
@@ -60,38 +61,7 @@
   };
 
   imports = [
-    ./programs/terminal/bat
-    ./programs/terminal/fzf
-    ./programs/terminal/lsd
-    ./programs/terminal/git
-    ./programs/terminal/tmux
-    ./programs/terminal/btop
-    ./programs/terminal/zoxide
-    ./programs/terminal/fastfetch
-    ./programs/terminal/ripgrep
-    ./programs/terminal/shell/zsh
-    ./programs/terminal/shell/translate-shell
-    ./programs/terminal/editors/emacs
-
-    ./programs/graphical/mpv
-    ./programs/graphical/foot
-    ./programs/graphical/zathura
-    ./programs/graphical/browser/firefox
-    ./programs/graphical/vesktop
-    ./programs/graphical/telegram
-    ./programs/graphical/blockbench
-    ./programs/graphical/prismlauncher
-    ./programs/graphical/youtube-music
-    ./programs/graphical/mangohud
-
-    ./programs/desktop/portals
-    ./programs/desktop/anyrun
-    ./programs/desktop/swaync
-    ./programs/desktop/waybar
-    ./programs/desktop/hyprland
-    ./programs/desktop/hyprlock
-    ./programs/desktop/xremap
-
+    ./programs
     ./themes
     ./devlop
   ];
