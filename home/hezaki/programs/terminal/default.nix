@@ -10,6 +10,7 @@
     # ./espanso
     ./fzf
     ./lsd
+    ./yazi
     ./shell
     ./zoxide
   ];

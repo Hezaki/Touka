@@ -25,7 +25,7 @@
           Add = [
             {
               Name = "4get";
-              URLTemplate = "https://4get.ca/web?s=";
+              URLTemplate = "https://4get.nadeko.net/web?s=";
             }
           ];
           Default = "4get";
@@ -97,7 +97,7 @@
         };
 
         Preferences = {
-          "browser.startup.homepage" = "https://4get.ca/";
+          "browser.startup.homepage" = "https://4get.nadeko.net/";
           "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";

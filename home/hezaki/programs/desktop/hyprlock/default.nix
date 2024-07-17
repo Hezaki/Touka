@@ -5,7 +5,7 @@
   xdg.configFile."hypr/hyprlock.conf".text = ''
     background {
       monitor =
-      path = screenshot 
+      path = /etc/nixos/home/hezaki/themes/images/wp.png
       blur_passes = 3
       blur_size = 3
       noise = 0.0117

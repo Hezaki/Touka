@@ -2,6 +2,7 @@
   hardware.system76.enableAll = true;
 
   services = {
+    ollama.enable = true;
     irqbalance.enable = true;
     fstrim.enable = true;
     dbus.implementation = "broker";

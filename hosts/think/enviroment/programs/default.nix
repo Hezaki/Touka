@@ -20,6 +20,7 @@
 
   programs = {
     zsh.enable = true;
+    gamescope.enable = true;
     iftop.enable = true;
     light.enable = true;
     weylus = {

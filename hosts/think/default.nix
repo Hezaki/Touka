@@ -48,7 +48,7 @@ in {
         "usb_storage"
       ];
     };
-    kernelPackages = inputs.chaotic.packages.${pkgs.system}.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ 
       "quiet"
       "nowatchdog"

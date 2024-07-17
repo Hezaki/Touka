@@ -41,8 +41,8 @@
 (set-window-margins (selected-window) 0 0)
 (set-frame-parameter nil 'internal-border-width 0)
 (setq inhibit-startup-screen t
-      standard-indent 2
       column-number-mode t
+      indent-tabs-mode nil
       e-short-answers t
       blink-cursor-mode nil
       inhibit-compacting-font-caches t
@@ -169,12 +169,6 @@
 
 (vertico-mode t)
 (vertico-reverse-mode t)
-(setq completion-in-region-function
-      (lambda (&rest args)
-        (apply (if vertico-mode
-                   #'consult-completion-in-region
-                 #'completion--in-region)
-               args)))
 
 (setq completion-styles '(orderless)
       completion-category-overrides '((file (styles basic partial-completion)))

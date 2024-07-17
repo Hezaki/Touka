@@ -5,7 +5,7 @@
 
   stylix = {
     enable = true;
-    image = ./images/cvetok.png;
+    image = ./images/wp.png;
     polarity = "dark";
     base16Scheme = {
       base00 = "#151515";

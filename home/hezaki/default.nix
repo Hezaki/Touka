@@ -4,7 +4,7 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "23.11";
     packages = with pkgs; [
-      easyeffects
+      lunar-client
       fd
       duf
       bun
@@ -36,7 +36,6 @@
       nix-prefetch
       gnome.zenity
       android-tools
-      prismlauncher
       webcord-vencord
       transmission-gtk
       gnome.gnome-boxes

@@ -28,7 +28,7 @@ Why Touka? I'm just a big fan of [[https://tokyoghoul.fandom.com/wiki/Touka_Kiri
 - **Bar** - [[https://github.com/Alexays/Waybar][Waybar]]
 - **Browser** - [[https://www.mozilla.org/][Firefox]]
 - **Terminal** - [[https://codeberg.org/dnkl/foot][Foot]]
-- **Editor** - [[https://www.gnu.org/software/emacs][Emacs]]
+- **Editor** - [[https://neovim.io][Neovim]] lol...
 - **Shell** - [[https://www.zsh.org/][Zsh]]
 - **Notifications** - [[https://github.com/ErikReider/SwayNotificationCenter][Swaync]]
 - **Launcher** - [[https://github.com/Kirottu/anyrun][Anyrun]]

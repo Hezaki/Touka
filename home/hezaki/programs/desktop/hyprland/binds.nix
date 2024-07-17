@@ -16,8 +16,8 @@
     binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-    bind =, XF86MonBrightnessDown, exec, doas light -U 1
-    bind =, XF86MonBrightnessUp, exec, doas light -A 1
+    bind =, XF86MonBrightnessDown, exec, doas light -U 10
+    bind =, XF86MonBrightnessUp, exec, doas light -A 10
     bind =, XF86Favorites, exec, hyprctl keyword input:kb_variant = us && hyprlock
 
     bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
@@ -27,7 +27,7 @@
     bind = , Print, exec, grimblast --notify copysave screen $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
     bind = $mod, Print, exec, grimblast --notify --freeze copysave area $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
 
-    bind =, Home, exec, wl-screenrec --audio -f $HOME/Media/Videos/$(date +%d%m%y%H-%s.mp4)
+    bind =, Home, exec, wl-screenrec --codec hevc --audio --audio-device alsa_output.pci-0000_00_1f.3.hdmi-stereo.monitor -f $HOME/Media/Videos/$(date +%Y%m%d_%Hh%Mm%Ss.mp4)
     bind =, End, exec, pkill wl-screenrec
     bind =, Insert, exec, swaync-client -t -sw
 

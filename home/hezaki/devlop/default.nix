@@ -4,20 +4,12 @@
     gnumake
     pkg-config
     glibc
-
-    openjdk8-bootstrap
-
-    nodejs
-
     python311Packages.ipython
-
-    nginx
-
-    libressl
-
+    # nginx
     distrobox
-    podman
-    podman-compose 
-    nixd
+    cargo
+
+    nil
+    lua-language-server
   ];
 }

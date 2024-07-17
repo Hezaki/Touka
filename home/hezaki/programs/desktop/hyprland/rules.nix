@@ -12,7 +12,6 @@
     windowrule = workspace 2, firefox
     windowrule = workspace 3, io.github.tdesktop_x64.TDesktop
     windowrule = workspace 4, vesktop 
-    # windowrule = workspace 5, virt-manager
     windowrule = workspace 5, org.prismlauncher.PrismLauncher
     windowrule = workspace 5, libreoffice-writer
     windowrule = workspace 5, title:^(Steam)$

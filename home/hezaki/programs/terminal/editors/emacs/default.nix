@@ -30,11 +30,9 @@
       affe
       emojify-logos
       vertico
-      hl-todo
       vterm
       general
-      password-store
-			orderless
+      orderless
       apheleia
       olivetti
       dired-hacks-utils
@@ -49,8 +47,8 @@
       valign
       org-roam
       org-roam-ui
-			nix-mode
       python
+      nix-mode
     ];
     extraConfig = ''
        (org-babel-load-file
