@@ -42,7 +42,7 @@
         }
       }
 
-      # cursor:inactive_timeout = 1
+      cursor:inactive_timeout = 1
 
       device {
         name = tpps/2-elan-trackpoint

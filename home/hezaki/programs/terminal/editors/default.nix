@@ -1,6 +1,6 @@
 {
   imports = [
-    ./emacs
-    # neovim ?
+    # ./emacs
+    ./neovim
   ];
 }

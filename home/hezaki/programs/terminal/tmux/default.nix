@@ -2,7 +2,6 @@
   programs.tmux = {
     enable = true;
     baseIndex = 1; 
-    mouse = true;
     keyMode = "vi";
     sensibleOnTop = true;
     disableConfirmationPrompt = true;

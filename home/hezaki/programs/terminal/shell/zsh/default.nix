@@ -38,7 +38,6 @@
         }
       ];
       shellAliases = {
-        "e" = "emacsclient -n -c";
         "cd" = "z";
         "cat" = "bat";
         "tree" = "lsd --tree";
