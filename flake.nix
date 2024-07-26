@@ -69,7 +69,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
     xremap.url = "github:xremap/nix-flake";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

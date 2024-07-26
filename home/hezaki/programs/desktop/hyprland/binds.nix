@@ -27,7 +27,7 @@
     bind = , Print, exec, grimblast --notify copysave screen $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
     bind = $mod, Print, exec, grimblast --notify --freeze copysave area $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
 
-    bind =, Home, exec, wl-screenrec --codec hevc --audio --audio-device alsa_output.pci-0000_00_1f.3.hdmi-stereo.monitor -f $HOME/Media/Videos/$(date +%Y%m%d_%Hh%Mm%Ss.mp4)
+    bind =, Home, exec, wl-screenrec --audio --audio-device alsa_output.pci-0000_00_1f.3.hdmi-stereo.monitor -f $HOME/Media/Videos/$(date +%Y%m%d_%Hh%Mm%Ss.mp4)
     bind =, End, exec, pkill wl-screenrec
     bind =, Insert, exec, swaync-client -t -sw
 

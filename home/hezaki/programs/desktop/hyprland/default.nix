@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }: {
+{ pkgs, config, ... }: {
   imports = [ ./rules.nix ./binds.nix ./autostart.nix ];
   home.packages = with pkgs; [
     grimblast

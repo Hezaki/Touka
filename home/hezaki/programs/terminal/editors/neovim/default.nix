@@ -10,7 +10,7 @@
       local api = vim.api
       local cmd = vim.cmd
       local opt = vim.opt
-      local keymap = vim.keymap
+      local map = vim.keymap.set
       local g = vim.g
       local o = vim.o
 
@@ -41,16 +41,23 @@
 
       cmd([[
         hi StatusLine guibg=0
+        hi TabLine guibg=0
+        hi TabLineFill guibg=0
+        hi TabLineSel guibg=0
+        hi VertSplit guifg=2
       ]])
 
-      keymap.set("n", "<TAB>", ":bnext<CR>", { silent = true, noremap = true })
-      keymap.set("n", "<S-TAB>", ":bprev<CR>", { silent = true, noremap = true })
-      keymap.set("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
-      keymap.set("n", "<space><space>", ":Telescope<CR>", { silent = true, noremap = true })
-      keymap.set("n", "fg", ":Telescope live_grep<CR>", { silent = true, noremap = true })
-      keymap.set("n", "ff", ":Telescope find_files<CR>", { silent = true, noremap = true })
-      keymap.set("n", "fd", ":Telescope zoxide list<CR>", { silent = true, noremap = true })
-      keymap.set("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
+      vim.g.mapleader = ' ',
+
+      map("n", "<TAB>", ":bnext<CR>", { silent = true, noremap = true })
+      map("n", "<S-TAB>", ":bprev<CR>", { silent = true, noremap = true })
+      map("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
+      map("n", "<leader><space>", ":Telescope<CR>", { silent = true, noremap = true })
+      map("n", "fg", ":Telescope live_grep<CR>", { silent = true, noremap = true })
+      map("n", "ff", ":Telescope find_files<CR>", { silent = true, noremap = true })
+      map("n", "fd", ":Telescope zoxide list<CR>", { silent = true, noremap = true })
+      map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
+      map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true, noremap = true })
 
       local modes = {
         ['n']    = 'NORMAL';
@@ -134,7 +141,7 @@
         TypeParameter = ""
       }
 
-      local signs = { Error = ""; Warn = ""; Hint = ""; Info = ""; }
+      local signs = { Error = "", Warn = "", Hint = "", Info = "", }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
@@ -194,7 +201,60 @@
 
       require("lazy").setup({
         spec = {
-          { "nvim-tree/nvim-web-devicons", lazy = true },
+          { 
+            'romgrk/barbar.nvim',
+            init = function() vim.g.barbar_auto_setup = false end,
+            dependencies = 'nvim-tree/nvim-web-devicons',
+            opts = {
+              preset = 'default',
+              clickable = false,
+              icons = {
+                button = "",
+                modified = { button = '●' },
+                pinned = { 
+                  button = '',
+                  filename = true,
+                },
+                separator_at_end = false,
+                separator = {
+                  right = "",
+                  left = "",
+                },
+                buffer_index = false,
+                buffer_number = false,
+                diagnostics = {
+                  [ vim.diagnostic.severity.WARN ] = { enabled = false },
+                  [ vim.diagnostic.severity.INFO ] = { enabled = false },
+                  [ vim.diagnostic.severity.HINT ] = { enabled = true },
+                  [ vim.diagnostic.severity.ERROR ] = {
+                    enabled = true,
+                    icon = 'ﬀ',
+                  },
+                },
+                gitsigns = {
+                  added = { 
+                    enabled = true,
+                    icon = '+',
+                  },
+                  changed = {
+                    enabled = true,
+                    icon = '~',
+                  },
+                  deleted = {
+                    enabled = true,
+                    icon = '-',
+                  },
+                },
+                filetype = {
+                  custom_colors = false,
+                  enabled = true,
+                },
+              },
+              sidebar_filetypes = {
+                NvimTree = true,
+              },
+            },
+          },
           {
             "lukas-reineke/indent-blankline.nvim",
             event = 'VeryLazy',
@@ -218,6 +278,7 @@
           {
             'nvim-treesitter/nvim-treesitter',
             'm-demare/hlargs.nvim',
+            event = 'VeryLazy',
             opts = {
               ensure_installed = {
                 "all",
@@ -242,6 +303,7 @@
             opts = {
               defaults = {
                 file_ignore_patterns = {
+                  "%.mp4",
                   "%.jpg",
                   "%.jpeg",
                   "%.png",
@@ -261,13 +323,12 @@
                 border = {},
                 borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
               },
-              mappings = {
-                i = {
-                  ["<C-k>"] = "move_selection_next",
-                  ["<C-j>"] = "move_selection_previous",
-                },
-              },
             },
+          },
+          {
+            'nvim-tree/nvim-tree.lua',
+            event = 'VeryLazy',
+            opts = {},
           },
           {
             'nvim-orgmode/orgmode',
@@ -294,10 +355,12 @@
           },
           {
             'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-cmdline',
+            dependencies = {
+              'hrsh7th/cmp-buffer',
+              'hrsh7th/cmp-path',
+              'hrsh7th/cmp-nvim-lsp',
+              'hrsh7th/cmp-cmdline',
+            },
             event = "InsertEnter",
             config = function()
               local cmp = require'cmp'
@@ -396,12 +459,12 @@
             event = 'VeryLazy',
             config = function()
               require('lspconfig')['nil_ls'].setup{
-                  on_attach = on_attach,
-                  flags = lsp_flags,
+                on_attach = on_attach,
+                flags = lsp_flags,
               }
               require('lspconfig')['lua_ls'].setup{
-                  on_attach = on_attach,
-                  flags = lsp_flags,
+                on_attach = on_attach,
+                flags = lsp_flags,
               }
             end
           },

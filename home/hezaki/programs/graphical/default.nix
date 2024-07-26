@@ -10,5 +10,6 @@
     ./prismlauncher
     ./youtube-music
     ./mangohud
+    # ./obs-studio
   ];
 }

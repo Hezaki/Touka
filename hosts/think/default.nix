@@ -1,5 +1,4 @@
-{ inputs, config, lib, pkgs, modulesPath, ... }: let
-in {
+{ config, lib, pkgs, modulesPath, ... }: {
   imports = [
     ./systemd
     ./enviroment/fonts
@@ -70,5 +69,4 @@ in {
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "24.05";
-
 }
