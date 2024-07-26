@@ -8,6 +8,7 @@
     # nginx
     distrobox
     cargo
+    graalvm-ce
 
     nil
     lua-language-server

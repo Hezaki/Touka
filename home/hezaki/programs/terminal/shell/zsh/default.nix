@@ -55,6 +55,7 @@
         "...." = "cd ../../../";
         ":q" = "exit";
         ":wq" = "exit";
+        "mpv" = "mpv --loop";
         "flake-update" = "nix flake update /etc/nixos";
         "nixos-update" = "doas nixos-rebuild switch --fast";
         "home-update" = "home-manager switch --flake /etc/nixos/.#hezaki";

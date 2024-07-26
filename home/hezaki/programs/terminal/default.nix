@@ -1,5 +1,6 @@
 {
   imports = [
+    ./fd
     ./bat
     ./editors
     ./fastfetch

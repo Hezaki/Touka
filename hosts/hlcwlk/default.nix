@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, modulesPath, ... }: {
   imports = [
     ./system/systemd.nix
     ./system/enviroment.nix

@@ -4,40 +4,30 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "23.11";
     packages = with pkgs; [
-      lunar-client
-      fd
+      obs-studio
       duf
-      bun
-      mpv
       lsix
       ncdu
       cava
       piper
       dconf
       socat
+      zenity
       swaybg
       scrcpy
       lutgen
       lutris
-      bottles
       swayimg
       blender
-      zathura
-      nix-init
-      htop-vim
       onefetch
       libnotify
       ueberzugpp
       libreoffice
-      vulkan-tools
       glfw-wayland
       appimage-run
       home-manager
-      nix-prefetch
-      gnome.zenity
       android-tools
-      webcord-vencord
-      transmission-gtk
+      transmission_4-gtk
       gnome.gnome-boxes
     ];
   };
