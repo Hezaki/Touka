@@ -24,10 +24,10 @@
   Why Touka? I'm just a big fan of [[https://tokyoghoul.fandom.com/wiki/Touka_Kirishima][Touka Kirishima]] from TK)))
 
 ** 💻Hardware
-   - **Laptop** - [[https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/t14-amd-g1/22tpt14t4a2][thinkpad t14 gen 1]]
-   * An excellent office laptop, the configuration is made for it.
-   - **Mouse** - [[https://www.logitechg.com/en-ph/products/gaming-mice/g304-lightspeed-wireless-gaming-mouse.910-005284.html][logitech g304]]
-   * Wireless mouse, works great with Linux, [[https://github.com/libratbag/libratbag][libratbag]] supports it.
+   - **Laptop** - [[https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/t14-amd-g1/22tpt14t4a2][thinkpad t14 gen 1]].
+     - An excellent office laptop, the configuration is made for it.
+   - **Mouse** - [[https://www.logitechg.com/en-ph/products/gaming-mice/g304-lightspeed-wireless-gaming-mouse.910-005284.html][logitech g304]].
+     - Wireless mouse, works great with Linux, [[https://github.com/libratbag/libratbag][libratbag]] supports it.
 
 ** ⚙️ Software
    - **Wayland compositor** - [[https://hyprland.org][Hyprland]]
