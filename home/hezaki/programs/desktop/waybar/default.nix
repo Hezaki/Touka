@@ -1,4 +1,5 @@
-{ pkgs, config, ... }:{
+{ pkgs, config, ... }:
+{
   home.packages = with pkgs; [ waybar ];
   # base00: "#0f0f0f"
   # base01: "#191919"

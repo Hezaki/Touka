@@ -1,4 +1,5 @@
-{ pkgs, inputs, config, ... }: {
+{ pkgs, inputs, config, ... }:
+{
   imports = [
     inputs.stylix.homeManagerModules.stylix
   ];
@@ -40,6 +41,7 @@
       sizes.terminal = 13;
     };
     targets.vesktop.enable = false;
+    targets.neovim.enable = false;
   };
 
   gtk = {

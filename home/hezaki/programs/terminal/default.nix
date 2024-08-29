@@ -14,5 +14,6 @@
     ./yazi
     ./shell
     ./zoxide
+    ./yt-dlp
   ];
 }

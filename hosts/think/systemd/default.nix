@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   systemd = {
     targets.network-online.wantedBy = pkgs.lib.mkForce [];
     services = {

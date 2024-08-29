@@ -61,6 +61,8 @@
             "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4189577/search_by_image-6.1.0.xpi";
             # I don't care about Cookies
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
+            # Youtube defender!
+            "{68885c67-3790-48ae-835a-609e6d60d22c}" = "https://addons.mozilla.org/firefox/downloads/file/4332780/youtube_defender-1.5.xpi";
           };
 
         FirefoxHome = {

@@ -1,4 +1,5 @@
-{ pkgs, ... }:{
+{ pkgs, ... }:
+{
   programs.chromium = {
     enable = true;
     package = pkgs.chromium;
@@ -9,10 +10,6 @@
       {
         id = "hfjbmagddngcpeloejdejnfgbamkjaeg";
       } # Vimium-C
-
-      {
-        id = "clngdbkpkpeebahjckkjfobafhncgmne";
-      } # Stylus
     ];
   };
 }

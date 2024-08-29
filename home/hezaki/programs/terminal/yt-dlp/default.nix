@@ -1,5 +1,5 @@
 {
-  programs.steam = {
+  programs.yt-dlp = {
     enable = true;
   };
 }

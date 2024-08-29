@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   home.packages = with pkgs; [
     (wrapFirefox firefox-unwrapped {
       nativeMessagingHosts = [ pkgs.firefoxpwa ];
@@ -25,7 +26,7 @@
           Add = [
             {
               Name = "4get";
-              URLTemplate = "https://4get.nadeko.net/web?s=";
+              URLTemplate = "https://4get.cn/web?s=";
             }
           ];
           Default = "4get";
@@ -58,8 +59,8 @@
             "vimium-c@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/4210117/vimium_c-1.99.997.xpi";
             # NewTab like Vimium-C
             "newtab-adapter@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/3632463/newtab_adapter-1.3.0.xpi";
-            # Tampermonkey
-            "firefox@tampermonkey.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
+            # Greasemonkey
+            "{e4a8a97b-f2ed-450b-b12d-ee082ba24781}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4332091/greasemonkey-4.13.xpi";
             # Translate
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
             # Search by Image
@@ -72,8 +73,8 @@
             "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
             # ClearURLs
             "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
-            # FirefoxPWA
-            "firefoxpwa@filips.si".install_url = "https://addons.mozilla.org/firefox/downloads/file/4293028/pwas_for_firefox-2.12.1.xpi";
+            # Youtube defender!
+            "{68885c67-3790-48ae-835a-609e6d60d22c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4332780/youtube_defender-1.5.xpi";
           };
 
         FirefoxHome = {
@@ -97,7 +98,7 @@
         };
 
         Preferences = {
-          "browser.startup.homepage" = "https://4get.nadeko.net/";
+          "browser.startup.homepage" = "https://4get.ch/";
           "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";
@@ -413,16 +414,6 @@
             background-color: #${config.lib.stylix.colors.base00} !important;
         }
       }
-    '';
-    ".mozilla/firefox/hezaki.default-release/chrome/main.html".text = ''
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>hmpage</title> 
-      </head>
-        <body style="background: url('/etc/nixos/home/hezaki/themes/images/cat_leaves.png') no-repeat fixed !important; background-size: cover !important;">
-        </body>
-      </html>
     '';
   };
 }

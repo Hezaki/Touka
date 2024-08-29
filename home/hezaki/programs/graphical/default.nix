@@ -3,13 +3,15 @@
     ./mpv
     ./foot
     ./zathura
-    ./browser/firefox
+    ./browsers
     ./vesktop
     ./telegram
     ./blockbench
     ./prismlauncher
     ./youtube-music
     ./mangohud
-    # ./obs-studio
+    ./obs-studio
+    ./easyeffects
+    ./games
   ];
 }
