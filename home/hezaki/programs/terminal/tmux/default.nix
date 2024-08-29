@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   programs.tmux = {
     enable = true;
     baseIndex = 1; 

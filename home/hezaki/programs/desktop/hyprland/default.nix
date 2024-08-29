@@ -1,5 +1,12 @@
-{ pkgs, config, ... }: {
-  imports = [ ./rules.nix ./binds.nix ./autostart.nix ];
+{ pkgs, config, ... }:
+{
+  imports = [ 
+    ./rules.nix
+    ./binds.nix
+    ./autostart.nix
+    ./plugins.nix
+  ];
+
   home.packages = with pkgs; [
     grimblast
     satty
@@ -15,6 +22,7 @@
       monitor=,highres,auto,1
 
       exec = sh $HOME/.config/hypr/autostart.sh
+      source = ./plugins.conf
       source = ./binds.conf
       source = ./rules.conf
 
@@ -82,7 +90,8 @@
       }
 
       master {
-        always_center_master = true
+        new_status = master
+        new_on_top = true
         mfact = 0.65
       }
 
@@ -118,11 +127,11 @@
       animations {
         enabled = true
         bezier = myBezier, 0.05, 0.9, 0.1, 1.0
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, myBezier, popin 80%
+        animation = windows, 1, 5, myBezier
+        animation = windowsOut, 1, 5, myBezier, popin 80%
         animation = border, 1, 10, myBezier
         animation = fade, 1, 10, myBezier
-        animation = workspaces, 1, 5, myBezier, slide
+        animation = workspaces, 1, 4, myBezier, slide
       }
     '';
   };

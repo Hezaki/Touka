@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   home.packages = with pkgs; [ vesktop ];
   xdg.configFile = {
     "vesktop/settings/settings.json".text = ''

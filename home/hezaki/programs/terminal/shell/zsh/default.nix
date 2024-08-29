@@ -1,4 +1,5 @@
-{ pkgs, inputs, config, ... }: { 
+{ pkgs, inputs, config, ... }:
+{ 
   programs = {
     zsh = {
       enable = true;
@@ -56,8 +57,8 @@
         ":q" = "exit";
         ":wq" = "exit";
         "mpv" = "mpv --loop";
-        "flake-update" = "nix flake update /etc/nixos";
-        "nixos-update" = "doas nixos-rebuild switch --fast";
+        "flake-update" = "nix flake metadata --json /etc/nixos | nix run nixpkgs#jq '.locks.nodes.root.inputs[]' | sed 's/\"//g' | fzf";
+        "nixos-update" = "NIXPKGS_ALLOW_UNFREE=1 doas nixos-rebuild switch --flake /etc/nixos/.#think --impure";
         "home-update" = "home-manager switch --flake /etc/nixos/.#hezaki";
       };
       initExtra = ''

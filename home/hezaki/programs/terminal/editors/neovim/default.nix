@@ -1,7 +1,10 @@
-{ pkgs, ... }:{
+{ pkgs, config, ... }:
+{
   programs.neovim = {
     enable = true;
     viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
     ];
@@ -39,14 +42,6 @@
       opt.pumheight = 0
       opt.tabstop = 2
 
-      cmd([[
-        hi StatusLine guibg=0
-        hi TabLine guibg=0
-        hi TabLineFill guibg=0
-        hi TabLineSel guibg=0
-        hi VertSplit guifg=2
-      ]])
-
       vim.g.mapleader = ' ',
 
       map("n", "<TAB>", ":bnext<CR>", { silent = true, noremap = true })
@@ -58,6 +53,7 @@
       map("n", "fd", ":Telescope zoxide list<CR>", { silent = true, noremap = true })
       map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
       map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true, noremap = true })
+      map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
 
       local modes = {
         ['n']    = 'NORMAL';
@@ -68,19 +64,19 @@
         ['niI']  = 'NORMAL';
         ['niR']  = 'NORMAL';
         ['niV']  = 'NORMAL';
-       
+
         ['i']   = 'INSERT';
         ['ic']  = 'INSERT';
         ['ix']  = 'INSERT';
         ['s']   = 'INSERT';
         ['S']   = 'INSERT';
-       
+
         ['v']   = 'VISUAL';
         ['V']   = 'VISUAL';
         [""]    = 'VISUAL';
         ['r']   = 'VISUAL';
         ['r?']  = 'VISUAL';
-        
+
         ['c']   = 'TERMINAl';
         ['t']   = 'TERMINAL';
         ['!']   = 'TERMINAL';
@@ -195,65 +191,76 @@
         pattern = "*",
         command = "setlocal statusline=%!v:lua.Status()",
       })
-
       local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
       opt.rtp:prepend(lazypath)
 
       require("lazy").setup({
         spec = {
-          { 
-            'romgrk/barbar.nvim',
-            init = function() vim.g.barbar_auto_setup = false end,
+          {
+            'akinsho/bufferline.nvim',
             dependencies = 'nvim-tree/nvim-web-devicons',
             opts = {
-              preset = 'default',
-              clickable = false,
-              icons = {
-                button = "",
-                modified = { button = '●' },
-                pinned = { 
-                  button = '',
-                  filename = true,
-                },
-                separator_at_end = false,
-                separator = {
-                  right = "",
-                  left = "",
-                },
-                buffer_index = false,
-                buffer_number = false,
-                diagnostics = {
-                  [ vim.diagnostic.severity.WARN ] = { enabled = false },
-                  [ vim.diagnostic.severity.INFO ] = { enabled = false },
-                  [ vim.diagnostic.severity.HINT ] = { enabled = true },
-                  [ vim.diagnostic.severity.ERROR ] = {
-                    enabled = true,
-                    icon = 'ﬀ',
-                  },
-                },
-                gitsigns = {
-                  added = { 
-                    enabled = true,
-                    icon = '+',
-                  },
-                  changed = {
-                    enabled = true,
-                    icon = '~',
-                  },
-                  deleted = {
-                    enabled = true,
-                    icon = '-',
-                  },
-                },
-                filetype = {
-                  custom_colors = false,
-                  enabled = true,
-                },
+              options = {
+                offsets = {{
+                  filetype = "NvimTree",
+                  text = "Explorer", 
+                  highlight = "Normal"
+                }},
+                separator_style = { "", "" },
+                show_tab_indicators = false,
               },
-              sidebar_filetypes = {
-                NvimTree = true,
-              },
-            },
+              highlights = {
+                fill = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                background = {
+                  fg = "#${config.lib.stylix.colors.base03}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                buffer_selected = {
+                  fg = "#${config.lib.stylix.colors.base05}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                  italic = false,
+                },
+                buffer_visible = {
+                  fg = "#${config.lib.stylix.colors.base03}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                close_button = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                close_button_visible = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                close_button_selected = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                indicator_selected = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                modified = {
+                  fg = "#${config.lib.stylix.colors.base03}",
+                  bg = "#${config.lib.stylix.colors.base0B}",
+                },
+                modified_visible = {
+                  fg = "#${config.lib.stylix.colors.base0B}",
+                  bg = "#${config.lib.stylix.colors.base0B}",
+                },
+                modified_selected = {
+                  fg = "#${config.lib.stylix.colors.base0B}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+                tab_close = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
+              }
+            };
           },
           {
             "lukas-reineke/indent-blankline.nvim",
@@ -285,7 +292,7 @@
               },
               highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = false,
+                additional_vim_regex_highlighting = {'org'},
               },
             },
           },
@@ -335,16 +342,12 @@
             event = 'VeryLazy',
             ft = { 'org' },
             opts = {
-              org_agenda_files = '~/Documents/Notes',
+              org_agenda_files = '~/Downloads/Repositories/notes/**/*',
+              org_default_notes_file = '~/Downloads/Repositories/notes/agenda.org',
             },
           },
           {
             'akinsho/org-bullets.nvim';
-            event = 'VeryLazy',
-            opts = {},
-          },
-          {
-            'lukas-reineke/headlines.nvim',
             event = 'VeryLazy',
             opts = {},
           },
@@ -415,7 +418,7 @@
 
                 }),
                 formatting = {
-                  fields = {'abbr', 'menu', 'kind'},
+                  fields = { 'abbr', 'menu', 'kind' },
                   format = function(entry, vim_item)
                     vim_item.kind = kind_icons[vim_item.kind]
                     vim_item.menu = ({
@@ -425,6 +428,7 @@
                       luasnip = "[Snip]",
                       cmdline = "[Cmd]",
                       nvim_lua = "[Lua]",
+                      orgmode = "[Org]",
                     })[entry.source.name]
                     return vim_item
                   end,
@@ -434,15 +438,14 @@
                   { name = "path" },
                   { name = "buffer" },
                   { name = "emoji" },
+                  { name = "orgmode" },
                 }),
                 cmp.setup.cmdline(':', {
                   mapping = cmp.mapping.preset.cmdline(),
                   sources = cmp.config.sources({
                     { name = 'path' }
                   }, {
-                    {
-                      name = 'cmdline',
-                    },
+                    { name = 'cmdline',},
                   }),
                 }),
                 cmp.setup.cmdline('/', {
@@ -458,18 +461,103 @@
             'neovim/nvim-lspconfig',
             event = 'VeryLazy',
             config = function()
-              require('lspconfig')['nil_ls'].setup{
-                on_attach = on_attach,
-                flags = lsp_flags,
+              require'lspconfig'.nixd.setup{
+                cmd = { "nixd" },
+                settings = {
+                  nixd = {
+                    nixpkgs = {
+                      expr = "import <nixpkgs> { }",
+                    },
+                    formatting = {
+                      command = { "nixpkgs-fmt" },
+                    },
+                    options = {
+                      nixos = {
+                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+                      },
+                      home_manager = {
+                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
+                      },
+                    },
+                  },
+                },
               }
-              require('lspconfig')['lua_ls'].setup{
+              require'lspconfig'.lua_ls.setup{
                 on_attach = on_attach,
                 flags = lsp_flags,
               }
             end
           },
-        },
+          {
+            'lewis6991/gitsigns.nvim',
+            event = 'VeryLazy',
+            opts = {},
+          },
+          {
+            'L3MON4D3/LuaSnip',
+            version = "v2.*",
+            event = 'VeryLazy',
+            config = function()
+              local ls = require'luasnip'
+              local s = ls.snippet
+              local i = ls.insert_node
+              local t = ls.text_node
+
+              ls.add_snippets("nix", {
+                s("prog", {
+                  t('programs.'),
+                  i(1),
+                  t('enable = true;')
+                }),
+              })
+            end
+          },
+          {
+            'jmbuhr/otter.nvim',
+            event = 'VeryLazy',
+            config = function()
+              local otter = require'otter'
+              otter.activate({ "lua "}, true, true, nil )
+            end
+          },
+          {
+            'RRethy/base16-nvim',
+            config = function()
+              require('base16-colorscheme').with_config({
+                telescope = false,
+                indentblankline = true,
+                notify = true,
+                ts_rainbow = true,
+                cmp = true,
+                illuminate = true,
+                dapui = true,
+              })
+              require('base16-colorscheme').setup({
+                base00 = '#${config.lib.stylix.colors.base00}',
+                base01 = '#${config.lib.stylix.colors.base01}',
+                base02 = '#${config.lib.stylix.colors.base02}',
+                base03 = '#${config.lib.stylix.colors.base03}',
+                base04 = '#${config.lib.stylix.colors.base04}',
+                base05 = '#${config.lib.stylix.colors.base05}',
+                base06 = '#${config.lib.stylix.colors.base06}',
+                base07 = '#${config.lib.stylix.colors.base07}',
+                base08 = '#${config.lib.stylix.colors.base08}',
+                base09 = '#${config.lib.stylix.colors.base09}',
+                base0A = '#${config.lib.stylix.colors.base0A}',
+                base0B = '#${config.lib.stylix.colors.base0B}',
+                base0C = '#${config.lib.stylix.colors.base0C}',
+                base0D = '#${config.lib.stylix.colors.base0D}',
+                base0E = '#${config.lib.stylix.colors.base0E}',
+                base0F = '#${config.lib.stylix.colors.base0F}'
+              })
+            end
+          },
+        }
       })
+      cmd([[
+        hi StatusLine guibg=#${config.lib.stylix.colors.base00}
+        hi LineNr guifg=#${config.lib.stylix.colors.base03}
+      ]])
     '';
   };
 }

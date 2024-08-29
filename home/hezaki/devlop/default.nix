@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     gcc
     gnumake
@@ -8,9 +9,9 @@
     # nginx
     distrobox
     cargo
-    graalvm-ce
 
-    nil
+    nixd
+    nixpkgs-fmt
     lua-language-server
   ];
 }

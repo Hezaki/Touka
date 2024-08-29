@@ -1,6 +1,9 @@
-{ pkgs, ... }:{
+{ pkgsStable, ... }:
+{
   home = {
-    packages = with pkgs; [ _64gram ];
+    packages = with pkgsStable; [
+      _64gram
+    ];
     file = {
       ".local/share/64Gram/tdata/shortcuts-custom.json".text = ''
         [

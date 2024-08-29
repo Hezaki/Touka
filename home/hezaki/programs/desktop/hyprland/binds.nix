@@ -2,7 +2,7 @@
   xdg.configFile."hypr/binds.conf".text = ''
     $mod = SUPER
 
-    bindl=, switch:on:Lid Switch, exec, hyprctl keyword input:kb_variant = us && hyprlock 
+    bindl =, switch:on:Lid Switch, exec, hyprctl keyword input:kb_variant = us && hyprlock 
 
     bind = $mod, RETURN, exec, foot -e tmux new-session -t main
     bind = $mod SHIFT, RETURN, exec, emacsclient -n -c
@@ -11,24 +11,27 @@
     bind = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
     bind = ALT, F, fullscreen,
+    bind = $mod, TAB, hyprexpo:expo, toggle
 
     binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+
     binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-
+    binde = $mod, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%+
+    binde = $mod, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
     bind =, XF86MonBrightnessDown, exec, doas light -U 10
     bind =, XF86MonBrightnessUp, exec, doas light -A 10
     bind =, XF86Favorites, exec, hyprctl keyword input:kb_variant = us && hyprlock
 
-    bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && hyprctl reload
+    bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && pkill batsignal && hyprctl reload
     bind = $mod, D, exec, anyrun
     bind = $mod, P, exec, hyprpicker -a
 
     bind = , Print, exec, grimblast --notify copysave screen $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
     bind = $mod, Print, exec, grimblast --notify --freeze copysave area $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)
 
-    bind =, Home, exec, wl-screenrec --audio --audio-device alsa_output.pci-0000_00_1f.3.hdmi-stereo.monitor -f $HOME/Media/Videos/$(date +%Y%m%d_%Hh%Mm%Ss.mp4)
-    bind =, End, exec, pkill wl-screenrec
+    bind =, Home, exec, obs --startrecording 
+    bind =, End, exec, pkill obs
     bind =, Insert, exec, swaync-client -t -sw
 
     bind = $mod, H, movefocus, l

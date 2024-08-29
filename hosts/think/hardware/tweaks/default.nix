@@ -1,4 +1,5 @@
-{ pkgs, ... }:{
+{ pkgs, ... }:
+{
   hardware.system76.enableAll = true;
 
   services = {

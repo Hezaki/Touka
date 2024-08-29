@@ -1,4 +1,5 @@
-{ pkgs, ... }:{
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [ translate-shell ];
   xdg.configFile."translate-shell/init.trans".text = ''
     {

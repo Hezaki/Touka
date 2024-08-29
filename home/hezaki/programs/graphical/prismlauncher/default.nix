@@ -1,7 +1,8 @@
-{ pkgs, ... }:{
+{ pkgs, ... }:
+{
   home = {
     packages = with pkgs; [
-      (prismlauncher.override { additionalLibs = [ vulkan-loader ]; })
+      prismlauncher
     ];
     file.".local/share/PrismLauncher/prismlauncher.cfg".text = ''
       [General]

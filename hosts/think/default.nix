@@ -1,5 +1,7 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, modulesPath, inputs, ... }:
+{
   imports = [
+    "${inputs.nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
     ./systemd
     ./enviroment/fonts
     ./enviroment/local
@@ -20,14 +22,6 @@
       systemd-boot = {
         enable = true;
         configurationLimit = 5;
-        memtest86 = {
-          enable = true;              
-          sortKey = "o_memtest86";    
-        };
-        netbootxyz = {
-          enable = true;
-          sortKey = "o_netbootxyz";
-        };
       };
       efi.canTouchEfiVariables = true;
       timeout = 1;
@@ -35,6 +29,7 @@
     initrd = {
       systemd.enable = true;
       availableKernelModules = [
+        "nvme"
         "xhci_pci"
         "ahci"
         "ohci_pci"
@@ -58,15 +53,16 @@
       "psmouse.synaptics_intertouch=0"
     ];
     kernelModules = [
-      "kvm-intel"
+      "kvm-amd"
     ];
     extraModulePackages = [ ];
     consoleLogLevel = 0;
     initrd.verbose = false;
+    tmp.cleanOnBoot = true;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  system.stateVersion = "24.05";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  system.stateVersion = "24.11";
 }

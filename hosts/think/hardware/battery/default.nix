@@ -1,7 +1,11 @@
+{ pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [ batsignal ];
+
   powerManagement.enable = true;
 
   services = {
+    upower.enable = true;
     thermald.enable = true;
     tlp = { 
       enable = true;

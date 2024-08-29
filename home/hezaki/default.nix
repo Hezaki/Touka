@@ -1,10 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, pkgsStable, ... }:
+{
+  imports = [
+    ./programs
+    ./themes
+    ./devlop
+  ];
+
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     packages = with pkgs; [
-      obs-studio
+      pkgsStable.cinny-desktop
+      boxes
+      gdb
       duf
       lsix
       ncdu
@@ -17,8 +26,9 @@
       scrcpy
       lutgen
       lutris
+      trashy
       swayimg
-      blender
+      blender-hip
       onefetch
       libnotify
       ueberzugpp
@@ -27,6 +37,7 @@
       appimage-run
       home-manager
       android-tools
+      badlion-client
       transmission_4-gtk
       gnome.gnome-boxes
     ];
@@ -38,6 +49,9 @@
     permittedInsecurePackages = [
       "electron-28.3.1"
     ];
+    overlays = [
+      inputs.nur.overlay
+    ];
   };
 
   nix = {
@@ -48,10 +62,4 @@
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
-
-  imports = [
-    ./programs
-    ./themes
-    ./devlop
-  ];
 }

@@ -3,34 +3,39 @@
     nix-ld.nixosModules.nix-ld
   ];
 
-  environment.systemPackages = with pkgs; [
-    nix-tree
-    fastfetch
-    vim
-  ];
+  environment = {
+    enableDebugInfo = true;
+    systemPackages = with pkgs; [
+      nix-tree
+      fastfetch
+      vim
+      wget
+    ];
+  };
 
   documentation = {
     enable = true;
-    doc.enable = false;
+    doc.enable = true;
     man.enable = true;
-    dev.enable = false;
+    dev.enable = true;
   };
 
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
+    waydroid.enable = true;
   };
 
   programs = {
     zsh.enable = true;
     gamescope.enable = true;
-    iftop.enable = true;
     light.enable = true;
     gamemode.enable = true;
-    # steam = {
-    #   enable = true;
-    #   gamescopeSession.enable = true;
-    # };
+    steam = {
+      enable = true;
+      package = pkgs.steam;
+      gamescopeSession.enable = true;
+    };
     # nix-ld.enable = true;
     gnupg.agent = {
       enable = true;

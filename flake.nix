@@ -1,4 +1,5 @@
-{ outputs = { flake-parts, home-manager, ... } @inputs:
+{
+  outputs = { flake-parts, home-manager, nixpkgs-stable, ... }@inputs:
   flake-parts.lib.mkFlake { inherit inputs; } { 
     systems = [
       "x86_64-linux"
@@ -8,9 +9,37 @@
     flake = {
       nixosConfigurations = {
         think = inputs.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            pkgsStable = nixpkgs-stable.legacyPackages.x86_64-linux;
+            inherit inputs;
+          };
           modules = [
             ./hosts/think
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        hezaki = home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = {
+            pkgsStable = nixpkgs-stable.legacyPackages.x86_64-linux;
+            inherit inputs;
+          };
+          modules = [
+            ./home/hezaki
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        ktsrgi = home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./home/ktsrgi
           ];
         };
       };
@@ -25,29 +54,11 @@
       };
 
       homeConfigurations = {
-        hezaki = home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            ./home/hezaki
-          ];
-        };
-      };
-
-      homeConfigurations = {
-        ktsrgi = home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            ./home/ktsrgi
-          ];
-        };
-      };
-
-      homeConfigurations = {
         smtvna = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./home/smtvna
           ];
@@ -58,16 +69,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nur.url = "github:nix-community/NUR";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hyprland.url = "github:hyprwm/Hyprland";
-    stylix.url = "github:danth/stylix";
+    bonfire.url = "github:l-nafaryus/bonfire";
+
+    stylix.url = "github:danth/stylix/";
     xremap.url = "github:xremap/nix-flake";
 
     flake-parts = {
@@ -78,16 +91,6 @@
     nix-ld = {
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hypr-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
     };
 
     xdph = {
@@ -132,6 +135,11 @@
 
     zsh-auto-notify = {
       url = "github:MichaelAquilina/zsh-auto-notify";
+      flake = false;
+    };
+
+    skinsrestorer = {
+      url = "github:SkinsRestorer/SkinsRestorer/stable";
       flake = false;
     };
   };
