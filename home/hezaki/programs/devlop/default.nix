@@ -6,9 +6,6 @@
     pkg-config
     glibc
     python311Packages.ipython
-    # nginx
-    distrobox
-    cargo
 
     nixd
     nixpkgs-fmt

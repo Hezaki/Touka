@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:{
   imports = with inputs; [ 
     nix-ld.nixosModules.nix-ld
+    ./k3s
+    ./nh
   ];
 
   environment = {
@@ -15,9 +17,9 @@
 
   documentation = {
     enable = true;
-    doc.enable = true;
     man.enable = true;
-    dev.enable = true;
+    doc.enable = false;
+    dev.enable = false;
   };
 
   virtualisation = {
@@ -36,7 +38,6 @@
       package = pkgs.steam;
       gamescopeSession.enable = true;
     };
-    # nix-ld.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

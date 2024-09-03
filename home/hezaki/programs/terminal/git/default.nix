@@ -7,6 +7,7 @@
     extraConfig = {
       color.ui = true;
       init.defaultBranch = "main";
+      safe.directory = "/etc/nixos";
     };
     aliases = {
       s = "status";

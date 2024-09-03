@@ -1,8 +1,7 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 {
   home.packages = with pkgs; [
     (wrapFirefox firefox-unwrapped {
-      nativeMessagingHosts = [ pkgs.firefoxpwa ];
       extraPolicies = {
         CaptivePortal = false;
         DisableFirefoxStudies = true;
@@ -18,17 +17,12 @@
         DisableSetDesktopBackground = true;
         LegacyProfiles = true;
         ManualAppUpdateOnly = true;
-        Homepage = {
-          Startpage = "previous-session";
-        };
-
+        Homepage.Startpage = "previous-session";
         SearchEngines = {
-          Add = [
-            {
-              Name = "4get";
-              URLTemplate = "https://4get.cn/web?s=";
-            }
-          ];
+          Add = [{
+            Name = "4get";
+            URLTemplate = "https://4get.cn/web?s=";
+          }];
           Default = "4get";
           Remove = [
             "Google"
@@ -40,7 +34,6 @@
             "Wikipedia"
           ];
         };
-
         ExtensionSettings = let
           mkForceInstalled =
             builtins.mapAttrs
@@ -74,9 +67,8 @@
             # ClearURLs
             "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
             # Youtube defender!
-            "{68885c67-3790-48ae-835a-609e6d60d22c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4332780/youtube_defender-1.5.xpi";
+            "{68885c67-3790-48ae-835a-609e6d60d22c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4341946/youtube_defender-1.9.2.xpi";
           };
-
         FirefoxHome = {
           Pocket = false;
           Snippets = false;
@@ -86,7 +78,6 @@
           ExtensionRecommendations = false;
           SkipOnboarding = true;
         };
-
         SanitizeOnShutdown = {
           Cache = true;
           History = false;
@@ -96,12 +87,166 @@
           Sessions = true;
           OfflineApps = true;
         };
-
         Preferences = {
-          "browser.startup.homepage" = "https://4get.ch/";
-          "browser.toolbars.bookmarks.visibility" = "never";
+          # fastfox
+          "content.notify.interval" = 100000;
+          "gfx.canvas.accelerated.cache-items" = 4096;
+          "gfx.canvas.accelerated.cache-size" = 512;
+          "gfx.content.skia-font-cache-size" = 20;
+          "browser.cache.jsbc_compression_level" = 3;
+          "media.memory_cache_max_size" = 65536;
+          "media.cache_readahead_limit" = 7200;
+          "media.cache_resume_threshold" = 3600;
+          "image.mem.decode_bytes_at_a_time" = 32768; 
+          "network.http.max-connections" = 1800;
+          "network.http.max-persistent-connections-per-server" = 10;
+          "network.http.max-urgent-start-excessive-connections-per-host" = 5;
+          "network.http.pacing.requests.enabled" = false;
+          "network.dnsCacheExpiration" = 3600;
+          "network.ssl_tokens_cache_capacity" = 10240;
+          "network.dns.disablePrefetch" = true;
+          "network.dns.disablePrefetchFromHTTPS" = true;
+          "network.prefetch-next" = false;
+          "network.predictor.enabled" = false;
+          "network.predictor.enable-prefetch" = false;
+          "layout.css.grid-template-masonry-value.enabled" =true;
+          "dom.enable_web_task_scheduling" = true;
+          "dom.security.sanitizer.enabled" =true;
+
+          # securefox
+          "browser.contentblocking.category" = "strict";
+          "urlclassifier.trackingSkipURLs" = "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com";
+          "urlclassifier.features.socialtracking.skipURLs" = "*.instagram.com, *.twitter.com, *.twimg.com";
+          "network.cookie.sameSite.noneRequiresSecure" = true;
+          "browser.download.start_downloads_in_tmp_dir" = true;
+          "browser.helperApps.deleteTempFileOnExit" = true;
+          "browser.uitour.enabled" = false;
+          "privacy.globalprivacycontrol.enabled" = true;
+          "security.OCSP.enabled" = 0;
+          "security.remote_settings.crlite_filters.enabled" = true;
+          "security.pki.crlite_mode" = 2;
+          "security.ssl.treat_unsafe_negotiation_as_broken" = true;
+          "browser.xul.error_pages.expert_bad_cert" = true;
+          "security.tls.enable_0rtt_data" = false;
+          "browser.privatebrowsing.forceMediaMemoryCache" = true;
+          "browser.sessionstore.interval" = 60000;
+          "privacy.history.custom" = true;
+          "browser.urlbar.trimHttps" = true;
+          "browser.urlbar.untrimOnUserInteraction.featureGate" = true;
+          "browser.search.separatePrivateDefault.ui.enabled" = true;
+          "browser.urlbar.update2.engineAliasRefresh" = true;
+          "browser.search.suggest.enabled" = false;
+          "browser.urlbar.quicksuggest.enabled" = false;
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+          "browser.urlbar.groupLabels.enabled" = false;
+          "browser.formfill.enable" = false;
+          "security.insecure_connection_text.enabled" = true;
+          "security.insecure_connection_text.pbmode.enabled" = true;
+          "network.IDN_show_punycode" = true;
+          "dom.security.https_first" = true;
+          "signon.formlessCapture.enabled" = false;
+          "signon.privateBrowsingCapture.enabled" = false;
+          "network.auth.subresource-http-auth-allow" = 1;
+          "editor.truncate_user_pastes" = false;
+          "security.mixed_content.block_display_content" = true;
+          "pdfjs.enableScripting" = false;
+          "extensions.postDownloadThirdPartyPrompt" = false;
+          "network.http.referer.XOriginTrimmingPolicy" = 2;
+          "privacy.userContext.ui.enabled" = true;
+          "media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
+          "media.peerconnection.ice.default_address_only" = true;
+          "browser.safebrowsing.downloads.remote.enabled" = false;
+          "permissions.default.desktop-notification" = 2;
+          "permissions.default.geo" = 2;
+          "permissions.manager.defaultsUrl" = "";
+          "webchannel.allowObject.urlWhitelist" = "";
+          "datareporting.policy.dataSubmissionEnabled" = false;
+          "datareporting.healthreport.uploadEnabled" = false;
+          "toolkit.telemetry.unified" = false;
+          "toolkit.telemetry.enabled" = false;
+          "toolkit.telemetry.server" = "data:,";
+          "toolkit.telemetry.archive.enabled" = false;
+          "toolkit.telemetry.newProfilePing.enabled" = false;
+          "toolkit.telemetry.shutdownPingSender.enabled" = false;
+          "toolkit.telemetry.updatePing.enabled" = false;
+          "toolkit.telemetry.bhrPing.enabled" = false;
+          "toolkit.telemetry.firstShutdownPing.enabled" = false;
+          "toolkit.telemetry.coverage.opt-out" = true;
+          "toolkit.coverage.opt-out" = true;
+          "toolkit.coverage.endpoint.base" = "";
+          "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+          "browser.newtabpage.activity-stream.telemetry" = false;
+          "app.shield.optoutstudies.enabled" = false;
+          "app.normandy.enabled" = false;
+          "app.normandy.api_url" = "";
+          "breakpad.reportURL" = "";
+          "browser.tabs.crashReporting.sendReport" = false;
+          "browser.crashReports.unsubmittedCheck.autoSubmit2" = false;
+          "captivedetect.canonicalURL" = "";
+          "network.captive-portal-service.enabled" = false;
+          "network.connectivity-service.enabled" = false;
+          
+          # peskyfox
+          "browser.privatebrowsing.vpnpromourl" = "";
+          "extensions.getAddons.showPane" = false;
+          "extensions.htmlaboutaddons.recommendations.enabled" = false;
+          "browser.discovery.enabled" = false;
+          "browser.shell.checkDefaultBrowser" = false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
+          "browser.preferences.moreFromMozilla" = false;
+          "browser.aboutConfig.showWarning" = false;
+          "browser.aboutwelcome.enabled" = false;
+          "browser.tabs.tabmanager.enabled" = false;
+          "browser.profiles.enabled" = true;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "browser.compactmode.show" = true;
+          "browser.display.focus_ring_on_anything" = true;
+          "browser.display.focus_ring_style" = 0;
+          "browser.display.focus_ring_width" = 0;
+          "layout.css.prefers-color-scheme.content-override" = 2;
+          "browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled" = true;
+          "cookiebanners.service.mode" = 1;
+          "cookiebanners.service.mode.privateBrowsing" = 1;
+          "full-screen-api.transition-duration.enter" = "0 0";
+          "full-screen-api.transition-duration.leave" = "0 0";
+          "full-screen-api.warning.delay" = -1;
+          "full-screen-api.warning.timeout" = 0;
+          "browser.urlbar.suggest.calculator" = true;
+          "browser.urlbar.unitConversion.enabled" = true;
+          "browser.urlbar.trending.featureGate" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "extensions.pocket.enabled" = false;
+          "browser.download.manager.addToRecentDocs" = false;
+          "browser.download.open_pdf_attachments_inline" = true;
+          "browser.bookmarks.openInTabClosesMenu" = false;
+          "browser.menu.showViewImageInfo" = true;
+          "findbar.highlightAll" = true;
+          "layout.word_select.eat_space_to_next_word" = false;
+
+          # smooth scrolling
+          "general.smoothScroll" = true;
+          "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 12;
+          "general.smoothScroll.msdPhysics.enabled" = true;
+          "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 600;
+          "general.smoothScroll.msdPhysics.regularSpringConstant" = 650;
+          "general.smoothScroll.msdPhysics.slowdownMinDeltaMS" = 25;
+          "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio" = "2";
+          "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
+          "general.smoothScroll.currentVelocityWeighting" = "1";
+          "general.smoothScroll.stopDecelerationWeighting" = "1";
+          "mousewheel.default.delta_multiplier_y" = 300;
+
+          # other
+          "browser.startup.homepage" = "https://4get.ch/";
+          "browser.startup.page" = 3;
+          "browser.ctrlTab.sortByRecentlyUsed" = true;
+          "browser.toolbars.bookmarks.visibility" = "never";
           "toolkit.zoomManager.zoomValues" = ".8,.90,.95,1,1.1,1.2";
+          "browser.tabs.loadInBackground" = false;
+          "browser.tabs.insertAfterCurrent" = true;
           "browser.uidensity" = 1;
           "extensions.webextensions.restrictedDomains" = "";
           "privacy.resistFingerprinting.block_mozAddonManager" = true;
@@ -121,13 +266,12 @@
           "extensions.update.enabled" = false;
           "intl.locale.matchOS" = true;
           "extensions.langpacks.signatures.required" = false;
-          "browser.shell.checkDefaultBrowser" = false;
           "browser.EULA.override" = true;
           "extensions.autoDisableScopes" = 3;
           "extensions.shownSelectionUI" = true;
           "extensions.blocklist.enabled" = false;
           "app.update.url" = "http://127.0.0.1/";
-          "startup.homepage_welcome_url" = "";
+          "startup.home;age_welcome_url" = "";
           "browser.startup.homepage_override.mstone" = "ignore";
           "app.support.baseURL" = "http://127.0.0.1/";
           "app.support.inputURL" = "http://127.0.0.1/";
@@ -138,28 +282,20 @@
           "browser.customizemode.tip0.learnMoreUrl" = "http://127.0.0.1/";
           "browser.dictionaries.download.url" = "http://127.0.0.1/";
           "browser.search.searchEnginesURL" = "http://127.0.0.1/";
-          "layout.spellcheckDefault" = 0;
+          "layout.spellcheckDefault" = 2;
           "browser.download.useDownloadDir" = false;
-          "browser.aboutConfig.showWarning" = false;
           "browser.translation.engine" = "";
           "media.gmp-provider.enabled" = false;
-          "browser.urlbar.update2.engineAliasRefresh" = true;
-          "browser.newtabpage.activity-stream.feeds.topsites" = false;
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
-          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
           "browser.urlbar.suggest.engines" = false;
           "browser.urlbar.suggest.topsites" = false;
-          "security.OCSP.enabled" = 0;
           "security.OCSP.require" = false;
           "browser.discovery.containers.enabled" = false;
-          "browser.discovery.enabled" = false;
           "services.sync.prefs.sync.browser.startup.homepage" = false;
           "browser.contentblocking.report.monitor.home_page_url" = "http://127.0.0.1/";
           "dom.ipc.plugins.flash.subprocess.crashreporter.enabled" = false;
           "browser.safebrowsing.enabled" = false;
-          "browser.safebrowsing.downloads.remote.enabled" = false;
           "browser.safebrowsing.malware.enabled" = false;
           "browser.safebrowsing.provider.google.updateURL" = "";
           "browser.safebrowsing.provider.google.gethashURL" = "";
@@ -170,8 +306,6 @@
           "services.sync.privacyURL" = "http://127.0.0.1/";
           "social.enabled" = false;
           "social.remote-install.enabled" = false;
-          "datareporting.policy.dataSubmissionEnabled" = false;
-          "datareporting.healthreport.uploadEnabled" = false;
           "datareporting.healthreport.about.reportUrl" = "datareporting.healthreport.about.reportUrl";
           "datareporting.healthreport.documentServerURI" = "http://127.0.0.1/";
           "healthreport.uploadEnabled" = false;
@@ -183,13 +317,8 @@
           "network.http.originextension" = false;
           "dom.event.clipboardevents.enabled" = true;
           "network.user_prefetch-next" = false;
-          "network.dns.disablePrefetch" = true;
           "network.http.sendSecureXSiteReferrer" = false;
-          "toolkit.telemetry.enabled" = false;
-          "toolkit.telemetry.server" = "";
           "experiments.manifest.uri" = "";
-          "toolkit.telemetry.unified" = false;
-          "toolkit.telemetry.updatePing.enabled" = false;
           "plugins.enumerable_names" = "";
           "plugin.state.flash" = 0;
           "browser.search.update" = false;
@@ -199,7 +328,6 @@
           "camera.control.autofocus_moving_callback.enabled" = false;
           "network.http.speculative-parallel-limit" = 0;
           "browser.urlbar.userMadeSearchSuggestionsChoice" = true;
-          "browser.search.suggest.enabled" = false;
           "browser.sessionstore.max_resumed_crashes" = 1;
           "browser.sessionstore.resume_from_crash" = true;
           "security.certerrors.mitm.priming.enabled" = false;
@@ -219,8 +347,6 @@
           "browser.search.geoSpecificDefaults" = false;
           "browser.search.geoSpecificDefaults.url" = "";
           "browser.search.modernConfig" = false;
-          "captivedetect.canonicalURL" = "";
-          "network.captive-portal-service.enabled" = false;
           "privacy.resistFingerprinting" = true;
           "webgl.disabled" = true;
           "privacy.trackingprotection.cryptomining.enabled" = true;
@@ -271,7 +397,6 @@
           "security.tls.insecure_fallback_hosts.use_static_list" = false;
           "security.tls.version.min" = 1;
           "security.ssl.require_safe_negotiation" = false;
-          "security.ssl.treat_unsafe_negotiation_as_broken" = true;
           "security.ssl3.rsa_seed_sha" = true;
           "security.ssl3.dhe_rsa_aes_128_sha" = false;
           "security.ssl3.dhe_rsa_aes_256_sha" = false;
@@ -279,16 +404,12 @@
           "security.ssl3.dhe_rsa_des_ede3_sha" = false;
           "security.ssl3.rsa_des_ede3_sha" = false;
           "browser.pocket.enabled" = false;
-          "extensions.pocket.enabled" = false;
-          "browser.preferences.moreFromMozilla" = false;
           "extensions.allowPrivateBrowsingByDefault" = true;
-          "network.IDN_show_punycode" = true;
           "extensions.screenshots.disabled" = true;
           "browser.onboarding.newtour" = "performance,private,addons,customize,default";
           "browser.onboarding.updatetour" = "performance,library,singlesearch,customize";
           "browser.onboarding.enabled" = false;
           "browser.newtabpage.activity-stream.showTopSites" = false;
-          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
           "browser.newtabpage.activity-stream.feeds.snippets" = false;
           "browser.newtabpage.activity-stream.disableSnippets" = true;
           "browser.newtabpage.activity-stream.tippyTop.service.endpoint" = "";
@@ -298,7 +419,6 @@
           "dom.push.enabled" = false;
           "browser.newtabpage.activity-stream.asrouter.useruser_prefs.cfr" = false;
           "extensions.htmlaboutaddons.discover.enabled" = false;
-          "extensions.htmlaboutaddons.recommendations.enabled" = false;
           "services.settings.server" = "";
           "browser.region.network.scan" = false;
           "browser.contentblocking.report.hide_vpn_banner" = true;
@@ -314,25 +434,15 @@
           "browser.region.network.url" = "";
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_send_http_background_request" = false;
-          "browser.xul.error_pages.expert_bad_cert" = true;
           "layout.css.font-visibility.private" = 1;
           "layout.css.font-visibility.standard" = 1;
           "layout.css.font-visibility.trackingprotection" = 1;
           "privacy.userContext.enabled" = true;
-          "privacy.userContext.ui.enabled" = true;
-          "media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
-          "media.peerconnection.ice.default_address_only" = true;
           "dom.disable_window_move_resize" = true;
           "accessibility.force_disabled" = 1;
-          "browser.helperApps.deleteTempFileOnExit" = true;
-          "browser.uitour.enabled" = false;
           "devtools.debugger.remote-enabled" = false;
-          "webchannel.allowObject.urlWhitelist" = "";
-          "permissions.manager.defaultsUrl" = "";
           "permissions.default.shortcuts" = "1";
-          "pdfjs.enableScripting" = false;
           "permissions.delegation.enabled" = false;
-          "browser.contentblocking.category" = "strict";
           "security.tls.version.enable-deprecated" = false;
           "extensions.webcompat.enable_shims" = true;
           "privacy.resistFingerprinting.letterboxing" = true;
