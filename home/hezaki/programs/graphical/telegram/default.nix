@@ -1,7 +1,7 @@
-{ pkgsStable, ... }:
+{ pkgs, ... }:
 {
   home = {
-    packages = with pkgsStable; [
+    packages = with pkgs; [
       _64gram
     ];
     file = {

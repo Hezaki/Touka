@@ -10,7 +10,6 @@
       nixosConfigurations = {
         think = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
-            pkgsStable = nixpkgs-stable.legacyPackages.x86_64-linux;
             inherit inputs;
           };
           modules = [
@@ -35,9 +34,7 @@
       homeConfigurations = {
         ktsrgi = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
-          extraSpecialArgs = {
-            inherit inputs;
-          };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/ktsrgi
           ];
@@ -56,9 +53,7 @@
       homeConfigurations = {
         smtvna = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = {
-            inherit inputs;
-          };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/smtvna
           ];
@@ -72,13 +67,12 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
+    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    bonfire.url = "github:l-nafaryus/bonfire";
 
     stylix.url = "github:danth/stylix/";
     xremap.url = "github:xremap/nix-flake";
@@ -90,11 +84,6 @@
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -137,16 +126,5 @@
       url = "github:MichaelAquilina/zsh-auto-notify";
       flake = false;
     };
-
-    skinsrestorer = {
-      url = "github:SkinsRestorer/SkinsRestorer/stable";
-      flake = false;
-    };
-  };
-
-  nixConfig = {
-    builders-use-substitutes = true;
-    auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
   };
 }

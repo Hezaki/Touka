@@ -3,6 +3,7 @@
     $mod = SUPER
 
     bindl =, switch:on:Lid Switch, exec, hyprctl keyword input:kb_variant = us && hyprlock 
+    bind =, XF86Favorites, exec, hyprctl keyword input:kb_variant = us && hyprlock
 
     bind = $mod, RETURN, exec, foot -e tmux new-session -t main
     bind = $mod SHIFT, RETURN, exec, emacsclient -n -c
@@ -18,10 +19,10 @@
     binde = $mod, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%+
     binde = $mod, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    bind =, XF86AudioMicMute, exec, fixf4=$(cat /sys/class/leds/platform\:\:micmute/brightness); echo $((1-fixf4)) | doas tee /sys/class/leds/platform\:\:micmute/brightness; wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
     bind =, XF86MonBrightnessDown, exec, doas light -U 10
     bind =, XF86MonBrightnessUp, exec, doas light -A 10
-    bind =, XF86Favorites, exec, hyprctl keyword input:kb_variant = us && hyprlock
 
     bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && pkill batsignal && hyprctl reload
     bind = $mod, D, exec, anyrun

@@ -2,6 +2,7 @@
 {
   imports = [
     "${inputs.nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
+    inputs.chaotic.nixosModules.default
     ./systemd
     ./enviroment/fonts
     ./enviroment/local
@@ -28,6 +29,8 @@
     };
     initrd = {
       systemd.enable = true;
+      compressor = "zstd";
+      compressorArgs = [ "-9" ];
       availableKernelModules = [
         "nvme"
         "xhci_pci"
@@ -60,6 +63,8 @@
     initrd.verbose = false;
     tmp.cleanOnBoot = true;
   };
+
+  chaotic.nyx.cache.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

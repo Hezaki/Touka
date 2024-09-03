@@ -3,5 +3,6 @@
     ./desktop
     ./graphical
     ./terminal
+    ./devlop
   ];
 }

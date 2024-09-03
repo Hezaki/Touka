@@ -1,17 +1,20 @@
-{ pkgs, inputs, pkgsStable, ... }:
+{ pkgs, inputs, config, ... }:
 {
   imports = [
+    inputs.nur.nixosModules.nur
     ./programs
     ./themes
-    ./devlop
   ];
+
 
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
     stateVersion = "24.05";
     packages = with pkgs; [
-      pkgsStable.cinny-desktop
+      config.nur.repos.ataraxiasjel.waydroid-script
+      cinny-desktop
+      microfetch
       boxes
       gdb
       duf
@@ -39,7 +42,7 @@
       android-tools
       badlion-client
       transmission_4-gtk
-      gnome.gnome-boxes
+      gnome-boxes
     ];
   };
 
@@ -48,6 +51,8 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-28.3.1"
+      "cinny-4.1.0"
+      "cinny-unwrapped-4.1.0"
     ];
     overlays = [
       inputs.nur.overlay
