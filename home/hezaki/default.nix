@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, config, pkgsStable, ... }:
 {
   imports = [
     inputs.nur.nixosModules.nur
@@ -6,14 +6,13 @@
     ./themes
   ];
 
-
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
     stateVersion = "24.05";
     packages = with pkgs; [
       config.nur.repos.ataraxiasjel.waydroid-script
-      cinny-desktop
+      pkgsStable.cinny-desktop
       microfetch
       boxes
       gdb
@@ -22,7 +21,6 @@
       ncdu
       cava
       piper
-      dconf
       socat
       zenity
       swaybg

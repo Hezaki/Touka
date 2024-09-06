@@ -4,52 +4,7 @@
     enable = true;
     package = pkgs.emacs29-pgtk;
     extraPackages = epkgs: with epkgs; [
-      doom-modeline
-      all-the-icons
-      all-the-icons-dired
-      tree-sitter
-      tree-sitter-langs
-      evil
-      evil-collection
-      evil-org
-      evil-anzu
-      smartparens
-      buffer-expose
-      insert-shebang
-      magit
-      zoxide
-      beacon
-      gcmh
-      marginalia
-      rainbow-mode
-      rainbow-delimiters
-      corfu
-      nerd-icons-corfu
-      emmet-mode
-      cape
-      eglot
-      affe
-      emojify-logos
-      vertico
-      vterm
-      general
-      orderless
-      apheleia
-      olivetti
-      dired-hacks-utils
-      nixos-options
-      org
-      org-bullets
-      org-modern
-      org-download
-      org-present
-      org-auto-tangle
-      toc-org
-      valign
-      org-roam
-      org-roam-ui
-      python
-      nix-mode
+      use-package
     ];
     extraConfig = ''
       (set-frame-font "JetBrainsMono NF 13" nil t)
@@ -57,10 +12,10 @@
       (setq global-prettify-symbols-mode t)
 
       (custom-set-faces
-        `(org-block-begin-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
-        `(org-block-end-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
-        `(mode-line ((t (:background ,#${config.lib.stylix.colors.base00}))))
-        `(line-number ((t (:background ,#${config.lib.stylix.colors.base00})))))
+        `(org-block-begin-line ((t (:background ,"#${config.lib.stylix.colors.base00}"))))
+        `(org-block-end-line ((t (:background ,"#${config.lib.stylix.colors.base00}"))))
+        `(mode-line ((t (:background ,"#${config.lib.stylix.colors.base00}"))))
+        `(line-number ((t (:background ,"#${config.lib.stylix.colors.base00}")))))
 
       (custom-set-variables
         '(global-display-line-numbers-mode t)
@@ -189,13 +144,14 @@
         :states '(normal visual)
         "C-=" 'text-scale-increase
         "C--" 'text-scale-decrease
-          "M-\\" 'evil-window-vsplit
-          "M--" 'evil-window-split
+        "M-\\" 'evil-window-vsplit
+        "M--" 'evil-window-split
         "gc" 'comment-line
         "ff" 'affe-find-/
         "fg" 'affe-grep-/
-          "C-<tab>" 'evil-switch-to-windows-last-buffer
-        "ts" 'display-buffe)
+        "fd" 'zoxide-find-file
+        "<TAB>" 'evil-switch-to-windows-last-buffer
+        "<S-TAB>" 'display-buffe)
 
       (global-corfu-mode t)
       (corfu-history-mode t)

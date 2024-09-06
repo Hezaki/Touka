@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:{
+{ pkgs, inputs, pkgsStable, ... }:{
   imports = with inputs; [ 
     nix-ld.nixosModules.nix-ld
     ./k3s
@@ -9,7 +9,7 @@
     enableDebugInfo = true;
     systemPackages = with pkgs; [
       nix-tree
-      fastfetch
+      pkgsStable.fastfetch
       vim
       wget
     ];
@@ -30,6 +30,7 @@
 
   programs = {
     zsh.enable = true;
+    dconf.enable = true;
     gamescope.enable = true;
     light.enable = true;
     gamemode.enable = true;

@@ -52,8 +52,32 @@
       map("n", "ff", ":Telescope find_files<CR>", { silent = true, noremap = true })
       map("n", "fd", ":Telescope zoxide list<CR>", { silent = true, noremap = true })
       map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
-      map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true, noremap = true })
+      map("n", "<C-n>", ":Yazi<CR>", { silent = true, noremap = true })
       map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
+
+      local kind_icons = {
+        Text = " ",
+        Method = "󰆧",
+        Function = "ƒ ",
+        Constructor = " ",
+        Field = "󰜢 ",
+        Variable = " ",
+        Constant = " ",
+        Class = " ",
+        Interface = "󰜰 ",
+        Struct = " ",
+        Enum = "了 ",
+        EnumMember = " ",
+        Module = "",
+        Property = " ",
+        Unit = " ",
+        Value = "󰎠 ",
+        Keyword = "󰌆 ",
+        Snippet = " ",
+        File = " ",
+        Folder = " ",
+        Color = " ",
+      }
 
       local modes = {
         ['n']    = 'NORMAL';
@@ -109,88 +133,12 @@
         ['org']                = ''
       }
 
-      local kind_icons = {
-        Text = "",
-        Method = "",
-        Function = "",
-        Constructor = "",
-        Field = "",
-        Variable = "",
-        Class = "ﴯ",
-        Interface = "",
-        Module = "",
-        Property = "ﰠ",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "",
-        Event = "",
-        Operator = "",
-        TypeParameter = ""
-      }
-
-      local signs = { Error = "", Warn = "", Hint = "", Info = "", }
+      local signs = { Error = "", Warn = "", Hint = "", Info = "", }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
       end
 
-      local function color()
-        local mode = api.nvim_get_mode().mode
-        local mode_color = "%#StatusLine#"
-        if mode == "n" then
-          mode_color = "%#StatusNormal#"
-        elseif mode == "i" or mode == "ic" then
-          mode_color = "%#StatusInsert#"
-        elseif mode == "v" or mode == "V" or mode == "" then
-          mode_color = "%#StatusVisual#"
-        elseif mode == "R" then
-          mode_color = "%#StatusReplace#"
-        elseif mode == "c" then
-          mode_color = "%#StatusCommand#"
-        elseif mode == "t" then
-          mode_color = "%#StatusTerminal#"
-        end
-        return mode_color
-      end
-
-      local function branch()
-        local cmd = io.popen('git branch --show-current 2>/dev/null')
-        local branch = cmd:read("*l") or cmd:read("*a")
-        cmd:close()
-        if branch ~= "" then
-          return string.format("   " .. branch)
-        else
-          return ""
-        end
-      end
-
-      Status = function()
-        return table.concat {
-          color(),
-          string.format("  %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
-          "%#StatusActive#",
-          branch(),
-          "%=",
-          string.format("%s", (icons[vim.bo.filetype] or "")),
-          " %f ",
-          color(),
-          " %l:%c  ",
-        }
-      end
-
-      api.nvim_create_autocmd({"WinEnter", "BufEnter"}, {
-        pattern = "*",
-        command = "setlocal statusline=%!v:lua.Status()",
-      })
       local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
       opt.rtp:prepend(lazypath)
 
@@ -333,17 +281,21 @@
             },
           },
           {
-            'nvim-tree/nvim-tree.lua',
-            event = 'VeryLazy',
+            "mikavilpas/yazi.nvim",
+            event = "VeryLazy",
             opts = {},
           },
           {
             'nvim-orgmode/orgmode',
             event = 'VeryLazy',
             ft = { 'org' },
+            opts = {},
+          },
+          {
+            "chipsenkbeil/org-roam.nvim",
+            event = 'VeryLazy',
             opts = {
-              org_agenda_files = '~/Downloads/Repositories/notes/**/*',
-              org_default_notes_file = '~/Downloads/Repositories/notes/agenda.org',
+              directory = "~/Documents/Notes",
             },
           },
           {
@@ -557,6 +509,10 @@
       cmd([[
         hi StatusLine guibg=#${config.lib.stylix.colors.base00}
         hi LineNr guifg=#${config.lib.stylix.colors.base03}
+        hi Headline1 guibg=#${config.lib.stylix.colors.base00}
+        hi Headline2 guibg=#${config.lib.stylix.colors.base00}
+        hi CodeBlock guibg=#${config.lib.stylix.colors.base00}
+        hi Dash guibg=#${config.lib.stylix.colors.base00} gui=bold
       ]])
     '';
   };

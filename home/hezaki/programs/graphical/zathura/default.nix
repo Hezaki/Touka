@@ -5,10 +5,9 @@
       set font JetBrainsMono
       set font 12
       set selection-clipboard clipboard
-      set guioptions ""
+      set guioptions none
 
-      map D set "first-page-column 1:1"
-      map <C-d> set "first-page-column 1:2"
+      map D set "first-page-column 1:2"
     '';
   };
 }
