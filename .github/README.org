@@ -6,19 +6,24 @@
 #+html: <img src="1.png" aling="center" alt="screenshot hule">
 
 * ℹ️ Information
+  I recommend using [[https://github.com/viperML/nh][nh]], if you don't have it then:
+  #+begin_src
+  nix shell nixpkgs#nh # temporarily put nh
+  #+end_src
+
   Build host:
   #+begin_src shell
-  nixos-rebuild switch --flake .#think # or nixos-update
+  nh os switch . -a  # or nixos-rebuild switch --flake .#think 
   #+end_src
 
   Build home-manager on desktop:
   #+begin_src shell
-  home-manager switch --flake .#hezaki  # or home-update
+  nh home switch . -a # or home-manager switch --flake .#hezaki
   #+end_src
 
   To make the home-manager work:
   #+begin_src shell
-  doas chown -R hezaki:users /etc/nixos  
+  doas chown -R hezaki:users /etc/nixos # if you use this path
   #+end_src
 
   Why Touka? I'm just a big fan of [[https://tokyoghoul.fandom.com/wiki/Touka_Kirishima][Touka Kirishima]] from TK)))

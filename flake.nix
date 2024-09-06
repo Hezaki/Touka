@@ -10,6 +10,7 @@
       nixosConfigurations = {
         think = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
+            pkgsStable = nixpkgs-stable.legacyPackages.x86_64-linux;
             inherit inputs;
           };
           modules = [
