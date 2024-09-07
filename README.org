@@ -3,7 +3,7 @@
 
 #+html: <h1 align="center">Touka</h1>
 #+html: <p align="center">This is my nonfemboy Nix configuration, for desktop and a small configuration for android</p>
-#+html: <img src="1.png" aling="center" alt="screenshot hule">
+#+html: <img src="./.other/1.png" aling="center" alt="screenshot hule">
 
 * ℹ️ Information
   I recommend using [[https://github.com/viperML/nh][nh]], if you don't have it then:
