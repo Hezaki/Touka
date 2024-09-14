@@ -16,7 +16,7 @@
 
       input-field = [
         {
-          size = "200, 50";
+          size = "150, 50";
           outline_thickness = 0;
           dots_size = 0.2;
           dots_spacing = 0.2;
@@ -25,7 +25,7 @@
           inner_color = "rgb(${config.lib.stylix.colors.base06})";
           font_color = "rgb(${config.lib.stylix.colors.base00})";
           fade_on_empty = false;
-          font_family = "LatoBlackNerdFont Medium";
+          font_family = "Lato Medium";
           placeholder_text = "What do you need from me!";
           hide_input = false;
           check_color = "rgb(${config.lib.stylix.colors.base01})";
@@ -42,8 +42,8 @@
         {
           text = "cmd[update:43200000] echo \"$(date +\"%M\")\"";
           color = "rgb(${config.lib.stylix.colors.base06})";
-          font_size = 150;
-          font_family = "LatoBlackNerdFont Bold";
+          font_size = 130;
+          font_family = "Lato Black";
           position = "0, 0";
           halign = "center";
           valign = "center";
@@ -51,8 +51,8 @@
         {
           text = "cmd[update:1000] echo \"$(date +\"%H\")\"";
           color = "rgb(${config.lib.stylix.colors.base06})";
-          font_size = 150;
-          font_family = "LatoBlackNerdFont Bold";
+          font_size = 130;
+          font_family = "Lato Black";
           position = "0, 170";
           halign = "center";
           valign = "center";
@@ -60,8 +60,8 @@
         {
           text = "cmd[update:43200000] echo \"$(date +\"%e %B %A\")\"";
           color = "rgb(${config.lib.stylix.colors.base06})";
-          font_family = "LatoBlackNerdFont SmBd";
-          font_size = 20;
+          font_family = "Lato Semibold";
+          font_size = 18;
           position = "0, -130";
           halign = "center";
           valign = "center";

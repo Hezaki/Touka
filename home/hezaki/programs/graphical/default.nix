@@ -12,6 +12,7 @@
     ./mangohud
     ./obs-studio
     ./easyeffects
+    ./valent
     ./games
   ];
 }

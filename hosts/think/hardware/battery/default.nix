@@ -2,7 +2,10 @@
 {
   environment.systemPackages = with pkgs; [ batsignal ];
 
-  powerManagement.enable = true;
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 
   services = {
     upower.enable = true;

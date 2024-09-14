@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, pkgsStable, ... }:
+{ pkgs, inputs, config, ... }:
 {
   imports = [
     inputs.nur.nixosModules.nur
@@ -12,16 +12,17 @@
     stateVersion = "24.05";
     packages = with pkgs; [
       config.nur.repos.ataraxiasjel.waydroid-script
-      pkgsStable.cinny-desktop
+      cinny-desktop
+      tgpt
+      blanket
       microfetch
       boxes
       gdb
       duf
       lsix
-      ncdu
+      dua
       cava
       piper
-      socat
       zenity
       swaybg
       scrcpy
@@ -59,6 +60,7 @@
 
   nix = {
     package = pkgs.nix;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;

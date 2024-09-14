@@ -6,7 +6,7 @@
     bind =, XF86Favorites, exec, hyprctl keyword input:kb_variant = us && hyprlock
 
     bind = $mod, RETURN, exec, foot -e tmux new-session -t main
-    bind = $mod SHIFT, RETURN, exec, emacsclient -n -c
+    bind = $mod SHIFT, RETURN, exec, foot --font="JetBrainsMonoNF:size=17" -e tmux new-session -t main
 
     bind = $mod, W, killactive, 
     bind = $mod, M, exit, 

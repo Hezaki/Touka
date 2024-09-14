@@ -1,9 +1,7 @@
 { pkgs, ... }:
 {
   home = {
-    packages = with pkgs; [
-      _64gram
-    ];
+    packages = with pkgs; [ _64gram ];
     file = {
       ".local/share/64Gram/tdata/shortcuts-custom.json".text = ''
         [

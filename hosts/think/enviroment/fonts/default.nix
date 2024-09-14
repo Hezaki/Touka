@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Lato" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     noto-fonts-emoji
     ipafont
+    lato
   ];
 
   console = {

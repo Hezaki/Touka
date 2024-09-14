@@ -5,9 +5,9 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
+    extraLuaPackages = ps: [ ps.magick ];
+    extraPackages = [ pkgs.imagemagick ];
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
     extraLuaConfig = ''
       local fn = vim.fn
       local api = vim.api
@@ -20,6 +20,8 @@
       opt.number = true
       opt.title = true
       opt.linebreak = true
+      opt.spell = true
+      opt.spelllang = 'ru'
       opt.termguicolors = true
       opt.expandtab = true
       opt.undofile = true
@@ -42,18 +44,21 @@
       opt.pumheight = 0
       opt.tabstop = 2
 
+      vim.loader.enable()
       vim.g.mapleader = ' ',
 
-      map("n", "<TAB>", ":bnext<CR>", { silent = true, noremap = true })
-      map("n", "<S-TAB>", ":bprev<CR>", { silent = true, noremap = true })
+      map("n", "<C-TAB>", ":bnext<CR>", { silent = true, noremap = true })
+      map("n", "<C-S-TAB>", ":bprev<CR>", { silent = true, noremap = true })
       map("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
       map("n", "<leader><space>", ":Telescope<CR>", { silent = true, noremap = true })
       map("n", "fg", ":Telescope live_grep<CR>", { silent = true, noremap = true })
-      map("n", "ff", ":Telescope find_files<CR>", { silent = true, noremap = true })
+      map("n", "ff", ":Telescope fd<CR>", { silent = true, noremap = true })
+      map("n", "fr", ":Telescope oldfiles<CR>", { silent = true, noremap = true })
       map("n", "fd", ":Telescope zoxide list<CR>", { silent = true, noremap = true })
+      map("n", "fb", ":Yazi<CR>", { silent = true, noremap = true })
       map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
-      map("n", "<C-n>", ":Yazi<CR>", { silent = true, noremap = true })
       map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
+      map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
 
       local kind_icons = {
         Text = " ",
@@ -133,6 +138,55 @@
         ['org']                = ''
       }
 
+      local function color()
+        local mode = api.nvim_get_mode().mode
+        local mode_color = "%#StatusLine#"
+        if mode == "n" then
+          mode_color = "%#StatusNormal#"
+        elseif mode == "i" or mode == "ic" then
+          mode_color = "%#StatusInsert#"
+        elseif mode == "v" or mode == "V" or mode == "" then
+          mode_color = "%#StatusVisual#"
+        elseif mode == "R" then
+          mode_color = "%#StatusReplace#"
+        elseif mode == "c" then
+          mode_color = "%#StatusCommand#"
+        elseif mode == "t" then
+          mode_color = "%#StatusTerminal#"
+        end
+        return mode_color
+      end
+
+      local function branch()
+        local cmd = io.popen('git branch --show-current 2>/dev/null')
+        local branch = cmd:read("*l") or cmd:read("*a")
+        cmd:close()
+        if branch ~= "" then
+          return string.format("   " .. branch)
+        else
+          return ""
+        end
+      end
+
+      Status = function()
+        return table.concat {
+          color(),
+          string.format("  %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
+          "%#StatusActive#",
+          branch(),
+          "%=",
+          string.format("%s", (icons[vim.bo.filetype] or "")),
+          " %f ",
+          color(),
+          " %l:%c  ",
+        }
+      end
+
+      api.nvim_create_autocmd({"WinEnter", "BufEnter"}, {
+        pattern = "*",
+        command = "setlocal statusline=%!v:lua.Status()",
+      })
+
       local signs = { Error = "", Warn = "", Hint = "", Info = "", }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
@@ -145,8 +199,14 @@
       require("lazy").setup({
         spec = {
           {
+            'goolord/alpha-nvim',
+            config = function ()
+                require'alpha'.setup(require'alpha.themes.dashboard'.config)
+            end,
+          },
+          {
             'akinsho/bufferline.nvim',
-            dependencies = 'nvim-tree/nvim-web-devicons',
+            dependencies = { 'nvim-tree/nvim-web-devicons', },
             opts = {
               options = {
                 offsets = {{
@@ -191,9 +251,13 @@
                   fg = "#${config.lib.stylix.colors.base00}",
                   bg = "#${config.lib.stylix.colors.base00}",
                 },
+                indicator_visible = {
+                  fg = "#${config.lib.stylix.colors.base00}",
+                  bg = "#${config.lib.stylix.colors.base00}",
+                },
                 modified = {
-                  fg = "#${config.lib.stylix.colors.base03}",
-                  bg = "#${config.lib.stylix.colors.base0B}",
+                  fg = "#${config.lib.stylix.colors.base0B}",
+                  bg = "#${config.lib.stylix.colors.base00}",
                 },
                 modified_visible = {
                   fg = "#${config.lib.stylix.colors.base0B}",
@@ -211,28 +275,12 @@
             };
           },
           {
-            "lukas-reineke/indent-blankline.nvim",
+            'nvimdev/indentmini.nvim',
             event = 'VeryLazy',
-            main = "ibl",
-            opts = {
-              indent = { char="│" },
-              exclude = {
-                filetypes = {
-                  "help",
-                  "terminal",
-                  "dashboard",
-                  "packer",
-                  "TelescopePrompt",
-                  "TelescopeResults",
-                },
-                buftypes = { "terminal", "nofile" },
-              },
-              scope= { enabled = false }
-            },
+            opts = {},
           },
           {
             'nvim-treesitter/nvim-treesitter',
-            'm-demare/hlargs.nvim',
             event = 'VeryLazy',
             opts = {
               ensure_installed = {
@@ -251,9 +299,11 @@
           },
           {
             'nvim-telescope/telescope.nvim',
-            'nvim-lua/plenary.nvim',
-            'jvgrootveld/telescope-zoxide',
-            "nvim-telescope/telescope-frecency.nvim",
+            dependencies = {
+              'nvim-lua/plenary.nvim',
+              'jvgrootveld/telescope-zoxide',
+              "nvim-telescope/telescope-frecency.nvim",
+            },
             event = 'VeryLazy',
             opts = {
               defaults = {
@@ -266,8 +316,6 @@
                   "%.ttf",
                   "node_modules",
                 },
-                prompt_prefix = " ",
-                selection_caret = "",
                 entry_prefix = " ",
                 layout_strategy = "flex",
                 layout_config = {
@@ -286,6 +334,31 @@
             opts = {},
           },
           {
+            "folke/zen-mode.nvim",
+            event = "VeryLazy",
+            opts = {
+              window = {
+                backdrop = 0.95, 
+                width = .70,
+                height = 1,
+                options = {
+                  signcolumn = "no",
+                  number = false,
+                },
+              },
+              plugins = {
+                options = {
+                  enabled = true,
+                  ruler = true, -- disables the ruler text in the cmd line area
+                  showcmd = false, -- disables the command in the last line of the screen
+                  laststatus = 0, -- turn off the statusline in zen mode
+                },
+                gitsigns = { enabled = true },
+                tmux = { enabled = true },
+              },
+            },
+          },
+          {
             'nvim-orgmode/orgmode',
             event = 'VeryLazy',
             ft = { 'org' },
@@ -299,14 +372,23 @@
             },
           },
           {
-            'akinsho/org-bullets.nvim';
+            'akinsho/org-bullets.nvim',
             event = 'VeryLazy',
             opts = {},
           },
           {
+            "preservim/vim-pencil",
+            event = 'VeryLazy',
+            init = function()
+              vim.g['pencil#wrapModeDefault'] = 'soft'
+            end,
+          },
+          {
             'norcalli/nvim-colorizer.lua',
             event = 'VeryLazy',
-            opts = {},
+            config = function()
+              require"colorizer".setup()
+            end,
           },
           {
             'hrsh7th/nvim-cmp',
@@ -421,7 +503,7 @@
                       expr = "import <nixpkgs> { }",
                     },
                     formatting = {
-                      command = { "nixpkgs-fmt" },
+                      command = { "nixfmt" },
                     },
                     options = {
                       nixos = {
@@ -447,6 +529,7 @@
           },
           {
             'L3MON4D3/LuaSnip',
+            dependencies = { 'rafamadriz/friendly-snippets', },
             version = "v2.*",
             event = 'VeryLazy',
             config = function()
@@ -462,14 +545,6 @@
                   t('enable = true;')
                 }),
               })
-            end
-          },
-          {
-            'jmbuhr/otter.nvim',
-            event = 'VeryLazy',
-            config = function()
-              local otter = require'otter'
-              otter.activate({ "lua "}, true, true, nil )
             end
           },
           {
@@ -506,13 +581,17 @@
           },
         }
       })
+
       cmd([[
         hi StatusLine guibg=#${config.lib.stylix.colors.base00}
         hi LineNr guifg=#${config.lib.stylix.colors.base03}
-        hi Headline1 guibg=#${config.lib.stylix.colors.base00}
-        hi Headline2 guibg=#${config.lib.stylix.colors.base00}
         hi CodeBlock guibg=#${config.lib.stylix.colors.base00}
         hi Dash guibg=#${config.lib.stylix.colors.base00} gui=bold
+        hi ZenBg guibg=#${config.lib.stylix.colors.base00}
+        hi TelescopeBorder guifg=#${config.lib.stylix.colors.base03}
+        hi FloatBorder guifg=#${config.lib.stylix.colors.base03}
+        hi IndentLine guifg=#${config.lib.stylix.colors.base03}
+        hi IndentLineCurrent guifg=#${config.lib.stylix.colors.base03}
       ]])
     '';
   };

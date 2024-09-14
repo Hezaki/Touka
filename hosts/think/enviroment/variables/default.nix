@@ -21,5 +21,7 @@
     QT_QPA_PLATFORMTHEME="gtk3";
     XCURSOR_SIZE="24";
     RUST_BACKTRACE="full";
+    VDPAU_DRIVER = "radeonsi";
+    LIBVA_DRIVER_NAME = "radeonsi";
   };
 }
