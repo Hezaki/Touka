@@ -455,7 +455,7 @@
   home.file = {
     ".mozilla/firefox/hezaki.default-release/chrome/userChrome.css".text = ''
       * {
-        font-family: JetBrainsMono Nerd Font Mono !important;
+        font-family: Lato Medium !important;
         font-size: 12pt !important;
       }
 

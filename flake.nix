@@ -77,6 +77,7 @@
 
     stylix.url = "github:danth/stylix/";
     xremap.url = "github:xremap/nix-flake";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -125,6 +126,16 @@
 
     zsh-auto-notify = {
       url = "github:MichaelAquilina/zsh-auto-notify";
+      flake = false;
+    };
+
+    tmux-tilish = {
+      url = "github:farzadmf/tmux-tilish";
+      flake = false;
+    };
+
+    tmux-sessionx = {
+      url = "github:omerxx/tmux-sessionx";
       flake = false;
     };
   };

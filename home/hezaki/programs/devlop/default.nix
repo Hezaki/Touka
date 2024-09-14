@@ -6,9 +6,10 @@
     pkg-config
     glibc
     python311Packages.ipython
+    luarocks
 
     nixd
-    nixpkgs-fmt
+    nixfmt-rfc-style
     lua-language-server
   ];
 }

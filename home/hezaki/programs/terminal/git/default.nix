@@ -12,6 +12,7 @@
     aliases = {
       s = "status";
       c = "commit";
+      clown = "clone";
     };
   };
 }
