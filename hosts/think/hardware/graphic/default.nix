@@ -1,11 +1,9 @@
 { pkgs, ... }:
 {
   hardware = {
+    amdgpu.amdvlk.enable = true;
     graphics = {
-      enable = true;
-      enable32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
         rocmPackages.clr.icd
         vaapiVdpau
         libvdpau-va-gl

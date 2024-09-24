@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs; [
     (wrapFirefox firefox-unwrapped {
@@ -54,14 +54,14 @@
             "newtab-adapter@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/3632463/newtab_adapter-1.3.0.xpi";
             # Greasemonkey
             "{e4a8a97b-f2ed-450b-b12d-ee082ba24781}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4332091/greasemonkey-4.13.xpi";
+            # Copyfish
+            "copyfish@a9t9.com".install_url = "https://addons.mozilla.org/firefox/downloads/file/3765111/copyfish_ocr_software-5.1.9.xpi";
             # Translate
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
             # Search by Image
             "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4189577/search_by_image-6.1.0.xpi";
             # I don't care about Cookies
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
-            # Stylus
-            "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4232144/styl_us-1.5.46.xpi";
             # Youtube avatar fix (for russia)
             "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
             # ClearURLs

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, inputs, ... }:
+{ lib, pkgs, modulesPath, inputs, ... }:
 {
   imports = [
     "${inputs.nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
@@ -48,12 +48,10 @@
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ 
       "quiet"
-      "nowatchdog"
       "page_alloc.shuffle=1"
       "threadirqs"
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
-      "psmouse.synaptics_intertouch=0"
     ];
     kernelModules = [
       "kvm-amd"
@@ -65,9 +63,6 @@
   };
 
   chaotic.nyx.cache.enable = true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "24.11";
 }

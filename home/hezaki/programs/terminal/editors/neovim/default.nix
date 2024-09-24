@@ -158,11 +158,11 @@
       end
 
       local function branch()
-        local cmd = io.popen('git branch --show-current 2>/dev/null')
+        local cmd = io.popen('git branch --show-current 2>/dev/null ')
         local branch = cmd:read("*l") or cmd:read("*a")
         cmd:close()
         if branch ~= "" then
-          return string.format("   " .. branch)
+          return string.format("  " .. branch)
         else
           return ""
         end
@@ -173,10 +173,9 @@
           color(),
           string.format("  %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
           "%#StatusActive#",
-          branch(),
+          " %{expand('%:p:h')} ",
+	        branch(),
           "%=",
-          string.format("%s", (icons[vim.bo.filetype] or "")),
-          " %f ",
           color(),
           " %l:%c  ",
         }
@@ -200,9 +199,66 @@
         spec = {
           {
             'goolord/alpha-nvim',
-            config = function ()
-                require'alpha'.setup(require'alpha.themes.dashboard'.config)
-            end,
+            lazy = false,
+            config = function()
+              local status_ok, alpha = pcall(require, "alpha")
+              if not status_ok then
+                return
+              end
+
+
+              if vim.fn.has("win32") == 1 then
+                plugins_count = vim.fn.len(vim.fn.globpath("~/AppData/Local/nvim-data/site/pack/packer/start", "*", 0, 1))
+              else
+                plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
+              end
+
+              local dashboard = require("alpha.themes.dashboard")
+              dashboard.section.header.val = {
+                "",
+                "",
+                "",
+                "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠢⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀  ",
+                "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣦⡀⠀⠀⠀⠀⠀⠀  ",
+                "  ⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣤⣀⣀⡀⠀⠀⠀⠹⣿⣦⡀⠀⠀⠀⠀  ",
+                "  ⠀⠀⠀⠀⠀⢀⣴⣿⣻⣞⣷⡻⠉⠀⠀⠀⠀⠀⠱⣟⣿⣦⠀⠀⠀  ",
+                "  ⠀⠀⠀⢀⣴⣿⣻⣾⣽⣻⣎⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⢯⣧⠀⠀  ",
+                "  ⠀⠀⠐⢿⣯⡷⣟⡾⠳⡿⣽⡷⣄⠀⠀⠀⠀⠀⠀⠀⢻⣯⣟⣇⠀  ",
+                "  ⠀⠀⠀⠀⠙⠽⠋⠀⠀⠈⠻⣽⣟⡷⣄⠀⠀⠀⠀⠀⠘⣷⣯⢿⠀  ",
+                "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣽⣟⡷⣄⠀⠀⠀⢠⣿⢾⡿⠀  ",
+                "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣽⣟⡷⣄⢀⣾⡽⣯⡏⠀  ",
+                "  ⠀⠀⠀⠀⠀⣴⡶⣷⢿⡶⣄⣀⠀⠀⠀⠈⣻⣽⣟⣯⣷⢿⡛⠀⠀  ",
+                "  ⠀⠀⣀⣴⣾⢯⠿⠍⠻⣟⣿⣻⣟⣿⣻⢿⣽⡾⣯⣷⣻⢿⣄⠀⠀  ",
+                "  ⢀⣾⢿⣽⡾⠏⠀⠀⠀⠀⠉⠓⠋⠷⠿⠯⠗⠛⠁⠉⢻⣟⣾⢷⡄  ",
+                "  ⠸⢯⡿⠾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠫⠋⠀  "
+              }
+              dashboard.section.buttons.val = {
+                dashboard.button("ff", "  Find file", ":Telescope find_files<CR>"),
+                dashboard.button("fg", "  Old files", ":Telescope live_grep<CR>"),
+                dashboard.button("fb", "󰪶  File browser", ":Yazi<CR>"),
+                dashboard.button("fg", "󰈞  Text search", ":Telescope live_grep<CR>"),
+                dashboard.button("fd", "󰥨  Find directory", ":Telescope zoxide list<CR>"),
+                dashboard.button("S-t", "  Buffers", ":Telescope buffers<CR>"),
+              }
+
+              dashboard.section.footer.val = {
+                "",
+                "--   Sozialismus oder Barbarei   --",
+                "",
+                "",
+                "",
+                "",
+                ""
+              }
+
+              dashboard.section.footer.opts.hl = "Type"
+              dashboard.section.header.opts.hl = "Include"
+              dashboard.section.buttons.opts.hl = "Keyword"
+
+              dashboard.opts.opts.noautocmd = true
+              -- vim.cmd([[autocmd User AlphaReady echo 'ready']])
+              alpha.setup(dashboard.opts)
+            end
           },
           {
             'akinsho/bufferline.nvim',
@@ -406,28 +462,10 @@
                   completion = {
                     winhighlight = "Normal:CmpPmenu,Search:PmenuSel",
                     scrollbar = false,
-                    border = {
-                      "╭",
-                      "─",
-                      "╮",
-                      "│",
-                      "╯",
-                      "─",
-                      "╰",
-                      "│",
-                    },
+                    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│", },
                   },
                   documentation = {
-                    border = {
-                      "╭",
-                      "─",
-                      "╮",
-                      "│",
-                      "╯",
-                      "─",
-                      "╰",
-                      "│",
-                    },
+                    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│", },
                   },
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -497,6 +535,8 @@
             config = function()
               require'lspconfig'.nixd.setup{
                 cmd = { "nixd" },
+                filetypes = { "nix" },
+                single_file_support = true,
                 settings = {
                   nixd = {
                     nixpkgs = {
@@ -532,20 +572,27 @@
             dependencies = { 'rafamadriz/friendly-snippets', },
             version = "v2.*",
             event = 'VeryLazy',
-            config = function()
-              local ls = require'luasnip'
-              local s = ls.snippet
-              local i = ls.insert_node
-              local t = ls.text_node
-
-              ls.add_snippets("nix", {
-                s("prog", {
-                  t('programs.'),
-                  i(1),
-                  t('enable = true;')
-                }),
-              })
-            end
+            opts = {},
+          },
+          {
+            'echasnovski/mini.cursorword', 
+            version = false,
+            event = 'VeryLazy',
+            opts = {
+              delay = 100,
+            },
+          },
+          {
+            'echasnovski/mini.splitjoin',
+            version = false,
+            event = 'VeryLazy',
+            opts = {
+              mappings = {
+                toggle = "gS",
+                split = "",
+                join = "",
+              },
+            },
           },
           {
             'RRethy/base16-nvim',

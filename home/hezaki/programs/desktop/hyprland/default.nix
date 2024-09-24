@@ -13,6 +13,7 @@
     wl-clipboard 
     wl-screenrec
     hyprpicker
+    cliphist
   ];
 
   wayland.windowManager.hyprland = {
@@ -44,6 +45,7 @@
         sensitivity = 0.6
         repeat_rate = 50
         repeat_delay = 500
+        force_no_accel = true
         touchpad {
           natural_scroll = false
           disable_while_typing = false
@@ -55,11 +57,6 @@
       device {
         name = tpps/2-elan-trackpoint
         accel_profile = flat
-      }
-
-      device {
-        name = logitech-g304-1
-        sensitivity = -1
       }
 
       general {

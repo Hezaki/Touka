@@ -91,15 +91,13 @@
 				"headset": ""
 			},
 			"format-muted": "󰝟 mute",
-			"on-click": "wpctl set-mute @deFAULT_AUDIO_SINK@ toggle",
+			"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
 			"scroll-step": 3
 		},
 		"temperature": {
 			"critical-threshold": 80,
 			"format": "{icon} {temperatureC}°C",
-			"format-icons": [
-			  ""
-			]
+			"format-icons": [ "" ]
 		},
 		"hyprland/workspaces": {
 			"on-click": "activate",
