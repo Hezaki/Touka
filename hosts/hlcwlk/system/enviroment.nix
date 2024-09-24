@@ -58,7 +58,7 @@ in {
   };
 
   virtualisation = {
-    libvirtd.enable = true;
+    # libvirtd.enable = true;
     lxd.enable = true;
   };
 

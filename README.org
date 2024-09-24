@@ -4,10 +4,10 @@
 #+html: <p align="center">This is my nonfemboy Nix configuration, for desktop and a small configuration for android</p>
 #+html: <img src="./.other/1.png" aling="center" alt="screenshot hule"
 
-* ℹ️ Information
+* ℹ️Information
   I recommend using [[https://github.com/viperML/nh][nh]], if you don't have it then:
   #+begin_src
-  nix shell nixpkgs#nh                      # temporarily put nh
+  nix shell nixpkgs#nh
   #+end_src
 
   Build host:
@@ -29,7 +29,7 @@
 
 ** 💻Hardware
    - *Laptop* - [[https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/t14-amd-g1/22tpt14t4a2][thinkpad t14 gen 1]]
-     - An excellent office laptop, the configuration is made for it
+     - An excellent office laptop, there is a profile in [[https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/t14/amd/gen1][nixos-hardware]]
    - *Mouse* - [[https://www.logitechg.com/en-ph/products/gaming-mice/g304-lightspeed-wireless-gaming-mouse.910-005284.html][logitech g304]]
      - Wireless mouse, works great with Linux, [[https://github.com/libratbag/libratbag][libratbag]] supports it
 

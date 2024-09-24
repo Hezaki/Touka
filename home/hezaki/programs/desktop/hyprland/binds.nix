@@ -12,7 +12,6 @@
     bind = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
     bind = ALT, F, fullscreen,
-    bind = $mod, TAB, hyprexpo:expo, toggle
 
     binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+
     binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-

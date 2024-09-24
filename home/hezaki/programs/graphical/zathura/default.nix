@@ -3,7 +3,6 @@
     enable = true;
     extraConfig = ''
       set font JetBrainsMono
-      set font 12
       set selection-clipboard clipboard
       set guioptions none
 

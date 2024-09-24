@@ -57,10 +57,10 @@
       ":wq" = "exit";
       "mpv" = "mpv --loop";
     };
-    initExtra = ''
+    initExtra = /*zsh*/ ''
       export EDITOR='nvim'
       export AUTO_NOTIFY_THRESHOLD=60
-      export AUTO_NOTIFY_TITLE="Hey! %command has just finished"
+      export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
       export PURE_PROMPT_SYMBOL=""

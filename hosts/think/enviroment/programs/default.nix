@@ -24,12 +24,13 @@
 
   virtualisation = {
     podman.enable = true;
-    libvirtd.enable = true;
+    # libvirtd.enable = true;
     waydroid.enable = true;
   };
 
   programs = {
     zsh.enable = true;
+    adb.enable = true;
     dconf.enable = true;
     gamescope.enable = true;
     light.enable = true;

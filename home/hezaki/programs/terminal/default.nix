@@ -2,6 +2,7 @@
   imports = [
     ./fd
     ./bat
+    ./cava
     ./editors
     ./fastfetch
     ./git
@@ -15,5 +16,6 @@
     ./shell
     ./zoxide
     ./yt-dlp
+    ./pandoc
   ];
 }
