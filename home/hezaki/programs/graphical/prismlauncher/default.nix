@@ -1,9 +1,7 @@
 { pkgs, ... }:
 {
   home = {
-    packages = with pkgs; [
-      prismlauncher
-    ];
+    packages = with pkgs; [ prismlauncher ];
     file.".local/share/PrismLauncher/prismlauncher.cfg".text = ''
       [General]
       ApplicationTheme=system

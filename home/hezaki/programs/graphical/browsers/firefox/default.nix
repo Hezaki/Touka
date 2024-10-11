@@ -487,41 +487,41 @@
       #customizableui-special-spring1,
       #customizableui-special-spring2 { display: none; }
     '';
-    ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text = ''
+    ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text = with config.lib.stylix.colors; ''
       * {
       }
       @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
         :root {
-            --in-content-page-background: #${config.lib.stylix.colors.base00} !important;
+            --in-content-page-background: #${base00} !important;
             --logo-and-wordmark{ display: none !important; }
         }
       }
 
       @-moz-document url-prefix(about:home), url-prefix(about:newtab){
         body[lwt-newtab-brighttext] {
-            --newtab-background-color: #${config.lib.stylix.colors.base00} !important;
-            --newtab-background-color-secondary: #${config.lib.stylix.colors.base00} !important;
+            --newtab-background-color: #${base00} !important;
+            --newtab-background-color-secondary: #${base00} !important;
 
         }
 
         .top-site-outer .top-site-icon {
-            background-color: #${config.lib.stylix.colors.base00} !important;
+            background-color: #${base00} !important;
         }
 
         .top-site-outer .tile {
-            background-color: #${config.lib.stylix.colors.base00} !important;
+            background-color: #${base00} !important;
         }
 
         .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
-            background: #${config.lib.stylix.colors.base00} !important;
+            background: #${base00} !important;
         }
 
         .top-site-outer .context-menu-button:is(:active, :focus) {
-            background-color: #${config.lib.stylix.colors.base00} !important;
+            background-color: #${base00} !important;
         }
 
         .search-wrapper .search-handoff-button {
-            background-color: #${config.lib.stylix.colors.base00} !important;
+            background-color: #${base00} !important;
         }
       }
     '';

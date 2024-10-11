@@ -14,6 +14,7 @@
         kidex
         dictionary
         websearch
+        stdin
       ];
       closeOnClick = true;
       hidePluginInfo = true;
@@ -79,7 +80,7 @@
       '';
     };
 
-    extraCss = ''
+    extraCss = with config.lib.stylix.colors; ''
       * {
         font-family: JetBrainsMono NerdFont, SF Nerd Mono;
         font-size: 1.1rem;
@@ -93,7 +94,7 @@
       }
 
       #match:selected {
-        background: #${config.lib.stylix.colors.base03};
+        background: #${base03};
       }
 
       #match {
@@ -110,10 +111,10 @@
         padding: 0px;
         margin-top: 160px;
         box-shadow: 1 1 3 1px #1C1D1D;
-        background: #${config.lib.stylix.colors.base00};
+        background: #${base00};
         border-radius: 9px;
         border: 2;
-        border-color: #${config.lib.stylix.colors.base00};
+        border-color: #${base00};
         border-style: solid;
       }
     '';

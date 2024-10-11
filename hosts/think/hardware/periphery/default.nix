@@ -11,6 +11,8 @@
 
   services = {
     ratbagd.enable = true;
+    ollama.enable = true;
+    pcscd.enable = true;
     pipewire = {
       enable = true;
       audio.enable = true;

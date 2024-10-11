@@ -19,10 +19,10 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    extraConfig = ''
+    extraConfig = with config.lib.stylix.colors; ''
       monitor=,highres,auto,1
 
-      exec = sh $HOME/.config/hypr/autostart.sh
+      source = ./autostart.conf
       source = ./plugins.conf
       source = ./binds.conf
       source = ./rules.conf
@@ -56,15 +56,15 @@
 
       device {
         name = tpps/2-elan-trackpoint
-        accel_profile = flat
+        accel_profile = adaptive
       }
 
       general {
         gaps_in = 4
         gaps_out = 10
         border_size = 2
-        col.active_border = rgb(${config.lib.stylix.colors.base00})
-        col.inactive_border = rgb(${config.lib.stylix.colors.base03})
+        col.active_border = rgb(${base00})
+        col.inactive_border = rgb(${base03})
         layout = master
       }
 
@@ -76,7 +76,7 @@
         disable_hyprland_logo = true
         animate_manual_resizes = true
         animate_mouse_windowdragging = true
-        background_color = rgb(${config.lib.stylix.colors.base00})
+        background_color = rgb(${base00})
       }
 
       dwindle {
@@ -91,17 +91,6 @@
         new_on_top = true
         mfact = 0.65
       }
-
-      # group {
-      #   col.border_active = rgb(3C3836) = true
-      #   col.border_inactive = rgb(504945)
-      #   groupbar {
-      #     render_titles = false
-      #     gradients = true
-      #     col.active = rgb(3C3836)
-      #     col.inactive = rgb(504945)
-      #   }
-      # }
 
       binds {
         workspace_back_and_forth = true

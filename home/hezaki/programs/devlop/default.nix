@@ -7,6 +7,7 @@
     glibc
     python311Packages.ipython
     luarocks
+    bun
 
     nixd
     nixfmt-rfc-style

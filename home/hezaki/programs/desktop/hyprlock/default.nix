@@ -1,10 +1,10 @@
 { config, ... }:
 {
-  programs.hyprlock = {
+  programs.hyprlock = with config.lib.stylix.colors; {
     enable = true;
     settings = {
       background = {
-        path = "/etc/nixos/home/hezaki/themes/images/wp.png";
+        path = "screenshot";
         blur_passes = 3;
         blur_size = 3;
         noise = 0.0117;
@@ -21,18 +21,18 @@
           dots_size = 0.2;
           dots_spacing = 0.2;
           dots_center = true;
-          outer_color = "rgb(${config.lib.stylix.colors.base06})";
-          inner_color = "rgb(${config.lib.stylix.colors.base06})";
-          font_color = "rgb(${config.lib.stylix.colors.base00})";
+          outer_color = "rgb(${base06})";
+          inner_color = "rgb(${base06})";
+          font_color = "rgb(${base00})";
           fade_on_empty = false;
           font_family = "Lato Medium";
           placeholder_text = "What do you need from me!";
           hide_input = false;
-          check_color = "rgb(${config.lib.stylix.colors.base01})";
-          fail_color = "rgb(${config.lib.stylix.colors.base01})";
+          check_color = "rgb(${base0E})";
+          fail_color = "rgb(${base08})";
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-          capslock_color = "rgb(${config.lib.stylix.colors.base08})";
-          position = "0, -195";
+          capslock_color = "rgb(${base0B})";
+          position = "0, -100";
           halign = "center";
           valign = "center";
         }
@@ -40,29 +40,20 @@
 
       label = [
         {
-          text = "cmd[update:43200000] echo \"$(date +\"%M\")\"";
-          color = "rgb(${config.lib.stylix.colors.base06})";
+          text = "$TIME";
+          color = "rgb(${base06})";
           font_size = 130;
           font_family = "Lato Black";
-          position = "0, 0";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          text = "cmd[update:1000] echo \"$(date +\"%H\")\"";
-          color = "rgb(${config.lib.stylix.colors.base06})";
-          font_size = 130;
-          font_family = "Lato Black";
-          position = "0, 170";
+          position = "0, 70";
           halign = "center";
           valign = "center";
         }
         {
           text = "cmd[update:43200000] echo \"$(date +\"%e %B %A\")\"";
-          color = "rgb(${config.lib.stylix.colors.base06})";
+          color = "rgb(${base06})";
           font_family = "Lato Semibold";
           font_size = 18;
-          position = "0, -130";
+          position = "0, -40";
           halign = "center";
           valign = "center";
         }

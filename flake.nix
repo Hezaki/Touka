@@ -76,8 +76,12 @@
     };
 
     stylix.url = "github:danth/stylix/";
+    ags.url = "github:aylur/ags";
     xremap.url = "github:xremap/nix-flake";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

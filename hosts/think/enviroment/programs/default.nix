@@ -3,6 +3,7 @@
     nix-ld.nixosModules.nix-ld
     ./k3s
     ./nh
+    ./zapret
   ];
 
   environment = {
