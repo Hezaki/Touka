@@ -9,7 +9,7 @@
     ./ripgrep
     ./tmux
     ./btop
-    # ./espanso
+    ./espanso
     ./fzf
     ./lsd
     ./yazi

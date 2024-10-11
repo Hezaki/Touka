@@ -34,6 +34,7 @@
     bind =, Home, exec, obs --startrecording 
     bind =, End, exec, pkill obs
     bind =, Insert, exec, swaync-client -t -sw
+    bind = $mod, Insert, exec, swaync-client --toggle-dnd
 
     bind = $mod, H, movefocus, l
     bind = $mod, J, movefocus, d
