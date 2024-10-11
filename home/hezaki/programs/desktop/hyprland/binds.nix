@@ -25,6 +25,7 @@
 
     bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && pkill batsignal && hyprctl reload
     bind = $mod, D, exec, anyrun
+    bind = $mod SHIFT, D, exec, cliphist list | anyrun --show-results-immediately true | wl-copy
     bind = $mod, P, exec, hyprpicker -a
 
     bind = , Print, exec, grimblast --notify copysave screen $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)

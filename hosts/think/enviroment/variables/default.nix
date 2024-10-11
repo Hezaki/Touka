@@ -11,7 +11,6 @@
     CLUTTER_BACKEND="wayland";
     GDK_BACKEND="wayland";
     HYPRLAND_LOG_WLR = "1";
-    GTK_IM_MODULE = "fcitx";
     GTK_USE_PORTAL = "1";
     QT_IM_MODULE = "fcitx";
     SDL_IM_MODULE = "fcitx";

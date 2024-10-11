@@ -68,7 +68,7 @@
 		"modules-left": [
       "custom/launcher",
       "custom/separator",
-			"pulseaudio",
+			"wireplumber",
 			"backlight",
 			"hyprland/language"
 		],
@@ -78,7 +78,7 @@
 			"battery"
 		],
 		"position": "bottom",
-		"pulseaudio": {
+		"wireplumber": {
 			"format": "{icon} {volume}%",
 			"format-icons": {
 		  "default": [
@@ -213,7 +213,7 @@
       #battery,
       #backlight
       #clock,
-      #pulseaudio,
+      #wireplumber,
       #workspaces,
       #window,
       #language,

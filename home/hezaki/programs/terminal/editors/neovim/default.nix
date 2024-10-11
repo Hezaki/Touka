@@ -8,7 +8,7 @@
     extraLuaPackages = ps: [ ps.magick ];
     extraPackages = [ pkgs.imagemagick ];
     plugins = with pkgs.vimPlugins; [ lazy-nvim ];
-    extraLuaConfig = ''
+    extraLuaConfig = with config.lib.stylix.colors; ''
       local fn = vim.fn
       local api = vim.api
       local cmd = vim.cmd
@@ -275,57 +275,57 @@
               },
               highlights = {
                 fill = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
                 background = {
-                  fg = "#${config.lib.stylix.colors.base03}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base03}",
+                  bg = "#${base00}",
                 },
                 buffer_selected = {
-                  fg = "#${config.lib.stylix.colors.base05}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base05}",
+                  bg = "#${base00}",
                   italic = false,
                 },
                 buffer_visible = {
-                  fg = "#${config.lib.stylix.colors.base03}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base03}",
+                  bg = "#${base00}",
                 },
                 close_button = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
                 close_button_visible = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
                 close_button_selected = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
                 indicator_selected = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
                 indicator_visible = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
                 modified = {
-                  fg = "#${config.lib.stylix.colors.base0B}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base0B}",
+                  bg = "#${base00}",
                 },
                 modified_visible = {
-                  fg = "#${config.lib.stylix.colors.base0B}",
-                  bg = "#${config.lib.stylix.colors.base0B}",
+                  fg = "#${base0B}",
+                  bg = "#${base0B}",
                 },
                 modified_selected = {
-                  fg = "#${config.lib.stylix.colors.base0B}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base0B}",
+                  bg = "#${base00}",
                 },
                 tab_close = {
-                  fg = "#${config.lib.stylix.colors.base00}",
-                  bg = "#${config.lib.stylix.colors.base00}",
+                  fg = "#${base00}",
+                  bg = "#${base00}",
                 },
               }
             };
@@ -533,7 +533,7 @@
             'neovim/nvim-lspconfig',
             event = 'VeryLazy',
             config = function()
-              require'lspconfig'.nixd.setup{
+              require'lspconfig'.nixd.setup {
                 cmd = { "nixd" },
                 filetypes = { "nix" },
                 single_file_support = true,
@@ -556,7 +556,11 @@
                   },
                 },
               }
-              require'lspconfig'.lua_ls.setup{
+              require'lspconfig'.lua_ls.setup {
+                on_attach = on_attach,
+                flags = lsp_flags,
+              }
+              require'lspconfig'.biome.setup {
                 on_attach = on_attach,
                 flags = lsp_flags,
               }
@@ -595,6 +599,21 @@
             },
           },
           {
+            "oflisback/obsidian-bridge.nvim",
+            dependencies = { "nvim-telescope/telescope.nvim" },
+            config = function()
+              require("obsidian-bridge").setup({
+                obsidian_server_address = "https://localhost:27124",
+                scroll_sync = true
+              })
+            end,
+            event = {
+              "BufReadPre *.md",
+              "BufNewFile *.md",
+            },
+            lazy = true
+          },
+          {
             'RRethy/base16-nvim',
             config = function()
               require('base16-colorscheme').with_config({
@@ -607,22 +626,22 @@
                 dapui = true,
               })
               require('base16-colorscheme').setup({
-                base00 = '#${config.lib.stylix.colors.base00}',
-                base01 = '#${config.lib.stylix.colors.base01}',
-                base02 = '#${config.lib.stylix.colors.base02}',
-                base03 = '#${config.lib.stylix.colors.base03}',
-                base04 = '#${config.lib.stylix.colors.base04}',
-                base05 = '#${config.lib.stylix.colors.base05}',
-                base06 = '#${config.lib.stylix.colors.base06}',
-                base07 = '#${config.lib.stylix.colors.base07}',
-                base08 = '#${config.lib.stylix.colors.base08}',
-                base09 = '#${config.lib.stylix.colors.base09}',
-                base0A = '#${config.lib.stylix.colors.base0A}',
-                base0B = '#${config.lib.stylix.colors.base0B}',
-                base0C = '#${config.lib.stylix.colors.base0C}',
-                base0D = '#${config.lib.stylix.colors.base0D}',
-                base0E = '#${config.lib.stylix.colors.base0E}',
-                base0F = '#${config.lib.stylix.colors.base0F}'
+                base00 = '#${base00}',
+                base01 = '#${base01}',
+                base02 = '#${base02}',
+                base03 = '#${base03}',
+                base04 = '#${base04}',
+                base05 = '#${base05}',
+                base06 = '#${base06}',
+                base07 = '#${base07}',
+                base08 = '#${base08}',
+                base09 = '#${base09}',
+                base0A = '#${base0A}',
+                base0B = '#${base0B}',
+                base0C = '#${base0C}',
+                base0D = '#${base0D}',
+                base0E = '#${base0E}',
+                base0F = '#${base0F}'
               })
             end
           },
@@ -630,15 +649,15 @@
       })
 
       cmd([[
-        hi StatusLine guibg=#${config.lib.stylix.colors.base00}
-        hi LineNr guifg=#${config.lib.stylix.colors.base03}
-        hi CodeBlock guibg=#${config.lib.stylix.colors.base00}
-        hi Dash guibg=#${config.lib.stylix.colors.base00} gui=bold
-        hi ZenBg guibg=#${config.lib.stylix.colors.base00}
-        hi TelescopeBorder guifg=#${config.lib.stylix.colors.base03}
-        hi FloatBorder guifg=#${config.lib.stylix.colors.base03}
-        hi IndentLine guifg=#${config.lib.stylix.colors.base03}
-        hi IndentLineCurrent guifg=#${config.lib.stylix.colors.base03}
+        hi StatusLine guibg=#${base00}
+        hi LineNr guifg=#${base03}
+        hi CodeBlock guibg=#${base00}
+        hi Dash guibg=#${base00} gui=bold
+        hi ZenBg guibg=#${base00}
+        hi TelescopeBorder guifg=#${base03}
+        hi FloatBorder guifg=#${base03}
+        hi IndentLine guifg=#${base03}
+        hi IndentLineCurrent guifg=#${base03}
       ]])
     '';
   };

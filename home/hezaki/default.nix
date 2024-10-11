@@ -12,6 +12,9 @@
     stateVersion = "24.05";
     packages = with pkgs; [
       config.nur.repos.ataraxiasjel.waydroid-script
+      monero-gui
+      (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
+      # cinny-desktop
       tectonic
       obsidian
       xdg-utils
