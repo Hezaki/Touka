@@ -4,7 +4,7 @@
   xdg.configFile = {
     "vesktop/settings/settings.json".text = ''
     {
-        "autoUpdate": false,
+        "autoUpdate": true,
         "autoUpdateNotification": true,
         "useQuickCss": true,
         "themeLinks": [],
@@ -280,7 +280,8 @@
                 "ignoreChannels": "",
                 "ignoreGuilds": "",
                 "logEdits": true,
-                "logDeletes": true
+                "logDeletes": true,
+                "collapseDeleted": false
             },
             "MessageTags": {
                 "enabled": false
@@ -436,13 +437,13 @@
                 "enabled": true,
                 "chatMentions": true,
                 "memberList": true,
-                "voiceUsers": true
-            },
-            "SearchReply": {
-                "enabled": false
+                "voiceUsers": true,
+                "reactorsList": true,
+                "colorChatMessages": false
             },
             "SecretRingToneEnabler": {
-                "enabled": true
+                "enabled": true,
+                "onlySnow": false
             },
             "Summaries": {
                 "enabled": false
@@ -525,10 +526,10 @@
                 "receivedOutput": "en"
             },
             "TypingIndicator": {
-                "enabled": false
+                "enabled": true
             },
             "TypingTweaks": {
-                "enabled": false
+                "enabled": true
             },
             "Unindent": {
                 "enabled": false
@@ -577,9 +578,6 @@
                 "noiseSuppression": true,
                 "echoCancellation": true
             },
-            "WatchTogetherAdblock": {
-                "enabled": false
-            },
             "WebKeybinds": {
                 "enabled": true
             },
@@ -621,6 +619,39 @@
             },
             "SupportHelper": {
                 "enabled": false
+            },
+            "FullSearchContext": {
+                "enabled": false
+            },
+            "YoutubeAdblock": {
+                "enabled": false
+            },
+            "UserSettingsAPI": {
+                "enabled": true
+            },
+            "AccountPanelServerProfile": {
+                "enabled": false
+            },
+            "AlwaysExpandRoles": {
+                "enabled": false
+            },
+            "ConsoleJanitor": {
+                "enabled": false
+            },
+            "CopyFileContents": {
+                "enabled": false
+            },
+            "MentionAvatars": {
+                "enabled": false
+            },
+            "NoMaskedUrlPaste": {
+                "enabled": false
+            },
+            "StickerPaste": {
+                "enabled": false
+            },
+            "VolumeBooster": {
+                "enabled": false
             }
         },
         "notifications": {
@@ -633,28 +664,28 @@
             "authenticated": false,
             "url": "https://api.vencord.dev/",
             "settingsSync": true,
-            "settingsSyncVersion": 1717885801563
+            "settingsSyncVersion": 1728951161265
         }
     }
     '';
-    "vesktop/themes/stylix.theme.css".text = ''
+    "vesktop/themes/stylix.theme.css".text = with config.lib.stylix.colors; ''
     :root {
-        --base00: #${config.lib.stylix.colors.base00}; /* Black */
-        --base01: #${config.lib.stylix.colors.base00}; /* Bright Black */
-        --base02: #${config.lib.stylix.colors.base02}; /* Grey */
-        --base03: #${config.lib.stylix.colors.base03}; /* Brighter Grey */
-        --base04: #${config.lib.stylix.colors.base04}; /* Bright Grey */
-        --base05: #${config.lib.stylix.colors.base05}; /* White */
-        --base06: #${config.lib.stylix.colors.base06}; /* Brighter White */
-        --base07: #${config.lib.stylix.colors.base07}; /* Bright White */
-        --base08: #${config.lib.stylix.colors.base08}; /* Red */
-        --base09: #${config.lib.stylix.colors.base09}; /* Orange */
-        --base0A: #${config.lib.stylix.colors.base0A}; /* Yellow */
-        --base0B: #${config.lib.stylix.colors.base0B}; /* Green */
-        --base0C: #${config.lib.stylix.colors.base0C}; /* Cyan */
-        --base0D: #${config.lib.stylix.colors.base0D}; /* Blue */
-        --base0E: #${config.lib.stylix.colors.base0E}; /* Purple */
-        --base0F: #${config.lib.stylix.colors.base0F}; /* Magenta */
+        --base00: #${base00}; /* Black */
+        --base01: #${base01}; /* Bright Black */
+        --base02: #${base02}; /* Grey */
+        --base03: #${base03}; /* Brighter Grey */
+        --base04: #${base04}; /* Bright Grey */
+        --base05: #${base05}; /* White */
+        --base06: #${base06}; /* Brighter White */
+        --base07: #${base07}; /* Bright White */
+        --base08: #${base08}; /* Red */
+        --base09: #${base09}; /* Orange */
+        --base0A: #${base0A}; /* Yellow */
+        --base0B: #${base0B}; /* Green */
+        --base0C: #${base0C}; /* Cyan */
+        --base0D: #${base0D}; /* Blue */
+        --base0E: #${base0E}; /* Purple */
+        --base0F: #${base0F}; /* Magenta */
 
         --primary-630: var(--base00); /* Autocomplete background */
         --primary-660: var(--base00); /* Search input background */
@@ -665,8 +696,8 @@
         --bg-overlay-2: var(--base00); /* These 2 are needed for proper threads coloring */
         --home-background: var(--base00);
         --background-primary: var(--base00);
-        --background-secondary: var(--base01);
-        --background-secondary-alt: var(--base01);
+        --background-secondary: var(--base00);
+        --background-secondary-alt: var(--base00);
         --channeltextarea-background: var(--base01);
         --background-tertiary: var(--base00);
         --background-accent: var(--base0E);

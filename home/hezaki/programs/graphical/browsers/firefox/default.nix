@@ -63,11 +63,9 @@
             # I don't care about Cookies
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
             # Youtube avatar fix (for russia)
-            "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
+            # "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
             # ClearURLs
             "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
-            # Youtube defender!
-            "{68885c67-3790-48ae-835a-609e6d60d22c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4341946/youtube_defender-1.9.2.xpi";
           };
         FirefoxHome = {
           Pocket = false;

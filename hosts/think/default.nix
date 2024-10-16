@@ -1,8 +1,8 @@
 { lib, pkgs, modulesPath, inputs, ... }:
 {
-  imports = [
-    "${inputs.nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
-    inputs.chaotic.nixosModules.default
+  imports = with inputs; [
+    "${nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
+    chaotic.nixosModules.default
     ./systemd
     ./enviroment/fonts
     ./enviroment/local
