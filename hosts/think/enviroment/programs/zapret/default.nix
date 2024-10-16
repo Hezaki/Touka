@@ -43,9 +43,8 @@ in {
           description = "spizjeno";
           wantedBy = [ "multi-user.target" ];
           requires = [ "network.target" ];
-
           serviceConfig = {
-            ExecStart = "${pkgs.zapret}/bin/nfqws --pidfile=/run/nfqws.pid --dpi-desync-fake-tls=/opt/zapret/files/fake/tls_clienthello_www_google_com.bin --dpi-desync-fooling=badseq --dpi-desync=fake --dpi-desync=disorder --dpi-desync=split --dpi-desync-ttl=1 --dpi-desync-repeats=6 --dpi-desync-autottl=3 --wssize 1:6 --dpi-desync-fake-tls=0x00000000 --dpi-desync-split-pos=1 --qnum=${toString cfg.qnum}";
+            ExecStart = "${pkgs.zapret}/bin/nfqws --pidfile=/run/nfqws.pid --wf-tcp=443 --wf-udp=443,50000-65535 --filter-udp=443 --hostlist='/etc/nixos/hosts/think/enviroment/programs/zapret/list.txt' --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-udplen-increment=10 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic='%BIN%quic_initial_www_google_com.bin' --new --filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic='%BIN%quic_initial_www_google_com.bin' --new --filter-tcp=443 --hostlist='/etc/nixos/hosts/think/enviroment/programs/zapret/list.txt' --dpi-desync=fake,split --dpi-desync-autottl=2 --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-fake-tls='%BIN%tls_clienthello_www_google_com.bin' --qnum=${toString cfg.qnum}";
             Type = "forking";
             PIDFile = "/run/nfqws.pid";
             ExecReload = "/bin/kill -HUP $MAINPID";

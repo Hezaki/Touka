@@ -47,8 +47,8 @@
       vim.loader.enable()
       vim.g.mapleader = ' ',
 
-      map("n", "<C-TAB>", ":bnext<CR>", { silent = true, noremap = true })
-      map("n", "<C-S-TAB>", ":bprev<CR>", { silent = true, noremap = true })
+      map("n", "<C-TAB>", ":bn<CR>", { silent = true, noremap = true })
+      map("n", "<C-S-TAB>", ":bp<CR>", { silent = true, noremap = true })
       map("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
       map("n", "<leader><space>", ":Telescope<CR>", { silent = true, noremap = true })
       map("n", "fg", ":Telescope live_grep<CR>", { silent = true, noremap = true })
@@ -59,6 +59,7 @@
       map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
       map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
       map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
+      map("n", "<leader>g", ":LazyGit<CR>", { silent = true, noremap = true })
 
       local kind_icons = {
         Text = " ",
@@ -390,6 +391,11 @@
             opts = {},
           },
           {
+            "kdheepak/lazygit.nvim",
+            event = "VeryLazy",
+            opts = {},
+          },
+          {
             "folke/zen-mode.nvim",
             event = "VeryLazy",
             opts = {
@@ -431,13 +437,6 @@
             'akinsho/org-bullets.nvim',
             event = 'VeryLazy',
             opts = {},
-          },
-          {
-            "preservim/vim-pencil",
-            event = 'VeryLazy',
-            init = function()
-              vim.g['pencil#wrapModeDefault'] = 'soft'
-            end,
           },
           {
             'norcalli/nvim-colorizer.lua',
@@ -597,21 +596,6 @@
                 join = "",
               },
             },
-          },
-          {
-            "oflisback/obsidian-bridge.nvim",
-            dependencies = { "nvim-telescope/telescope.nvim" },
-            config = function()
-              require("obsidian-bridge").setup({
-                obsidian_server_address = "https://localhost:27124",
-                scroll_sync = true
-              })
-            end,
-            event = {
-              "BufReadPre *.md",
-              "BufNewFile *.md",
-            },
-            lazy = true
           },
           {
             'RRethy/base16-nvim',

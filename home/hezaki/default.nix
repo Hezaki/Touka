@@ -11,10 +11,11 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "24.05";
     packages = with pkgs; [
-      config.nur.repos.ataraxiasjel.waydroid-script
-      monero-gui
       (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
+      config.nur.repos.ataraxiasjel.waydroid-script
       # cinny-desktop
+      lunar-client
+      xournalpp
       tectonic
       obsidian
       xdg-utils
@@ -43,22 +44,20 @@
     ];
   };
 
-  xdg = {
+  xdg = with config.home; {
     enable = true;
     userDirs = {
       enable = true;
       createDirectories = true;
-      download = "${config.home.homeDirectory}/Downloads";
-      documents = "${config.home.homeDirectory}/Documents";
-      videos = "${config.home.homeDirectory}/Media/Videos";
-      pictures = "${config.home.homeDirectory}/Media/Screenshots";
-      templates = null;
-      publicShare = null;
-      music = null;
+      templates = null; publicShare = null; music = null;
+      download = "${homeDirectory}/Downloads";
+      documents = "${homeDirectory}/Documents";
+      videos = "${homeDirectory}/Media/Videos";
+      pictures = "${homeDirectory}/Media/Screenshots";
       extraConfig = {
-        XDG_REPO_DIR = "${config.home.homeDirectory}/Downloads/Repositories";
-        XDG_PIC_DIR = "${config.home.homeDirectory}/Downloads/Pictures";
-        XDG_VID_DIR = "${config.home.homeDirectory}/Downloads/Videos";
+        XDG_REPO_DIR = "${homeDirectory}/Downloads/Repositories";
+        XDG_PIC_DIR = "${homeDirectory}/Downloads/Pictures";
+        XDG_VID_DIR = "${homeDirectory}/Downloads/Videos";
       };
     };
   };
@@ -66,7 +65,11 @@
   nixpkgs.config = {
     allowBroken = true;
     allowUnfree = true;
-    permittedInsecurePackages = [ "electron-28.3.1" ];
+    permittedInsecurePackages = [
+      "electron-28.3.1"
+      # "cinny-4.2.1"
+      # "cinny-unwrapped-4.2.1"
+    ];
     overlays = [ inputs.nur.overlay ];
   };
 

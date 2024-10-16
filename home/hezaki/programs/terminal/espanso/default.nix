@@ -15,15 +15,15 @@
             replace = "{{currenttime}}";
           }
           {
-            trigger = ":cbdots";
+            trigger = ":cb.d";
             replace = "https://codeberg.org/Hezaki/Touka/";
           }
           {
-            trigger = ":ghdots";
+            trigger = ":gh.d";
             replace = "https://github.com/Hezaki/Touka/";
           }
           {
-            trigger = ":gldots";
+            trigger = ":gl.d";
             replace = "https://gitlab.com/Hezaki/Touka/";
           }
           {
@@ -39,6 +39,38 @@
             replace = "https://youtube.com/";
           }
           {
+            trigger = ":ytm";
+            replace = "https://music.youtube.com/";
+          }
+          {
+            trigger = ":codeberg";
+            replace = "https://codeberg.org/";
+          }
+          {
+            trigger = ":github";
+            replace = "https://github.com/";
+          }
+          {
+            trigger = ":gitlab";
+            replace = "https://gitlab.com/";
+          }
+          {
+            trigger = ":nixpkgs";
+            replace = "https://github.com/NixOS/nixpkgs/";
+          }
+          {
+            trigger = ":reddit";
+            replace = "https://www.reddit.com/";
+          }
+          {
+            trigger = ":r/unixporn";
+            replace = "https://www.reddit.com/r/unixporn";
+          }
+          {
+            trigger = ":r/neovim";
+            replace = "https://www.reddit.com/r/neovim";
+          }
+          {
             trigger = ":rock";
             replace = "🗿";
           }
@@ -50,6 +82,54 @@
             trigger = ":lisp";
             replace = "💋";
           }
+          {
+            trigger = ":oops";
+            replace = "👉👈";
+          }
+          {
+            trigger = ":eye";
+            replace = "👀";
+          }
+          {
+            trigger = ":hmm";
+            replace = "🤨";
+          }
+          {
+            trigger = ":lyv";
+            replace = "😘";
+          }
+          {
+            trigger = ":cool";
+            replace = "😎";
+          }
+          {
+            trigger = ":cummunism";
+            replace = "☭";
+          }
+          {
+            trigger = ":copyright";
+            replace = "☭";
+          }
+          {
+            trigger = ":```";
+            replace = "```$|$```";
+          }
+          {
+            trigger = ":_-";
+            replace = "—";
+          }
+          {
+            trigger = '':"'';
+            replace = ''"$|$"'';
+          }
+          {
+            trigger = ":'";
+            replace = "'$|$'";
+          }
+          {
+            trigger = ":wallpaper";
+            image_path = "/etc/nixos/home/hezaki/themes/images/wp.png";
+          }
         ];
       };
       global_vars = {
@@ -57,7 +137,7 @@
           {
             name = "currentdate";
             type = "date";
-            params = {format = "%d/%m/%Y";};
+            params = {format = "%d.%m.%Y";};
           }
           {
             name = "currenttime";
