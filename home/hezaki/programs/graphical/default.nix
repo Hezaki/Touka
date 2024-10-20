@@ -14,5 +14,6 @@
     ./easyeffects
     ./valent
     ./games
+    ./obsidian
   ];
 }

@@ -133,7 +133,7 @@
       }
 
       window#waybar > box {
-        margin: 5px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
         background-color: #${config.lib.stylix.colors.base00};
         border-top: 0px;
         border-bottom: 0;

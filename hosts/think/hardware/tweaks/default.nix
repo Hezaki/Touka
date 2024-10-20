@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  hardware.system76.enableAll = true;
+  # hardware.system76.enableAll = true;
 
   services = {
     irqbalance.enable = true;

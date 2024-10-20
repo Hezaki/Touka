@@ -17,7 +17,9 @@
       lunar-client
       xournalpp
       tectonic
-      obsidian
+      (obsidian.override {
+        commandLineArgs = [ "--ozone-platform=wayland" ];
+      })
       xdg-utils
       tgpt
       microfetch

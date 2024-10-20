@@ -40,8 +40,13 @@
       emoji.package = pkgs.noto-fonts-emoji;
       sizes.terminal = 13;
     };
-    targets.vesktop.enable = false;
-    targets.neovim.enable = false;
+    targets = {
+      vesktop.enable = false;
+      neovim.enable = false;
+      gtk.extraCss = with config.lib.stylix.colors; ''
+        @define-color headerbar_bg_color #${base00};
+      '';
+    };
   };
 
   gtk = {
