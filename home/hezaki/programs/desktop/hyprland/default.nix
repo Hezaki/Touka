@@ -60,8 +60,8 @@
       }
 
       general {
-        gaps_in = 4
-        gaps_out = 10
+        gaps_in = 1
+        gaps_out = 0
         border_size = 2
         col.active_border = rgb(${base00})
         col.inactive_border = rgb(${base03})
@@ -98,7 +98,7 @@
       }
 
       decoration {
-        rounding = 2
+        rounding = 0
         drop_shadow = true
         shadow_range = 5
         shadow_render_power = 1

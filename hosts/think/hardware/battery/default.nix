@@ -16,7 +16,7 @@
   services = {
     thermald.enable = true;
     tlp = { 
-      enable = false;
+      enable = true;
       settings = {
         USB_AUTOSUSPEND=1;
         CPU_SCALING_GOVERNOR_ON_AC="performance";

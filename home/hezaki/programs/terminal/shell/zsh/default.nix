@@ -39,6 +39,7 @@
     ];
     shellAliases = {
       "cd" = "z";
+      "cdi" = "zi";
       "cat" = "bat";
       "tree" = "lsd --tree";
       "doas" = "doas ";

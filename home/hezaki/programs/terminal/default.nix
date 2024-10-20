@@ -17,5 +17,6 @@
     ./zoxide
     ./yt-dlp
     ./pandoc
+    ./lazygit
   ];
 }

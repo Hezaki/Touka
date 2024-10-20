@@ -7,7 +7,7 @@
     ./hyprland
     ./portals
     ./waybar
-    ./cliphist
+    # ./cliphist
     ./ags
   ];
 }
