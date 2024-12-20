@@ -5,7 +5,7 @@
   services = {
     irqbalance.enable = true;
     dbus.implementation = "broker";
-    system76-scheduler = { 
+    system76-scheduler = {
       enable = true;
       settings = {
         cfsProfiles.enable = true;

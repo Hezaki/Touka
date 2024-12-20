@@ -28,19 +28,43 @@
           }
           {
             trigger = ":nixs";
-            replace = "https://search.nixos.org/";
+            replace = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=";
           }
           {
             trigger = ":hms";
-            replace = "https://home-manager-options.extranix.com/";
+            replace = "https://home-manager-options.extranix.com/?query=$|$&release=master";
+          }
+          {
+            trigger = ":ali";
+            replace = "https://aliexpress.ru";
+          }
+          {
+            trigger = ":ozon";
+            replace = "https://ozon.ru/";
+          }
+          {
+            trigger = ":yat";
+            replace = "https://translate.yandex.com/";
+          }
+          {
+            trigger = ":notes";
+            replace = "https://codeberg.org/Hezaki/Notes";
+          }
+          {
+            trigger = ":gmail";
+            replace = "https://gmail.com/";
           }
           {
             trigger = ":yt";
-            replace = "https://youtube.com/";
+            replace = "https://www.youtube.com/results?search_query=";
           }
           {
-            trigger = ":ytm";
+            trigger = ":ym";
             replace = "https://music.youtube.com/";
+          }
+          {
+            trigger = ":ph";
+            replace = "https://pornhub.com/";
           }
           {
             trigger = ":codeberg";
@@ -103,19 +127,23 @@
             replace = "😎";
           }
           {
+            trigger = ":x";
+            replace = "❌";
+          }
+          {
             trigger = ":cummunism";
             replace = "☭";
           }
           {
             trigger = ":copyright";
-            replace = "☭";
+            replace = "©";
           }
           {
             trigger = ":```";
             replace = "```$|$```";
           }
           {
-            trigger = ":_-";
+            trigger = ":--";
             replace = "—";
           }
           {
@@ -137,12 +165,16 @@
           {
             name = "currentdate";
             type = "date";
-            params = {format = "%d.%m.%Y";};
+            params = {
+              format = "%d.%m.%Y";
+            };
           }
           {
             name = "currenttime";
             type = "date";
-            params = {format = "%R";};
+            params = {
+              format = "%R";
+            };
           }
         ];
       };

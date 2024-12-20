@@ -1,17 +1,17 @@
-{ pkgs, ... }: let
+{ pkgs, ... }:
+let
   user = "hezaki";
   passroot = "password";
   passuser = "password";
-in {
+in
+{
   users = {
     users = {
       ${user} = {
         isNormalUser = true;
         initialPassword = passuser;
         home = "/home/${user}";
-        extraGroups = [
-          "wheel"
-        ];
+        extraGroups = [ "wheel" ];
         shell = pkgs.zsh;
       };
 

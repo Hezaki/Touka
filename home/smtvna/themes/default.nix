@@ -1,8 +1,9 @@
-{ inputs,  ... }:{
+{ inputs, ... }:
+{
   imports = [
-    inputs.stylix.homeManagerModules.stylix 
+    inputs.stylix.homeManagerModules.stylix
   ];
-  stylix =  {
+  stylix = {
     autoEnable = true;
     image = ./images/walp.png;
     polarity = "dark";
@@ -14,4 +15,4 @@
       waybar.enable = true;
     };
   };
-} 
+}

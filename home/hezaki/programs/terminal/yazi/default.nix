@@ -15,12 +15,17 @@
     };
     theme = lib.mkForce {
       manager = {
-        border_style = { fg = "black"; };
+        border_style = {
+          fg = "black";
+        };
       };
     };
     keymap = {
       prepend_keymap = [
-        { run = "plugin --sync max-preview"; on = "L"; }
+        {
+          run = "plugin --sync max-preview";
+          on = "L";
+        }
       ];
     };
   };

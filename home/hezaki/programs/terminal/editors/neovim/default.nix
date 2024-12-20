@@ -1,4 +1,8 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   programs.neovim = {
     enable = true;
@@ -59,7 +63,7 @@
       map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
       map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
       map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
-      map("n", "<leader>g", ":LazyGit<CR>", { silent = true, noremap = true })
+      map("n", "<leader>f", vim.lsp.buf.format, { silent = true, noremap = true })
 
       local kind_icons = {
         Text = " ",
@@ -175,7 +179,7 @@
           string.format("  %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
           "%#StatusActive#",
           " %{expand('%:p:h')} ",
-	        branch(),
+          branch(),
           "%=",
           color(),
           " %l:%c  ",
@@ -340,13 +344,8 @@
             'nvim-treesitter/nvim-treesitter',
             event = 'VeryLazy',
             opts = {
-              ensure_installed = {
-                "all",
-              },
-              highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = {'org'},
-              },
+              highlight = { enable = true },
+              indent = { enable = true },
             },
           },
           {
@@ -387,11 +386,6 @@
           },
           {
             "mikavilpas/yazi.nvim",
-            event = "VeryLazy",
-            opts = {},
-          },
-          {
-            "kdheepak/lazygit.nvim",
             event = "VeryLazy",
             opts = {},
           },
@@ -546,10 +540,10 @@
                     },
                     options = {
                       nixos = {
-                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+                        expr = '(builtins.getFlake ("/etc/nixos/flake.nix")).nixosConfigurations.think.options',
                       },
                       home_manager = {
-                        expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ruixi@k-on".options',
+                        expr = '(builtins.getFlake ("/etc/nixos/flake.nix")).homeConfigurations."hezaki".options',
                       },
                     },
                   },

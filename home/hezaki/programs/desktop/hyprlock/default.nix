@@ -1,9 +1,10 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   programs.hyprlock = with config.lib.stylix.colors; {
     enable = true;
     settings = {
-      background = {
+      background = lib.mkForce {
+        monitor = "";
         path = "screenshot";
         blur_passes = 3;
         blur_size = 3;
@@ -14,8 +15,9 @@
         vibrancy_darkness = 0.0;
       };
 
-      input-field = [
+      input-field = lib.mkForce [
         {
+          monitor = "";
           size = "150, 50";
           outline_thickness = 0;
           dots_size = 0.2;

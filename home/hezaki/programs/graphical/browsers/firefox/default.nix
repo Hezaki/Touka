@@ -19,10 +19,12 @@
         ManualAppUpdateOnly = true;
         Homepage.Startpage = "previous-session";
         SearchEngines = {
-          Add = [{
-            Name = "4get";
-            URLTemplate = "https://4get.cn/web?s=";
-          }];
+          Add = [
+            {
+              Name = "4get";
+              URLTemplate = "https://4get.cn/web?s=";
+            }
+          ];
           Default = "4get";
           Remove = [
             "Google"
@@ -34,14 +36,11 @@
             "Wikipedia"
           ];
         };
-        ExtensionSettings = let
-          mkForceInstalled =
-            builtins.mapAttrs
-            (name: cfg: {installation_mode = "force_installed";} // cfg);
-        in
+        ExtensionSettings =
+          let
+            mkForceInstalled = builtins.mapAttrs (name: cfg: { installation_mode = "force_installed"; } // cfg);
+          in
           mkForceInstalled {
-            # Theme
-            "{0a2d1098-69a9-4e98-a62c-a861766ac24d}".install_url = "https://github.com/catppuccin/firefox/releases/download/old/catppuccin_mocha_lavender.xpi";
             # Dark Reader
             "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             # Ublock Origin
@@ -62,8 +61,6 @@
             "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4189577/search_by_image-6.1.0.xpi";
             # I don't care about Cookies
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
-            # Youtube avatar fix (for russia)
-            # "{f53e8036-6cf3-4330-ad53-0f8835230e2c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4147535/youtube_fix_avatar-1.0.1.xpi";
             # ClearURLs
             "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
           };
@@ -95,7 +92,7 @@
           "media.memory_cache_max_size" = 65536;
           "media.cache_readahead_limit" = 7200;
           "media.cache_resume_threshold" = 3600;
-          "image.mem.decode_bytes_at_a_time" = 32768; 
+          "image.mem.decode_bytes_at_a_time" = 32768;
           "network.http.max-connections" = 1800;
           "network.http.max-persistent-connections-per-server" = 10;
           "network.http.max-urgent-start-excessive-connections-per-host" = 5;
@@ -107,9 +104,9 @@
           "network.prefetch-next" = false;
           "network.predictor.enabled" = false;
           "network.predictor.enable-prefetch" = false;
-          "layout.css.grid-template-masonry-value.enabled" =true;
+          "layout.css.grid-template-masonry-value.enabled" = true;
           "dom.enable_web_task_scheduling" = true;
-          "dom.security.sanitizer.enabled" =true;
+          "dom.security.sanitizer.enabled" = true;
 
           # securefox
           "browser.contentblocking.category" = "strict";
@@ -184,7 +181,7 @@
           "captivedetect.canonicalURL" = "";
           "network.captive-portal-service.enabled" = false;
           "network.connectivity-service.enabled" = false;
-          
+
           # peskyfox
           "browser.privatebrowsing.vpnpromourl" = "";
           "extensions.getAddons.showPane" = false;
@@ -446,6 +443,8 @@
           "privacy.resistFingerprinting.letterboxing" = true;
           "privacy.window.maxInnerWidth" = 1600;
           "privacy.window.maxInnerHeight" = 900;
+          "sidebar.revamp" = true;
+          "sidebar.verticalTabs" = true;
         };
       };
     })
@@ -457,71 +456,50 @@
         font-size: 12pt !important;
       }
 
-      #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-        display: none;
+      .tab-background {
+        border-radius: 18px !important;
+        max-height: 24px !important;
+        min-height: 24px !important;
+      } 
+
+      #tabbrowser-tabs {
+        border-inline-start: none !important;
+        max-height: 32px !important;
+        min-height: 32px !important;  
       }
 
-      #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) { visibility: collapse !important; }
-      #back-button { display: none; }
-      #forward-button { display: none; }
-      #reload-button { display: none; }
-      #stop-button { display: none; }
-      #home-button { display: none; }
-      #downloads-button { display: none; }
-      #library-button { display: none; }
-      #identity-box { display: none; }
-      #pageActionButton { display: none; }
-      #pocket-button { display: none; }
-      #urlbar-zoom-button { display: none; }
-      #tracking-protection-icon-container { display: none !important; }
-      #reader-mode-button{ display: none !important; }
-      #star-button { display: none; }
-      #star-button-box { display: none; }
-      #urlbar-go-button { display: none; }
-      #userContext-label, #userContext-indicator { display: none !important;}
-      #fxa-toolbar-menu-button { display: none; }
-      #nav-bar-overflow-button { display: none !important; }
-      #PanelUI-button { display: none; }
-      #customizableui-special-spring1,
-      #customizableui-special-spring2 { display: none; }
-    '';
-    ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text = with config.lib.stylix.colors; ''
-      * {
+      #firefox-view-button, #alltabs-button,
+      #tabs-newtab-button, .titlebar-close,
+      .tab-close-button, .titlebar-spacer {
+        display: none !important;
       }
-      @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
-        :root {
+
+      #nav-bar { visibility: collapse !important; }
+    '';
+    ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text =
+      with config.lib.stylix.colors; ''
+        * {}
+        @-moz-document url-prefix("about:"), url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
+          :root {
             --in-content-page-background: #${base00} !important;
             --logo-and-wordmark{ display: none !important; }
+          }
         }
-      }
 
-      @-moz-document url-prefix(about:home), url-prefix(about:newtab){
-        body[lwt-newtab-brighttext] {
+        @-moz-document url-prefix(about:home), url-prefix(about:newtab){
+          body[lwt-newtab-brighttext] {
             --newtab-background-color: #${base00} !important;
             --newtab-background-color-secondary: #${base00} !important;
+          }
 
-        }
-
-        .top-site-outer .top-site-icon {
+          .top-site-outer .top-site-icon,
+          .top-site-outer .tile,
+          .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover),
+          .top-site-outer .context-menu-button:is(:active, :focus),
+          .search-wrapper .search-handoff-button {
             background-color: #${base00} !important;
+          }
         }
-
-        .top-site-outer .tile {
-            background-color: #${base00} !important;
-        }
-
-        .top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
-            background: #${base00} !important;
-        }
-
-        .top-site-outer .context-menu-button:is(:active, :focus) {
-            background-color: #${base00} !important;
-        }
-
-        .search-wrapper .search-handoff-button {
-            background-color: #${base00} !important;
-        }
-      }
-    '';
+      '';
   };
 }

@@ -1,4 +1,10 @@
-{ pkgs, inputs, config, ... }:
+{
+  pkgs,
+  pkgsStable,
+  inputs,
+  config,
+  ...
+}:
 {
   imports = [
     inputs.stylix.homeManagerModules.stylix
@@ -9,32 +15,37 @@
     image = ./images/wp.png;
     polarity = "dark";
     base16Scheme = {
-      base00 = "#151515";
-      base01 = "#1F1F1F";
-      base02 = "#2E2E2E";
-      base03 = "#424242";
-      base04 = "#BBB6B6";
-      base05 = "#E8E3E3";
-      base06 = "#E8E3E3";
-      base07 = "#E8E3E3";
-      base08 = "#B66467";
-      base09 = "#D9BC8C";
-      base0A = "#D9BC8C";
-      base0B = "#8C977D";
-      base0C = "#8AA6A2";
-      base0D = "#8DA3B9";
-      base0E = "#A988B0";
-      base0F = "#BBB6B6";
+      base00 = "#16161a";
+      base01 = "#212126";
+      base02 = "#2a2a30";
+      base03 = "#373740";
+      base04 = "#676778";
+      base05 = "#e9ecf2";
+      base06 = "#e9ecf2";
+      base07 = "#e9ecf2";
+      base08 = "#f25c5c";
+      base09 = "#ff9c6a";
+      base0A = "#ff9c6a";
+      base0B = "#55b682";
+      base0C = "#7aaaff";
+      base0D = "#f17ac6";
+      base0E = "#B87AFF";
+      base0F = "#9595ab";
     };
+
     cursor = {
-      name = "GoogleDot-White";
-      package = pkgs.google-cursor;
+      name = "GoogleDot-Custom";
+      package = inputs.nix-cursors.packages.${pkgs.system}.google-cursor.override {
+        background_color = "#${config.lib.stylix.colors.base03}";
+        outline_color = "#${config.lib.stylix.colors.base06}";
+        accent_color = "#${config.lib.stylix.colors.base03}";
+      };
       size = 21;
     };
     fonts = {
       serif = {
         name = "JetBrainsMono NerdFont";
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgsStable.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
       };
       monospace = config.stylix.fonts.serif;
       emoji.package = pkgs.noto-fonts-emoji;
@@ -45,6 +56,7 @@
       neovim.enable = false;
       gtk.extraCss = with config.lib.stylix.colors; ''
         @define-color headerbar_bg_color #${base00};
+        @define-color sidebar_bg_color #${base00};
       '';
     };
   };

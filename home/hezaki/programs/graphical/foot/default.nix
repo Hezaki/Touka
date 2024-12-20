@@ -8,7 +8,7 @@
         title = "Terminal";
       };
       tweak = {
-      	font-monospace-warn = "no";
+        font-monospace-warn = "no";
       };
     };
   };

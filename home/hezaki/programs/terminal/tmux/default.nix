@@ -1,5 +1,10 @@
-{ inputs, config, pkgs, ... }:
-let 
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
+let
   tilish = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tilish";
     version = "fake";
@@ -14,7 +19,7 @@ in
 {
   programs.tmux = {
     enable = true;
-    plugins = [ 
+    plugins = [
       {
         plugin = tilish;
         extraConfig = "set -g @tilish-default 'main-vertical'";
@@ -29,7 +34,7 @@ in
     prefix = "C-a";
     clock24 = true;
     escapeTime = 0;
-    baseIndex = 1; 
+    baseIndex = 1;
     historyLimit = 5000;
     keyMode = "vi";
     sensibleOnTop = true;
@@ -60,16 +65,16 @@ in
       set -g @mode_indicator_copy_prompt " COPY "
       set -g @mode_indicator_sync_prompt " SYNC "
       set -g @mode_indicator_empty_prompt " TMUX "
-      
+
       set -g pane-border-style "fg=#${config.lib.stylix.colors.base02}"
       set -g pane-active-border-style "fg=#${config.lib.stylix.colors.base02}"
-      set -g mode-style "bg=color0 fg=yellow" 
-      set -g status-style bg=color0
+      set -g mode-style "bg=#${config.lib.stylix.colors.base00} fg=yellow" 
+      set -g status-style bg=#${config.lib.stylix.colors.base00}
 
-      set -g @mode_indicator_prefix_mode_style 'bg=color,fg=color13'
-      set -g @mode_indicator_copy_mode_style 'bg=color,fg=color3'
-      set -g @mode_indicator_sync_mode_style 'bg=color,fg=color14'
-      set -g @mode_indicator_empty_mode_style 'bg=color,fg=color4'
+      set -g @mode_indicator_prefix_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color13'
+      set -g @mode_indicator_copy_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color3'
+      set -g @mode_indicator_sync_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color14'
+      set -g @mode_indicator_empty_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color4'
     '';
   };
 }

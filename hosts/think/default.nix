@@ -1,4 +1,10 @@
-{ lib, pkgs, modulesPath, inputs, ... }:
+{
+  lib,
+  pkgsLock,
+  modulesPath,
+  inputs,
+  ...
+}:
 {
   imports = with inputs; [
     "${nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
@@ -45,8 +51,8 @@
         "usb_storage"
       ];
     };
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ 
+    kernelPackages = pkgsLock.linuxPackages_xanmod_stable;
+    kernelParams = [
       "quiet"
       "page_alloc.shuffle=1"
       "threadirqs"
@@ -56,13 +62,11 @@
     kernelModules = [
       "kvm-amd"
     ];
-    extraModulePackages = [ ];
     consoleLogLevel = 0;
     initrd.verbose = false;
     tmp.cleanOnBoot = true;
   };
 
-  chaotic.nyx.cache.enable = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "24.11";
 }

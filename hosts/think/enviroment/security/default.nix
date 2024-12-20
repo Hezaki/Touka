@@ -1,13 +1,23 @@
+{ pkgs, ... }:
 {
   security = {
-    doas = {
+    sudo-rs = {
       enable = true;
-      extraConfig = ''
-        permit persist keepenv :wheel
-        permit nopass hezaki as root cmd light
-        permit nopass hezaki as root cmd tee
-      '';
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          commands = [
+            {
+              command = "${pkgs.light}/bin/light";
+              options = [ "NOPASSWD" ];
+            }
+            # {
+            #   command = "tee";
+            #   options = [ "NOPASSWD" ];
+            # }
+          ];
+        }
+      ];
     };
-    sudo.enable = true;
   };
 }
