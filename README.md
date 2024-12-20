@@ -29,7 +29,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
    - Wayland compositor — [Hyprland](https://hyprland.org)
    - Bar — [Waybar](https://github.com/Alexays/Waybar)
    - Browser — [Firefox](https://www.mozilla.org)
-   - Terminal — 
+   - Terminal — [Kitty](https://sw.kovidgoyal.net/kitty/)
    - Editor — [Neovim](https://neovim.io)
    - Shell —  [Zsh](https://www.zsh.org/)
    - Notifications — [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter)
