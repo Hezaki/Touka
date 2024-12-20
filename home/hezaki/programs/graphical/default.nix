@@ -2,16 +2,17 @@
   imports = [
     ./mpv
     ./foot
+    ./kitty
     ./zathura
     ./browsers
     ./vesktop
     ./telegram
     ./blockbench
     ./prismlauncher
-    # ./youtube-music
+    ./youtube-music
     ./mangohud
     ./obs-studio
-    ./easyeffects
+    ./audio
     ./valent
     ./games
     ./obsidian

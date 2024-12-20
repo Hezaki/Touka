@@ -1,4 +1,9 @@
-{ inputs, pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [ inputs.anyrun.homeManagerModules.default ];
   programs.anyrun = {
@@ -21,7 +26,9 @@
       hideIcons = false;
       layer = "overlay";
       maxEntries = 6;
-      width = { fraction = 0.220000; };
+      width = {
+        fraction = 0.220000;
+      };
     };
 
     extraConfigFiles = {

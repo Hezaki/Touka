@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   home = {
     username = "samatovna";
     homeDirectory = "/home/samatovna";
@@ -33,7 +34,10 @@
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
   imports = [

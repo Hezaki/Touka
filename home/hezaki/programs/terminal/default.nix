@@ -2,7 +2,7 @@
   imports = [
     ./fd
     ./bat
-    ./cava
+    # ./cava
     ./editors
     ./fastfetch
     ./git

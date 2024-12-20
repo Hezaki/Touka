@@ -12,8 +12,8 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-      	amdvlk
-      	libvdpau-va-gl
+        amdvlk
+        libvdpau-va-gl
         vaapiVdpau
         libdrm
       ];

@@ -6,7 +6,7 @@
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/1411-E386"; 
+      device = "/dev/disk/by-uuid/1411-E386";
       fsType = "vfat";
     };
   };
@@ -15,5 +15,5 @@
     enable = true;
     memoryPercent = 50;
     algorithm = "lz4";
-  }; 
+  };
 }

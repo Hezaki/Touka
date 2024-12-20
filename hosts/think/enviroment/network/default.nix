@@ -3,7 +3,7 @@
     hostName = "think";
     networkmanager = {
       enable = true;
-      insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
+      insertNameservers = [ "8.8.8.8" ];
     };
     dhcpcd = {
       wait = "background";
@@ -11,12 +11,18 @@
     };
     firewall = {
       enable = true;
-      allowedTCPPortRanges = [ 
-        { from = 1714; to = 1764; }
-      ];  
-      allowedUDPPortRanges = [ 
-        { from = 1714; to = 1764; }
-      ];  
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
     };
   };
 }

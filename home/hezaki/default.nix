@@ -1,7 +1,12 @@
-{ pkgs, inputs, config, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   imports = [
-    inputs.nur.nixosModules.nur
+    inputs.nur.modules.homeManager.default
     ./programs
     ./themes
   ];
@@ -9,21 +14,18 @@
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     packages = with pkgs; [
+      nix-init
+      gnome-weather
+      amneziawg-go
+      amneziawg-tools
       (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
-      config.nur.repos.ataraxiasjel.waydroid-script
-      # cinny-desktop
-      lunar-client
       xournalpp
-      tectonic
-      (obsidian.override {
-        commandLineArgs = [ "--ozone-platform=wayland" ];
-      })
+      (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
       xdg-utils
       tgpt
       microfetch
-      boxes
       gdb
       duf
       lsix
@@ -32,12 +34,12 @@
       zenity
       swaybg
       scrcpy
+      inputs.chaotic.packages.${system}.proton-ge-custom
       lutgen
       lutris
       swayimg
       onefetch
       libnotify
-      ueberzugpp
       libreoffice
       glfw-wayland
       appimage-run
@@ -51,7 +53,9 @@
     userDirs = {
       enable = true;
       createDirectories = true;
-      templates = null; publicShare = null; music = null;
+      templates = null;
+      publicShare = null;
+      music = null;
       download = "${homeDirectory}/Downloads";
       documents = "${homeDirectory}/Documents";
       videos = "${homeDirectory}/Media/Videos";
@@ -69,19 +73,22 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-28.3.1"
-      # "cinny-4.2.1"
-      # "cinny-unwrapped-4.2.1"
+      "cinny-4.2.1"
+      "cinny-unwrapped-4.2.1"
     ];
     overlays = [ inputs.nur.overlay ];
   };
 
   nix = {
     package = pkgs.nix;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 }

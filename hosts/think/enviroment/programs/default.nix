@@ -1,18 +1,20 @@
-{ pkgs, inputs, pkgsStable, ... }:{
-  imports = with inputs; [ 
+{ pkgs, inputs, ... }:
+{
+  imports = with inputs; [
     nix-ld.nixosModules.nix-ld
-    ./k3s
+    # ./k3s
     ./nh
-    ./zapret
   ];
 
   environment = {
     enableDebugInfo = true;
     systemPackages = with pkgs; [
       nix-tree
-      pkgsStable.fastfetch
+      fastfetch
       vim
       wget
+      virtiofsd
+      clamav
     ];
   };
 
@@ -25,8 +27,9 @@
 
   virtualisation = {
     podman.enable = true;
-    # libvirtd.enable = true;
+    libvirtd.enable = true;
     waydroid.enable = true;
+    spiceUSBRedirection.enable = true;
   };
 
   programs = {
@@ -36,6 +39,7 @@
     gamescope.enable = true;
     light.enable = true;
     gamemode.enable = true;
+    virt-manager.enable = true;
     steam = {
       enable = true;
       package = pkgs.steam;

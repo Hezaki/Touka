@@ -1,7 +1,7 @@
 {
   programs.git = {
     enable = true;
-    userName  = "hezaki";
+    userName = "hezaki";
     userEmail = "email";
     difftastic.enable = true;
     extraConfig = {
@@ -10,7 +10,7 @@
       safe.directory = "/etc/nixos";
     };
     aliases = {
-      s = "status";
+      st = "status";
       c = "commit";
       clown = "clone";
     };

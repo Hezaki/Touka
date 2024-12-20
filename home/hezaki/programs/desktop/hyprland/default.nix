@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 {
-  imports = [ 
+  imports = [
     ./rules.nix
     ./binds.nix
     ./autostart.nix
@@ -10,17 +10,18 @@
   home.packages = with pkgs; [
     grimblast
     satty
-    wl-clipboard 
+    wl-clipboard
     wl-screenrec
     hyprpicker
     cliphist
+    hyprshade
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
     extraConfig = with config.lib.stylix.colors; ''
-      monitor=,highres,auto,1
+      monitor=eDP-1,1920x1080,0x0,1
 
       source = ./autostart.conf
       source = ./plugins.conf
@@ -45,7 +46,7 @@
         sensitivity = 0.0
         repeat_rate = 50
         repeat_delay = 500
-        force_no_accel = true
+        force_no_accel = true 
         touchpad {
           natural_scroll = false
           disable_while_typing = false
@@ -56,16 +57,22 @@
 
       device {
         name = tpps/2-elan-trackpoint
-        accel_profile = flat
+        accel_profile = custom 200 1 -0.1
+        scroll_points = 0.2 0.0 0.5 1 1.2 1.5
+      }
+
+      device {
+        name = synps/2-synaptics-touchpad
+        sensitivity = 0.7
       }
 
       general {
-        gaps_in = 1
-        gaps_out = 0
+        gaps_in = 2
+        gaps_out = 4
         border_size = 2
         col.active_border = rgb(${base00})
         col.inactive_border = rgb(${base03})
-        layout = master
+        layout = master 
       }
 
       misc { 
@@ -98,17 +105,22 @@
       }
 
       decoration {
-        rounding = 0
-        drop_shadow = true
-        shadow_range = 5
-        shadow_render_power = 1
-        col.shadow = rgb(1C1D1D)
+        rounding = 6
         blur {
           enabled = false
           new_optimizations = true
         }
-        # screen_shader = ~/flux.glsl.mustache
+        screen_shader = $XDG_CONFIG_HOME/hypr/shaders/shader.glsl
       }
+
+      shadow {
+        enabled = true
+        range = 5
+        render_power = 1
+        color = rgb(1C1D1D)
+      }
+
+      debug:suppress_errors = true
 
       animations {
         enabled = true

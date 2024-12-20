@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.chromium;
     commandLineArgs = [
-       "--start-fullscreen"
+      "--start-fullscreen"
     ];
     extensions = [
       {

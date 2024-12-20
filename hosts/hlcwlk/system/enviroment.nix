@@ -1,11 +1,13 @@
-{ pkgs, inputs, ... }: let
+{ pkgs, inputs, ... }:
+let
   user = "samatovna";
   host = "hlcwlk";
   passroot = "password";
   passuser = "password";
-in {
-  imports = [ 
-    inputs.home-manager.nixosModules.home-manager 
+in
+{
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   environment.systemPackages = with pkgs; [
@@ -28,7 +30,10 @@ in {
     hostName = host;
     networkmanager = {
       enable = true;
-      insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
+      insertNameservers = [
+        "1.1.1.1"
+        "1.0.0.1"
+      ];
     };
     dhcpcd = {
       wait = "background";
@@ -36,12 +41,18 @@ in {
     };
     firewall = {
       enable = true;
-      allowedTCPPortRanges = [ 
-        { from = 1714; to = 1764; }
-      ];  
-      allowedUDPPortRanges = [ 
-        { from = 1714; to = 1764; }
-      ];  
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
     };
   };
 
@@ -99,7 +110,9 @@ in {
   time.timeZone = "Europe/Samara";
   i18n = {
     defaultLocale = "ru_RU.UTF-8";
-    extraLocaleSettings = { LANG = "en_US.UTF-8"; };
+    extraLocaleSettings = {
+      LANG = "en_US.UTF-8";
+    };
   };
 
   fonts.packages = with pkgs; [
@@ -119,7 +132,10 @@ in {
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 }

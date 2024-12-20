@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     (wrapFirefox firefox-unwrapped {
       extraPolicies = {
@@ -39,11 +40,10 @@
           ];
         };
 
-        ExtensionSettings = let
-          mkForceInstalled =
-            builtins.mapAttrs
-            (name: cfg: {installation_mode = "force_installed";} // cfg);
-        in
+        ExtensionSettings =
+          let
+            mkForceInstalled = builtins.mapAttrs (name: cfg: { installation_mode = "force_installed"; } // cfg);
+          in
           mkForceInstalled {
             # Theme
             "{0a2d1098-69a9-4e98-a62c-a861766ac24d}".install_url = "https://github.com/catppuccin/firefox/releases/download/old/catppuccin_mocha_lavender.xpi";

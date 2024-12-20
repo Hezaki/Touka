@@ -3,15 +3,16 @@
   programs.emacs = {
     enable = true;
     package = pkgs.emacs29-pgtk;
-    extraPackages = epkgs: with epkgs; [
-      evil
-      smartparens
-      org
-      org-bullets
-      org-modern
-      org-roam
-      org-roam-ui
-    ];
+    extraPackages =
+      epkgs: with epkgs; [
+        evil
+        smartparens
+        org
+        org-bullets
+        org-modern
+        org-roam
+        org-roam-ui
+      ];
     extraConfig = ''
       ;; Font
       (set-frame-font "JetBrainsMono NF 13" nil t)
@@ -32,7 +33,7 @@
         scroll-conservatively 10000
         next-screen-context-lines 5
         line-move-visual nil)
-      
+
       ;; Evil
       (evil-mode t)
 
@@ -246,7 +247,7 @@
     #   (setq corfu-auto t
     #       corfu-cycle t
     #         corfu-auto-delay 0
-    #         corfu-auto-prefix 1 
+    #         corfu-auto-prefix 1
     #         tab-always-indent 'complete)
     #
     #   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)

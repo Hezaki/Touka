@@ -1,11 +1,11 @@
 {
-  lib
-, pkgs 
-, fetchPypi
-, python3Packages
+  lib,
+  pkgs,
+  fetchPypi,
+  python3Packages,
 }:
 
-python3Packages.buildPythonApplication rec{
+python3Packages.buildPythonApplication rec {
 
   pname = "ani-cli-ru";
   version = "5.0.12";

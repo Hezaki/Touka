@@ -1,5 +1,10 @@
-{ pkgs, inputs, config, ... }:
-{ 
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
+{
   programs.zsh = {
     enable = true;
     profileExtra = ''
@@ -38,6 +43,7 @@
       }
     ];
     shellAliases = {
+      "l" = "ls -l";
       "cd" = "z";
       "cdi" = "zi";
       "cat" = "bat";
@@ -57,15 +63,14 @@
       ":q" = "exit";
       ":wq" = "exit";
       "mpv" = "mpv --loop";
+      "fb" = "fastboot";
     };
-    initExtra = /*zsh*/ ''
+    initExtra = with config.lib.stylix.colors; ''
       export EDITOR='nvim'
       export AUTO_NOTIFY_THRESHOLD=60
       export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
-      export PURE_PROMPT_SYMBOL=""
-      export PURE_PROMPT_VICMD_SYMBOL=""
 
       bindkey -v
       bindkey '^H' vi-backward-kill-word
@@ -74,7 +79,15 @@
       bindkey '^[[1;5D' vi-backward-word
       bindkey '^f' beginning-of-line
 
-      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.lib.stylix.colors.base03}"
+      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${base03}"
+
+      export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
+      export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+      export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+      export FZF_DEFAULT_OPTS="--height 50% --layout=default --border --color=fg+:#${base02}"
+      export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
+      export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | head -200'"
+      export FZF_TMUX_OPTS=" -p90%,70% "  
 
       _fix_cursor() {
          echo -ne "\033[4 q"

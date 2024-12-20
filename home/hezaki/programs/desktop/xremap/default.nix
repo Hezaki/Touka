@@ -13,7 +13,7 @@
           name = "firefox";
           remap = {
             super-y = {
-              launch = ["firefox"];
+              launch = [ "firefox" ];
             };
           };
         }

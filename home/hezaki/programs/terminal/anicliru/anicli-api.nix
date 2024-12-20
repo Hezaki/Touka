@@ -1,11 +1,11 @@
 {
-  lib
-, fetchPypi
-, python3Packages
-, python3
+  lib,
+  fetchPypi,
+  python3Packages,
+  python3,
 }:
 
-python3Packages.buildPythonApplication rec{
+python3Packages.buildPythonApplication rec {
 
   pname = "anicli_api";
   version = "0.6.5";
@@ -22,7 +22,7 @@ python3Packages.buildPythonApplication rec{
   ];
 
   dependencies = with python3Packages; [
-    (python3.withPackages(ps: with ps; [ httpx ] ++ httpx.optional-dependencies.http2 ))
+    (python3.withPackages (ps: with ps; [ httpx ] ++ httpx.optional-dependencies.http2))
     attrs
     parsel
     tqdm
