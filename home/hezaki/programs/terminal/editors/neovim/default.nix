@@ -51,8 +51,8 @@
       vim.loader.enable()
       vim.g.mapleader = ' ',
 
-      map("n", "<C-TAB>", ":bn<CR>", { silent = true, noremap = true })
-      map("n", "<C-S-TAB>", ":bp<CR>", { silent = true, noremap = true })
+      map("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true })
+      map("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
       map("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
       map("n", "<leader><space>", ":Telescope<CR>", { silent = true, noremap = true })
       map("n", "fg", ":Telescope live_grep<CR>", { silent = true, noremap = true })
@@ -344,8 +344,22 @@
             'nvim-treesitter/nvim-treesitter',
             event = 'VeryLazy',
             opts = {
-              highlight = { enable = true },
-              indent = { enable = true },
+              ensure_installed = { "nix" },
+              sync_install = false,
+              auto_install = true,
+              ignore_install = { "javascript" },
+              highlight = {
+                enable = true,
+                disable = { "c", "rust" },
+                disable = function(lang, buf)
+                    local max_filesize = 100 * 1024 -- 100 KB
+                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                    if ok and stats and stats.size > max_filesize then
+                        return true
+                    end
+                end,
+                additional_vim_regex_highlighting = false,
+              },
             },
           },
           {
@@ -550,10 +564,6 @@
                 },
               }
               require'lspconfig'.lua_ls.setup {
-                on_attach = on_attach,
-                flags = lsp_flags,
-              }
-              require'lspconfig'.biome.setup {
                 on_attach = on_attach,
                 flags = lsp_flags,
               }

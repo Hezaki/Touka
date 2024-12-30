@@ -22,13 +22,13 @@
         src = zsh-autosuggestions;
       }
       {
-        name = "zsh-history-substring-search";
-        file = "zsh-history-substring-search.plugin.zsh";
+        name = "zsh-syntax-highlighting";
+        file = "zsh-syntax-highlighting.plugin.zsh";
         src = zsh-syntax-highlighting;
       }
       {
-        name = "zsh-syntax-highlighting";
-        file = "zsh-syntax-highlighting.plugin.zsh";
+        name = "zsh-history-substring-search";
+        file = "zsh-history-substring-search.plugin.zsh";
         src = zsh-syntax-highlighting;
       }
       {
@@ -66,11 +66,15 @@
       "fb" = "fastboot";
     };
     initExtra = with config.lib.stylix.colors; ''
+      setopt automenu
+      setopt nobeep
+
       export EDITOR='nvim'
       export AUTO_NOTIFY_THRESHOLD=60
       export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
+
 
       bindkey -v
       bindkey '^H' vi-backward-kill-word
@@ -88,6 +92,20 @@
       export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
       export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | head -200'"
       export FZF_TMUX_OPTS=" -p90%,70% "  
+
+      zstyle ":completion:*" menu no
+      zstyle ":fzf-tab:*" fzf-flags \
+        -e \
+        -i \
+        --algo=v1 \
+        --no-mouse \
+        -m \
+        --height=20 \
+        --reverse \
+        --no-scrollbar \
+        --pointer=">"
+      zstyle ":fzf-tab:*" fzf-bindings "space:accept"
+      zstyle ":fzf-tab:*" accept-line enter
 
       _fix_cursor() {
          echo -ne "\033[4 q"

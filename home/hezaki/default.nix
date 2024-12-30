@@ -17,6 +17,7 @@
     stateVersion = "24.11";
     packages = with pkgs; [
       nix-init
+      badlion-client
       gnome-weather
       amneziawg-go
       amneziawg-tools
