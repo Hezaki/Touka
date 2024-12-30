@@ -68,7 +68,7 @@
 
       general {
         gaps_in = 2
-        gaps_out = 4
+        gaps_out = 6
         border_size = 2
         col.active_border = rgb(${base00})
         col.inactive_border = rgb(${base03})

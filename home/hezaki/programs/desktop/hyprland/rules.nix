@@ -22,6 +22,5 @@
     windowrule = workspace 8, blender
     windowrule = workspace 8, Blockbench
     windowrule = workspace 9, transmission-gtk
-    windowrule = workspace 10, obsidian
   '';
 }

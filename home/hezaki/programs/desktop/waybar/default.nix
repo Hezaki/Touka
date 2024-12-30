@@ -1,13 +1,56 @@
 { pkgs, config, ... }:
+let
+  wifiBin = pkgs.writeShellScriptBin "wifi" ''
+    quality=$(iwconfig 2> /dev/null | awk '
+      /Link Quality/ {
+        split($0, a, "=")
+        split(a[2], b, "/")
+        current_link_quality = b[1]
+        max_link_quality = b[2]
+        link_quality_percent = (current_link_quality / max_link_quality) * 100
+        printf("%d\n", int(link_quality_percent + 0.5))
+      }
+    ')
+
+    if (( "$quality" >= 0 && "$quality" < 20 )); then
+      echo ${./assets/wifi0.png}
+    elif (( "$quality" >= 20 && "$quality" < 40 )); then
+      echo ${./assets/wifi1.png}
+    elif (( "$quality" >= 40 && "$quality" < 60 )); then
+      echo ${./assets/wifi2.png}
+    elif (( "$quality" >= 60 && "$quality" < 80 )); then
+      echo ${./assets/wifi3.png}
+    elif (( "$quality" >= 80 && "$quality" <= 100 )); then
+      echo ${./assets/wifi4.png}
+    fi
+  '';
+in
 {
   home.packages = with pkgs; [ waybar ];
   xdg.configFile = {
-    "waybar/config.jsonc".text = with config.lib.stylix.colors; ''
+    "waybar/config.jsonc".text = ''
       		{
+          "image#network": {
+            "exec": "${pkgs.lib.getExe wifiBin}",
+            "interval": 15,
+            "size": 20,
+          },
+          "bluetooth": {
+            "format": "󰂯 {status}",
+            "format-connected": "󰂯 {device_battery_percentage}%",
+            "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+            "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+          },
+          "tray": {
+            "icon-size": 20,
+            "spacing": 12
+          },
       		"battery": {
       			"format": "{icon} {capacity}%",
       			"format-alt": "{icon} {time} ",
-      			"format-charging": "<span color='#${base06}'>󰂅</span> {capacity}%",
+      			"format-charging": "<span color='#e9ecf2'>󰂅</span> {capacity}%",
       			"format-icons": [
       			  "󰁺",
       			  "󰁻",
@@ -29,12 +72,12 @@
       			"bat": "bat2"
       		},
           "clock#time": {
-            "format": "󰸘 {:%e %b   %H:%M}",
+            "format": "󰸘 {:%e %b   %H•%M}",
             "tooltip-format": "<tt>{calendar}</tt>",
             "interval": 1,
           },
       		"custom/launcher": {
-            "format": "<span color='#${base0C}' font='17'></span> {}",
+            "format": "<span color='#7aaaff' font='17'></span> {}",
       		},
       		"custom/separator": {
       			"format": "/",
@@ -62,33 +105,26 @@
       			"hyprland/workspaces",
       		],
       		"modules-left": [
-            "custom/launcher",
-            "custom/separator",
-      			"wireplumber",
       			"backlight",
-      			"hyprland/language"
+      			"wireplumber",
+      			"hyprland/language",
+      			"bluetooth"
       		],
       		"modules-right": [
+      		  "image#network",
+      		  "tray",
       			"custom/date",
       			"clock#time",
       			"battery"
       		],
-      		"position": "bottom",
+      		"position": "top",
       		"wireplumber": {
       			"format": "{icon} {volume}%",
-      			"format-icons": {
-      		  "default": [
-      			   "",
-      			   "",
-      			   ""
-      			 ],
-      			"hands-free": "",
-      				"headphone": "",
-      				"headset": ""
-      			},
+            "format-icons": ["", "", ""],
       			"format-muted": "󰝟 mute",
       			"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-      			"scroll-step": 3
+      			"scroll-step": 3,
+            "max-volume": 100.0
       		},
       		"temperature": {
       			"critical-threshold": 80,
@@ -129,12 +165,14 @@
             }
 
             window#waybar > box {
-              margin: 5px 0px 0px 0px;
+              margin: 0px 0px 0px 0px;
               background-color: #${base00};
               border-top: 0px;
               border-bottom: 0;
               border-style: solid;
               border-color: #3C3836;
+              padding-right: 1px;
+              padding-left: 1px;
               box-shadow: 1 1 3 1px #101010;
             }
 
@@ -215,6 +253,8 @@
             #text,
             #custom-launcher,
             #custom-separator,
+            #tray,
+            #image-network,
 
             #tray {
               color: #${base06};
@@ -224,6 +264,11 @@
               padding-bottom: 2px;
               border-style: solid;
               min-height: 30px;
+            }
+
+            #tray {
+              margin: 3 4 3 4px;
+              padding: 0 0.4em;
             }
 
             #battery {
@@ -251,7 +296,17 @@
               padding: 0 0.4em;
             }
 
-            #pulseaudio {
+            #wireplumber {
+              margin: 3 4 3 4px;
+              padding: 0 0.4em;
+            }
+
+            #bluetooth {
+              margin: 3 4 3 4px;
+              padding: 0 0.4em;
+            }
+
+            #image-network {
               margin: 3 4 3 4px;
               padding: 0 0.4em;
             }
