@@ -3,6 +3,7 @@
     ./anyrun
     ./hyprlock
     ./swaync
+    ./swayimg
     # ./xremap
     ./hyprland
     ./portals

@@ -6,7 +6,7 @@
 
   programs.ags = {
     enable = true;
-    configDir = null;
+    configDir = ../ags;
     extraPackages = with pkgs; [
       gtksourceview
       webkitgtk

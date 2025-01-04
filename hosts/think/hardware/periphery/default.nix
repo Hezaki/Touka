@@ -21,7 +21,6 @@
   security.rtkit.enable = true;
 
   services = {
-    blueman.enable = true;
     ratbagd.enable = true;
     ollama.enable = true;
     pcscd.enable = true;

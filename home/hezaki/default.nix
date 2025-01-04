@@ -43,7 +43,6 @@
       libnotify
       libreoffice
       glfw-wayland
-      appimage-run
       home-manager
       transmission_4-gtk
     ];
@@ -76,6 +75,7 @@
       "electron-28.3.1"
       "cinny-4.2.1"
       "cinny-unwrapped-4.2.1"
+      "yandex-browser-beta-24.7.1.1124-1"
     ];
     overlays = [ inputs.nur.overlay ];
   };
