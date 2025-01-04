@@ -64,6 +64,7 @@
       ":wq" = "exit";
       "mpv" = "mpv --loop";
       "fb" = "fastboot";
+      "si" = "swayimg";
     };
     initExtra = with config.lib.stylix.colors; ''
       setopt automenu

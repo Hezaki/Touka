@@ -26,6 +26,7 @@
             };
             modules = [
               ./hosts/think
+              # ./configuration.nix
             ];
           };
         };
@@ -39,6 +40,7 @@
               inherit inputs;
             };
             modules = [
+              # ./user.nix
               ./home/hezaki
             ];
           };

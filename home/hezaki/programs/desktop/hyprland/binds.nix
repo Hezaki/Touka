@@ -10,7 +10,7 @@
     bind = $mod SHIFT, RETURN, exec, obsidian
 
     bind = $mod, W, killactive, 
-    bind = $mod, M, exit, 
+    bin = $mod, M, exit, 
     bind = $mod, S, togglefloating, 
     bind = ALT, F, fullscreen,
 
@@ -22,6 +22,7 @@
     binde = $mod, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%-
     bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     bind =, XF86AudioMicMute, exec, fixf4=$(cat /sys/class/leds/platform\:\:micmute/brightness); echo $((1-fixf4)) | sudo tee /sys/class/leds/platform\:\:micmute/brightness; wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    bind = , XF86Display, exec, bluetoothctl connect B2:39:7F:97:B1:AC
 
     bind =, XF86MonBrightnessDown, exec, sudo ${pkgs.light}/bin/light -U 10
     bind =, XF86MonBrightnessUp, exec, sudo ${pkgs.light}/bin/light -A 10

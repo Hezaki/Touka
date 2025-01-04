@@ -33,6 +33,7 @@
   };
 
   programs = {
+    darling.enable = true;
     zsh.enable = true;
     adb.enable = true;
     dconf.enable = true;
@@ -40,10 +41,14 @@
     light.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true;
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
     steam = {
       enable = true;
-      package = pkgs.steam;
-      gamescopeSession.enable = true;
+      package = pkgs.steam-small;
+      # gamescopeSession.enable = true;
     };
     gnupg.agent = {
       enable = true;
