@@ -11,7 +11,7 @@
     app_id = swayimg
 
     [viewer]
-    window = #${base01}
+    window = #${base00}
     transparency = RGBA
     scale = fit 
     position = center

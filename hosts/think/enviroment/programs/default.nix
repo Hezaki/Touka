@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 {
   imports = with inputs; [
-    nix-ld.nixosModules.nix-ld
+    # nix-ld.nixosModules.nix-ld
     # ./k3s
     ./nh
   ];
