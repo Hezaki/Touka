@@ -18,9 +18,9 @@
 
   imports = [
     ./programs/fastfetch
-    ../../hezaki/programs/terminal/tmux
-    ../../hezaki/programs/terminal/shell/zsh
-    ../../hezaki/programs/terminal/shell/translate-shell
-    ../../hezaki/programs/terminal/editors/neovim
+    ../../home/hezaki/programs/terminal/tmux
+    ../../home/hezaki/programs/terminal/shell/zsh
+    ../../home/hezaki/programs/terminal/shell/translate-shell
+    ../../home/hezaki/programs/terminal/editors/neovim
   ];
 }
