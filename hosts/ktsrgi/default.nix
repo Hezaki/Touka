@@ -20,6 +20,7 @@
     home.stateVersion = "24.05";
     imports = [
       ./programs/fastfetch
+      ../../home/hezaki/themes
       ../../home/hezaki/programs/terminal/tmux
       ../../home/hezaki/programs/terminal/shell/zsh
       ../../home/hezaki/programs/terminal/shell/translate-shell
