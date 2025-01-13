@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  hyprland,
+  ...
+}:
 {
   imports = [
     ./rules.nix
@@ -19,6 +24,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = hyprland.hyprland;
     systemd.enable = true;
     extraConfig = with config.lib.stylix.colors; ''
       monitor=eDP-1,1920x1080,0x0,1

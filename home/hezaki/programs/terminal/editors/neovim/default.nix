@@ -24,8 +24,6 @@
       opt.number = true
       opt.title = true
       opt.linebreak = true
-      opt.spell = true
-      opt.spelllang = 'ru'
       opt.termguicolors = true
       opt.expandtab = true
       opt.undofile = true
@@ -239,7 +237,7 @@
               }
               dashboard.section.buttons.val = {
                 dashboard.button("ff", "  Find file", ":Telescope find_files<CR>"),
-                dashboard.button("fg", "  Old files", ":Telescope live_grep<CR>"),
+                dashboard.button("fr", "  Old files", ":Telescope oldfiles<CR>"),
                 dashboard.button("fb", "󰪶  File browser", ":Yazi<CR>"),
                 dashboard.button("fg", "󰈞  Text search", ":Telescope live_grep<CR>"),
                 dashboard.button("fd", "󰥨  Find directory", ":Telescope zoxide list<CR>"),
@@ -343,6 +341,7 @@
           {
             'nvim-treesitter/nvim-treesitter',
             event = 'VeryLazy',
+            build = ":TSUpdate",
             opts = {
               ensure_installed = { "nix" },
               sync_install = false,
@@ -429,24 +428,6 @@
             },
           },
           {
-            'nvim-orgmode/orgmode',
-            event = 'VeryLazy',
-            ft = { 'org' },
-            opts = {},
-          },
-          {
-            "chipsenkbeil/org-roam.nvim",
-            event = 'VeryLazy',
-            opts = {
-              directory = "~/Documents/Notes",
-            },
-          },
-          {
-            'akinsho/org-bullets.nvim',
-            event = 'VeryLazy',
-            opts = {},
-          },
-          {
             'norcalli/nvim-colorizer.lua',
             event = 'VeryLazy',
             config = function()
@@ -507,7 +488,6 @@
                       luasnip = "[Snip]",
                       cmdline = "[Cmd]",
                       nvim_lua = "[Lua]",
-                      orgmode = "[Org]",
                     })[entry.source.name]
                     return vim_item
                   end,
@@ -517,7 +497,6 @@
                   { name = "path" },
                   { name = "buffer" },
                   { name = "emoji" },
-                  { name = "orgmode" },
                 }),
                 cmp.setup.cmdline(':', {
                   mapping = cmp.mapping.preset.cmdline(),

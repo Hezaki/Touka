@@ -3,8 +3,7 @@
   inputs,
   config,
   ...
-}:
-{
+}: {
   imports = [
     inputs.nur.modules.homeManager.default
     ./programs
@@ -16,14 +15,15 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "24.11";
     packages = with pkgs; [
+      ayugram-desktop
       nix-init
       badlion-client
       gnome-weather
       amneziawg-go
       amneziawg-tools
-      (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
+      (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix {})
       xournalpp
-      (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
+      (obsidian.override {commandLineArgs = ["--ozone-platform=wayland"];})
       xdg-utils
       tgpt
       microfetch
@@ -77,12 +77,12 @@
       "cinny-unwrapped-4.2.1"
       "yandex-browser-beta-24.7.1.1124-1"
     ];
-    overlays = [ inputs.nur.overlay ];
+    overlays = [inputs.nur.overlay];
   };
 
   nix = {
     package = pkgs.nix;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs-unstable}"];
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;

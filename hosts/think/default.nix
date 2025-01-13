@@ -1,6 +1,6 @@
 {
   lib,
-  pkgsLock,
+  kernel,
   modulesPath,
   inputs,
   ...
@@ -51,7 +51,7 @@
         "usb_storage"
       ];
     };
-    kernelPackages = pkgsLock.linuxPackages_xanmod_stable;
+    kernelPackages = kernel.linuxPackages_xanmod_stable;
     kernelParams = [
       "quiet"
       "page_alloc.shuffle=1"
