@@ -1,20 +1,19 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
-  imports = with inputs; [
-    # nix-ld.nixosModules.nix-ld
-    # ./k3s
+  imports = [
     ./nh
+    ./kanata
   ];
 
   environment = {
     enableDebugInfo = true;
     systemPackages = with pkgs; [
       nix-tree
-      fastfetch
+      p7zip
+      unrar
+      unzip
       vim
       wget
-      virtiofsd
-      clamav
     ];
   };
 
@@ -32,13 +31,16 @@
     spiceUSBRedirection.enable = true;
   };
 
+  virtualisation.vmware.host.enable = true;
+
+  services.fwupd.enable = true;
+
   programs = {
-    darling.enable = true;
     zsh.enable = true;
     adb.enable = true;
     dconf.enable = true;
-    gamescope.enable = true;
     light.enable = true;
+    gamescope.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true;
     appimage = {
@@ -47,8 +49,17 @@
     };
     steam = {
       enable = true;
-      package = pkgs.steam-small;
-      # gamescopeSession.enable = true;
+      package = pkgs.steam.override {
+        extraEnv = {
+          OBS_VKCAPTURE = true;
+          RADV_TEX_ANISO = 16;
+        };
+        extraLibraries =
+          p: with p; [
+            atk
+          ];
+      };
+      gamescopeSession.enable = true;
     };
     gnupg.agent = {
       enable = true;

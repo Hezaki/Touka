@@ -3,13 +3,12 @@
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
-    plugins = with inputs; {
-      no-status = "${yazi-plugins}/no-status.yazi";
-      max-preview = "${yazi-plugins}/max-preview.yazi";
-    };
-    initLua = ''
-      require("no-status"):setup()
-    '';
+    # plugins = with inputs; {
+    #   no-status = "${yazi-plugins}/no-status.yazi";
+    # };
+    # initLua = ''
+    #   require("no-status"):setup()
+    # '';
     settings = {
       manager.show_symlink = true;
     };
@@ -19,14 +18,6 @@
           fg = "black";
         };
       };
-    };
-    keymap = {
-      prepend_keymap = [
-        {
-          run = "plugin --sync max-preview";
-          on = "L";
-        }
-      ];
     };
   };
 }

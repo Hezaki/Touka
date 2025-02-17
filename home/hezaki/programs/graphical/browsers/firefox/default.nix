@@ -63,6 +63,10 @@
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
             # ClearURLs
             "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
+            # firenvim
+            "firenvim@lacamb.re".install_url = "https://addons.mozilla.org/firefox/downloads/file/4279173/firenvim-0.2.16.xpi";
+            # w2g
+            "{6ea0a676-b3ef-48aa-b23d-24c8876945fb}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4337397/w2g-10.3.xpi";
           };
         FirefoxHome = {
           Pocket = false;
@@ -452,8 +456,8 @@
   home.file = {
     ".mozilla/firefox/hezaki.default-release/chrome/userChrome.css".text = ''
       * {
-        font-family: Lato Medium !important;
-        font-size: 12pt !important;
+        font-family: Inter !important;
+        font-size: 15px;
       }
 
       .tab-background {

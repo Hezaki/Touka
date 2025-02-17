@@ -11,7 +11,10 @@ in
         isNormalUser = true;
         initialPassword = passuser;
         home = "/home/${user}";
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "user-with-access-to-virtualbox"
+        ];
         shell = pkgs.zsh;
       };
 

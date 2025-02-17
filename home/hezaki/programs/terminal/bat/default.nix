@@ -5,10 +5,6 @@
     config = {
       style = "numbers,changes";
     };
-    extraPackages = with pkgs.bat-extras; [
-      prettybat
-      batman
-      # batdiff
-    ];
+    extraPackages = with pkgs.bat-extras; [ prettybat ];
   };
 }

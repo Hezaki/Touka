@@ -8,7 +8,7 @@
   programs.zsh = {
     enable = true;
     profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && exec Hyprland
+      [ "$(tty)" = "/dev/tty1" ] && WLR_RENDERER=vulkan exec Hyprland
     '';
     plugins = with inputs; [
       {

@@ -21,6 +21,10 @@
   security.rtkit.enable = true;
 
   services = {
+    udev.extraHwdb = ''
+      mouse:usb:v046dpC53F:name:Logitech USB Receiver:*
+       MOUSE_DPI=12000@1000
+    '';
     ratbagd.enable = true;
     ollama.enable = true;
     pcscd.enable = true;

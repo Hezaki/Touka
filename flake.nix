@@ -1,88 +1,59 @@
 {
   outputs =
     {
-      flake-parts,
       home-manager,
       nixpkgs,
-      nixpkgs-unstable,
-      nixpkgs-master,
       nix-on-droid,
-      hyprland,
-      kernel,
+      nixpkgs-stable,
       ...
     }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    let
+      agrs = {
+        pkgsStable = nixpkgs-stable.legacyPackages.x86_64-linux;
+        inherit inputs;
+      };
+    in
+    {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
 
-      flake = {
-        nixosConfigurations = {
-          think = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              kernel = kernel.legacyPackages.x86_64-linux;
-              pkgsUnstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
-              pkgsMaster = nixpkgs-master.legacyPackages.x86_64-linux;
-              inherit inputs;
-            };
-            modules = [
-              ./hosts/think
-            ];
-          };
-
-          hlcwlk = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./hosts/hlcwlk
-            ];
-          };
+      nixosConfigurations = {
+        think = nixpkgs.lib.nixosSystem {
+          specialArgs = agrs;
+          modules = [
+            ./hosts/think
+          ];
         };
+      };
 
-        homeConfigurations = {
-          hezaki = home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs-unstable.legacyPackages."x86_64-linux";
-            extraSpecialArgs = {
-              pkgsStable = nixpkgs.legacyPackages.x86_64-linux;
-              pkgsMaster = nixpkgs-master.legacyPackages.x86_64-linux;
-              hyprland = hyprland.legacyPackages.x86_64-linux;
-              inherit inputs;
-            };
-            modules = [
-              ./home/hezaki
-            ];
-          };
-
-          smtvna = home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-            extraSpecialArgs = { inherit inputs; };
-            modules = [
-              ./home/smtvna
-            ];
-          };
+      homeConfigurations = {
+        hezaki = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = agrs;
+          modules = [
+            ./home/hezaki
+          ];
         };
+      };
 
-        nixOnDroidConfigurations = {
-          ktsrgi = nix-on-droid.lib.nixOnDroidConfiguration {
-            pkgs = import nixpkgs { system = "aarch64-linux"; };
-            modules = [
-              ./hosts/ktsrgi
-            ];
-          };
+      nixOnDroidConfigurations = {
+        ktsrgi = nix-on-droid.lib.nixOnDroidConfiguration {
+          pkgs = import nixpkgs { system = "aarch64-linux"; };
+          modules = [
+            ./hosts/ktsrgi
+          ];
         };
       };
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
-
-    kernel.url = "github:nixos/nixpkgs/862ecd674f4beced1fff1d5b91527b564eb41182";
-    hyprland.url = "github:nixos/nixpkgs/6c7c078917d2e4b5c98d36102c90714b41ba82bb";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -101,11 +72,7 @@
 
     stylix.url = "github:danth/stylix/";
     ags.url = "github:aylur/ags";
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
