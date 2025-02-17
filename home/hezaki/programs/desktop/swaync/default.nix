@@ -78,7 +78,7 @@
       * {
       all: unset;
       font:
-        12pt JetBrainsMono Nerd Font;
+        12pt Inter;
         transition: 200ms;
       }
 

@@ -89,7 +89,7 @@
 
     extraCss = with config.lib.stylix.colors; ''
       * {
-        font-family: JetBrainsMono NerdFont, SF Nerd Mono;
+        font-family: Inter;
         font-size: 1.1rem;
       }
 

@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  hyprland,
   ...
 }:
 {
@@ -24,7 +23,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland.hyprland;
+    package = pkgs.hyprland;
     systemd.enable = true;
     extraConfig = with config.lib.stylix.colors; ''
       monitor=eDP-1,1920x1080,0x0,1
@@ -49,10 +48,10 @@
         kb_layout = us,ru
         kb_options = grp:caps_toggle
         follow_mouse = 1
-        sensitivity = 0.0
+        sensitivity = -1.0
         repeat_rate = 50
         repeat_delay = 500
-        force_no_accel = true 
+        force_no_accel = false 
         touchpad {
           natural_scroll = false
           disable_while_typing = false
@@ -72,11 +71,15 @@
         sensitivity = 0.7
       }
 
+      gestures = {
+        workspace_swipe = true
+      }
+
       general {
         gaps_in = 2
         gaps_out = 6
         border_size = 2
-        col.active_border = rgb(${base00})
+        col.active_border = rgb(${base01})
         col.inactive_border = rgb(${base03})
         layout = master 
       }
@@ -112,30 +115,42 @@
 
       decoration {
         rounding = 6
-        blur {
-          enabled = false
-          new_optimizations = true
+        shadow = {
+          enabled = true
+          range = 5
+          render_power = 1
+          color = rgb(1C1D1D)
         }
         screen_shader = $XDG_CONFIG_HOME/hypr/shaders/shader.glsl
-      }
-
-      shadow {
-        enabled = true
-        range = 5
-        render_power = 1
-        color = rgb(1C1D1D)
       }
 
       debug:suppress_errors = true
 
       animations {
         enabled = true
-        bezier = myBezier, 0.05, 0.9, 0.1, 1.0
-        animation = windows, 1, 5, myBezier
-        animation = windowsOut, 1, 5, myBezier, popin 80%
-        animation = border, 1, 10, myBezier
-        animation = fade, 1, 10, myBezier
-        animation = workspaces, 1, 4, myBezier, slide
+        bezier = easeOutQuint,0.23,1,0.32,1
+        bezier = easeInOutCubic,0.65,0.05,0.36,1
+        bezier = linear,0,0,1,1
+        bezier = almostLinear,0.5,0.5,0.75,1.0
+        bezier = quick,0.15,0,0.1,1
+        bezier = workspace, 0.05, 0.9, 0.1, 1.0
+
+        animation = global, 1, 10, default
+        animation = border, 1, 5.39, easeOutQuint
+        animation = windows, 1, 4.79, easeOutQuint
+        animation = windowsIn, 1, 4.1, easeOutQuint, popin 87%
+        animation = windowsOut, 1, 1.49, linear, popin 87%
+        animation = fadeIn, 1, 1.73, almostLinear
+        animation = fadeOut, 1, 1.46, almostLinear
+        animation = fade, 1, 3.03, quick
+        animation = layers, 1, 3.81, easeOutQuint
+        animation = layersIn, 1, 4, easeOutQuint, fade
+        animation = layersOut, 1, 1.5, linear, fade
+        animation = fadeLayersIn, 1, 1.79, almostLinear
+        animation = fadeLayersOut, 1, 1.39, almostLinear
+        animation = workspaces, 1, 4, workspace, slide
+        animation = workspacesIn, 1, 4, workspace, slide
+        animation = workspacesOut, 1, 4, workspace, slide
       }
     '';
   };

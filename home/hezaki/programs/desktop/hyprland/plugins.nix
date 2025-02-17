@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
   wayland.windowManager.hyprland.plugins = with pkgs.hyprlandPlugins; [
-    hyprfocus
-    # hypr-dynamic-cursors
-    # hyprscroller
+    # hyprfocus
+    hypr-dynamic-cursors
   ];
   xdg.configFile."hypr/plugins.conf".text = ''
     plugin {

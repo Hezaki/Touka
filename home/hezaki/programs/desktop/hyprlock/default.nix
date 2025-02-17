@@ -27,7 +27,7 @@
           inner_color = "rgb(${base06})";
           font_color = "rgb(${base00})";
           fade_on_empty = false;
-          font_family = "Lato Medium";
+          font_family = "Inter Medium";
           placeholder_text = "What do you need from me!";
           hide_input = false;
           check_color = "rgb(${base0E})";
@@ -53,7 +53,7 @@
         {
           text = "cmd[update:43200000] echo \"$(date +\"%e %B %A\")\"";
           color = "rgb(${base06})";
-          font_family = "Lato Semibold";
+          font_family = "Inter Semibold";
           font_size = 18;
           position = "0, -40";
           halign = "center";

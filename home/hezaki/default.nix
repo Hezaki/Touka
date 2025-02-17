@@ -1,11 +1,11 @@
 {
   pkgs,
   inputs,
-  config,
   ...
-}: {
-  imports = [
-    inputs.nur.modules.homeManager.default
+}:
+{
+  imports = with inputs; [
+    nur.modules.homeManager.default
     ./programs
     ./themes
   ];
@@ -15,57 +15,37 @@
     homeDirectory = "/home/hezaki";
     stateVersion = "24.11";
     packages = with pkgs; [
-      ayugram-desktop
-      nix-init
-      badlion-client
-      gnome-weather
+      # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
+      (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
       amneziawg-go
       amneziawg-tools
-      (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix {})
-      xournalpp
-      (obsidian.override {commandLineArgs = ["--ozone-platform=wayland"];})
-      xdg-utils
-      tgpt
-      microfetch
-      gdb
-      duf
-      lsix
+      badlion-client
       dua
-      piper
-      zenity
-      swaybg
-      scrcpy
-      inputs.chaotic.packages.${system}.proton-ge-custom
-      lutgen
-      lutris
-      swayimg
-      onefetch
-      libnotify
-      libreoffice
+      duf
+      foliate
+      gdb
       glfw-wayland
       home-manager
+      libnotify
+      libreoffice
+      lsix
+      lutgen
+      lutris
+      microfetch
+      nix-init
+      onefetch
+      pavucontrol
+      piper
+      scrcpy
+      swaybg
+      swayimg
+      tgpt
+      thunderbird
       transmission_4-gtk
+      xdg-utils
+      xournalpp
+      zenity
     ];
-  };
-
-  xdg = with config.home; {
-    enable = true;
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-      templates = null;
-      publicShare = null;
-      music = null;
-      download = "${homeDirectory}/Downloads";
-      documents = "${homeDirectory}/Documents";
-      videos = "${homeDirectory}/Media/Videos";
-      pictures = "${homeDirectory}/Media/Screenshots";
-      extraConfig = {
-        XDG_REPO_DIR = "${homeDirectory}/Downloads/Repositories";
-        XDG_PIC_DIR = "${homeDirectory}/Downloads/Pictures";
-        XDG_VID_DIR = "${homeDirectory}/Downloads/Videos";
-      };
-    };
   };
 
   nixpkgs.config = {
@@ -75,14 +55,13 @@
       "electron-28.3.1"
       "cinny-4.2.1"
       "cinny-unwrapped-4.2.1"
-      "yandex-browser-beta-24.7.1.1124-1"
     ];
-    overlays = [inputs.nur.overlay];
+    overlays = [ inputs.nur.overlay ];
   };
 
   nix = {
     package = pkgs.nix;
-    nixPath = ["nixpkgs=${inputs.nixpkgs-unstable}"];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;

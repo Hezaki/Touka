@@ -4,7 +4,6 @@
     ./hyprlock
     ./swaync
     ./swayimg
-    # ./xremap
     ./hyprland
     ./portals
     ./waybar

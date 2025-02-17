@@ -20,16 +20,16 @@
     binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-
     binde = $mod, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%+
     binde = $mod, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%-
-    bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    bind =, XF86AudioMicMute, exec, fixf4=$(cat /sys/class/leds/platform\:\:micmute/brightness); echo $((1-fixf4)) | sudo tee /sys/class/leds/platform\:\:micmute/brightness; wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    bind =, XF86AudioMute, exec,fixf4=$(cat /sys/class/leds/platform\:\:mute/brightness); echo $((1-fixf4)) | sudo ${pkgs.coreutils}/bin/tee /sys/class/leds/platform\:\:mute/brightness; wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bind =, XF86AudioMicMute, exec, fixf4=$(cat /sys/class/leds/platform\:\:micmute/brightness); echo $((1-fixf4)) | sudo ${pkgs.coreutils}/bin/tee /sys/class/leds/platform\:\:micmute/brightness; wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
     bind = , XF86Display, exec, bluetoothctl connect B2:39:7F:97:B1:AC
 
     bind =, XF86MonBrightnessDown, exec, sudo ${pkgs.light}/bin/light -U 10
     bind =, XF86MonBrightnessUp, exec, sudo ${pkgs.light}/bin/light -A 10
 
-    bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && pkill batsignal && hyprctl reload
+    # bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && pkill batsignal && hyprctl reload
+    bind = $mod SHIFT, R, exec, hyprctl reload
     bind = $mod, D, exec, anyrun
-    bind = $mod SHIFT, D, exec, cliphist list | anyrun --show-results-immediately true | wl-copy
     bind = $mod, P, exec, hyprpicker -a
 
     bind = , Print, exec, hyprshade off && grimblast --notify copysave screen $HOME/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png) && hyprshade on shader

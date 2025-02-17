@@ -40,6 +40,7 @@ in
     sensibleOnTop = true;
     disableConfirmationPrompt = true;
     customPaneNavigationAndResize = true;
+    focusEvents = true;
     extraConfig = ''
       bind r set -g status
 

@@ -1,14 +1,17 @@
 {
   lib,
-  kernel,
   modulesPath,
   inputs,
+  pkgs,
+  config,
   ...
 }:
 {
   imports = with inputs; [
     "${nixos-hardware}/lenovo/thinkpad/t14/amd/gen1"
-    chaotic.nixosModules.default
+    chaotic.nixosModules.nyx-cache
+    chaotic.nixosModules.nyx-overlay
+    chaotic.nixosModules.nyx-registry
     ./systemd
     ./enviroment/fonts
     ./enviroment/local
@@ -51,7 +54,7 @@
         "usb_storage"
       ];
     };
-    kernelPackages = kernel.linuxPackages_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
     kernelParams = [
       "quiet"
       "page_alloc.shuffle=1"
@@ -59,8 +62,12 @@
       "split_lock_detect=off"
       "pci=pcie_bus_perf"
     ];
+    extraModulePackages = with config.boot.kernelPackages; [ amneziawg ];
     kernelModules = [
       "kvm-amd"
+      "vboxdrv"
+      "vboxnetadp"
+      "vboxnetflt"
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;

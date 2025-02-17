@@ -6,8 +6,8 @@
   ...
 }:
 {
-  imports = [
-    inputs.stylix.homeManagerModules.stylix
+  imports = with inputs; [
+    stylix.homeManagerModules.stylix
   ];
 
   stylix = {
@@ -52,7 +52,7 @@
       sizes.terminal = 13;
     };
     targets = {
-      vesktop.enable = false;
+      swaync.enable = false;
       neovim.enable = false;
       gtk.extraCss = with config.lib.stylix.colors; ''
         @define-color headerbar_bg_color #${base00};

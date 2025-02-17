@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   home = {
-    packages = with pkgs; [ _64gram ];
+    packages = [ pkgs.ayugram-desktop ];
     file = {
-      ".local/share/64Gram/tdata/shortcuts-custom.json".text = ''
+      ".local/share/AyuGramDesktop/tdata/shortcuts-custom.json".text = ''
         [
           {
             "command": "show_archive",
@@ -19,43 +19,72 @@
           }
         ]
       '';
-      ".local/share/64Gram/tdata/experimental_options.json".text = ''
+      ".local/share/AyuGramDesktop/tdata/experimental_options.json".text = ''
         {
           "send-large-photos": true
           "ctrl-click-chat-new-window": true,
           "use-small-msg-bubble-radius": false
         }
       '';
-      ".local/share/64Gram/tdata/enhanced-settings-custom.json".text = ''
+      ".local/share/AyuGramDesktop/tdata/ayu_settings.json".text = ''
         {
-          "always_delete_for": 0,
-          "auto_unmute": true,
-          "bitrate": 0,
-          "blocked_user_spoiler_mode": false,
-          "disable_cloud_draft_sync": false,
-          "disable_global_search": false,
-          "disable_link_warning": false,
-          "disable_premium_animation": false,
-          "hd_video": false,
-          "hide_all_chats": true,
-          "hide_classic_fwd": true,
-          "hide_counter": false,
-          "hide_stories": true,
-          "net_dl_speed_boost": true,
-          "net_speed_boost": 3,
-          "radio_controller": "http://localhost:2468",
-          "repeater_reply_to_orig_msg": true,
-          "replace_edit_button": true,
-          "show_emoji_button_as_text": true,
-          "show_group_sender_avatar": true,
-          "show_messages_id": false,
-          "show_phone_number": false,
-          "show_repeater_option": true,
-          "show_scheduled_button": true,
-          "show_seconds": false,
-          "skip_to_next": false,
-          "stereo_mode": false,
-          "translate_to_tc": false
+          "appIcon": "chibi2",
+          "channelBottomButton": 2,
+          "collapseSimilarChannels": true,
+          "deletedMark": "🧹",
+          "disableAds": true,
+          "disableCustomBackgrounds": true,
+          "disableNotificationsDelay": true,
+          "disableStories": true,
+          "editedMark": "edited",
+          "gifConfirmation": false,
+          "hideAllChatsFolder": true,
+          "hideFromBlocked": false,
+          "hideNotificationBadge": false,
+          "hideNotificationCounters": false,
+          "hideSimilarChannels": false,
+          "increaseWebviewHeight": false,
+          "increaseWebviewWidth": false,
+          "localPremium": true,
+          "markReadAfterAction": false,
+          "monoFont": "JetBrainsMono Nerd Font Mono",
+          "recentStickersCount": 100,
+          "saveDeletedMessages": true,
+          "saveForBots": false,
+          "saveMessagesHistory": true,
+          "sendOfflinePacketAfterOnline": false,
+          "sendOnlinePackets": true,
+          "sendReadMessages": true,
+          "sendReadStories": true,
+          "sendUploadProgress": true,
+          "sendWithoutSound": false,
+          "showAttachButtonInMessageField": true,
+          "showAttachPopup": true,
+          "showAutoDeleteButtonInMessageField": true,
+          "showCommandsButtonInMessageField": true,
+          "showEmojiButtonInMessageField": true,
+          "showEmojiPopup": true,
+          "showGhostToggleInDrawer": true,
+          "showGhostToggleInTray": true,
+          "showHideMessageInContextMenu": 0,
+          "showLReadToggleInDrawer": false,
+          "showMessageDetailsInContextMenu": 2,
+          "showMessageSeconds": false,
+          "showMessageShot": true,
+          "showMicrophoneButtonInMessageField": true,
+          "showPeerId": 2,
+          "showReactionsPanelInContextMenu": 1,
+          "showSReadToggleInDrawer": false,
+          "showStreamerToggleInDrawer": false,
+          "showStreamerToggleInTray": false,
+          "showUserMessagesInContextMenu": 2,
+          "showViewsPanelInContextMenu": 1,
+          "simpleQuotesAndReplies": true,
+          "spoofWebviewAsAndroid": false,
+          "stickerConfirmation": false,
+          "useScheduledMessages": false,
+          "voiceConfirmation": false,
+          "wideMultiplier": 1.2000000000000002
         }
       '';
     };
