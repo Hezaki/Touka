@@ -2,7 +2,7 @@
 <p align="center">This is my nonfemboy Nix configuration, for desktop and a small configuration for android</p>
 <img src="./.other/1.png" alt="kakoi lubopitniy ai ai ai">
 
-# ℹ️Information
+## ℹ️Information
 I recommend using  [nh](https://github.com/viperML/nh), if you don't have it then:
 ``` nix
 nix shell nixpkgs#nh
