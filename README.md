@@ -97,7 +97,6 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 			- [local](hosts/think/enviroment/local) locale-gen
 			- [network](hosts/think/enviroment/) setting network
 			- [nix](hosts/think/enviroment/) setting nix
-			- [nix](hosts/think/enviroment/) setting nix
 			- [programs](hosts/think/enviroment/programs) utils on host
 				- [k3s](hosts/think/enviroment/programs/k3s) kubernetes
 				- [kanata](hosts/think/enviroment/programs/kanata) keyboard remapper
