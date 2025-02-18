@@ -28,12 +28,15 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 ## ⚙️ Software
    - Wayland compositor — [Hyprland](https://hyprland.org)
    - Bar — [Waybar](https://github.com/Alexays/Waybar)
+   - Screenlocker — [Hyprlock](https://github.com/hyprwm/hyprlock)
    - Browser — [Firefox](https://www.mozilla.org)
    - Terminal — [Kitty](https://sw.kovidgoyal.net/kitty/)
    - Editor — [Neovim](https://neovim.io)
-   - Shell —  [Zsh](https://www.zsh.org/)
+   - Shell — [Zsh](https://www.zsh.org/)
    - Notifications — [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter)
-   - Launcher —  [Anyrun](https://github.com/Kirottu/anyrun)
+   - Launcher — [Anyrun](https://github.com/Kirottu/anyrun)
+   - Text expander — [Espanso](https://github.com/espanso/espanso)
+   - Keyboard remapper — [Kanata](https://github.com/jtroo/kanata)
    - Wallpaper — [``home/hezaki/themes/images/``](https://codeberg.org/Hezaki/Touka/src/branch/main/home/hezaki/themes/images)
  ## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
