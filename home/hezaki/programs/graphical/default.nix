@@ -9,7 +9,6 @@
     ./telegram
     ./blockbench
     ./prismlauncher
-    ./youtube-music
     ./mangohud
     ./obs-studio
     ./audio
