@@ -25,19 +25,8 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 	- An excellent office laptop, there is a profile in [nixos-hardware](https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/t14/amd/gen1)
 - Mouse — [Logitech G304](https://www.logitechg.com/en-ph/products/gaming-mice/g304-lightspeed-wireless-gaming-mouse.910-005284.html)
 	- Wireless mouse, works great with Linux, [libratbag](https://github.com/libratbag/libratbag) supports it 
-## ⚙️ Software
-   - Wayland compositor — [Hyprland](https://hyprland.org)
-   - Bar — [Waybar](https://github.com/Alexays/Waybar)
-   - Screenlocker — [Hyprlock](https://github.com/hyprwm/hyprlock)
-   - Browser — [Firefox](https://www.mozilla.org)
-   - Terminal — [Kitty](https://sw.kovidgoyal.net/kitty/)
-   - Editor — [Neovim](https://neovim.io)
-   - Shell — [Zsh](https://www.zsh.org/)
-   - Notifications — [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter)
-   - Launcher — [Anyrun](https://github.com/Kirottu/anyrun)
-   - Text expander — [Espanso](https://github.com/espanso/espanso)
-   - Keyboard remapper — [Kanata](https://github.com/jtroo/kanata)
-   - Wallpaper — [``home/hezaki/themes/images/``](https://codeberg.org/Hezaki/Touka/src/branch/main/home/hezaki/themes/images)
+## 📚Layout
+- [flake.nix](flake.nix) main configuration file
  ## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
