@@ -11,8 +11,6 @@
     ./prismlauncher
     ./mangohud
     ./obs-studio
-    ./audio
-    ./valent
     ./games
     ./obsidian
   ];

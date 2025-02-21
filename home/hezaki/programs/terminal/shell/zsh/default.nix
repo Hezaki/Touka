@@ -41,6 +41,11 @@
         file = "auto-notify.plugin.zsh";
         src = zsh-auto-notify;
       }
+      {
+        name = "zsh-autopair";
+        file = "zsh-autopair.plugin.zsh";
+        src = zsh-autopair;
+      }
     ];
     shellAliases = {
       "l" = "ls -l";

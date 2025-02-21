@@ -41,8 +41,6 @@
             mkForceInstalled = builtins.mapAttrs (name: cfg: { installation_mode = "force_installed"; } // cfg);
           in
           mkForceInstalled {
-            # Dark Reader
-            "addon@darkreader.org".install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             # Ublock Origin
             "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             # SponsorBlock
@@ -57,8 +55,6 @@
             "copyfish@a9t9.com".install_url = "https://addons.mozilla.org/firefox/downloads/file/3765111/copyfish_ocr_software-5.1.9.xpi";
             # Translate
             "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
-            # Search by Image
-            "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4189577/search_by_image-6.1.0.xpi";
             # I don't care about Cookies
             "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
             # ClearURLs

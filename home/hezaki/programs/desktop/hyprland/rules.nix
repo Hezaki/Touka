@@ -14,7 +14,7 @@
     windowrule = workspace 5, Badlion Client
     windowrule = workspace 5, libreoffice-writer
     windowrule = workspace 5, title:^(Steam)$
-    windowrule = workspace 5, lutris
+    windowrule = workspace 5, net.lutris.Lutris
     windowrule = workspace 6, org.pwmt.zathura 
     windowrule = workspace 7, easyeffects
     windowrule = workspace 8, blender

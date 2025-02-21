@@ -1,5 +1,6 @@
 {
   environment.variables = {
+    QT_QPA_PLATFORMTHEME = "gtk3";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
@@ -17,8 +18,6 @@
     GLFW_IM_MODULE = "fcitx";
     MOZ_ENABLE_WAYLAND = "1";
     XMODIFIERS = "@im=fcitx";
-    QT_QPA_PLATFORMTHEME = "gtk3";
-    XCURSOR_SIZE = "24";
     RUST_BACKTRACE = "full";
     VDPAU_DRIVER = "radeonsi";
     LIBVA_DRIVER_NAME = "radeonsi";

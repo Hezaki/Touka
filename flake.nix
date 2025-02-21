@@ -124,6 +124,11 @@
       flake = false;
     };
 
+    zsh-autopair = {
+      url = "github:hlissner/zsh-autopair";
+      flake = false;
+    };
+
     tmux-tilish = {
       url = "github:farzadmf/tmux-tilish";
       flake = false;

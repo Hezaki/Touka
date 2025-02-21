@@ -18,13 +18,10 @@
     extraLuaConfig =
       with config.lib.stylix.colors; # lua
       ''
-        local fn = vim.fn
         local api = vim.api
         local cmd = vim.cmd
         local opt = vim.opt
         local map = vim.keymap.set
-        local g = vim.g
-        local o = vim.o
 
         opt.number = true
         opt.title = true
@@ -68,6 +65,10 @@
         map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
         map("n", "<leader>f", vim.lsp.buf.format, { silent = true, noremap = true })
         map("n", "<leader>r", ":IncRename ")
+        map("n", "<PageUp>", ":lua require('neoscroll').ctrl_u({ duration = 250 })<CR>", { silent = true, noremap = true })
+        map("n", "<PageDown>", ":lua require('neoscroll').ctrl_d({ duration = 250 })<CR>", { silent = true, noremap = true })
+        map("n", "<PageDown>", ":lua require('neoscroll').ctrl_d({ duration = 250 })<CR>", { silent = true, noremap = true })
+        map('i', '<C-H>', '<C-w>', { silent = true, noremap = true })
 
         local kind_icons = {
           Text = " ",
@@ -120,32 +121,6 @@
           ['R']   = 'TERMINAL';
         }
 
-        local icons = {
-          ['typescript']         = '';
-          ['python']             = '';
-          ['java']               = '';
-          ['html']               = '';
-          ['css']                = '';
-          ['scss']               = '';
-          ['javascript']         = '';
-          ['javascriptreact']    = '';
-          ['markdown']           = '';
-          ['sh']                 = '';
-          ['zsh']                = '';
-          ['vim']                = '';
-          ['rust']               = '';
-          ['cpp']                = '';
-          ['c']                  = '';
-          ['go']                 = '';
-          ['lua']                = '';
-          ['conf']               = '';
-          ['haskel']             = '';
-          ['ruby']               = '';
-          ['txt']                = '';
-          ['nix']                = '';
-          ['org']                = ''
-        }
-
         local function color()
           local mode = api.nvim_get_mode().mode
           local mode_color = "%#StatusLine#"
@@ -177,6 +152,7 @@
         end
 
         Status = function()
+          local path = vim.fn.pathshorten(vim.fn.expand("%:p:h"))
           return table.concat {
             color(),
             string.format("  %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
@@ -223,13 +199,46 @@
         require("lazy").setup({
           spec = {
             {
+              'karb94/neoscroll.nvim',
+              lazy = false,
+              opts = {
+                mappings = {                 
+                  '<C-u>', '<C-d>',
+                  '<C-b>', '<C-f>',
+                  '<C-y>', '<C-e>',
+                  'zt', 'zz', 'zb',
+                },
+                hide_cursor = false,
+                stop_eof = true,             
+                respect_scrolloff = false,  
+                cursor_scrolls_alone = true,
+                duration_multiplier = 0.1,
+                easing = 'linear',
+                pre_hook = nil,
+                post_hook = nil,
+                performance_mode = false,
+                ignored_events = {
+                  'WinScrolled', 'CursorMoved'
+                },
+              },
+            },
+            {
               'aveplen/ruscmd.nvim',
+              event = "VeryLazy",
               opts = {},
             },
             {
               "smjonas/inc-rename.nvim",
               event = "VeryLazy",
-              opts = {},
+              opts = {
+                cmd_name = "IncRename",
+                hl_group = "Substitute",
+                preview_empty_name = false,
+                show_message = true,
+                save_in_cmdline_history = true,
+                input_buffer_type = nil,
+                post_hook = nil,
+              },
             },
             {
               'danilamihailov/beacon.nvim',
@@ -247,7 +256,10 @@
               opts = { pattern = "*" },
               dependencies = { "nvim-treesitter/nvim-treesitter" },
             },
-            { 'glacambre/firenvim', build = ":call firenvim#install(0)" },
+            { 
+              'glacambre/firenvim', 
+              build = ":call firenvim#install(0)" 
+            },
             {
               'HiPhish/rainbow-delimiters.nvim',
               config = function()
@@ -279,6 +291,7 @@
             },
             {
               'nvim-treesitter/nvim-treesitter',
+              event = "VeryLazy",
               build = ":TSUpdate",
               config = function()
                 require'nvim-treesitter.configs'.setup {
@@ -305,14 +318,15 @@
                 }
               end
             },
-            'nvim-treesitter/nvim-treesitter-textobjects',
             {
               'm-demare/hlargs.nvim',
-              opts = {},
+              event = 'VeryLazy',
+              opts = {
+                color = '#${base0C}',
+              },
             },
             {
               'goolord/alpha-nvim',
-              lazy = false,
               config = function()
                 local status_ok, alpha = pcall(require, "alpha")
                 if not status_ok then
@@ -447,12 +461,12 @@
             },
             {
               'nvimdev/indentmini.nvim',
-              event = 'VeryLazy',
+              event = "VeryLazy",
               opts = {},
             },
             {
               'windwp/nvim-autopairs',
-              event = 'VeryLazy',
+              event = "VeryLazy",
               opts = {},
             },
             {
@@ -462,7 +476,6 @@
                 'jvgrootveld/telescope-zoxide',
                 "nvim-telescope/telescope-frecency.nvim",
               },
-              event = 'VeryLazy',
               opts = {
                 defaults = {
                   file_ignore_patterns = {
@@ -507,9 +520,9 @@
                 plugins = {
                   options = {
                     enabled = true,
-                    ruler = true, -- disables the ruler text in the cmd line area
-                    showcmd = false, -- disables the command in the last line of the screen
-                    laststatus = 0, -- turn off the statusline in zen mode
+                    ruler = true,
+                    showcmd = false,
+                    laststatus = 0,
                   },
                   gitsigns = { enabled = true },
                   tmux = { enabled = true },
@@ -518,20 +531,20 @@
             },
             {
               'norcalli/nvim-colorizer.lua',
-              event = 'VeryLazy',
+              event = "VeryLazy",
               config = function()
                 require"colorizer".setup()
               end,
             },
             {
               'hrsh7th/nvim-cmp',
+              event = "VeryLazy",
               dependencies = {
                 'hrsh7th/cmp-buffer',
                 'hrsh7th/cmp-path',
                 'hrsh7th/cmp-nvim-lsp',
                 'hrsh7th/cmp-cmdline',
               },
-              event = "InsertEnter",
               config = function()
                 local cmp = require'cmp'
                 cmp.setup({
@@ -668,33 +681,33 @@
             },
             {
               'lewis6991/gitsigns.nvim',
-              event = 'VeryLazy',
+              event = "VeryLazy",
               opts = {},
             },
             {
               'L3MON4D3/LuaSnip',
+              event = "VeryLazy",
               dependencies = {
                 'rafamadriz/friendly-snippets',
                 'saadparwaiz1/cmp_luasnip',
               },
               version = "v2.*",
-              event = 'VeryLazy',
               config = function()
                 require("luasnip.loaders.from_vscode").lazy_load()
               end
             },
             {
               'echasnovski/mini.cursorword', 
+              event = "VeryLazy",
               version = false,
-              event = 'VeryLazy',
               opts = {
                 delay = 100,
               },
             },
             {
               'echasnovski/mini.splitjoin',
+              event = "VeryLazy",
               version = false,
-              event = 'VeryLazy',
               opts = {
                 mappings = {
                   toggle = "gS",
@@ -744,6 +757,14 @@
         })
 
         cmd([[
+          hi RainbowDelimiterRed guifg=#${base08}
+          hi RainbowDelimiterYellow guifg=#${base09}
+          hi RainbowDelimiterBlue guifg=#${base0D}
+          hi RainbowDelimiterOrange guifg=#${base0A}
+          hi RainbowDelimiterGreen guifg=#${base0B}
+          hi RainbowDelimiterViolet guifg=#${base0E}
+          hi RainbowDelimiterCyan guifg=#${base0C}
+
           hi StatusLine guibg=#${base00}
           hi LineNr guifg=#${base03}
           hi CodeBlock guibg=#${base00}
