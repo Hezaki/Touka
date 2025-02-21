@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     userName = "hezaki";
-    userEmail = "leronpro10@gmail.com";
+    userEmail = "email";
     difftastic.enable = true;
     extraConfig = {
       color.ui = true;
