@@ -31,8 +31,6 @@
     spiceUSBRedirection.enable = true;
   };
 
-  virtualisation.vmware.host.enable = true;
-
   services.fwupd.enable = true;
 
   programs = {
