@@ -12,13 +12,13 @@
   ];
 
   home.packages = with pkgs; [
+    cliphist
     grimblast
+    hyprpicker
+    hyprshade
     satty
     wl-clipboard
     wl-screenrec
-    hyprpicker
-    cliphist
-    hyprshade
   ];
 
   wayland.windowManager.hyprland = {

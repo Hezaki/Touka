@@ -13,5 +13,6 @@
     ./obs-studio
     ./games
     ./obsidian
+    ./kdeconnect
   ];
 }

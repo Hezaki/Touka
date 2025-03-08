@@ -55,6 +55,8 @@
     nur.url = "github:nix-community/NUR";
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

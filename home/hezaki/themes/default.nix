@@ -52,6 +52,7 @@
       sizes.terminal = 13;
     };
     targets = {
+      tmux.enable = false;
       swaync.enable = false;
       neovim.enable = false;
       gtk.extraCss = with config.lib.stylix.colors; ''
