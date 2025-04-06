@@ -16,7 +16,6 @@
     stateVersion = "24.11";
     packages = with pkgs; [
       # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
-      inputs.zen-browser.packages."${system}".default
       (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
       sdl3
       virtiofsd
@@ -37,7 +36,7 @@
       microfetch
       nix-init
       onefetch
-      pavucontrol
+      easyeffects
       piper
       scrcpy
       swaybg

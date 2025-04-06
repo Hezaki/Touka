@@ -54,13 +54,13 @@
         map("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true })
         map("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
         map("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
-        map("n", "<leader><space>", ":Telescope<CR>", { silent = true, noremap = true })
-        map("n", "fg", ":Telescope live_grep<CR>", { silent = true, noremap = true })
-        map("n", "ff", ":Telescope fd<CR>", { silent = true, noremap = true })
-        map("n", "fr", ":Telescope oldfiles<CR>", { silent = true, noremap = true })
-        map("n", "fd", ":Telescope zoxide list<CR>", { silent = true, noremap = true })
+        map("n", "<leader><space>", "<cmd>Telescope sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
+        map("n", "fg", "<cmd>Telescope live_grep sort_mru=true initial_mode=normal<CR>", { silent = true, noremap = true })
+        map("n", "ff", "<cmd>Telescope fd sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
+        map("n", "fr", "<cmd>Telescope oldfiles sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
+        map("n", "fd", "<cmd>Telescope zoxide list sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
         map("n", "fb", ":Yazi<CR>", { silent = true, noremap = true })
-        map("n", "<S-t>", ":Telescope buffers<CR>", { silent = true, noremap = true })
+        map("n", "<S-t>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR><CR>", { silent = true, noremap = true })
         map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
         map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
         map("n", "<leader>f", vim.lsp.buf.format, { silent = true, noremap = true })
@@ -496,6 +496,11 @@
                   },
                   border = {},
                   borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                  -- mappings = {
+                  --   n = {
+                  --     ["d"] = require("telescope.actions").delete_buffer,
+                  --   },
+                  -- },
                 },
               },
             },
