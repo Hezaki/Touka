@@ -19,20 +19,13 @@
         ManualAppUpdateOnly = true;
         Homepage.Startpage = "previous-session";
         SearchEngines = {
-          Add = [
-            {
-              Name = "4get";
-              URLTemplate = "https://4get.cn/web?s=";
-            }
-          ];
-          Default = "4get";
+          Default = "DuckDuckGo";
           Remove = [
             "Google"
             "Bing"
             "Amazon.com"
             "eBay"
             "Twitter"
-            "DuckDuckGo"
             "Wikipedia"
           ];
         };

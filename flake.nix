@@ -3,7 +3,6 @@
     {
       home-manager,
       nixpkgs,
-      nix-on-droid,
       nixpkgs-stable,
       ...
     }@inputs:
@@ -34,15 +33,6 @@
           extraSpecialArgs = agrs;
           modules = [
             ./home/hezaki
-          ];
-        };
-      };
-
-      nixOnDroidConfigurations = {
-        ktsrgi = nix-on-droid.lib.nixOnDroidConfiguration {
-          pkgs = import nixpkgs { system = "aarch64-linux"; };
-          modules = [
-            ./hosts/ktsrgi
           ];
         };
       };

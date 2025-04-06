@@ -7,6 +7,9 @@
       set guioptions none
 
       map D set "first-page-column 1:2"
+      map D set "guioptions"
+      map j feedkeys "<C-Down>"
+      map k feedkeys "<C-Up>"
     '';
   };
 }

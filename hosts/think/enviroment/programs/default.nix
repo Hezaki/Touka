@@ -3,6 +3,7 @@
   imports = [
     ./nh
     ./kanata
+    ./nix-ld
   ];
 
   environment = {
