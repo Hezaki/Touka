@@ -1,16 +1,23 @@
 { inputs, pkgs, ... }:
 {
-  imports = [
-    inputs.ags.homeManagerModules.default
-  ];
+  imports = [ inputs.ags.homeManagerModules.default ];
 
   programs.ags = {
     enable = true;
-    configDir = ../ags;
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
+    configDir = ./settings;
+    extraPackages = with inputs.ags.packages.${pkgs.system}; [
+      auth
+      apps
+      mpris
+      greet
+      notifd
+      wireplumber
+      powerprofiles
+      network
+      bluetooth
+      battery
+      tray
+      hyprland
     ];
   };
 }

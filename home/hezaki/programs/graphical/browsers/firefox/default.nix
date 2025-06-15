@@ -228,7 +228,7 @@
           "mousewheel.default.delta_multiplier_y" = 300;
 
           # other
-          "browser.startup.homepage" = "https://4get.ch/";
+          "browser.startup.homepage" = "https://duckduckgo.com/";
           "browser.startup.page" = 3;
           "browser.ctrlTab.sortByRecentlyUsed" = true;
           "browser.toolbars.bookmarks.visibility" = "never";

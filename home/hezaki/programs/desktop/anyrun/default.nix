@@ -5,7 +5,6 @@
   ...
 }:
 {
-  imports = [ inputs.anyrun.homeManagerModules.default ];
   programs.anyrun = {
     enable = true;
     config = {
@@ -16,7 +15,6 @@
         shell
         symbols
         translate
-        kidex
         dictionary
         websearch
         stdin
@@ -25,9 +23,9 @@
       hidePluginInfo = true;
       hideIcons = false;
       layer = "overlay";
-      maxEntries = 6;
+      maxEntries = 8;
       width = {
-        fraction = 0.220000;
+        absolute = 370;
       };
     };
 
@@ -35,8 +33,7 @@
       "applications.ron".text = ''
         Config(
           desktop_actions: false,
-          max_entries: 10,
-          terminal: Some("foot"),
+          terminal: Some("kitty"),
         )
       '';
 
@@ -63,7 +60,7 @@
 
       "websearch.ron".text = ''
         Config(
-          prefix: ":s",
+          prefix: "?",
           engines: [DuckDuckGo] 
         )
       '';
@@ -74,11 +71,6 @@
           shell: zsh,
         )
       '';
-      "kidex.ron".text = ''
-        Config(
-          max_entries: 6,
-        )
-      '';
       "dictionary.ron".text = ''
         Config(
           prefix: ":def",
@@ -86,7 +78,6 @@
         )
       '';
     };
-
     extraCss = with config.lib.stylix.colors; ''
       * {
         font-family: Inter;
@@ -107,11 +98,11 @@
       #match {
         padding: 3px;
         margin: 2px;
-        border-radius: 9px;
+        border-radius: 16px;
       }
 
       #entry, #plugin:hover {
-        border-radius: 9px;
+        border-radius: 16px;
       }
 
       box#main {
@@ -119,7 +110,7 @@
         margin-top: 160px;
         box-shadow: 1 1 3 1px #1C1D1D;
         background: #${base00};
-        border-radius: 9px;
+        border-radius: 16px;
         border: 2;
         border-color: #${base00};
         border-style: solid;

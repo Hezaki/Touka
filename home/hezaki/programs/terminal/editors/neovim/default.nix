@@ -1,13 +1,11 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }:
 {
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly.packages.${pkgs.system}.default;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -53,7 +51,7 @@
 
         map("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true })
         map("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
-        map("n", "<space>", ":nohlsearch<CR>", { silent = true, noremap = true })
+        map("n", "<leader>/", ":nohl<CR>", { silent = true, noremap = true })
         map("n", "<leader><space>", "<cmd>Telescope sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
         map("n", "fg", "<cmd>Telescope live_grep sort_mru=true initial_mode=normal<CR>", { silent = true, noremap = true })
         map("n", "ff", "<cmd>Telescope fd sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
@@ -61,13 +59,15 @@
         map("n", "fd", "<cmd>Telescope zoxide list sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
         map("n", "fb", ":Yazi<CR>", { silent = true, noremap = true })
         map("n", "<S-t>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR><CR>", { silent = true, noremap = true })
+        map("n", "<leader>gb", "%", { silent = true, noremap = true })
         map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
         map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
-        map("n", "<leader>f", vim.lsp.buf.format, { silent = true, noremap = true })
+        map("n", "<leader>f", function() require("conform").format() end, { silent = true, noremap = true })
         map("n", "<leader>r", ":IncRename ")
-        map("n", "<PageUp>", ":lua require('neoscroll').ctrl_u({ duration = 250 })<CR>", { silent = true, noremap = true })
-        map("n", "<PageDown>", ":lua require('neoscroll').ctrl_d({ duration = 250 })<CR>", { silent = true, noremap = true })
-        map("n", "<PageDown>", ":lua require('neoscroll').ctrl_d({ duration = 250 })<CR>", { silent = true, noremap = true })
+        map("n", "<PageDown>", "<S-}>zz")
+        map("n", "<PageUp>", "<S-{>zz")
+        map("v", "<PageDown>", "<S-}>zz")
+        map("v", "<PageUp>", "<S-{>zz")
         map('i', '<C-H>', '<C-w>', { silent = true, noremap = true })
 
         local kind_icons = {
@@ -199,30 +199,6 @@
         require("lazy").setup({
           spec = {
             {
-              'karb94/neoscroll.nvim',
-              lazy = false,
-              opts = {
-                mappings = {                 
-                  '<C-u>', '<C-d>',
-                  '<C-b>', '<C-f>',
-                  '<C-y>', '<C-e>',
-                  'zt', 'zz', 'zb',
-                },
-                hide_cursor = false,
-                stop_eof = true,             
-                respect_scrolloff = false,  
-                cursor_scrolls_alone = true,
-                duration_multiplier = 0.1,
-                easing = 'linear',
-                pre_hook = nil,
-                post_hook = nil,
-                performance_mode = false,
-                ignored_events = {
-                  'WinScrolled', 'CursorMoved'
-                },
-              },
-            },
-            {
               'aveplen/ruscmd.nvim',
               event = "VeryLazy",
               opts = {},
@@ -295,7 +271,7 @@
               build = ":TSUpdate",
               config = function()
                 require'nvim-treesitter.configs'.setup {
-                  ensure_installed = { "lua", "nix", "css", "json", },
+                  ensure_installed = { "lua", "nix", "css", "json", "html" },
                   sync_install = true,
                   auto_install = true,
                   highlight = {
@@ -373,6 +349,17 @@
                 dashboard.section.footer.val = {
                   "",
                   "--   Sozialismus oder Barbarei   --",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
                   "",
                   "",
                   "",
@@ -510,6 +497,11 @@
               opts = {},
             },
             {
+              "mikavilpas/yazi.nvim",
+              event = "VeryLazy",
+              opts = {},
+            },
+            {
               "folke/zen-mode.nvim",
               event = "VeryLazy",
               opts = {
@@ -632,8 +624,56 @@
               end
             },
             {
+              'stevearc/conform.nvim',
+              event = 'VeryLazy',
+              opts = {
+                formatters_by_ft = {
+                  nix = { "nixfmt" },
+                  lua = { "stylua" },
+                  html = { "prettierd" },
+                  css = { "prettierd" },
+                  javascript = { "prettierd" },
+                  json = { "prettierd" },
+                },
+              },
+            },
+            {
               'neovim/nvim-lspconfig',
+              event = 'VeryLazy',
               config = function()
+                require'lspconfig'.emmet_language_server.setup {
+                  cmd = { "vscode-css-language-server", "--stdio" },
+                  filetypes = { "html", "css", "scss", "less" },
+                  init_options = {
+                    provideFormatter = true
+                  },
+                  root_markers = { "package.json", ".git" },
+                  settings = {
+                    css = {
+                      validate = true
+                    },
+                    less = {
+                      validate = true
+                    },
+                    scss = {
+                      validate = true
+                    }
+                  },
+                }
+                require'lspconfig'.emmet_language_server.setup {
+                  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
+                  init_options = {
+                    includeLanguages = {},
+                    excludeLanguages = {},
+                    extensionsPath = {},
+                    preferences = {},
+                    showAbbreviationSuggestions = true,
+                    showExpandedAbbreviation = "always",
+                    showSuggestionsAsSnippets = false,
+                    syntaxProfiles = {},
+                    variables = {},
+                  },
+                }
                 require'lspconfig'.nixd.setup {
                   cmd = { "nixd" },
                   filetypes = { "nix" },

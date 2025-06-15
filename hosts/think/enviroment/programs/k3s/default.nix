@@ -1,5 +1,5 @@
 {
   services.k3s = {
-    enable = false;
+    enable = true;
   };
 }

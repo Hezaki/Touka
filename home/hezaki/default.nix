@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  pkgsStable,
   ...
 }:
 {
@@ -16,29 +17,33 @@
     stateVersion = "24.11";
     packages = with pkgs; [
       # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
+      # (pkgs.callPackage ./TEST/cpyvpn.nix { })
       (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
-      sdl3
-      virtiofsd
-      amneziawg-go
-      amneziawg-tools
+      ripdrag
+      easyeffects
       badlion-client
       dua
       duf
       foliate
+      gcr
       gdb
       glfw-wayland
+      gnome-secrets
+      polkit_gnome
+      gnome-weather
       home-manager
+      jq
       libnotify
       libreoffice
-      lsix
       lutgen
       lutris
-      microfetch
+      pkgsStable.nekoray
       nix-init
       onefetch
-      easyeffects
+      pavucontrol
       piper
       scrcpy
+      socat
       swaybg
       swayimg
       tgpt
@@ -46,9 +51,12 @@
       transmission_4-gtk
       xdg-utils
       xournalpp
+      youtube-music
       zenity
     ];
   };
+
+  services.gnome-keyring.enable = true;
 
   nixpkgs.config = {
     allowBroken = true;
@@ -58,7 +66,10 @@
       "cinny-4.2.1"
       "cinny-unwrapped-4.2.1"
     ];
-    overlays = [ inputs.nur.overlay ];
+    overlays = with inputs; [
+      nur.overlay
+      hyprpanel.overlay
+    ];
   };
 
   nix = {

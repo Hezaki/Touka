@@ -8,7 +8,7 @@
         "separator": " "
       },
       "logo": {
-        "source": "nix_small"
+        "source": "nixos_small"
       },
       "modules": [
         "title",

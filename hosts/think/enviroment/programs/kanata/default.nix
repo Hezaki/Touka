@@ -16,9 +16,11 @@
 
           (defvar
             tap-timeout 000
+            fast-timeout 150
             hold-timeout 200
 
             tt $tap-timeout
+            ft $fast-timeout
             ht $hold-timeout
           )
 
@@ -35,17 +37,16 @@
           )
 
           (deflayermap (transparent)
-
-            q (tap-hold-release $tt $ht q 1)
-            w (tap-hold-release $tt $ht w 2)
-            e (tap-hold-release $tt $ht e 3)
-            r (tap-hold-release $tt $ht r 4)
-            t (tap-hold-release $tt $ht t 5)
-            y (tap-hold-release $tt $ht y 6)
-            u (tap-hold-release $tt $ht u 7)
-            i (tap-hold-release $tt $ht i 8) 
-            o (tap-hold-release $tt $ht o 9) 
-            p (tap-hold-release $tt $ht p 0) 
+            q (tap-hold-release $tt $ft q 1)
+            w (tap-hold-release $tt $ft w 2)
+            e (tap-hold-release $tt $ft e 3)
+            r (tap-hold-release $tt $ft r 4)
+            z (tap-hold-release $tt $ft z 5)
+            x (tap-hold-release $tt $ft x 6)
+            c (tap-hold-release $tt $ft c 7)
+            v (tap-hold-release $tt $ft v 8) 
+            f (tap-hold-release $tt $ft f 9)
+            g (tap-hold-release $tt $ft g 0) 
 
             lalt (tap-hold $tt $ht lalt (layer-while-held extended))
             (template-expand double-tap-layer-switch ralt default)

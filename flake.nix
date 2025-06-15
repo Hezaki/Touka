@@ -29,7 +29,7 @@
 
       homeConfigurations = {
         hezaki = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
           extraSpecialArgs = agrs;
           modules = [
             ./home/hezaki
@@ -45,26 +45,22 @@
     nur.url = "github:nix-community/NUR";
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    hyprhook.url = "github:hyprhook/hyprhook";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-gaming.url = "github:fufexan/nix-gaming";
 
     nix-cursors = {
       url = "github:LilleAila/nix-cursors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix/";
+    stylix.url = "github:danth/stylix/master";
     ags.url = "github:aylur/ags";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
@@ -128,6 +124,11 @@
 
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
+      flake = false;
+    };
+    
+    tmux-fzf = {
+      url = "github:sainnhe/tmux-fzf";
       flake = false;
     };
   };

@@ -9,8 +9,9 @@
   ];
 
   console = {
+    font = "ter-132n";
     packages = with pkgs; [ terminus_font ];
-    font = "ter-v18n";
+    keyMap = "us";
     earlySetup = true;
   };
 }

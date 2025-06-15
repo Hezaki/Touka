@@ -137,7 +137,7 @@
           color: @white;
           background: @background-alt;
           border: 1px solid @border;
-          border-radius: 5px;
+          border-radius: 16px;
           margin: 0.5rem;
         }
 
@@ -154,7 +154,7 @@
         .close-button {
           margin: 0.5rem;
           padding: 0.25rem;
-          border-radius: 5px;
+          border-radius: 16px;
           color: @black;
           background: @red;
         }
@@ -172,7 +172,7 @@
         /*** Notifications ***/
         .floating-notifications.background .notification-row .notification-background {
           background: @background;
-          border-radius: 6px;
+          border-radius: 16px;
           color: @white;
           margin: 1rem;
           padding: 0;
@@ -183,7 +183,7 @@
         .notification-background
         .notification {
           padding: 0.6rem;
-          border-radius: 5px;
+          border-radius: 16px;
         }
 
         .floating-notifications.background
@@ -261,7 +261,7 @@
         .control-center {
           background: @background;
           border: 1px solid @border;
-          border-radius: 8px;
+          border-radius: 16px;
           color: @white;
           padding: 1.5rem;
         }
@@ -272,13 +272,13 @@
 
         .control-center .notification-row .notification-background {
           background: @background-alt;
-          border-radius: 8px;
+          border-radius: 16px;
           color: @white;
           margin: 0.5rem;
         }
 
         .control-center .notification-row .notification-background .notification {
-          border-radius: 8px;
+          border-radius: 16px;
           padding: 0.5rem;
         }
 
@@ -323,7 +323,7 @@
         .widget-title > button {
           background: @background-alt;
           border: 1px solid @border;
-          border-radius: 8px;
+          border-radius: 16px;
           color: @white;
           padding: 0.5rem;
         }
@@ -345,7 +345,7 @@
         .widget-dnd > switch {
           background: @background-alt;
           border: 1px solid @border;
-          border-radius: 8px;
+          border-radius: 16px;
         }
 
         .widget-dnd > switch:hover {
@@ -358,7 +358,7 @@
 
         .widget-dnd > switch slider {
           background: @background-focus;
-          border-radius: 8px;
+          border-radius: 16px;
           padding: 0.25rem;
         }
 
@@ -370,7 +370,7 @@
         .widget-mpris .widget-mpris-player {
           background: @background-alt;
           border: 1px solid @border;
-          border-radius: 8px;
+          border-radius: 16px;
           margin: 0.5rem;
           padding: 0.5rem;
         }
@@ -393,7 +393,7 @@
 
         .widget-mpris .widget-mpris-player > box > button {
           border: 1px solid transparent;
-          border-radius: 8px;
+          border-radius: 16px;
           padding: 0.25rem;
         }
 
