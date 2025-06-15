@@ -1,9 +1,18 @@
-{ pkgs, ... }:
 {
-  imports = [
+  pkgs,
+  inputs,
+  pkgsStable,
+  ...
+}:
+{
+  imports = with inputs; [
+    nix-gaming.nixosModules.platformOptimizations
     ./nh
     ./kanata
     ./nix-ld
+    ./clamav
+    ./steam
+    # ./k3s
   ];
 
   environment = {
@@ -39,27 +48,20 @@
     adb.enable = true;
     dconf.enable = true;
     light.enable = true;
-    gamescope.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true;
+
+    gamescope = {
+      enable = true;
+      package = pkgsStable.gamescope;
+    };
+
     appimage = {
       enable = true;
       binfmt = true;
     };
-    steam = {
-      enable = true;
-      package = pkgs.steam.override {
-        extraEnv = {
-          OBS_VKCAPTURE = true;
-          RADV_TEX_ANISO = 16;
-        };
-        extraLibraries =
-          p: with p; [
-            atk
-          ];
-      };
-      gamescopeSession.enable = true;
-    };
+
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

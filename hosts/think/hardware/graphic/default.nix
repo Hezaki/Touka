@@ -3,6 +3,7 @@
   hardware = {
     amdgpu.amdvlk.enable = true;
     graphics = {
+      enable = true;
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
         vaapiVdpau

@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
+  imports = with inputs; [ nix-gaming.nixosModules.pipewireLowLatency ];
   hardware = {
     firmware = with pkgs; [ linux-firmware ];
     bluetooth = {
@@ -11,10 +12,6 @@
         };
       };
     };
-    pulseaudio = {
-      enable = false;
-      package = pkgs.pulseaudioFull;
-    };
     uinput.enable = true;
   };
 
@@ -25,13 +22,21 @@
       mouse:usb:v046dpC53F:name:Logitech USB Receiver:*
        MOUSE_DPI=12000@1000
     '';
+    pulseaudio = {
+      enable = false;
+      package = pkgs.pulseaudioFull;
+    };
     ratbagd.enable = true;
-    ollama.enable = true;
     pcscd.enable = true;
     pipewire = {
       enable = true;
       audio.enable = true;
       pulse.enable = true;
+      lowLatency = {
+        enable = true;
+        quantum = 64;
+        rate = 48000;
+      };
       wireplumber = {
         enable = true;
         extraConfig = {

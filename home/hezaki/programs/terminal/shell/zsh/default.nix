@@ -8,7 +8,7 @@
   programs.zsh = {
     enable = true;
     profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && WLR_RENDERER=vulkan exec Hyprland
+      [ "$(tty)" = "/dev/tty1" ] && WLR_RENDERER=vulkan exec Hyprland &>/dev/null
     '';
     plugins = with inputs; [
       {
@@ -55,7 +55,6 @@
       "tree" = "lsd --tree";
       "doas" = "doas ";
       "sudo" = "sudo ";
-      "fetch" = "fastfetch";
       "df" = "duf";
       "md" = "mkdir -v";
       "mv" = "mv -v";
@@ -71,16 +70,16 @@
       "fb" = "fastboot";
       "si" = "swayimg";
     };
-    initExtra = with config.lib.stylix.colors; ''
+    initContent = with config.lib.stylix.colors; ''
       setopt automenu
       setopt nobeep
 
+      QT_QPA_PLATFORMTHEME=gtk3
       export EDITOR='nvim'
       export AUTO_NOTIFY_THRESHOLD=60
       export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
-
 
       bindkey -v
       bindkey '^H' vi-backward-kill-word
@@ -144,6 +143,7 @@
       }
 
       tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
+      
       [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
     '';
     history.size = 10000;

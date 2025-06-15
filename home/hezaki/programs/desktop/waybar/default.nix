@@ -5,121 +5,135 @@
     "waybar/config.jsonc".text = # json
       ''
         {
-        "bluetooth": {
-          "format": "󰂯 {status}",
-          "format-connected": "󰂯 {device_battery_percentage}%",
-          "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-          "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-          "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-          "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
-        },
-        "tray": {
-          "icon-size": 20,
-          "spacing": 12
-        },
-        "battery": {
-          "format": "{icon} {capacity}%",
-          "format-alt": "{icon} {time} ",
-          "format-charging": "󰂅  {capacity}%",
-          "format-icons": [
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁾",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
+          "height": 1,
+          "layer": "top",
+          "position": "top",
+
+          "modules-left": [
+            "backlight",
+            "wireplumber",
+            "hyprland/language",
+            "bluetooth"
           ],
-          "states": {
-            "critical": 15,
-            "warning": 30
-          }
-        },
-        "battery#bat2": {
-          "bat": "bat2"
-        },
-        "clock#time": {
-          "format": "󰸘  {:%b %e}",
-          "tooltip-format": "<tt>{calendar}</tt>",
-          "interval": 1,
-        },
-        "custom/clock": {
-          "exec": "date +\"  %H•%M\"",
-          "interval": 1
-        },
-        "custom/separator": {
-          "format": "/",
-          "interval": 1
-        },
-        "height": 1,
-        "hyprland/language": {
-          "format": "󰌌  {}",
-          "format-en": "en",
-          "format-ru": "ru",
-          "keyboard-name": "at-translated-set-2-keyboard",
-          "interval": 1
-        },
-        "hyprland/window": {
-          "format": "{}",
-          "max-length": 35
-        },
-        "backlight": {
-          "device": "intel_backlight",
-          "format": "{icon} {percent}%",
-          "format-icons": [" ", " "]
-        },
-        "layer": "top",
-        "modules-center": [
-          "hyprland/workspaces",
-        ],
-        "modules-left": [
-          "backlight",
-          "wireplumber",
-          "hyprland/language",
-          "bluetooth"
-        ],
-        "modules-right": [
-          "tray",
-          "clock#time",
-          "custom/clock",
-          "battery"
-        ],
-        "position": "top",
-        "wireplumber": {
-          "format": "{icon}  {volume}%",
-          "format-icons": ["", "", ""],
-          "format-muted": "󰝟  mute",
-          "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-          "scroll-step": 3,
-          "max-volume": 100.0
-        },
-        "temperature": {
-          "critical-threshold": 80,
-          "format": "{icon} {temperatureC}°C",
-          "format-icons": [ "" ]
-        },
-        "hyprland/workspaces": {
-          "on-click": "activate",
-          "format": "{icon}",
-          "format-icons": {
-             "1":"一",
-             "2":"二",
-             "3":"三",
-             "4":"四",
-             "5":"五",
-             "6":"六",
-             "7":"七",
-             "8":"八",
-             "9":"九",
-             "10":"十",
+
+          "modules-center": ["hyprland/workspaces"],
+
+          "modules-right": [
+            "tray",
+            "clock#time",
+            "custom/clock",
+            "battery"
+          ],
+
+          "bluetooth": {
+            "format": "󰂯 {status}",
+            "format-connected": "󰂯 {device_battery_percentage}%",
+            "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+            "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
           },
-          "persistent-workspaces": {
-             "eDP-1": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+
+          "tray": {
+            "icon-size": 20,
+            "spacing": 12
+          },
+
+          "battery": {
+            "format": "{icon} {capacity}%",
+            "format-alt": "{icon} {time} ",
+            "format-charging": "󰂅  {capacity}%",
+            "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "states": {
+              "critical": 15,
+              "warning": 30
+            }
+          },
+
+          "battery#bat2": {
+            "bat": "bat2"
+          },
+
+          "clock#time": {
+            "format": "󰸘  {:%b %e}",
+            "tooltip-format": "<tt>{calendar}</tt>",
+            "interval": 1
+          },
+
+          "custom/clock": {
+            "exec": "date +\"  %H•%M\"",
+            "interval": 1
+          },
+
+          "custom/separator": {
+            "format": "/",
+            "interval": 1
+          },
+
+          "hyprland/language": {
+            "format": "󰌌  {}",
+            "format-en": "en",
+            "format-ru": "ru",
+            "interval": 1
+          },
+
+          "hyprland/window": {
+            "format": "{}",
+            "max-length": 35
+          },
+
+          "backlight": {
+            "device": "intel_backlight",
+            "format": "{icon} {percent}%",
+            "format-icons": [" ", " "]
+          },
+
+          "wireplumber": {
+            "format": "{icon}  {volume}%",
+            "format-icons": ["", "", ""],
+            "format-muted": "󰝟  mute",
+            "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+            "scroll-step": 3,
+            "max-volume": 100.0
+          },
+
+          "temperature": {
+            "critical-threshold": 80,
+            "format": "{icon} {temperatureC}°C",
+            "format-icons": [""]
+          },
+
+          "hyprland/workspaces": {
+            "on-click": "activate",
+            "format": "{icon}",
+            "format-icons": {
+              "1": "一",
+              "2": "二",
+              "3": "三",
+              "4": "四",
+              "5": "五",
+              "6": "六",
+              "7": "七",
+              "8": "八",
+              "9": "九",
+              "10": "十",
+              "11": "一",
+              "12": "二",
+              "13": "三",
+              "14": "四",
+              "15": "五",
+              "16": "六",
+              "17": "七",
+              "18": "八",
+              "19": "九",
+              "20": "十"
             },
-          },
+
+            "persistent-workspaces": {
+              "eDP-1": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+              "DP-2": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+            }
+          }
         }
       '';
     "waybar/style.css".text =
@@ -140,11 +154,11 @@
           margin: 0px 0px 5px 0px;
           background-color: #${base00};
           border-top: 0px;
-          border-bottom: 2px;
+          border-bottom: 1px;
           border-style: solid;
-          border-color: #${base01};
-          padding-right: 1px;
-          padding-left: 1px;
+          border-color: #${base03};
+          padding-right: 6px;
+          padding-left: 6px;
           box-shadow: 1 1 3 1px #101010;
         }
 
@@ -153,8 +167,8 @@
           border-radius: 20px;
           margin: 2px;
           padding: 0px;
-          padding-right: 6px;
-          padding-left: 6px;
+          padding-right: 5px;
+          padding-left: 5px;
           color: #${base06};
           min-height: 25px;
           transition: all 0.4s ease-in-out;
@@ -231,7 +245,7 @@
 
         #tray {
           color: #${base06};
-          background: #${base00};
+          background: #${base02};
           padding: 0 0.4em;
           padding-top: 0px;
           border-style: solid;
@@ -239,52 +253,59 @@
         }
 
         #tray {
-          margin: 3 4 3 4px;
+          background: #${base02};
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 16 4 4 16px;
         }
 
         #battery {
-          margin: 3 4 3 4px;
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 4 16 16 4px;
         }
 
         #backlight {
-          margin: 3 4 3 4px;
+          background: #${base02};
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
-        }
-
-        #custom-date {
-          margin: 3 4 3 4px;
-          padding: 0 0.4em;
+          border-radius: 16 4 4 16px;
         }
 
         #clock {
-          margin: 3 4 3 4px;
+          background: #${base02};
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 4px;
         }
 
         #custom-clock {
-          margin: 3 4 3 4px;
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 4px;
         }
 
         #language {
-          margin: 3 4 3 4px;
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 4px;
         }
 
         #wireplumber {
-          margin: 3 4 3 4px;
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 4px;
         }
 
         #bluetooth {
-          margin: 3 4 3 4px;
+          background: #${base02};
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
+          border-radius: 4 16 16 4px;
         }
 
         #image-network {
-          margin: 3 4 3 4px;
+          margin: 3 2 3 2px;
           padding: 0 0.4em;
         }
 
@@ -302,7 +323,7 @@
 
         #workspaces {
           margin: 3 0 3 0px;
-          border-radius: 14 14 14 14px;
+          border-radius: 16 16 16 16px;
         }
       '';
   };

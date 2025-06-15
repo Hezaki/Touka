@@ -1,18 +1,19 @@
 {
   imports = [
     ./mpv
-    ./foot
+    # ./foot
     ./kitty
     ./zathura
     ./browsers
     ./vesktop
     ./telegram
-    ./blockbench
+    # ./blockbench
     ./prismlauncher
     ./mangohud
     ./obs-studio
     ./games
     ./obsidian
     ./kdeconnect
+    ./easyeffects
   ];
 }

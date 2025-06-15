@@ -10,10 +10,13 @@
     bun
     luajitPackages.jsregexp
     lua
-    lua-language-server
+    stylua
+    emmet-language-server
     nodejs
+    vscode-langservers-extracted
 
     nixd
     nixfmt-rfc-style
+    prettierd
   ];
 }

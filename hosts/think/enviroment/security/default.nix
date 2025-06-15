@@ -12,5 +12,6 @@ in
         ${user} ALL=(ALL) NOPASSWD: ${pkgs.amneziawg-tools}/bin/awg-quick
       '';
     };
+    polkit.enable = true;
   };
 }

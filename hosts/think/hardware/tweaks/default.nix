@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  # hardware.system76.enableAll = true;
-
   services = {
     irqbalance.enable = true;
     dbus.implementation = "broker";

@@ -1,5 +1,6 @@
 {
   imports = [
+    # ./ags
     ./anyrun
     ./hyprlock
     ./swaync
@@ -7,6 +8,7 @@
     ./hyprland
     ./portals
     ./waybar
-    ./ags
+    ./fusuma
+    # ./nwg-dock
   ];
 }

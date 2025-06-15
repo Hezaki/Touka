@@ -15,6 +15,11 @@ let
     version = "fake";
     src = inputs.tmux-sessionx;
   };
+  fzf = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tmux-fzf";
+    version = "fake";
+    src = inputs.tmux-fzf;
+  };
 in
 {
   programs.tmux = {
@@ -29,6 +34,9 @@ in
         extraConfig = ''
           set -g @sessionx-bind 'o'
         '';
+      }
+      {
+        plugin = fzf;
       }
     ];
     prefix = "C-a";

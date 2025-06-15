@@ -1,16 +1,26 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 {
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
-    # plugins = with inputs; {
-    #   no-status = "${yazi-plugins}/no-status.yazi";
-    # };
-    # initLua = ''
-    #   require("no-status"):setup()
-    # '';
+    keymap = {
+      manager.prepend_keymap = [
+        {
+          run = "shell 'ripdrag -A ''$@'' -x 2>/dev/null &' --confirm";
+          on = [ "<C-n>" ];
+        }
+        {
+          run = "quit";
+          on = [ "<Esc>" ];
+        }
+      ];
+    };
     settings = {
-      manager.show_symlink = true;
+      mgr = {
+        show_symlink = true;
+        sort_by = "size";
+        linemode = "size";
+      };
     };
     theme = lib.mkForce {
       manager = {
