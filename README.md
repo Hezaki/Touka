@@ -1,5 +1,5 @@
 <h1 align="center">Touka</h1>
-<p align="center">This is my nonfemboy Nix configuration, for desktop and a small configuration for android</p>
+<p align="center">This is my nonfemboy Nix configuration</p>
 <img src="./.other/1.png" alt="kakoi lubopitniy ai ai ai">
 
 ## ℹ️Information
