@@ -1,7 +1,6 @@
 {
   imports = [
     ./nwg-dock
-    # ./ags
     ./anyrun
     ./hyprlock
     ./swaync
@@ -11,6 +10,6 @@
     ./waybar
     # ./fusuma
     # ./nwg-dock
-    ./uidskie
+    ./udiskie
   ];
 }
