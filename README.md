@@ -38,6 +38,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 		- [programs](home/hezaki/programs) there are all programs for this user
 			- [desktop](home/hezaki/programs/desktop) everything that is responsible for the environment
 				- [anyrun](home/hezaki/programs/desktop/anyrun) app runner
+				- [fusuma](home/hezaki/programs/desktop/fusuma) custom gestures touchpad
 				- [cliphist](home/hezaki/programs/desktop/cliphist) clipboard history
 				- [hyprland](home/hezaki/programs/desktop/hyprland) wayland compositor
 				- [hyprlock](home/hezaki/programs/desktop/hyprlock) screenlocker
@@ -45,6 +46,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [swayimg](home/hezaki/programs/desktop/swayimg) best image viewer
 				- [swaync](home/hezaki/programs/desktop/swaync) notification
 				- [waybar](home/hezaki/programs/desktop/waybar) bar
+				- [udiskie](home/hezaki/programs/desktop/udiskie) automount
 			- [devlop](home/hezaki/programs/devlop) developer utils
 			- [graphical](home/hezaki/programs/graphical) gui programs
 				- [blockbench](home/hezaki/programs/graphical/blockbench) low-poly 3D model editor
@@ -63,6 +65,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [telegram](home/hezaki/programs/graphical/telegram) messenger!
 				- [vesktop](home/hezaki/programs/graphical/vesktop) best discord client
 				- [zathura](home/hezaki/programs/graphical/zathura) pdf-reader! I can't live without him
+				- [kdeconnect](home/hezaki/programs/graphical/kdeconnect) sync with phone
 			- [termianl](home/hezaki/programs/terminal) terminal utils
 				- [anicliru](home/hezaki/programs/terminal/anicli) some kind of Russian shit
 				- [bat](home/hezaki/programs/terminal/bat) alt cat
@@ -98,9 +101,16 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 			- [network](hosts/think/enviroment/) setting network
 			- [nix](hosts/think/enviroment/) setting nix
 			- [programs](hosts/think/enviroment/programs) utils on host
+			    - [clamav](hosts/think/enviroment/programs/clamav) antivirus
+			    - [flatpak](hosts/think/enviroment/programs/flatpak) declarative flatpak
 				- [k3s](hosts/think/enviroment/programs/k3s) kubernetes
 				- [kanata](hosts/think/enviroment/programs/kanata) keyboard remapper
 				- [nh](hosts/think/enviroment/programs/nh) yet another nix cli helper
+				- [nix-ld](hosts/think/enviroment/programs/nix-ld) run bin
+				- [openvpn](hosts/think/enviroment/programs/openvpn) ovpn
+                - [polkit](hosts/think/enviroment/programs/polkit) polkit setting
+                - [podman](hosts/think/enviroment/programs/podman) rootless docker containers
+                - [steam](hosts/think/enviroment/programs/polkit) steam client
 		- [filesystem](hosts/think/filesystem) file system configuration!
 		- [hardware](hosts/think/hardware) hardware settings for my thinkpad
 			- [battery](hosts/think/hardware/battery) battery setting
