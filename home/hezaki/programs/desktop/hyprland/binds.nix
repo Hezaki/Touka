@@ -15,6 +15,9 @@
       bind = $mod, S, togglefloating, 
       bind = ALT, F, fullscreen,
 
+      bind = $mod SHIFT, TAB, togglegroup, 
+      bind = $mod, TAB, changegroupactive,
+
       binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+
       binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-
       binde = $mod, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 10%+
@@ -26,8 +29,7 @@
       bind =, XF86MonBrightnessDown, exec, sudo ${pkgs.light}/bin/light -U 10
       bind =, XF86MonBrightnessUp, exec, sudo ${pkgs.light}/bin/light -A 10
 
-      # bind = $mod SHIFT, R, exec, pkill swaybg && pkill waybar && pkill batsignal && hyprctl reload
-      bind = $mod SHIFT, R, exec, hyprctl reload && pypr reload
+      bind = $mod SHIFT, R, exec, hyprctl reload
       bind = $mod, D, exec, anyrun
       bind = $mod, P, exec, hyprpicker -a
 

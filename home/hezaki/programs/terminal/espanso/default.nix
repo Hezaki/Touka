@@ -122,6 +122,11 @@
           }
 
           {
+            trigger = ":maps";
+            replace = "https://yandex.ru/maps/51/samara/";
+          }
+
+          {
             trigger = ":rock";
             replace = "🗿";
           }

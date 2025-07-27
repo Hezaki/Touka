@@ -1,8 +1,8 @@
 { pkgs, config, ... }:
 {
-  home.packages = with pkgs; [ vesktop ];
+  programs.vesktop.enable = true;
   xdg.configFile = {
-    "vesktop/settings/settings.json".text = ''
+    "vesktop/settings.json".text = ''
       {
           "autoUpdate": true,
           "autoUpdateNotification": true,

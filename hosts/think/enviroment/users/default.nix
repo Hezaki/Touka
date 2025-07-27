@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   user = "hezaki";
-  passroot = "710100281000000";
-  passuser = "heartpex";
+  passroot = "password";
+  passuser = "password";
 in
 {
   users = {

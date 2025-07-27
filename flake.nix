@@ -40,19 +40,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
-
-    hyprhook.url = "github:hyprhook/hyprhook";
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-gaming.url = "github:fufexan/nix-gaming";
 
     nix-cursors = {
       url = "github:LilleAila/nix-cursors";
@@ -60,7 +58,7 @@
     };
 
     stylix.url = "github:danth/stylix/master";
-    ags.url = "github:aylur/ags";
+    hyprsplit.url = "github:shezdy/hyprsplit";
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
@@ -126,7 +124,7 @@
       url = "github:omerxx/tmux-sessionx";
       flake = false;
     };
-    
+
     tmux-fzf = {
       url = "github:sainnhe/tmux-fzf";
       flake = false;

@@ -362,52 +362,8 @@
           padding: 0.25rem;
         }
 
-        /* Mpris widget */
-        .widget-mpris {
-          color: @white;
-        }
-
         .widget-mpris .widget-mpris-player {
-          background: @background-alt;
-          border: 1px solid @border;
           border-radius: 16px;
-          margin: 0.5rem;
-          padding: 0.5rem;
-        }
-
-        .widget-mpris .widget-mpris-player button:hover {
-          background: @background-focus;
-        }
-
-        .widget-mpris .widget-mpris-player .widget-mpris-album-art {
-          border-radius: 16px;
-        }
-
-        .widget-mpris .widget-mpris-player .widget-mpris-title {
-          font-weight: bold;
-        }
-
-        .widget-mpris .widget-mpris-player .widget-mpris-subtitle {
-          font-weight: normal;
-        }
-
-        .widget-mpris .widget-mpris-player > box > button {
-          border: 1px solid transparent;
-          border-radius: 16px;
-          padding: 0.25rem;
-        }
-
-        .widget-mpris .widget-mpris-player > box > button:hover {
-          background: @background-focus;
-          border: 1px solid @border;
-        }
-
-        .widget-mpris > box > button {
-        /* Change player side buttons */
-        }
-
-        .widget-mpris > box > button:disabled {
-        /* Change player side buttons insensitive */
         }
       '';
   };

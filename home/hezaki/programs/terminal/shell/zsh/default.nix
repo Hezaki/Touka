@@ -7,46 +7,55 @@
 {
   programs.zsh = {
     enable = true;
+
     profileExtra = ''
       [ "$(tty)" = "/dev/tty1" ] && WLR_RENDERER=vulkan exec Hyprland &>/dev/null
     '';
+
     plugins = with inputs; [
       {
         name = "powerlevel10k";
         file = "powerlevel9k.zsh-theme";
         src = powerlevel10k;
       }
+
       {
         name = "zsh-autosuggestions";
         file = "zsh-autosuggestions.plugin.zsh";
         src = zsh-autosuggestions;
       }
+
       {
         name = "zsh-syntax-highlighting";
         file = "zsh-syntax-highlighting.plugin.zsh";
         src = zsh-syntax-highlighting;
       }
+
       {
         name = "zsh-history-substring-search";
         file = "zsh-history-substring-search.plugin.zsh";
         src = zsh-syntax-highlighting;
       }
+
       {
         name = "fzf-tab";
         file = "fzf-tab.plugin.zsh";
         src = fzf-tab;
       }
+
       {
         name = "zsh-auto-notify";
         file = "auto-notify.plugin.zsh";
         src = zsh-auto-notify;
       }
+
       {
         name = "zsh-autopair";
         file = "zsh-autopair.plugin.zsh";
         src = zsh-autopair;
       }
     ];
+
     shellAliases = {
       "l" = "ls -l";
       "cd" = "z";
@@ -70,6 +79,7 @@
       "fb" = "fastboot";
       "si" = "swayimg";
     };
+
     initContent = with config.lib.stylix.colors; ''
       setopt automenu
       setopt nobeep
@@ -146,6 +156,7 @@
       
       [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
     '';
+
     history.size = 10000;
   };
 }

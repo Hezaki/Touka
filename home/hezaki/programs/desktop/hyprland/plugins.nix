@@ -1,10 +1,9 @@
 { pkgs, inputs, ... }:
 {
-  wayland.windowManager.hyprland.plugins = with pkgs.hyprlandPlugins; [
+  wayland.windowManager.hyprland.plugins = with pkgs.hyprlandPlugins; with inputs; [
     hypr-dynamic-cursors
     csgo-vulkan-fix
     hyprsplit
-    inputs.hyprhook.packages.${pkgs.system}.hyprhook
   ];
 
   xdg.configFile."hypr/plugins.conf".text = # hyprlang
@@ -27,10 +26,6 @@
             limit = 6000
             function = quadratic
           }
-        }
-
-        hyprhook {
-          focusedMon = $XDG_CONFIG_HOME/hypr/scripts/rules.sh
         }
 
         hyprcursor:enabled = true

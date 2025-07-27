@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgsStable,
   inputs,
   config,
   ...
@@ -14,22 +13,22 @@
     polarity = "dark";
 
     base16Scheme = {
-      base00 = "#0d0c0c";
-      base01 = "#12120f";
-      base02 = "#1D1C19";
-      base03 = "#282727";
-      base04 = "#727169";
-      base05 = "#DCD7BA";
-      base06 = "#C8C093";
-      base07 = "#717C7C";
-      base08 = "#C34043";
-      base09 = "#FFA066";
-      base0A = "#C0A36E";
-      base0B = "#76946A";
-      base0C = "#6A9589";
-      base0D = "#7E9CD8";
-      base0E = "#957FB8";
-      base0F = "#D27E99";
+      base00 = "#222226";
+      base01 = "#28282C";
+      base02 = "#2E2E32";
+      base03 = "#36363a";
+      base04 = "#ffffff";
+      base05 = "#ffffff";
+      base06 = "#ffffff";
+      base07 = "#6f8396";
+      base08 = "#e62d42";
+      base09 = "#ed5b00";
+      base0A = "#c88800";
+      base0B = "#3a944a";
+      base0C = "#2190a4";
+      base0D = "#3584e4";
+      base0E = "#9141ac";
+      base0F = "#d56199";
     };
 
     cursor = {
@@ -45,12 +44,12 @@
     fonts = {
       serif = {
         name = "JetBrainsMono NerdFont";
-        package = pkgsStable.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
       };
 
       monospace = config.stylix.fonts.serif;
       emoji.package = pkgs.noto-fonts-emoji;
-      sizes.terminal = 14;
+      sizes.terminal = 16;
     };
 
     targets = {
@@ -58,8 +57,13 @@
       swaync.enable = false;
       neovim.enable = false;
       qt.enable = true;
+      mpv.enable = true;
 
       gtk.extraCss = with config.lib.stylix.colors; ''
+        * {
+          border-radius = 12px
+        }
+
         @define-color headerbar_bg_color #${base00};
         @define-color sidebar_bg_color #${base00};
       '';

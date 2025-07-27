@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  pkgsStable,
   ...
 }:
 {
@@ -12,12 +11,17 @@
     ./nix-ld
     ./clamav
     ./steam
+    ./polkit
+    ./openvpn
+    ./podman
+    ./flatpak
     # ./k3s
   ];
 
   environment = {
     enableDebugInfo = true;
     systemPackages = with pkgs; [
+      nix-output-monitor
       nix-tree
       p7zip
       unrar
@@ -35,13 +39,22 @@
   };
 
   virtualisation = {
-    podman.enable = true;
+    oci-containers.backend = "podman";
     libvirtd.enable = true;
     waydroid.enable = true;
     spiceUSBRedirection.enable = true;
   };
 
-  services.fwupd.enable = true;
+  services = {
+    fwupd.enable = true;
+    flatpak.enable = true;
+    gvfs.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  };
 
   programs = {
     zsh.enable = true;
@@ -50,17 +63,12 @@
     light.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true;
-
-    gamescope = {
-      enable = true;
-      package = pkgsStable.gamescope;
-    };
+    amnezia-vpn.enable = true;
 
     appimage = {
       enable = true;
       binfmt = true;
     };
-
 
     gnupg.agent = {
       enable = true;

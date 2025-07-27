@@ -6,8 +6,9 @@
       ''
         {
           "height": 1,
-          "layer": "top",
-          "position": "top",
+          "layer": "bottom",
+          "position": "bottom",
+          "width": 1300,
 
           "modules-left": [
             "backlight",
@@ -35,7 +36,7 @@
           },
 
           "tray": {
-            "icon-size": 20,
+            "icon-size": 18,
             "spacing": 12
           },
 
@@ -74,6 +75,7 @@
             "format": "󰌌  {}",
             "format-en": "en",
             "format-ru": "ru",
+            "keyboard-name": "kanata",
             "interval": 1
           },
 
@@ -95,12 +97,6 @@
             "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
             "scroll-step": 3,
             "max-volume": 100.0
-          },
-
-          "temperature": {
-            "critical-threshold": 80,
-            "format": "{icon} {temperatureC}°C",
-            "format-icons": [""]
           },
 
           "hyprland/workspaces": {
@@ -154,12 +150,13 @@
           margin: 0px 0px 5px 0px;
           background-color: #${base00};
           border-top: 0px;
-          border-bottom: 1px;
+          border-radius: 20px;
+          border: 1px;
           border-style: solid;
           border-color: #${base03};
           padding-right: 6px;
           padding-left: 6px;
-          box-shadow: 1 1 3 1px #101010;
+          box-shadow: 1 1 3 1px #1C1D1D;
         }
 
         #workspaces button {
@@ -184,7 +181,7 @@
         }
 
         #workspaces button.active {
-          background: radial-gradient(circle, #${base06} 0%, #${base04} 50%, #${base0C} 100%); 
+          background: radial-gradient(circle, #${base0A} 0%, #${base08} 50%, #${base0F} 100%); 
           background-size: 400% 400%;
           animation: gradient 5s linear infinite;
           transition: all 0.3s ease-in-out;
@@ -256,20 +253,20 @@
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
-          border-radius: 16 4 4 16px;
+          border-radius: 20 4 4 20px;
         }
 
         #battery {
           margin: 3 2 3 2px;
           padding: 0 0.4em;
-          border-radius: 4 16 16 4px;
+          border-radius: 4 20 20 4px;
         }
 
         #backlight {
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
-          border-radius: 16 4 4 16px;
+          border-radius: 20 4 4 20px;
         }
 
         #clock {
@@ -301,7 +298,7 @@
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
-          border-radius: 4 16 16 4px;
+          border-radius: 4 20 20 4px;
         }
 
         #image-network {
@@ -323,7 +320,7 @@
 
         #workspaces {
           margin: 3 0 3 0px;
-          border-radius: 16 16 16 16px;
+          border-radius: 20px;
         }
       '';
   };
