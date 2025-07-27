@@ -36,11 +36,12 @@
         splashImage = null;
         device = "nodev";
       };
+
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
 
-    # plymouth.enable = true;
+    plymouth.enable = true;
 
     initrd = {
       systemd.enable = true;
@@ -70,37 +71,42 @@
     ];
 
     consoleLogLevel = 0;
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "amdgpu" ];
     tmp.cleanOnBoot = true;
   };
 
-  # stylix = {
-  #   enable = true;
-  #   image = ./images/wp.png;
-  #   polarity = "dark";
-  #   base16Scheme = {
-  #     base00 = "#0d0c0c";
-  #     base01 = "#12120f";
-  #     base02 = "#1D1C19";
-  #     base03 = "#282727";
-  #     base04 = "#727169";
-  #     base05 = "#DCD7BA";
-  #     base06 = "#C8C093";
-  #     base07 = "#717C7C";
-  #     base08 = "#C34043";
-  #     base09 = "#FFA066";
-  #     base0A = "#C0A36E";
-  #     base0B = "#76946A";
-  #     base0C = "#6A9589";
-  #     base0D = "#7E9CD8";
-  #     base0E = "#957FB8";
-  #     base0F = "#D27E99";
-  #   };
-  #   targets.grub.enable = false;
-  # };
+  stylix = {
+    enable = true;
+    image = ../../home/hezaki/themes/images/wp.png;
+    polarity = "dark";
+
+    base16Scheme = {
+      base00 = "#222226";
+      base01 = "#28282C";
+      base02 = "#2E2E32";
+      base03 = "#36363a";
+      base04 = "#ffffff";
+      base05 = "#ffffff";
+      base06 = "#ffffff";
+      base07 = "#6f8396";
+      base08 = "#e62d42";
+      base09 = "#ed5b00";
+      base0A = "#c88800";
+      base0B = "#3a944a";
+      base0C = "#2190a4";
+      base0D = "#3584e4";
+      base0E = "#9141ac";
+      base0F = "#d56199";
+    };
+
+    targets = {
+      grub.enable = false;
+      plymouth.enable = false;
+    };
+  };
 
   services.fwupd.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

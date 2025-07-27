@@ -20,8 +20,6 @@
     slurp
     wl-clipboard
     wf-recorder
-    pyprland
-    hyprsunset
   ];
 
   wayland.windowManager.hyprland = {
@@ -76,7 +74,7 @@
 
         device {
           name = tpps/2-elan-trackpoint
-          sensitivity = 0.4
+          sensitivity = 0.8
           scroll_points = 0.2 0.0 0.5 1 1.2 1.5
         }
 
@@ -95,12 +93,22 @@
           workspace_swipe_fingers = 3
         }
 
+        group {
+          groupbar {
+            height = 0
+            indicator_height = 4
+            rounding = 3
+          }
+          col.border_active = rgb(${base03})
+          col.border_inactive = rgb(${base07})
+        }
+      
         general {
-          gaps_in = 2
-          gaps_out = 6
+          gaps_in = 4
+          gaps_out = 14,14,5,14
           border_size = 1
           col.active_border = rgb(${base03})
-          col.inactive_border = rgb(${base0D})
+          col.inactive_border = rgb(${base07})
           layout = master 
         }
 
@@ -136,7 +144,7 @@
         }
 
         decoration {
-          rounding = 10
+          rounding = 13
           blur:enabled = false
           shadow = {
             enabled = true

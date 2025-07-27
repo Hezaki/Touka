@@ -74,7 +74,7 @@
       "dictionary.ron".text = ''
         Config(
           prefix: ":def",
-          max_entries: 6,
+          max_entries: 8,
         )
       '';
     };
@@ -98,11 +98,12 @@
       #match {
         padding: 3px;
         margin: 2px;
-        border-radius: 16px;
+        border-radius: 20px;
       }
 
       #entry, #plugin:hover {
-        border-radius: 16px;
+        border-radius: 20px;
+        margin: 2px;
       }
 
       box#main {
@@ -110,9 +111,9 @@
         margin-top: 160px;
         box-shadow: 1 1 3 1px #1C1D1D;
         background: #${base00};
-        border-radius: 16px;
-        border: 2;
-        border-color: #${base00};
+        border-radius: 20px;
+        border: 1;
+        border-color: #${base03};
         border-style: solid;
       }
     '';

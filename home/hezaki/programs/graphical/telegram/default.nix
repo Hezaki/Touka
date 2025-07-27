@@ -2,6 +2,7 @@
 {
   home = {
     packages = [ pkgs.ayugram-desktop ];
+
     file = {
       ".local/share/AyuGramDesktop/tdata/shortcuts-custom.json".text = # json
         ''
@@ -20,14 +21,15 @@
             }
           ]
         '';
+
       ".local/share/AyuGramDesktop/tdata/experimental_options.json".text = # json
         ''
           {
-            "send-large-photos": true
-            "ctrl-click-chat-new-window": true,
-            "use-small-msg-bubble-radius": false
+              "new-windows-size-as-first": true,
+              "view-profile-in-chats-list-context-menu": true
           }
         '';
+
       ".local/share/AyuGramDesktop/tdata/ayu_settings.json".text = # json
         ''
           {

@@ -11,6 +11,7 @@
            "authorUrl": "https://github.com/hezaki"
         }
       '';
+
     file."Documents/Notes/.obs.desktop/themes/Stylix/theme.css".text =
       with config.lib.stylix.colors; # css
       ''

@@ -4,7 +4,7 @@
     enable = true;
     enableZshIntegration = true;
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           run = "shell 'ripdrag -A ''$@'' -x 2>/dev/null &' --confirm";
           on = [ "<C-n>" ];
@@ -15,6 +15,7 @@
         }
       ];
     };
+
     settings = {
       mgr = {
         show_symlink = true;
@@ -22,8 +23,9 @@
         linemode = "size";
       };
     };
+
     theme = lib.mkForce {
-      manager = {
+      mgr = {
         border_style = {
           fg = "black";
         };

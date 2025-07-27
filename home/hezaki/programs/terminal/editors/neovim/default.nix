@@ -21,10 +21,14 @@
         local opt = vim.opt
         local map = vim.keymap.set
 
-        opt.number = true
         opt.title = true
+        opt.number = true
         opt.linebreak = true
         opt.termguicolors = true
+        opt.autoindent = true
+        opt.smartindent = true
+        opt.breakindent = true
+        opt.copyindent = true
         opt.expandtab = true
         opt.undofile = true
         opt.cindent = true
@@ -32,8 +36,6 @@
         opt.ignorecase = true
         opt.infercase = true
         opt.showcmd = true
-        opt.breakindent = true
-        opt.copyindent = true
         opt.cursorline = true
         opt.signcolumn = "yes"
         opt.clipboard = "unnamedplus"
@@ -63,7 +65,7 @@
         map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
         map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
         map("n", "<leader>f", function() require("conform").format() end, { silent = true, noremap = true })
-        map("n", "<leader>r", ":IncRename ")
+        map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true, noremap = true })
         map("n", "<PageDown>", "<S-}>zz")
         map("n", "<PageUp>", "<S-{>zz")
         map("v", "<PageDown>", "<S-}>zz")
@@ -234,7 +236,7 @@
             },
             { 
               'glacambre/firenvim', 
-              build = ":call firenvim#install(0)" 
+              build = ":call firenvim#install(0)",
             },
             {
               'HiPhish/rainbow-delimiters.nvim',
@@ -370,11 +372,15 @@
                 dashboard.section.footer.opts.hl = "Type"
                 dashboard.section.header.opts.hl = "Include"
                 dashboard.section.buttons.opts.hl = "Keyword"
-
                 dashboard.opts.opts.noautocmd = true
                 -- vim.cmd([[autocmd User AlphaReady echo 'ready']])
                 alpha.setup(dashboard.opts)
               end
+            },
+            {
+              'nvim-tree/nvim-tree.lua',
+              event = 'VeryLazy',
+              opts = {},
             },
             {
               'akinsho/bufferline.nvim',
@@ -811,6 +817,7 @@
           hi RainbowDelimiterCyan guifg=#${base0C}
 
           hi StatusLine guibg=#${base00}
+          hi WinSeparator guifg=#${base03}
           hi LineNr guifg=#${base03}
           hi CodeBlock guibg=#${base00}
           hi Dash guibg=#${base00} gui=bold

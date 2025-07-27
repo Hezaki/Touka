@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
   hardware = {
-    amdgpu.amdvlk.enable = true;
+    amdgpu = {
+      amdvlk.enable = true;
+      overdrive.enable = true;
+    };
     graphics = {
       enable = true;
       extraPackages = with pkgs; [

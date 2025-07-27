@@ -50,6 +50,17 @@
           halign = "center";
           valign = "center";
         }
+
+        {
+          text = "$LAYOUT";
+          color = "rgb(${base06})";
+          font_size = 12;
+          font_family = "Inter Medium";
+          position = "0, -150";
+          halign = "center";
+          valign = "center";
+        }
+
         {
           text = "cmd[update:43200000] echo \"$(date +\"%e %B %A\")\"";
           color = "rgb(${base06})";
