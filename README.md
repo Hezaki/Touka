@@ -117,7 +117,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 			- [graphic](hosts/think/hardware/graphic) responsible for graphics
 			- [periphery](hosts/think/hardware/periphery) setting up my periphery
 			- [tweaks](hosts/think/hardware/tweaks) all sorts of tweaks for "optimization"
-		- [systemd](hosts/think/systemd) ON NO
+		- [systemd](hosts/think/systemd) OH NO
  ## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
