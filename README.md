@@ -95,7 +95,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 - [hosts](hosts) maybe configuration for hosts?
 	- [think](hosts/think) config for my thinkpad
 		- [enviroment](hosts/think/enviroment) all the most necessary, lol
-			- [fonts][hosts/think/enviroment] where without them
+			- [fonts](hosts/think/enviroment) where without them
 			- [home-manager](hosts/think/enviroment/home-manager) basic config home-manager itself
 			- [local](hosts/think/enviroment/local) locale-gen
 			- [network](hosts/think/enviroment/) setting network
