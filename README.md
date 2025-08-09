@@ -4,22 +4,22 @@
 
 ## ℹ️Information
 I recommend using  [nh](https://github.com/viperML/nh), if you don't have it then:
-``` nix
+``` bash
 nix shell nixpkgs#nh
 ```
 
 Build host:
-```nix
+``` bash
 nh os switch . -a                         # or nixos-rebuild switch --flake .#think
 ```
 
 Build home-manager on desktop:
-```nix
+``` bash
 nh home switch . -a                       # or home-manager switch --flake .#hezaki
 ```
 To make the home-manager work:
 
-```shell
+``` bash
 doas chown -R hezaki:users /etc/nixos     # if you use this path
 ```
 
@@ -118,6 +118,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 			- [periphery](hosts/think/hardware/periphery) setting up my periphery
 			- [tweaks](hosts/think/hardware/tweaks) all sorts of tweaks for "optimization"
 		- [systemd](hosts/think/systemd) OH NO
+
  ## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
 - [Beautiful neovim configuration](https://github.com/Manas140/Conscious/tree/main)
