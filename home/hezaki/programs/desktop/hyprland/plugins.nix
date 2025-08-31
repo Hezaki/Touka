@@ -1,10 +1,13 @@
 { pkgs, inputs, ... }:
 {
-  wayland.windowManager.hyprland.plugins = with pkgs.hyprlandPlugins; with inputs; [
-    hypr-dynamic-cursors
-    csgo-vulkan-fix
-    hyprsplit
-  ];
+  wayland.windowManager.hyprland.plugins =
+    with pkgs.hyprlandPlugins;
+    with inputs;
+    [
+      hypr-dynamic-cursors
+      csgo-vulkan-fix
+      split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+    ];
 
   xdg.configFile."hypr/plugins.conf".text = # hyprlang
     ''

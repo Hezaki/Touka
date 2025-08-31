@@ -15,21 +15,8 @@
     ./openvpn
     ./podman
     ./flatpak
-    # ./k3s
+    ./kubernetes
   ];
-
-  environment = {
-    enableDebugInfo = true;
-    systemPackages = with pkgs; [
-      nix-output-monitor
-      nix-tree
-      p7zip
-      unrar
-      unzip
-      vim
-      wget
-    ];
-  };
 
   documentation = {
     enable = true;
@@ -49,6 +36,7 @@
     fwupd.enable = true;
     flatpak.enable = true;
     gvfs.enable = true;
+    nfs.server.enable = true;
   };
 
   xdg.portal = {

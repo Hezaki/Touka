@@ -6,18 +6,18 @@
       ''
         {
           "height": 1,
-          "layer": "bottom",
+          "layer": "top",
           "position": "bottom",
           "width": 1300,
 
           "modules-left": [
             "backlight",
             "wireplumber",
-            "hyprland/language",
+            "niri/language",
             "bluetooth"
           ],
 
-          "modules-center": ["hyprland/workspaces"],
+          "modules-center": ["niri/workspaces"],
 
           "modules-right": [
             "tray",
@@ -71,7 +71,7 @@
             "interval": 1
           },
 
-          "hyprland/language": {
+          "niri/language": {
             "format": "󰌌  {}",
             "format-en": "en",
             "format-ru": "ru",
@@ -79,7 +79,7 @@
             "interval": 1
           },
 
-          "hyprland/window": {
+          "niri/window": {
             "format": "{}",
             "max-length": 35
           },
@@ -99,7 +99,7 @@
             "max-volume": 100.0
           },
 
-          "hyprland/workspaces": {
+          "niri/workspaces": {
             "on-click": "activate",
             "format": "{icon}",
             "format-icons": {

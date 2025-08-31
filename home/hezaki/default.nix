@@ -17,9 +17,11 @@
 
     packages = with pkgs; [
       # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
-      # teamspeak3
+      # (pkgs.callPackage ./cpyvpn.nix { })
+      teamspeak3
       ppsspp-sdl-wayland
-      (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
+      # (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
+      obsidian
       badlion-client
       dua
       duf
@@ -36,7 +38,7 @@
       lutris
       nix-init
       onefetch
-      pavucontrol
+      pulsemixer
       piper
       gnome-secrets
       polkit_gnome
@@ -54,6 +56,11 @@
       gradia
       mousai
       czkawka
+      xwayland-satellite
+      batsignal
+      powermode-indicator
+      switcheroo
+      jitsi-meet
     ];
   };
 
@@ -62,8 +69,13 @@
   nixpkgs.config = {
     allowBroken = true;
     allowUnfree = true;
-    permittedInsecurePackages = [ "electron-28.3.1" ];
-    overlays = with inputs; [ nur.overlay ];
+    permittedInsecurePackages = [
+      "electron-28.3.1"
+      "jitsi-meet-1.0.8043"
+    ];
+    overlays = with inputs; [
+      nur.overlay
+    ];
   };
 
   nix = {
@@ -72,6 +84,14 @@
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;
+
+      extra-substituters = [
+        "https://anyrun.cachix.org"
+      ];
+
+      extra-trusted-public-keys = [
+        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      ];
 
       experimental-features = [
         "nix-command"

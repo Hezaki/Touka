@@ -9,7 +9,7 @@
     enable = true;
 
     profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && WLR_RENDERER=vulkan exec Hyprland &>/dev/null
+      [ "$(tty)" = "/dev/tty1" ] && exec niri --session &>/dev/null
     '';
 
     plugins = with inputs; [

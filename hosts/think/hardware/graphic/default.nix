@@ -2,7 +2,6 @@
 {
   hardware = {
     amdgpu = {
-      amdvlk.enable = true;
       overdrive.enable = true;
     };
     graphics = {

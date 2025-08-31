@@ -31,6 +31,7 @@
 
       bind = $mod SHIFT, R, exec, hyprctl reload
       bind = $mod, D, exec, anyrun
+      bind = $mod, SHIFT, D, exec, cliphist list | anyrun --show-results-immediately true | cliphist decode | wl-copy
       bind = $mod, P, exec, hyprpicker -a
 
       bind =, Print, exec, sh $XDG_CONFIG_HOME/hypr/scripts/defSreenshot.sh
@@ -59,27 +60,27 @@
       binde = $mod CTRL, K, resizeactive, 0 72
       binde = $mod CTRL, L, resizeactive, 72 0
 
-      bind = $mod, 1, split:workspace, 1
-      bind = $mod, 2, split:workspace, 2
-      bind = $mod, 3, split:workspace, 3
-      bind = $mod, 4, split:workspace, 4
-      bind = $mod, Z, split:workspace, 5
-      bind = $mod, X, split:workspace, 6
-      bind = $mod, C, split:workspace, 7
-      bind = $mod, V, split:workspace, 8
-      bind = $mod, F, split:workspace, 9
-      bind = $mod, G, split:workspace, 10
+      bind = $mod, 1, workspace, 1
+      bind = $mod, 2, workspace, 2
+      bind = $mod, 3, workspace, 3
+      bind = $mod, 4, workspace, 4
+      bind = $mod, Z, workspace, 5
+      bind = $mod, X, workspace, 6
+      bind = $mod, C, workspace, 7
+      bind = $mod, V, workspace, 8
+      bind = $mod, F, workspace, 9
+      bind = $mod, G, workspace, 10
 
-      bind = $mod SHIFT, 1, split:movetoworkspace, 1
-      bind = $mod SHIFT, 2, split:movetoworkspace, 2
-      bind = $mod SHIFT, 3, split:movetoworkspace, 3
-      bind = $mod SHIFT, 4, split:movetoworkspace, 4
-      bind = $mod SHIFT, Z, split:movetoworkspace, 5
-      bind = $mod SHIFT, X, split:movetoworkspace, 6
-      bind = $mod SHIFT, C, split:movetoworkspace, 7
-      bind = $mod SHIFT, V, split:movetoworkspace, 8
-      bind = $mod SHIFT, F, split:movetoworkspace, 9
-      bind = $mod SHIFT, G, split:movetoworkspace, 10
+      bind = $mod SHIFT, 1, movetoworkspace, 1
+      bind = $mod SHIFT, 2, movetoworkspace, 2
+      bind = $mod SHIFT, 3, movetoworkspace, 3
+      bind = $mod SHIFT, 4, movetoworkspace, 4
+      bind = $mod SHIFT, Z, movetoworkspace, 5
+      bind = $mod SHIFT, X, movetoworkspace, 6
+      bind = $mod SHIFT, C, movetoworkspace, 7
+      bind = $mod SHIFT, V, movetoworkspace, 8
+      bind = $mod SHIFT, F, movetoworkspace, 9
+      bind = $mod SHIFT, G, movetoworkspace, 10
 
       bindm = $mod, mouse:272, movewindow
       bindm = $mod, mouse:273, resizewindow

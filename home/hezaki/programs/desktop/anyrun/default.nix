@@ -67,7 +67,7 @@
 
       "shell.ron".text = ''
         Config(
-          prefix: ":sh",
+          prefix: ":t",
           shell: zsh,
         )
       '';
@@ -78,44 +78,46 @@
         )
       '';
     };
-    extraCss = with config.lib.stylix.colors; ''
-      * {
-        font-family: Inter;
-        font-size: 1.1rem;
-      }
+    extraCss =
+      with config.lib.stylix.colors; # css
+      ''
+        * {
+          font-family: Inter;
+          font-size: 1.1rem;
+        }
 
-      #window,
-      #match,
-      #plugin,
-      #main {
-        background: transparent;
-      }
+        #window,
+        #match,
+        #plugin,
+        #main {
+          background: transparent;
+        }
 
-      #match:selected {
-        background: #${base03};
-      }
+        #match:selected {
+          background: #${base03};
+        }
 
-      #match {
-        padding: 3px;
-        margin: 2px;
-        border-radius: 20px;
-      }
+        #match {
+          padding: 3px;
+          margin: 2px;
+          border-radius: 20px;
+        }
 
-      #entry, #plugin:hover {
-        border-radius: 20px;
-        margin: 2px;
-      }
+        #entry, #plugin:hover {
+          border-radius: 20px;
+          margin: 2px;
+        }
 
-      box#main {
-        padding: 0px;
-        margin-top: 160px;
-        box-shadow: 1 1 3 1px #1C1D1D;
-        background: #${base00};
-        border-radius: 20px;
-        border: 1;
-        border-color: #${base03};
-        border-style: solid;
-      }
-    '';
+        box#main {
+          padding: 0px;
+          margin-top: 160px;
+          box-shadow: 1 1 3 1px #1C1D1D;
+          background: #${base00};
+          border-radius: 20px;
+          border: 1;
+          border-color: #${base03};
+          border-style: solid;
+        }
+      '';
   };
 }
