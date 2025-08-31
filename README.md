@@ -41,6 +41,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [fusuma](home/hezaki/programs/desktop/fusuma) custom gestures touchpad
 				- [cliphist](home/hezaki/programs/desktop/cliphist) clipboard history
 				- [hyprland](home/hezaki/programs/desktop/hyprland) wayland compositor
+				- [niri](home/hezaki/programs/desktop/niri) wayland compositor
 				- [hyprlock](home/hezaki/programs/desktop/hyprlock) screenlocker
 				- [portals](home/hezaki/programs/desktop/portals) config xdg
 				- [swayimg](home/hezaki/programs/desktop/swayimg) best image viewer
