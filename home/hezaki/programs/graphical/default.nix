@@ -8,7 +8,7 @@
     ./vesktop
     ./telegram
     # ./blockbench
-    # ./prismlauncher
+    ./prismlauncher
     ./mangohud
     ./obs-studio
     ./games

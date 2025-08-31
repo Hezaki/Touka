@@ -8,7 +8,7 @@
     # ./rules.nix
     ./binds.nix
     ./autostart.nix
-    ./plugins.nix
+    # ./plugins.nix
     ./scripts.nix
   ];
 
@@ -19,7 +19,8 @@
     grim
     slurp
     wl-clipboard
-    wf-recorder
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
   ];
 
   wayland.windowManager.hyprland = {

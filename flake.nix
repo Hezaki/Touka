@@ -47,6 +47,8 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
+    niri.url = "github:sodiboo/niri-flake";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,7 +60,6 @@
     };
 
     stylix.url = "github:danth/stylix/master";
-    hyprsplit.url = "github:shezdy/hyprsplit";
 
     nix-ld = {
       url = "github:Mic92/nix-ld";

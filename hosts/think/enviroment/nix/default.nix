@@ -2,6 +2,8 @@
   nix = {
     optimise.automatic = true;
     settings = {
+      warn-dirty = false;
+
       substituters = [
         "https://cache.garnix.io"
       ];

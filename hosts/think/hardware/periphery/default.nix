@@ -22,10 +22,7 @@
       mouse:usb:v046dpC53F:name:Logitech USB Receiver:*
        MOUSE_DPI=12000@1000
     '';
-    pulseaudio = {
-      enable = false;
-      package = pkgs.pulseaudioFull;
-    };
+    pulseaudio.enable = false;
     ratbagd.enable = true;
     pcscd.enable = true;
     pipewire = {

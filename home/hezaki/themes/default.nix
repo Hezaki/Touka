@@ -59,14 +59,16 @@
       qt.enable = true;
       mpv.enable = true;
 
-      gtk.extraCss = with config.lib.stylix.colors; ''
-        * {
-          border-radius = 12px
-        }
+      gtk.extraCss =
+        with config.lib.stylix.colors; # css
+        ''
+          * {
+            border-radius = 12px
+          }
 
-        @define-color headerbar_bg_color #${base00};
-        @define-color sidebar_bg_color #${base00};
-      '';
+          /* @define-color headerbar_bg_color #${base00}; */
+          /* @define-color sidebar_bg_color #${base00}; */
+        '';
     };
   };
 
@@ -95,4 +97,6 @@
       package = pkgs.papirus-icon-theme;
     };
   };
+
+  qt.enable = true;
 }

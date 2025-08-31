@@ -2,6 +2,7 @@
 {
   xdg = with config.home; {
     enable = true;
+
     userDirs = {
       enable = true;
       createDirectories = true;
@@ -18,17 +19,18 @@
         XDG_VID_DIR = "${homeDirectory}/Downloads/Videos";
       };
     };
+
     portal = {
       enable = true;
       config = {
         common = {
           default = "*";
-          "org.freedesktop.impl.portal.Screencast" = "hyprland";
-          "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+          "org.freedesktop.impl.portal.Screencast" = "niri";
+          "org.freedesktop.impl.portal.Screenshot" = "niri";
         };
       };
       extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gnome
         xdg-desktop-portal-gtk
       ];
     };

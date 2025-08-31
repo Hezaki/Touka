@@ -237,6 +237,16 @@
             { 
               'glacambre/firenvim', 
               build = ":call firenvim#install(0)",
+              config = function()
+                vim.g.firenvim_config = {
+                  globalSettings = { alt = "all" },
+                  localSettings = {
+                    [".*"] = {
+                      takeover = "never"
+                    }
+                  }
+                }
+              end,
             },
             {
               'HiPhish/rainbow-delimiters.nvim',
@@ -320,8 +330,6 @@
 
                 local dashboard = require("alpha.themes.dashboard")
                 dashboard.section.header.val = {
-                  "",
-                  "",
                   "",
                   "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠢⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀  ",
                   "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣦⡀⠀⠀⠀⠀⠀⠀  ",
