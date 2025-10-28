@@ -37,81 +37,81 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 	- [hezaki](home/hezaki) main user configuration
 		- [programs](home/hezaki/programs) there are all programs for this user
 			- [desktop](home/hezaki/programs/desktop) everything that is responsible for the environment
-				- [anyrun](home/hezaki/programs/desktop/anyrun) app runner
-				- [fusuma](home/hezaki/programs/desktop/fusuma) custom gestures touchpad
-				- [cliphist](home/hezaki/programs/desktop/cliphist) clipboard history
-				- [hyprland](home/hezaki/programs/desktop/hyprland) wayland compositor
-				- [niri](home/hezaki/programs/desktop/niri) wayland compositor
-				- [hyprlock](home/hezaki/programs/desktop/hyprlock) screenlocker
-				- [portals](home/hezaki/programs/desktop/portals) config xdg
-				- [swayimg](home/hezaki/programs/desktop/swayimg) best image viewer
-				- [swaync](home/hezaki/programs/desktop/swaync) notification
-				- [waybar](home/hezaki/programs/desktop/waybar) bar
-				- [udiskie](home/hezaki/programs/desktop/udiskie) automount
+				- [anyrun](https://github.com/Kirovez/anyrun) app runner
+				- [fusuma](https://github.com/iberianpig/fusuma) custom gestures touchpad
+				- [cliphist](https://github.com/sentriz/cliphist) clipboard history
+				- [hyprland](https://hyprland.org/) wayland compositor
+				- [niri](https://github.com/YaLTeR/niri) wayland compositor
+				- [hyprlock](https://github.com/hyprwm/hyprlock) screenlocker
+				- [portals](https://flatpak.github.io/xdg-desktop-portal/) config xdg
+				- [swayimg](https://github.com/artemsen/swayimg) best image viewer
+				- [swaync](https://github.com/ErikReider/SwayNotificationCenter) notification
+				- [waybar](https://github.com/Alexays/Waybar) bar
+				- [udiskie](https://github.com/coldfix/udiskie) automount
 			- [devlop](home/hezaki/programs/devlop) developer utils
 			- [graphical](home/hezaki/programs/graphical) gui programs
-				- [blockbench](home/hezaki/programs/graphical/blockbench) low-poly 3D model editor
+				- [blockbench](https://www.blockbench.net/) low-poly 3D model editor
 				- [browsers](home/hezaki/programs/graphical/browsers) blowsers
-					- [firefox](home/hezaki/programs/graphical/browsers/firefox) the best browser that has created humanity, I hate it
-					- [chromium](home/hezaki/programs/graphical/browsers/chromium) cummimum
-				- [foot](home/hezaki/programs/graphical/foot) terminal!
+					- [firefox](https://www.mozilla.org/firefox/) the best browser that has created humanity, I hate it
+					- [chromium](https://www.chromium.org/) cummimum
+				- [foot](https://codeberg.org/dnkl/foot) terminal!
 				- [games](home/hezaki/programs/graphical/games) ИГРЫ БЛЯТЬ, ИГРЫ
-					- [terraria](home/hezaki/programs/graphical/games/terraria) i like
-				- [kitty](home/hezaki/programs/graphical/kitty) terminal!!
-				- [mangohud](home/hezaki/programs/graphical/mangohud) (pearhud) overlay monitoring FPS
-				- [mpv](home/hezaki/programs/graphical/mpv) best media player
-				- [obs-studio](home/hezaki/programs/graphical/obs-studio) video recorder and more
-				- [obsidian](home/hezaki/programs/graphical/obsidian) only 10 pieces
-				- [prismlauncher](home/hezaki/programs/graphical/prismlauncher) best minecraft launcher
-				- [telegram](home/hezaki/programs/graphical/telegram) messenger!
-				- [vesktop](home/hezaki/programs/graphical/vesktop) best discord client
-				- [zathura](home/hezaki/programs/graphical/zathura) pdf-reader! I can't live without him
-				- [kdeconnect](home/hezaki/programs/graphical/kdeconnect) sync with phone
-			- [termianl](home/hezaki/programs/terminal) terminal utils
-				- [anicliru](home/hezaki/programs/terminal/anicli) some kind of Russian shit
-				- [bat](home/hezaki/programs/terminal/bat) alt cat
-				- [btop](home/hezaki/programs/terminal/btop) a monitor of resources 
-				- [cava](home/hezaki/programs/terminal/cava) avac
+					- [terraria](https://terraria.org/) i like
+				- [kitty](https://sw.kovidgoyal.net/kitty/) terminal!!
+				- [mangohud](https://github.com/flightlessmango/MangoHud) (pearhud) overlay monitoring FPS
+				- [mpv](https://mpv.io/) best media player
+				- [obs-studio](https://obsproject.com/) video recorder and more
+				- [obsidian](https://obsidian.md/) only 10 pieces
+				- [prismlauncher](https://prismlauncher.org/) best minecraft launcher
+				- [telegram](https://telegram.org/) messenger!
+				- [vesktop](https://github.com/Vencord/Vesktop) best discord client
+				- [zathura](https://pwmt.org/projects/zathura/) pdf-reader! I can't live without him
+				- [kdeconnect](https://kdeconnect.kde.org/) sync with phone
+			- [terminal](home/hezaki/programs/terminal) terminal utils
+				- [anicliru](https://github.com/AnicliRu/Anicli-Ru) some kind of Russian shit
+				- [bat](https://github.com/sharkdp/bat) alt cat
+				- [btop](https://github.com/aristocratos/btop) a monitor of resources 
+				- [cava](https://github.com/karlstav/cava) avac
 				- [editors](home/hezaki/programs/terminal/editors) how without it
-					- [emacs](home/hezaki/programs/terminal/editors/emacs)  editor for pussyboy
-					- [neovim](home/hezaki/programs/terminal/editors/neovim) the best text editor
-				- [espanso](home/hezaki/programs/terminal/espanso) text expander
-				- [fastfetch](home/hezaki/programs/terminal/fastfetch) fetch like neofetch
-				- [fd](home/hezaki/programs/terminal/fd) alt find on rust
-				- [fzf](home/hezaki/programs/terminal/fzf) fuzzy finder!
-				- [git](home/hezaki/programs/terminal/git) config for git
-				- [lazygit](home/hezaki/programs/terminal/lazygit) for very lazy
-				- [lsd](home/hezaki/programs/terminal/lsd) alt ls on rust
-				- [pandoc](home/hezaki/programs/terminal/pandoc) universal markup converter 
-				- [ripgrep](home/hezaki/programs/terminal/ripgrep) alt grep on rust
+					- [emacs](https://www.gnu.org/software/emacs/) editor for pussyboy
+					- [neovim](https://neovim.io/) the best text editor
+				- [espanso](https://espanso.org/) text expander
+				- [fastfetch](https://github.com/fastfetch-cli/fastfetch) fetch like neofetch
+				- [fd](https://github.com/sharkdp/fd) alt find on rust
+				- [fzf](https://github.com/junegunn/fzf) fuzzy finder!
+				- [git](https://git-scm.com/) config for git
+				- [lazygit](https://github.com/jesseduffield/lazygit) for very lazy
+				- [lsd](https://github.com/lsd-rs/lsd) alt ls on rust
+				- [pandoc](https://pandoc.org/) universal markup converter 
+				- [ripgrep](https://github.com/BurntSushi/ripgrep) alt grep on rust
 				- [shell](home/hezaki/programs/terminal/shell) shell!!!
-					- [translate-shell](home/hezaki/programs/terminal/shell/translate-shell) terminal translator
-					- [zsh](home/hezaki/programs/terminal/shell/zsh) best shell
-				- [tmux](home/hezaki/programs/terminal/tmux) terminal multiplexer
-				- [yazi](home/hezaki/programs/terminal/yazi) terminal file manager
-				- [yt-dlp](home/hezaki/programs/terminal/yt-dlp) to download any shit
-				- [zoxide](home/hezaki/programs/terminal/zoxide) smarter sd command
+					- [translate-shell](https://github.com/soimort/translate-shell) terminal translator
+					- [zsh](https://www.zsh.org/) best shell
+				- [tmux](https://github.com/tmux/tmux/wiki) terminal multiplexer
+				- [yazi](https://github.com/sxycode/yazi) terminal file manager
+				- [yt-dlp](https://github.com/yt-dlp/yt-dlp) to download any shit
+				- [zoxide](https://github.com/ajeetdsouza/zoxide) smarter sd command
 		- [themes](home/hezaki/themes) stylix configuration
 			- [images](home/hezaki/themes/images) wallpapers!
 - [hosts](hosts) maybe configuration for hosts?
 	- [think](hosts/think) config for my thinkpad
 		- [enviroment](hosts/think/enviroment) all the most necessary, lol
-			- [fonts](hosts/think/enviroment) where without them
+			- [fonts](hosts/think/enviroment/fonts) where without them
 			- [home-manager](hosts/think/enviroment/home-manager) basic config home-manager itself
 			- [local](hosts/think/enviroment/local) locale-gen
-			- [network](hosts/think/enviroment/) setting network
-			- [nix](hosts/think/enviroment/) setting nix
+			- [network](hosts/think/enviroment/network) setting network
+			- [nix](hosts/think/enviroment/nix) setting nix
 			- [programs](hosts/think/enviroment/programs) utils on host
-			    - [clamav](hosts/think/enviroment/programs/clamav) antivirus
-			    - [flatpak](hosts/think/enviroment/programs/flatpak) declarative flatpak
-				- [k3s](hosts/think/enviroment/programs/k3s) kubernetes
-				- [kanata](hosts/think/enviroment/programs/kanata) keyboard remapper
-				- [nh](hosts/think/enviroment/programs/nh) yet another nix cli helper
-				- [nix-ld](hosts/think/enviroment/programs/nix-ld) run bin
-				- [openvpn](hosts/think/enviroment/programs/openvpn) ovpn
-                - [polkit](hosts/think/enviroment/programs/polkit) polkit setting
-                - [podman](hosts/think/enviroment/programs/podman) rootless docker containers
-                - [steam](hosts/think/enviroment/programs/polkit) steam client
+			    - [clamav](https://www.clamav.net/) antivirus
+			    - [flatpak](https://flatpak.org/) declarative flatpak
+				- [k3s](https://k3s.io/) kubernetes
+				- [kanata](https://github.com/jtroo/kanata) keyboard remapper
+				- [nh](https://github.com/viperML/nh) yet another nix cli helper
+				- [nix-ld](https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/nix-ld/README.md) run bin
+				- [openvpn](https://openvpn.net/) ovpn
+                - [polkit](https://www.freedesktop.org/software/polkit/docs/latest/) polkit setting
+                - [podman](https://podman.io/) rootless docker containers
+                - [steam](https://store.steampowered.com/) steam client
 		- [filesystem](hosts/think/filesystem) file system configuration!
 		- [hardware](hosts/think/hardware) hardware settings for my thinkpad
 			- [battery](hosts/think/hardware/battery) battery setting
