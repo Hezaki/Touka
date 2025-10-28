@@ -19,8 +19,6 @@
     grim
     slurp
     wl-clipboard
-    gpu-screen-recorder
-    gpu-screen-recorder-gtk
   ];
 
   wayland.windowManager.hyprland = {

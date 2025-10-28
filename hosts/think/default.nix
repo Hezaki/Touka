@@ -29,16 +29,18 @@
 
   boot = {
     loader = {
-      grub = {
-        enable = true;
-        efiSupport = true;
-        timeoutStyle = "hidden";
-        splashImage = null;
-        device = "nodev";
-      };
+      systemd-boot.enable = true;
+
+      # grub = {
+      #   enable = true;
+      #   efiSupport = true;
+      #   timeoutStyle = "hidden";
+      #   splashImage = null;
+      #   device = "nodev";
+      # };
 
       efi.canTouchEfiVariables = true;
-      timeout = 0;
+      timeout = 1;
     };
 
     plymouth.enable = true;
@@ -56,7 +58,7 @@
       verbose = false;
     };
 
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_lqx;
 
     kernelParams = [
       "quiet"
@@ -74,37 +76,36 @@
     kernelModules = [ "amdgpu" ];
     tmp.cleanOnBoot = true;
   };
-
-  stylix = {
-    enable = true;
-    image = ../../home/hezaki/themes/images/wp.png;
-    polarity = "dark";
-
-    base16Scheme = {
-      base00 = "#222226";
-      base01 = "#28282C";
-      base02 = "#2E2E32";
-      base03 = "#36363a";
-      base04 = "#ffffff";
-      base05 = "#ffffff";
-      base06 = "#ffffff";
-      base07 = "#6f8396";
-      base08 = "#e62d42";
-      base09 = "#ed5b00";
-      base0A = "#c88800";
-      base0B = "#3a944a";
-      base0C = "#2190a4";
-      base0D = "#3584e4";
-      base0E = "#9141ac";
-      base0F = "#d56199";
-    };
-
-    targets = {
-      grub.enable = false;
-      plymouth.enable = false;
-    };
-  };
-
+  #
+  # stylix = {
+  #   enable = true;
+  #   image = ../../home/hezaki/themes/images/wp.png;
+  #   polarity = "dark";
+  #
+  #   base16Scheme = {
+  #     base00 = "#222226";
+  #     base01 = "#28282C";
+  #     base02 = "#2E2E32";
+  #     base03 = "#36363a";
+  #     base04 = "#ffffff";
+  #     base05 = "#ffffff";
+  #     base06 = "#ffffff";
+  #     base07 = "#6f8396";
+  #     base08 = "#e62d42";
+  #     base09 = "#ed5b00";
+  #     base0A = "#c88800";
+  #     base0B = "#3a944a";
+  #     base0C = "#2190a4";
+  #     base0D = "#3584e4";
+  #     base0E = "#9141ac";
+  #     base0F = "#d56199";
+  #   };
+  #
+  #   targets = {
+  #     grub.enable = false;
+  #   };
+  # };
+  #
   services.fwupd.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

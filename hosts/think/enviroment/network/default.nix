@@ -5,16 +5,16 @@
 
     networkmanager = {
       enable = true;
-      plugins = with pkgs; [ networkmanager-openvpn ];
-      insertNameservers = [
-        "8.8.8.8"
-        "8.8.4.4"
-        "1.1.1.1"
-        "1.0.0.1"
-        "208.67.222.222"
-        "208.67.220.220"
-        "149.112.112.112"
-      ];
+      # plugins = with pkgs; [ networkmanager-openvpn ];
+      # insertNameservers = [
+      #   "8.8.8.8"
+      #   "8.8.4.4"
+      #   "1.1.1.1"
+      #   "1.0.0.1"
+      #   "208.67.222.222"
+      #   "208.67.220.220"
+      #   "149.112.112.112"
+      # ];
     };
 
     dhcpcd = {

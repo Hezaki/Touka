@@ -1,6 +1,7 @@
 {
   environment = {
     variables = {
+      XDG_CURRENT_DESKTOP = "niri";
       ROC_ENABLE_PRE_VEGA = "1";
       # XDG_CURRENT_DESKTOP = "Hyprland";
       # XDG_SESSION_TYPE = "wayland";
@@ -15,7 +16,7 @@
       # HYPRLAND_LOG_WLR = "1";
       # GTK_USE_PORTAL = "1";
       # MOZ_ENABLE_WAYLAND = "1";
-      # RUST_BACKTRACE = "full";
+      # RUST_BACKTRACE = "1";
       VDPAU_DRIVER = "radeonsi";
       LIBVA_DRIVER_NAME = "radeonsi";
     };

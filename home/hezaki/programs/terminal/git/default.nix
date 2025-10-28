@@ -1,18 +1,18 @@
 {
   programs.git = {
     enable = true;
-    userName = "hezaki";
-    userEmail = "email";
-    difftastic.enable = true;
-    extraConfig = {
+    settings = {
+      # userName = "hezaki";
+      # userEmail = "email";
       color.ui = true;
       init.defaultBranch = "main";
       safe.directory = "/etc/nixos";
-    };
-    aliases = {
-      st = "status";
-      c = "commit";
-      clown = "clone";
+      difftastic.enable = true;
+      aliases = {
+        st = "status";
+        c = "commit";
+        clown = "clone";
+      };
     };
   };
 }

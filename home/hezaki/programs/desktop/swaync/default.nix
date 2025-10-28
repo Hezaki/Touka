@@ -17,8 +17,8 @@
       layer = "overlay";
       control-center-layer = "overlay";
 
-      positionX = "right";
-      positionY = "top";
+      positionX = "center";
+      positionY = "bottom";
       notification-2fa-action = true;
       notification-inline-replies = false;
       notification-icon-size = 64;

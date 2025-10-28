@@ -10,35 +10,31 @@ let
     version = "fake";
     src = inputs.tmux-tilish;
   };
+
   sessionx = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux-sessionx";
     version = "fake";
     src = inputs.tmux-sessionx;
   };
-  fzf = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "tmux-fzf";
-    version = "fake";
-    src = inputs.tmux-fzf;
-  };
 in
 {
   programs.tmux = {
     enable = true;
+
     plugins = [
       {
         plugin = tilish;
         extraConfig = "set -g @tilish-default 'main-vertical'";
       }
+      
       {
         plugin = sessionx;
         extraConfig = ''
           set -g @sessionx-bind 'o'
         '';
       }
-      {
-        plugin = fzf;
-      }
     ];
+
     prefix = "C-a";
     clock24 = true;
     escapeTime = 0;
@@ -49,6 +45,7 @@ in
     disableConfirmationPrompt = true;
     customPaneNavigationAndResize = true;
     focusEvents = true;
+
     extraConfig = ''
       bind r set -g status
 

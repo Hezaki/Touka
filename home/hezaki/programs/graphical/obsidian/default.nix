@@ -2,56 +2,68 @@
 with config.lib.stylix.colors.withHashtag;
 {
   home = {
-    file."Documents/Notes/.obs.desktop/snippets/colors.css".text = # json
+    file."Documents/Notes/.obs.desktop/plugins/obsidian-style-settings/data.json".text = # json
       ''
-        :root {
-           --color-red: ${red};
-           --color-orange: ${orange};
-           --color-yellow: ${yellow};
-           --color-green: ${green};
-           --color-cyan: ${cyan};
-           --color-blue: ${blue};
-           --color-purple: ${magenta};
-           --color-pink: ${magenta};
+        {
+          "anuppuccin-theme-settings@@ctp-custom-red@@dark": "#e62d42",
+          "anuppuccin-theme-settings@@ctp-custom-yellow@@dark": "#c88800",
+          "anuppuccin-theme-settings@@ctp-custom-green@@dark": "#3a944a",
+          "anuppuccin-theme-settings@@ctp-custom-crust@@dark": "#222226",
+          "anuppuccin-theme-settings@@ctp-custom-base@@dark": "#28282c",
+          "anuppuccin-theme-settings@@ctp-custom-mantle@@dark": "#28282c",
+          "anuppuccin-theme-settings@@ctp-custom-surface0@@dark": "#36363a",
+          "anuppuccin-theme-settings@@ctp-custom-surface1@@dark": "#36363a",
+          "anuppuccin-theme-settings@@ctp-custom-surface2@@dark": "#36363a",
+          "anuppuccin-theme-settings@@ctp-custom-overlay0@@dark": "#36363a",
+          "anuppuccin-theme-settings@@ctp-custom-overlay1@@dark": "#36363a",
+          "anuppuccin-theme-settings@@ctp-custom-subtext0@@dark": "#6f8396",
+          "anuppuccin-theme-settings@@ctp-custom-overlay2@@dark": "#ffffff",
+          "anuppuccin-theme-settings@@ctp-custom-subtext1@@dark": "#ffffff",
+          "anuppuccin-theme-settings@@ctp-custom-text@@dark": "#ffffff",
+          "anuppuccin-theme-settings@@ctp-custom-lavender@@dark": "#3584e4",
+          "anuppuccin-theme-settings@@ctp-custom-blue@@dark": "#3584e4",
+          "anuppuccin-theme-settings@@ctp-custom-sapphire@@dark": "#3584e4",
+          "anuppuccin-theme-settings@@ctp-custom-sky@@dark": "#3584e4",
+          "anuppuccin-theme-settings@@ctp-custom-teal@@dark": "#2190a4",
+          "anuppuccin-theme-settings@@ctp-custom-peach@@dark": "#ed5b00",
+          "anuppuccin-theme-settings@@ctp-custom-maroon@@dark": "#e62d42",
+          "anuppuccin-theme-settings@@ctp-custom-mauve@@dark": "#9141ac",
+          "anuppuccin-theme-settings@@ctp-custom-pink@@dark": "#d56199",
+          "anuppuccin-theme-settings@@ctp-custom-rosewater@@dark": "#3584e4",
+          "anuppuccin-theme-settings@@ctp-custom-flamingo@@dark": "#ffffff",
 
-           --bold-color: ${red};
-           --italic-color: ${magenta};
-           --text-normal: ${base05};
-           --text-muted: ${base04};
-           --text-selection: ${blue};
-           --text-highlight-bg: ${base00};
-        }
-
-        .theme-dark {
-          --background-primary: ${base00};
-          --background-secondary: ${base01};
-
-          --background-modifier-cover: rgba(${base01-rgb-r},${base01-rgb-g},${base01-rgb-b}, 0.8); /*Obsidian Title Bar Bg*/
-          --background-primary: ${base00}; /*Note background*/
-          --background-primary-alt: ${base01}; /*Note Title background active*/
-          --background-secondary: ${base01}; /*Sidebar background*/
-          --background-secondary-alt: ${base00}; /*Sidebar Title background*/
-          
-          --background-modifier-border: ${base00}; /*Border outline of quotes, tables, line breaks*/
-          
-          --text-normal: ${base05}; /*Text body of note*/
-          --text-muted: ${base04}; /*Text darker for sidebar, toggles, inactive, tags, etc*/
-          --text-accent: ${blue}; /*Links*/
-          --text-accent-hover: ${cyan}; /*Links hover*/
-          --text-faint: ${base04}; /*Link brackets color & Gutter Numbers*/
-
-          --text-highlight-bg: rgba(${base0E-rgb-r},${base0E-rgb-g},${base0E-rgb-b}, 0.4); /*Search Matches*/
-          --text-highlight-bg-active: rgba(${base0A-rgb-r},${base0A-rgb-g},${base0A-rgb-b}, 0.4); /*Active Search Match (Preview Mode)*/
-          --text-selection: rgba(${base0D-rgb-r},${base0D-rgb-g},${base0D-rgb-b}, 0.99); /*Text Selections*/
-
-          --interactive-normal: ${base01}; /*Button Color*/
-          --interactive-hover: ${base00}; /*Button Hovered Color*/
-          --interactive-accent: ${magenta}; /*Workspace Note Title Underline*/
-          --interactive-accent-hover: ${green}; /*Menu Button Hover*/
-          
-          --scrollbar-bg: rgba(${base00-rgb-r},${base00-rgb-g},${base00-rgb-b}, 0.05); /*Scrollbar Gutter Background*/
-          --scrollbar-thumb-bg: rgba(${base0D-rgb-r},${base0D-rgb-g},${base0D-rgb-b}, 0.1); /*Scrollbar Color*/
-          --scrollbar-active-thumb-bg: rgba(${base09-rgb-r},${base09-rgb-g},${base09-rgb-b}, 0.1); /*Scrollbar Color*/
+          "anuppuccin-theme-settings@@anp-canvas-dark-bg": false,
+          "anuppuccin-theme-settings@@anp-custom-vault-toggle": false,
+          "anuppuccin-theme-settings@@anp-file-icons": true,
+          "anuppuccin-theme-settings@@anp-alt-rainbow-style": "anp-default-rainbow",
+          "anuppuccin-theme-settings@@anp-collapse-folders": true,
+          "anuppuccin-theme-settings@@anp-floating-header": false,
+          "anuppuccin-theme-settings@@anp-alt-tab-style": "anp-safari-tab-toggle",
+          "anuppuccin-theme-settings@@anp-disable-newtab-align": true,
+          "anuppuccin-theme-settings@@anp-hide-external-link-icon": false,
+          "anuppuccin-theme-settings@@anp-tooltip-toggle": false,
+          "anuppuccin-theme-settings@@anp-toggle-scrollbars": false,
+          "anuppuccin-theme-settings@@anp-hide-status-bar": false,
+          "anuppuccin-theme-settings@@anp-autohide-titlebar": false,
+          "anuppuccin-theme-settings@@anp-active-line": "anp-current-line-border",
+          "anuppuccin-theme-settings@@anp-custom-checkboxes": true,
+          "anuppuccin-theme-settings@@anp-colorful-frame": false,
+          "anuppuccin-theme-settings@@anp-colorful-frame-icon-toggle-light": false,
+          "anuppuccin-theme-settings@@anp-colorful-frame-icon-toggle-dark": false,
+          "anuppuccin-theme-settings@@anp-layout-select": "anp-card-layout",
+          "anuppuccin-theme-settings@@anp-bg-fix": false,
+          "anuppuccin-theme-settings@@anp-hide-borders": false,
+          "anuppuccin-theme-settings@@anp-card-layout-actions": false,
+          "anuppuccin-theme-settings@@anp-card-layout-filebrowser": true,
+          "anuppuccin-theme-settings@@anp-card-shadows": false,
+          "anuppuccin-theme-settings@@anp-safari-tab-animated": false,
+          "anuppuccin-theme-settings@@anp-alt-tab-custom-height": 40,
+          "anuppuccin-theme-settings@@anp-status-bar-select": "none",
+          "anuppuccin-theme-settings@@anp-toggle-preview": false,
+          "anuppuccin-theme-settings@@anp-table-toggle": false,
+          "anuppuccin-theme-settings@@anp-table-auto": false,
+          "anuppuccin-theme-settings@@anp-speech-bubble": true,
+          "anuppuccin-theme-settings@@anp-safari-tab-radius": 16
         }
       '';
   };

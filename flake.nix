@@ -3,12 +3,12 @@
     {
       home-manager,
       nixpkgs,
-      nixpkgs-stable,
+      nixpkgs-unstable,
       ...
     }@inputs:
     let
       agrs = {
-        pkgsStable = nixpkgs-stable.legacyPackages.x86_64-linux;
+        pkgsUnstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
         inherit inputs;
       };
     in
@@ -39,13 +39,37 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    delta-shell.url = "github:hezaki/delta-shell";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    yandex-browser = {
+      url = "github:miuirussia/yandex-browser.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zapret-presets.url = "github:kotudemo/zapret-presets";
+
+    solaar = {
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     niri.url = "github:sodiboo/niri-flake";
 
@@ -63,11 +87,6 @@
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    anyrun = {
-      url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

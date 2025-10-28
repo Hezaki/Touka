@@ -13,55 +13,60 @@
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
-    stateVersion = "25.11";
+    stateVersion = "24.11";
 
-    packages = with pkgs; [
-      # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
-      # (pkgs.callPackage ./cpyvpn.nix { })
-      teamspeak3
-      ppsspp-sdl-wayland
-      # (obsidian.override { commandLineArgs = [ "--ozone-platform=wayland" ]; })
-      obsidian
-      badlion-client
-      dua
-      duf
-      easyeffects
-      gcr
-      gdb
-      glfw-wayland
-      gnome-weather
-      home-manager
-      jq
-      libnotify
-      libreoffice
-      lutgen
-      lutris
-      nix-init
-      onefetch
-      pulsemixer
-      piper
-      gnome-secrets
-      polkit_gnome
-      ripdrag
-      scrcpy
-      socat
-      swaybg
-      swayimg
-      tgpt
-      transmission_4-gtk
-      xdg-utils
-      xournalpp
-      zenity
-      element-desktop
-      gradia
-      mousai
-      czkawka
-      xwayland-satellite
-      batsignal
-      powermode-indicator
-      switcheroo
-      jitsi-meet
-    ];
+    packages =
+      with pkgs;
+      with inputs;
+      [
+        # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
+        delta-shell.packages.${system}.default
+        yandex-browser.packages.x86_64-linux.yandex-browser-stable
+        zoom-us
+        teamspeak3
+        ppsspp-sdl-wayland
+        obsidian
+        # badlion-client
+        dua
+        duf
+        easyeffects
+        gcr
+        gdb
+        glfw-wayland
+        jq
+        libnotify
+        libreoffice
+        lutgen
+        lutris
+        nix-init
+        onefetch
+        pulsemixer
+        gnome-secrets
+        polkit_gnome
+        ripdrag
+        scrcpy
+        socat
+        swaybg
+        swayimg
+        tgpt
+        transmission_4-gtk
+        xdg-utils
+        xournalpp
+        zenity
+        element-desktop
+        gradia
+        mousai
+        czkawka
+        xwayland-satellite
+        batsignal
+        powermode-indicator
+        gnome-decoder
+        youtube-music
+        nautilus
+        via
+        gparted
+        aider-chat
+      ];
   };
 
   services.gnome-keyring.enable = true;
@@ -72,15 +77,15 @@
     permittedInsecurePackages = [
       "electron-28.3.1"
       "jitsi-meet-1.0.8043"
+      "mbedtls-2.28.10"
     ];
-    overlays = with inputs; [
-      nur.overlay
-    ];
+    overlays = with inputs; [ nur.overlay ];
   };
 
   nix = {
     package = pkgs.nix;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;

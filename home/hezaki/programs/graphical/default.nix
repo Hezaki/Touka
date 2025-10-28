@@ -7,7 +7,7 @@
     ./browsers
     ./vesktop
     ./telegram
-    # ./blockbench
+    ./blockbench
     ./prismlauncher
     ./mangohud
     ./obs-studio
