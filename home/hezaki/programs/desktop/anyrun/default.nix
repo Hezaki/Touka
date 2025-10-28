@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   config,
   ...
@@ -8,17 +7,14 @@
   programs.anyrun = {
     enable = true;
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
-        applications
-        rink
-        translate
-        shell
-        symbols
-        translate
-        dictionary
-        websearch
-        stdin
+      plugins = with pkgs; [
+        "${anyrun}/lib/libapplications.so"
+        "${anyrun}/lib/libsymbols.so"
+        "${anyrun}/lib/stdin.so"
+        "${anyrun}/lib/shell.so"
+        "${anyrun}/lib/rink.so"
       ];
+
       closeOnClick = true;
       hidePluginInfo = true;
       hideIcons = false;
@@ -57,6 +53,14 @@
           max_entries: 1,
         )
       '';
+
+      # "nix-run.ron".text = ''
+      #   Config(
+      #     prefix: ":nr ",
+      #     allow_unfree: true,
+      #     max_entries: 3,
+      #   )
+      # '';
 
       "websearch.ron".text = ''
         Config(
@@ -105,7 +109,7 @@
 
         #entry, #plugin:hover {
           border-radius: 20px;
-          margin: 2px;
+          margin: 3px;
         }
 
         box#main {

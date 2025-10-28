@@ -23,6 +23,7 @@
 
         opt.title = true
         opt.number = true
+        opt.relativenumber = true
         opt.linebreak = true
         opt.termguicolors = true
         opt.autoindent = true
@@ -47,6 +48,14 @@
         opt.laststatus = 3
         opt.pumheight = 0
         opt.tabstop = 2
+        opt.list = true
+        vim.opt.listchars = {
+          eol = "¬",
+          tab = "» ",
+          trail = "~",
+          extends = ">",
+          precedes = "<"
+        }
 
         vim.loader.enable()
         vim.g.mapleader = ' '
@@ -60,11 +69,11 @@
         map("n", "fr", "<cmd>Telescope oldfiles sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
         map("n", "fd", "<cmd>Telescope zoxide list sort_mru=true sort_lastused=true initial_mode=normal<CR>", { silent = true, noremap = true })
         map("n", "fb", ":Yazi<CR>", { silent = true, noremap = true })
+        map("n", "gq", function() require("conform").format() end, { silent = true, noremap = true })
         map("n", "<S-t>", "<cmd>Telescope buffers sort_mru=true sort_lastused=true initial_mode=normal<CR><CR>", { silent = true, noremap = true })
         map("n", "<leader>gb", "%", { silent = true, noremap = true })
         map("n", "<leader>w", ":BufferLinePickClose<CR>", { silent = true, noremap = true })
         map("n", "<leader>z", ":ZenMode<CR>", { silent = true, noremap = true })
-        map("n", "<leader>f", function() require("conform").format() end, { silent = true, noremap = true })
         map("n", "<leader>t", ":NvimTreeToggle<CR>", { silent = true, noremap = true })
         map("n", "<PageDown>", "<S-}>zz")
         map("n", "<PageUp>", "<S-{>zz")
@@ -201,6 +210,30 @@
         require("lazy").setup({
           spec = {
             {
+              'Abizrh/commit-ai.nvim',
+              config = function()
+                require('commit-ai').setup {
+                  icons = false,
+                  language = 'en', -- default language
+                  git_conventions = {
+                    docs = { icon = "", prefix = "docs", type = "Documentation changes" },
+                    fix = { icon = "", prefix = "fix", type = "Bug fix" },
+                    feat = { icon = "", prefix = "feat", type = "New feature" },
+                    enhance = { icon = "", prefix = "enhance", type = "Enhancement" },
+                    chore = { icon = "", prefix = "chore", type = "Chore" },
+                    refactor = { icon = "", prefix = "refactor", type = "Breaking change" }
+                  },
+                  provider_options = {
+                    gemini = {
+                      model = 'gemini-2.0-flash',
+                      api_key = vim.env.GEMINI_API_KEY, -- assuming you have set GEMINI_API_KEY in .zshrc or .bashrc
+                      stream = false,
+                    },
+                  }
+                }
+              end,
+            },
+            {
               'aveplen/ruscmd.nvim',
               event = "VeryLazy",
               opts = {},
@@ -331,6 +364,17 @@
                 local dashboard = require("alpha.themes.dashboard")
                 dashboard.section.header.val = {
                   "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
                   "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠢⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀  ",
                   "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣦⡀⠀⠀⠀⠀⠀⠀  ",
                   "  ⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣤⣀⣀⡀⠀⠀⠀⠹⣿⣦⡀⠀⠀⠀⠀  ",
@@ -347,18 +391,11 @@
                   "",
                   ""
                 }
-                dashboard.section.buttons.val = {
-                  dashboard.button("ff", "  Find file", ":Telescope find_files<CR>"),
-                  dashboard.button("fr", "  Old files", ":Telescope oldfiles<CR>"),
-                  dashboard.button("fb", "󰪶  File browser", ":Yazi<CR>"),
-                  dashboard.button("fg", "󰈞  Text search", ":Telescope live_grep<CR>"),
-                  dashboard.button("fd", "󰥨  Find directory", ":Telescope zoxide list<CR>"),
-                  dashboard.button("S-t", "  Buffers", ":Telescope buffers<CR>"),
-                }
 
+                dashboard.section.buttons.val = {}
+                
                 dashboard.section.footer.val = {
                   "",
-                  "--   Sozialismus oder Barbarei   --",
                   "",
                   "",
                   "",
@@ -833,7 +870,7 @@
           hi TelescopeBorder guifg=#${base03}
           hi FloatBorder guifg=#${base03}
           hi IndentLine guifg=#${base03}
-          hi IndentLineCurrent guifg=#${base03}
+          hi IndentLineCurrent guifg=#${base04}
         ]])
       '';
   };

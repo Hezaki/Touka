@@ -1,7 +1,16 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 {
   xdg = with config.home; {
     enable = true;
+
+    portal = {
+      enable = true;
+      config = {
+        "org.freedesktop.impl.portal.FileChooser" = {
+          backend = "gnome";
+        };
+      };
+    };
 
     userDirs = {
       enable = true;
@@ -20,19 +29,23 @@
       };
     };
 
-    portal = {
+    mimeApps = {
       enable = true;
-      config = {
-        common = {
-          default = "*";
-          "org.freedesktop.impl.portal.Screencast" = "niri";
-          "org.freedesktop.impl.portal.Screenshot" = "niri";
-        };
+
+      defaultApplications = {
+        "text/html" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/about" = [ "firefox.desktop" ];
+        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+        "image/jpeg" = [ "swayimg.desktop" ];
+        "image/png" = [ "swayimg.desktop" ];
+        "image/gif" = [ "swayimg.desktop" ];
+        "image/webp" = [ "swayimg.desktop" ];
+        "image/svg+xml" = [ "swayimg.desktop" ];
+        "image/bmp" = [ "swayimg.desktop" ];
+        "image/tiff" = [ "swayimg.desktop" ];
       };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gnome
-        xdg-desktop-portal-gtk
-      ];
     };
   };
 }

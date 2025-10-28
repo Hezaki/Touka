@@ -35,27 +35,38 @@
           in
           mkForceInstalled {
             # Ublock Origin
-            "uBlock0@raymondhill.net".install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            "uBlock0@raymondhill.net".install_url =
+              "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             # SponsorBlock
-            "sponsorBlocker@ajay.app".install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+            "sponsorBlocker@ajay.app".install_url =
+              "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
             # Vimium-C
-            "vimium-c@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/4210117/vimium_c-1.99.997.xpi";
+            "vimium-c@gdh1995.cn".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4210117/vimium_c-1.99.997.xpi";
             # NewTab like Vimium-C
-            "newtab-adapter@gdh1995.cn".install_url = "https://addons.mozilla.org/firefox/downloads/file/3632463/newtab_adapter-1.3.0.xpi";
+            "newtab-adapter@gdh1995.cn".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/3632463/newtab_adapter-1.3.0.xpi";
             # Greasemonkey
-            "{e4a8a97b-f2ed-450b-b12d-ee082ba24781}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4332091/greasemonkey-4.13.xpi";
+            "{e4a8a97b-f2ed-450b-b12d-ee082ba24781}".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4332091/greasemonkey-4.13.xpi";
             # Copyfish
-            "copyfish@a9t9.com".install_url = "https://addons.mozilla.org/firefox/downloads/file/3765111/copyfish_ocr_software-5.1.9.xpi";
+            "copyfish@a9t9.com".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/3765111/copyfish_ocr_software-5.1.9.xpi";
             # Translate
-            "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
+            "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4165403/traduzir_paginas_web-9.9.0.30.xpi";
             # I don't care about Cookies
-            "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url = "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
+            "jid1-KKzOGWgsW3Ao4Q@jetpack".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4202634/i_dont_care_about_cookies-3.5.0.xpi";
             # ClearURLs
-            "{74145f27-f039-47ce-a470-a662b129930a}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
+            "{74145f27-f039-47ce-a470-a662b129930a}".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi";
             # firenvim
-            "firenvim@lacamb.re".install_url = "https://addons.mozilla.org/firefox/downloads/file/4279173/firenvim-0.2.16.xpi";
+            "firenvim@lacamb.re".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4279173/firenvim-0.2.16.xpi";
             # w2g
-            "{6ea0a676-b3ef-48aa-b23d-24c8876945fb}".install_url = "https://addons.mozilla.org/firefox/downloads/file/4337397/w2g-10.3.xpi";
+            "{6ea0a676-b3ef-48aa-b23d-24c8876945fb}".install_url =
+              "https://addons.mozilla.org/firefox/downloads/file/4337397/w2g-10.3.xpi";
           };
         FirefoxHome = {
           Pocket = false;
@@ -328,7 +339,8 @@
           "privacy.trackingprotection.pbmode.enabled" = false;
           "urlclassifier.trackingTable" = "test-track-simple,base-track-digest256,content-track-digest256";
           "privacy.donottrackheader.enabled" = false;
-          "privacy.trackingprotection.introURL" = "https://www.mozilla.org/%LOCALE%/firefox/%VERSION%/tracking-protection/start/";
+          "privacy.trackingprotection.introURL" =
+            "https://www.mozilla.org/%LOCALE%/firefox/%VERSION%/tracking-protection/start/";
           "geo.enabled" = false;
           "geo.wifi.uri" = "";
           "browser.search.geoip.url" = "";
@@ -447,27 +459,64 @@
       * {
         font-family: Inter !important;
         font-size: 15px;
+        /* border-radius: 18px !important; */
       }
 
       .tab-background {
         border-radius: 18px !important;
         max-height: 24px !important;
         min-height: 24px !important;
-      } 
-
-      #tabbrowser-tabs {
-        border-inline-start: none !important;
-        max-height: 32px !important;
-        min-height: 32px !important;  
       }
 
-      #firefox-view-button, #alltabs-button,
-      #tabs-newtab-button, .titlebar-close,
-      .tab-close-button, .titlebar-spacer {
+      #tabbrowser-tabs {
+        border-radius: 0px !important;
+        border-inline-start: none !important;
+        max-height: 32px !important;
+        min-height: 32px !important;
+      }
+
+      #firefox-view-button,
+      #alltabs-button,
+      #tabs-newtab-button,
+      .titlebar-close,
+      .tab-close-button,
+      .titlebar-spacer,
+      .titlebar-button,
+      .titlebar-min {
         display: none !important;
       }
 
-      #nav-bar { visibility: collapse !important; }
+      #urlbar-background {
+        border-radius: 18px !important;
+      }
+
+      :root:not([customizing]):has(#tabbrowser-tabs[orient="horizontal"]) {
+        #TabsToolbar {
+          z-index: 9999 !important;
+          background-color: inherit !important;
+        }
+
+        #TabsToolbar:not(:focus) {
+          opacity: 1 !important;
+        }
+
+        #nav-bar {
+          transition: margin-top 0.3s ease !important;
+          margin-top: -30px !important;
+          & #urlbar {
+            visibility: collapse !important; /* hidden with the nav bar */
+          }
+        }
+
+        #TabsToolbar:hover ~ #nav-bar,
+        #nav-bar:hover,
+        #nav-bar:focus-within {
+          margin-top: 0px !important;
+          & #urlbar {
+            visibility: visible !important; /* visible with the nav bar */
+          }
+        }
+      }
     '';
     ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text =
       with config.lib.stylix.colors; ''

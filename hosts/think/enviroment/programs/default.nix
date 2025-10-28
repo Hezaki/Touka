@@ -3,6 +3,7 @@
   inputs,
   ...
 }:
+
 {
   imports = with inputs; [
     nix-gaming.nixosModules.platformOptimizations
@@ -16,7 +17,13 @@
     ./podman
     ./flatpak
     ./kubernetes
+    ./solaar
+    ./gpu-screen-recorder
+    # ./hamachi
+    ./zapret
   ];
+
+  services.xserver.displayManager.gdm.enable = true;
 
   documentation = {
     enable = true;

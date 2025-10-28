@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 {
   home.packages = with pkgs; [ waybar ];
+
   xdg.configFile = {
     "waybar/config.jsonc".text = # json
       ''
@@ -8,11 +9,11 @@
           "height": 1,
           "layer": "top",
           "position": "bottom",
-          "width": 1300,
 
           "modules-left": [
             "backlight",
             "wireplumber",
+            "wireplumber#source",
             "niri/language",
             "bluetooth"
           ],
@@ -99,6 +100,14 @@
             "max-volume": 100.0
           },
 
+          "wireplumber#source": {
+            "node-type": "Audio/Source",
+            "format": "󰍬 {volume}%",
+            "format-muted": "󰍭  mute",
+            "on-click-right": "wpctl set-mute @default_audio_source@ toggle",
+            "scroll-step": 3,
+          },
+
           "niri/workspaces": {
             "on-click": "activate",
             "format": "{icon}",
@@ -114,25 +123,16 @@
               "9": "九",
               "10": "十",
               "11": "一",
-              "12": "二",
-              "13": "三",
-              "14": "四",
-              "15": "五",
-              "16": "六",
-              "17": "七",
-              "18": "八",
-              "19": "九",
-              "20": "十"
             },
 
             "persistent-workspaces": {
               "eDP-1": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-              "DP-2": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+              "DP-2": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             }
           }
         }
       '';
-    "waybar/style.css".text =
+    "waybar//style.css".text =
       with config.lib.stylix.colors; # css
       ''
         * {
@@ -147,15 +147,14 @@
         }
 
         window#waybar > box {
-          margin: 0px 0px 5px 0px;
+          margin: 5px 0px 0px 0px;
           background-color: #${base00};
-          border-top: 0px;
-          border-radius: 20px;
-          border: 1px;
+          border-top: 1px;
+          border-radius: 0px;
           border-style: solid;
           border-color: #${base03};
-          padding-right: 6px;
-          padding-left: 6px;
+          padding-right: 8px;
+          padding-left: 8px;
           box-shadow: 1 1 3 1px #1C1D1D;
         }
 
@@ -181,7 +180,7 @@
         }
 
         #workspaces button.active {
-          background: radial-gradient(circle, #${base0A} 0%, #${base08} 50%, #${base0F} 100%); 
+          background: radial-gradient(circle, #${base0B} 0%, #${base0C} 50%, #${base0D} 100%); 
           background-size: 400% 400%;
           animation: gradient 5s linear infinite;
           transition: all 0.3s ease-in-out;
@@ -246,10 +245,15 @@
           padding: 0 0.4em;
           padding-top: 0px;
           border-style: solid;
+          border-color: #${base03};
+          border: 1px;
           min-height: 30px;
         }
 
         #tray {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
@@ -257,12 +261,18 @@
         }
 
         #battery {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
           border-radius: 4 20 20 4px;
         }
 
         #backlight {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
@@ -270,6 +280,9 @@
         }
 
         #clock {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
@@ -277,24 +290,36 @@
         }
 
         #custom-clock {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
           border-radius: 4px;
         }
 
         #language {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
           border-radius: 4px;
         }
 
         #wireplumber {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
           border-radius: 4px;
         }
 
         #bluetooth {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           background: #${base02};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
@@ -302,16 +327,25 @@
         }
 
         #image-network {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin: 3 2 3 2px;
           padding: 0 0.4em;
         }
 
         #custom-separator {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           padding: 0px;
           margin: 0px;
         }
 
         #custom-launcher {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin-left: 0px;
           margin-right: 0px;
           padding-right: 0.6em;
@@ -319,6 +353,9 @@
         }
 
         #workspaces {
+          border: 1px;
+          border-style: solid;
+          border-color: #${base03};
           margin: 3 0 3 0px;
           border-radius: 20px;
         }

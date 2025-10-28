@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 {
   imports = with inputs; [ nix-gaming.nixosModules.pipewireLowLatency ];
+
   hardware = {
     firmware = with pkgs; [ linux-firmware ];
     bluetooth = {
@@ -18,10 +19,10 @@
   security.rtkit.enable = true;
 
   services = {
-    udev.extraHwdb = ''
-      mouse:usb:v046dpC53F:name:Logitech USB Receiver:*
-       MOUSE_DPI=12000@1000
-    '';
+    udev = {
+      enable = true;
+      packages = with pkgs; [ qmk-udev-rules ];
+    };
     pulseaudio.enable = false;
     ratbagd.enable = true;
     pcscd.enable = true;

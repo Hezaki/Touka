@@ -10,5 +10,9 @@
       rateLimitBurst = 500;
       rateLimitInterval = "30s";
     };
+    # logind.extraConfig = ''
+    #   IdleAction=suspend
+    #   IdleActionSec=300
+    # '';
   };
 }

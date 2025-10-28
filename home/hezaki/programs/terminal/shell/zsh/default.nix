@@ -7,10 +7,10 @@
 {
   programs.zsh = {
     enable = true;
-
-    profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && exec niri --session &>/dev/null
-    '';
+    
+    # profileExtra = ''
+    #   [ "$(tty)" = "/dev/tty1" ] && exec niri-session
+    # '';
 
     plugins = with inputs; [
       {
@@ -90,6 +90,7 @@
       export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
+      export GEMINI_API_KEY="AIzaSyDfTko2FQVo-5KMN4yfH7bBU51h8fMm1DU"
 
       bindkey -v
       bindkey '^H' vi-backward-kill-word

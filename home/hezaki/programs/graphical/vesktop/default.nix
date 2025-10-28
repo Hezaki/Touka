@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 {
   programs.vesktop.enable = true;
   xdg.configFile = {
@@ -55,7 +55,7 @@
                   "enabled": false
               },
               "WebRichPresence (arRPC)": {
-                  "enabled": false
+                  "enabled": true
               },
               "AutomodContext": {
                   "enabled": false

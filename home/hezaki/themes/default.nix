@@ -17,9 +17,9 @@
       base01 = "#28282C";
       base02 = "#2E2E32";
       base03 = "#36363a";
-      base04 = "#ffffff";
+      base04 = "#a6a6a6";
       base05 = "#ffffff";
-      base06 = "#ffffff";
+      base06 = "#e6e6e6";
       base07 = "#6f8396";
       base08 = "#e62d42";
       base09 = "#ed5b00";
@@ -63,7 +63,7 @@
         with config.lib.stylix.colors; # css
         ''
           * {
-            border-radius = 12px
+            border-radius = 13px
           }
 
           /* @define-color headerbar_bg_color #${base00}; */

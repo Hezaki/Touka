@@ -5,7 +5,7 @@
     ./hyprlock
     ./swaync
     ./swayimg
-    ./hyprland
+    # ./hyprland
     ./niri
     ./portals
     ./waybar

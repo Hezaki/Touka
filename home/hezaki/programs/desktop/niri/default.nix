@@ -17,23 +17,33 @@
     wl-clipboard
     gpu-screen-recorder
     gpu-screen-recorder-gtk
+    cliphist
   ];
+
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   programs.niri = {
     enable = true;
+    package = pkgs.niri-unstable;
     config =
       with config.lib.stylix.colors; # kdl
       ''
         spawn-at-startup "swaybg" "-m" "fill" "-i" "/etc/nixos/home/hezaki/themes/images/wp.png";
-        spawn-at-startup "flatpak" "run" "pw.mmk.OpenFreebuds";
-        spawn-at-startup "waybar"
+        spawn-at-startup "flatpak" "run" "pw.mmk.OpenFreebuds" "--client";
         spawn-at-startup "xwayland-satellite"
         spawn-at-startup "swaync"
         spawn-at-startup "batsignal"
         spawn-at-startup "powermode-indicator"
+        // spawn-at-startup "kdeconnect-indicator"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store";
-        spawn-at-startup "tmux"
-        spawn-at-startup "udiskie" "--smart-tray";
+        spawn-at-startup "udiskie"
+        spawn-at-startup "tmux" "new-session" "-d"
+        spawn-at-startup "firefox"
+        spawn-at-startup "steam"
+        spawn-at-startup "youtube-music"
+        spawn-at-startup "ayugram-desktop"
+        spawn-at-startup "obsidian"
+        spawn-at-startup "waybar"
 
         environment {
           DISPLAY ":0"
@@ -42,7 +52,7 @@
         input {
           workspace-auto-back-and-forth
           warp-mouse-to-focus
-          focus-follows-mouse
+          // focus-follows-mouse
           keyboard {
             repeat-delay 500
             repeat-rate 50
@@ -64,7 +74,7 @@
           }
 
           trackpoint {
-            accel-speed 0.8
+            accel-speed 0.6
             accel-profile "adaptive"
           }
         }
@@ -127,10 +137,11 @@
         }
 
         layout {
-          gaps 12
+          gaps 16
           // center-focused-column "always"
           background-color "#${base00}"
           always-center-single-column
+          default-column-display "normal"
           preset-column-widths {
             proportion 0.33333
             proportion 0.5
@@ -143,9 +154,10 @@
 
           shadow {
             on
+            softness 10
           }
 
-          default-column-width { proportion 0.5; }
+          default-column-width { proportion 0.33333; }
 
           border {
             width 1
@@ -155,7 +167,8 @@
           }
 
           struts {
-            bottom -6
+            bottom -1
+            top 1
           }
         }
 
@@ -205,60 +218,67 @@
         }
 
         window-rule {
+          open-focused true
+          geometry-corner-radius 13
+          clip-to-geometry true
+          draw-border-with-background true
+          tiled-state true
+        }
+
+        window-rule {
           match app-id="mpv"
           open-maximized true
         }
 
-        window-rule {
-          // open-maximized true
-          open-focused true
-          geometry-corner-radius 13
-          clip-to-geometry true
-          // match is-window-cast-target=true
-        }
-
         window-rule { 
           match app-id="kitty"
-          default-column-width { proportion 0.8; }
+          default-column-width { proportion 0.66667; }
         }
 
         window-rule { 
           match app-id="firefox"
           open-on-workspace "2"
+          open-maximized true
+          open-focused false
         }
+
         window-rule {
           match app-id="firefox$" title="^Picture-in-Picture$"
+          open-maximized true
+        }
+
+        window-rule {
+          match app-id="firefox$" title="^Save Image$"
           open-maximized true
         }
 
         window-rule { 
           match app-id="com.ayugram.desktop"
           match app-id="vesktop"
-          default-column-width { proportion 0.8; }
+          default-column-width { proportion 0.66667; }
+          open-focused false
           open-on-workspace "3"
+        }
+
+        window-rule {
+          match app-id="com.ayugram.desktop" title="Media viewer"
+          open-focused true
         }
 
         window-rule { 
           match app-id="org.prismlauncher.Prismlauncher"
           match app-id="Badlion Client"
           match app-id="libreoffice-writer"
-          match app-id="steam"
           match app-id="net.lutris.Lutris"
           open-maximized true
           open-on-workspace "5"
         }
 
-        // vrr
-        window-rule {
-          match app-id="steam"
-          match app-id="net.lutris.Lutris"
-          variable-refresh-rate true
-        }
-
         window-rule { 
-          match app-id="obsidian"
-          default-column-width { proportion 0.8; }
-          open-on-workspace "6"
+          match app-id="steam"
+          open-focused false
+          open-on-workspace "5"
+          default-column-width { proportion 0.5; }
         }
 
         window-rule { 
@@ -280,7 +300,14 @@
 
         window-rule { 
           match app-id="music"
+          open-maximized true
+          open-focused false
           open-on-workspace "10"
+        }
+
+        window-rule {
+          match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+          default-floating-position x=10 y=10 relative-to="bottom-right"
         }
 
         binds {
@@ -289,18 +316,17 @@
 
           Mod+Return { spawn "kitty" "-e" "tmux" "attach-session"; }
           Mod+D { spawn "anyrun"; }
-          Super+Alt+L { spawn "hyprlock"; }
 
-          XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
-          XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
-          Mod+XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
-          MOd+XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
-          XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-          XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-          XF86Display { spawn "bluetoothctl" "connect" "CC:FF:90:42:64:45"; }
+          F3 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
+          F2 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
+          Mod+F1 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
+          MOd+F2 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
+          F1        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+          F4     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+          F7 { spawn "bluetoothctl" "connect" "CC:FF:90:42:64:45"; }
 
-          XF86MonBrightnessDown { spawn "sudo" "${pkgs.light}/bin/light" "-U" "10"; }
-          XF86MonBrightnessUp { spawn "sudo" "${pkgs.light}/bin/light" "-A" "10"; }
+          F5 { spawn "sudo" "${pkgs.light}/bin/light" "-U" "10"; }
+          F6 { spawn "sudo" "${pkgs.light}/bin/light" "-A" "10"; }
 
           Mod+P { spawn "hyprpicker" "-a"; }
 
@@ -315,11 +341,6 @@
           Mod+J     { focus-window-down; }
           Mod+K     { focus-window-up; }
           Mod+L     { focus-column-right; }
-
-          Mod+Home { focus-column-first; }
-          Mod+End  { focus-column-last; }
-          Mod+Ctrl+Home { move-column-to-first; }
-          Mod+Ctrl+End  { move-column-to-last; }
 
           Mod+Ctrl+H     { focus-monitor-left; }
           Mod+Ctrl+J     { focus-monitor-down; }
@@ -376,9 +397,8 @@
 
           Mod+Shift+E { quit; }
 
-          XF86Favorites { spawn "hyprlock"; }
-          Insert { spawn "swaync-client" "-t" "-sw"; }
-          Mod+Insert { spawn "swaync-client" "--toggle-dnd"; }
+          F12 { spawn "hyprlock"; }
+          Mod+Insert { spawn "swaync-client" "-t" "-sw"; }
 
           Mod+Shift+P { power-off-monitors; }
         }

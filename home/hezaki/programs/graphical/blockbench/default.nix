@@ -24,9 +24,7 @@
           "frame": "#${base00}",
           "text": "#${base06}",
           "light": "#${base07}",
-          "accent_text": "#${base00}",
-          "bright_ui_text": "#${base06}",
-          "subtle_text": "#${base05}",
+          "accent_text": "#${base00}", "bright_ui_text": "#${base06}", "subtle_text": "#${base05}",
           "grid": "#${base0E}",
           "wireframe": "#${base0D}",
           "checkerboard": "#${base02}"
