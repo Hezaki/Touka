@@ -34,91 +34,104 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 ## 📚Layout
 - [flake.nix](flake.nix) main configuration file
 - [home](home) home-manager configuration
-	- [hezaki](home/hezaki) main user configuration
-		- [programs](home/hezaki/programs) there are all programs for this user
-			- [desktop](home/hezaki/programs/desktop) everything that is responsible for the environment
-				- [anyrun](https://github.com/Kirovez/anyrun) app runner
-				- [fusuma](https://github.com/iberianpig/fusuma) custom gestures touchpad
-				- [cliphist](https://github.com/sentriz/cliphist) clipboard history
-				- [hyprland](https://hyprland.org/) wayland compositor
-				- [niri](https://github.com/YaLTeR/niri) wayland compositor
-				- [hyprlock](https://github.com/hyprwm/hyprlock) screenlocker
-				- [portals](https://flatpak.github.io/xdg-desktop-portal/) config xdg
-				- [swayimg](https://github.com/artemsen/swayimg) best image viewer
-				- [swaync](https://github.com/ErikReider/SwayNotificationCenter) notification
-				- [waybar](https://github.com/Alexays/Waybar) bar
-				- [udiskie](https://github.com/coldfix/udiskie) automount
-			- [devlop](home/hezaki/programs/devlop) developer utils
-			- [graphical](home/hezaki/programs/graphical) gui programs
-				- [blockbench](https://www.blockbench.net/) low-poly 3D model editor
-				- [browsers](home/hezaki/programs/graphical/browsers) blowsers
-					- [firefox](https://www.mozilla.org/firefox/) the best browser that has created humanity, I hate it
-					- [chromium](https://www.chromium.org/) cummimum
-				- [foot](https://codeberg.org/dnkl/foot) terminal!
-				- [games](home/hezaki/programs/graphical/games) ИГРЫ БЛЯТЬ, ИГРЫ
-					- [terraria](https://terraria.org/) i like
-				- [kitty](https://sw.kovidgoyal.net/kitty/) terminal!!
-				- [mangohud](https://github.com/flightlessmango/MangoHud) (pearhud) overlay monitoring FPS
-				- [mpv](https://mpv.io/) best media player
-				- [obs-studio](https://obsproject.com/) video recorder and more
-				- [obsidian](https://obsidian.md/) only 10 pieces
-				- [prismlauncher](https://prismlauncher.org/) best minecraft launcher
-				- [telegram](https://telegram.org/) messenger!
-				- [vesktop](https://github.com/Vencord/Vesktop) best discord client
-				- [zathura](https://pwmt.org/projects/zathura/) pdf-reader! I can't live without him
-				- [kdeconnect](https://kdeconnect.kde.org/) sync with phone
-			- [terminal](home/hezaki/programs/terminal) terminal utils
-				- [anicliru](https://github.com/AnicliRu/Anicli-Ru) some kind of Russian shit
-				- [bat](https://github.com/sharkdp/bat) alt cat
-				- [btop](https://github.com/aristocratos/btop) a monitor of resources 
-				- [cava](https://github.com/karlstav/cava) avac
-				- [editors](home/hezaki/programs/terminal/editors) how without it
-					- [emacs](https://www.gnu.org/software/emacs/) editor for pussyboy
-					- [neovim](https://neovim.io/) the best text editor
-				- [espanso](https://espanso.org/) text expander
-				- [fastfetch](https://github.com/fastfetch-cli/fastfetch) fetch like neofetch
-				- [fd](https://github.com/sharkdp/fd) alt find on rust
-				- [fzf](https://github.com/junegunn/fzf) fuzzy finder!
-				- [git](https://git-scm.com/) config for git
-				- [lazygit](https://github.com/jesseduffield/lazygit) for very lazy
-				- [lsd](https://github.com/lsd-rs/lsd) alt ls on rust
-				- [pandoc](https://pandoc.org/) universal markup converter 
-				- [ripgrep](https://github.com/BurntSushi/ripgrep) alt grep on rust
-				- [shell](home/hezaki/programs/terminal/shell) shell!!!
-					- [translate-shell](https://github.com/soimort/translate-shell) terminal translator
-					- [zsh](https://www.zsh.org/) best shell
-				- [tmux](https://github.com/tmux/tmux/wiki) terminal multiplexer
-				- [yazi](https://github.com/sxycode/yazi) terminal file manager
-				- [yt-dlp](https://github.com/yt-dlp/yt-dlp) to download any shit
-				- [zoxide](https://github.com/ajeetdsouza/zoxide) smarter sd command
-		- [themes](home/hezaki/themes) stylix configuration
+	- [hezaki](home/hezaki) main user Home-Manager configuration
+		- [programs](home/hezaki/programs) all user program configurations
+			- [desktop](home/hezaki/programs/desktop) desktop environment configurations
+				- [ags](home/hezaki/programs/desktop/ags) AGS (Awesome Gtk Shell) configuration
+				- [anyrun](https://github.com/Kirovez/anyrun) app runner configuration
+				- [fusuma](https://github.com/iberianpig/fusuma) custom gestures touchpad configuration
+				- [cliphist](https://github.com/sentriz/cliphist) clipboard history configuration
+				- [hyprland](https://hyprland.org/) wayland compositor configuration
+					- [autostart](home/hezaki/programs/desktop/hyprland/autostart.nix) Hyprland autostart commands
+					- [binds](home/hezaki/programs/desktop/hyprland/binds.nix) Hyprland keybindings
+					- [plugins](home/hezaki/programs/desktop/hyprland/plugins.nix) Hyprland plugins
+					- [scripts](home/hezaki/programs/desktop/hyprland/scripts.nix) Hyprland scripts (screenshots, window rules)
+				- [niri](https://github.com/YaLTeR/niri) wayland compositor configuration
+				- [hyprlock](https://github.com/hyprwm/hyprlock) screenlocker configuration
+				- [nwg-dock](home/hezaki/programs/desktop/nwg-dock) `nwg-dock-hyprland` configuration
+				- [portals](https://flatpak.github.io/xdg-desktop-portal/) XDG Desktop Portal and user directories configuration
+				- [swayimg](https://github.com/artemsen/swayimg) image viewer configuration
+				- [swaync](https://github.com/ErikReider/SwayNotificationCenter) notification center configuration
+				- [waybar](https://github.com/Alexays/Waybar) status bar configuration
+				- [udiskie](https://github.com/coldfix/udiskie) automounting configuration
+			- [devlop](home/hezaki/programs/devlop) developer utilities and language servers
+			- [graphical](home/hezaki/programs/graphical) graphical programs configurations
+				- [blockbench](https://www.blockbench.net/) low-poly 3D model editor configuration
+				- [browsers](home/hezaki/programs/graphical/browsers) browser configurations
+					- [firefox](https://www.mozilla.org/firefox/) Firefox browser configuration
+					- [chromium](https://www.chromium.org/) Chromium browser configuration
+				- [easyeffects](home/hezaki/programs/graphical/easyeffects) EasyEffects audio processing configuration
+				- [foot](https://codeberg.org/dnkl/foot) terminal emulator configuration
+				- [games](home/hezaki/programs/graphical/games) games configurations
+					- [terraria](https://terraria.org/) Terraria game configuration
+				- [kitty](https://sw.kovidgoyal.net/kitty/) terminal emulator configuration
+				- [mangohud](https://github.com/flightlessmango/MangoHud) (pearhud) overlay monitoring FPS configuration
+				- [mpv](https://mpv.io/) media player configuration
+				- [obs-studio](https://obsproject.com/) video recording/streaming configuration
+				- [obsidian](https://obsidian.md/) note-taking app theme configuration
+				- [prismlauncher](https://prismlauncher.org/) Minecraft launcher configuration
+				- [telegram](https://telegram.org/) (AyuGram Desktop) client configuration
+				- [vesktop](https://github.com/Vencord/Vesktop) Discord client configuration
+				- [zathura](https://pwmt.org/projects/zathura/) PDF reader configuration
+				- [kdeconnect](https://kdeconnect.kde.org/) sync with phone service configuration
+			- [terminal](home/hezaki/programs/terminal) terminal utilities configurations
+				- [anicliru](home/hezaki/programs/terminal/anicliru) `ani-cli-ru` related Python package definitions
+					- [anicli-api](home/hezaki/programs/terminal/anicliru/anicli-api.nix) `anicli-api` Python package definition
+					- [anicli-ru](home/hezaki/programs/terminal/anicliru/anicli-ru.nix) `ani-cli-ru` Python package definition
+					- [chompjs](home/hezaki/programs/terminal/anicliru/chompjs.nix) `chompjs` Python package definition
+				- [bat](https://github.com/sharkdp/bat) (cat clone with syntax highlighting) configuration
+				- [btop](https://github.com/aristocratos/btop) (resource monitor) configuration
+				- [cava](https://github.com/karlstav/cava) audio visualizer configuration
+				- [editors](home/hezaki/programs/terminal/editors) text editor configurations
+					- [emacs](https://www.gnu.org/software/emacs/) Emacs text editor configuration
+					- [neovim](https://neovim.io/) Neovim text editor configuration
+				- [espanso](https://espanso.org/) text expander configuration
+				- [fastfetch](https://github.com/fastfetch-cli/fastfetch) system information tool configuration
+				- [fd](https://github.com/sharkdp/fd) (fast `find` alternative) configuration
+				- [fzf](https://github.com/junegunn/fzf) fuzzy finder configuration
+				- [git](https://git-scm.com/) Git configuration
+				- [lazygit](https://github.com/jesseduffield/lazygit) TUI for Git
+				- [lsd](https://github.com/lsd-rs/lsd) (modern `ls` replacement) configuration
+				- [pandoc](https://pandoc.org/) universal markup converter configuration
+				- [ripgrep](https://github.com/BurntSushi/ripgrep) (fast `grep` alternative) configuration
+				- [shell](home/hezaki/programs/terminal/shell) shell configuration
+					- [translate-shell](https://github.com/soimort/translate-shell) terminal translator configuration
+					- [zsh](https://www.zsh.org/) Zsh shell configuration
+				- [tmux](https://github.com/tmux/tmux/wiki) terminal multiplexer configuration
+				- [yazi](https://github.com/sxycode/yazi) terminal file manager configuration
+				- [yt-dlp](https://github.com/yt-dlp/yt-dlp) (video downloader) configuration
+				- [zoxide](https://github.com/ajeetdsouza/zoxide) (smarter `cd` command) configuration
+		- [themes](home/hezaki/themes) Stylix theme configuration
 			- [images](home/hezaki/themes/images) wallpapers!
-- [hosts](hosts) maybe configuration for hosts?
-	- [think](hosts/think) config for my thinkpad
-		- [enviroment](hosts/think/enviroment) all the most necessary, lol
-			- [fonts](hosts/think/enviroment/fonts) where without them
-			- [home-manager](hosts/think/enviroment/home-manager) basic config home-manager itself
-			- [local](hosts/think/enviroment/local) locale-gen
-			- [network](hosts/think/enviroment/network) setting network
-			- [nix](hosts/think/enviroment/nix) setting nix
-			- [programs](hosts/think/enviroment/programs) utils on host
-			    - [clamav](https://www.clamav.net/) antivirus
-			    - [flatpak](https://flatpak.org/) declarative flatpak
-				- [k3s](https://k3s.io/) kubernetes
-				- [kanata](https://github.com/jtroo/kanata) keyboard remapper
-				- [nh](https://github.com/viperML/nh) yet another nix cli helper
-				- [nix-ld](https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/nix-ld/README.md) run bin
-				- [openvpn](https://openvpn.net/) ovpn
-                - [polkit](https://www.freedesktop.org/software/polkit/docs/latest/) polkit setting
-                - [podman](https://podman.io/) rootless docker containers
-                - [steam](https://store.steampowered.com/) steam client
-		- [filesystem](hosts/think/filesystem) file system configuration!
-		- [hardware](hosts/think/hardware) hardware settings for my thinkpad
-			- [battery](hosts/think/hardware/battery) battery setting
-			- [graphic](hosts/think/hardware/graphic) responsible for graphics
-			- [periphery](hosts/think/hardware/periphery) setting up my periphery
-			- [tweaks](hosts/think/hardware/tweaks) all sorts of tweaks for "optimization"
-		- [systemd](hosts/think/systemd) OH NO
+- [hosts](hosts) host-specific configurations
+	- [think](hosts/think) main NixOS configuration for the ThinkPad
+		- [enviroment](hosts/think/enviroment) host environment configurations
+			- [fonts](hosts/think/enviroment/fonts) system-wide font settings
+			- [home-manager](hosts/think/enviroment/home-manager) Home-Manager basic configuration
+			- [local](hosts/think/enviroment/local) locale and timezone settings
+			- [network](hosts/think/enviroment/network) network configuration (NetworkManager, firewall)
+			- [nix](hosts/think/enviroment/nix) Nix daemon settings and flake configuration
+			- [programs](hosts/think/enviroment/programs) host-level program configurations
+			    - [clamav](https://www.clamav.net/) antivirus configuration
+			    - [flatpak](https://flatpak.org/) Flatpak service and package configuration
+				- [k3s](https://k3s.io/) K3s (lightweight Kubernetes) service configuration
+				- [kanata](https://github.com/jtroo/kanata) keyboard remapper configuration
+				- [nh](https://github.com/viperML/nh) yet another nix cli helper configuration
+				- [nix-ld](https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/nix-ld/README.md) `nix-ld` configuration for running non-Nix binaries
+				- [openvpn](https://openvpn.net/) OpenVPN3 client configuration
+                - [polkit](https://www.freedesktop.org/software/polkit/docs/latest/) Polkit authentication agent configuration
+                - [podman](https://podman.io/) Podman (rootless container engine) configuration
+                - [steam](https://store.steampowered.com/) Steam client configuration
+			- [security](hosts/think/enviroment/security) system security settings (sudo-rs, polkit)
+			- [users](hosts/think/enviroment/users) system user and group definitions
+			- [variables](hosts/think/enviroment/variables) environment variables
+		- [filesystem](hosts/think/filesystem) filesystem and ZRAM swap configuration
+		- [hardware](hosts/think/hardware) hardware settings
+			- [battery](hosts/think/hardware/battery) battery management services
+			- [graphic](hosts/think/hardware/graphic) graphics hardware settings (AMDGPU, VAAPI)
+			- [periphery](hosts/think/hardware/periphery) periphery hardware settings (Bluetooth, Pipewire)
+			- [tweaks](hosts/think/hardware/tweaks) system performance tweaks
+		- [systemd](hosts/think/systemd) Systemd service configurations
 
  ## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
