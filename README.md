@@ -35,8 +35,11 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 - [flake.nix](flake.nix) main configuration file
 - [home](home) home-manager configuration
 	- [hezaki](home/hezaki) main user Home-Manager configuration
+		- [default.nix](home/hezaki/default.nix) main Home-Manager user configuration file
 		- [programs](home/hezaki/programs) all user program configurations
+			- [default.nix](home/hezaki/programs/default.nix) imports all program categories
 			- [desktop](home/hezaki/programs/desktop) desktop environment configurations
+				- [default.nix](home/hezaki/programs/desktop/default.nix) imports all desktop environment configurations
 				- [ags](home/hezaki/programs/desktop/ags) AGS (Awesome Gtk Shell) configuration
 				- [anyrun](https://github.com/Kirovez/anyrun) app runner configuration
 				- [fusuma](https://github.com/iberianpig/fusuma) custom gestures touchpad configuration
@@ -56,13 +59,16 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [udiskie](https://github.com/coldfix/udiskie) automounting configuration
 			- [devlop](home/hezaki/programs/devlop) developer utilities and language servers
 			- [graphical](home/hezaki/programs/graphical) graphical programs configurations
+				- [default.nix](home/hezaki/programs/graphical/default.nix) imports all graphical program configurations
 				- [blockbench](https://www.blockbench.net/) low-poly 3D model editor configuration
 				- [browsers](home/hezaki/programs/graphical/browsers) browser configurations
+					- [default.nix](home/hezaki/programs/graphical/browsers/default.nix) imports all browser configurations
 					- [firefox](https://www.mozilla.org/firefox/) Firefox browser configuration
 					- [chromium](https://www.chromium.org/) Chromium browser configuration
 				- [easyeffects](home/hezaki/programs/graphical/easyeffects) EasyEffects audio processing configuration
 				- [foot](https://codeberg.org/dnkl/foot) terminal emulator configuration
 				- [games](home/hezaki/programs/graphical/games) games configurations
+					- [default.nix](home/hezaki/programs/graphical/games/default.nix) imports all game configurations
 					- [terraria](https://terraria.org/) Terraria game configuration
 				- [kitty](https://sw.kovidgoyal.net/kitty/) terminal emulator configuration
 				- [mangohud](https://github.com/flightlessmango/MangoHud) (pearhud) overlay monitoring FPS configuration
@@ -75,6 +81,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [zathura](https://pwmt.org/projects/zathura/) PDF reader configuration
 				- [kdeconnect](https://kdeconnect.kde.org/) sync with phone service configuration
 			- [terminal](home/hezaki/programs/terminal) terminal utilities configurations
+				- [default.nix](home/hezaki/programs/terminal/default.nix) imports all terminal utility configurations
 				- [anicliru](home/hezaki/programs/terminal/anicliru) `ani-cli-ru` related Python package definitions
 					- [anicli-api](home/hezaki/programs/terminal/anicliru/anicli-api.nix) `anicli-api` Python package definition
 					- [anicli-ru](home/hezaki/programs/terminal/anicliru/anicli-ru.nix) `ani-cli-ru` Python package definition
@@ -83,6 +90,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [btop](https://github.com/aristocratos/btop) (resource monitor) configuration
 				- [cava](https://github.com/karlstav/cava) audio visualizer configuration
 				- [editors](home/hezaki/programs/terminal/editors) text editor configurations
+					- [default.nix](home/hezaki/programs/terminal/editors/default.nix) imports all terminal editor configurations
 					- [emacs](https://www.gnu.org/software/emacs/) Emacs text editor configuration
 					- [neovim](https://neovim.io/) Neovim text editor configuration
 				- [espanso](https://espanso.org/) text expander configuration
@@ -95,6 +103,7 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [pandoc](https://pandoc.org/) universal markup converter configuration
 				- [ripgrep](https://github.com/BurntSushi/ripgrep) (fast `grep` alternative) configuration
 				- [shell](home/hezaki/programs/terminal/shell) shell configuration
+					- [default.nix](home/hezaki/programs/terminal/shell/default.nix) imports Zsh and translate-shell configurations
 					- [translate-shell](https://github.com/soimort/translate-shell) terminal translator configuration
 					- [zsh](https://www.zsh.org/) Zsh shell configuration
 				- [tmux](https://github.com/tmux/tmux/wiki) terminal multiplexer configuration
@@ -102,10 +111,13 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 				- [yt-dlp](https://github.com/yt-dlp/yt-dlp) (video downloader) configuration
 				- [zoxide](https://github.com/ajeetdsouza/zoxide) (smarter `cd` command) configuration
 		- [themes](home/hezaki/themes) Stylix theme configuration
+			- [default.nix](home/hezaki/themes/default.nix) main Stylix theme configuration file
 			- [images](home/hezaki/themes/images) wallpapers!
 - [hosts](hosts) host-specific configurations
 	- [think](hosts/think) main NixOS configuration for the ThinkPad
+		- [default.nix](hosts/think/default.nix) main NixOS configuration file for the ThinkPad
 		- [enviroment](hosts/think/enviroment) host environment configurations
+			- [default.nix](hosts/think/enviroment/default.nix) imports all host environment categories
 			- [fonts](hosts/think/enviroment/fonts) system-wide font settings
 			- [home-manager](hosts/think/enviroment/home-manager) Home-Manager basic configuration
 			- [local](hosts/think/enviroment/local) locale and timezone settings
@@ -122,11 +134,16 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
                 - [polkit](https://www.freedesktop.org/software/polkit/docs/latest/) Polkit authentication agent configuration
                 - [podman](https://podman.io/) Podman (rootless container engine) configuration
                 - [steam](https://store.steampowered.com/) Steam client configuration
+				- [solaar](https://pwr-solaar.github.io/solaar/) Solaar configuration for Logitech devices
+				- [gpu-screen-recorder](https://github.com/Decodetalkers/gpu-screen-recorder) GPU Screen Recorder configuration
+				- [hamachi](https://vpn.net/) LogMeIn Hamachi VPN client configuration
+				- [zapret](https://github.com/bol-shoy/zapret) Zapret bypass tool configuration
 			- [security](hosts/think/enviroment/security) system security settings (sudo-rs, polkit)
 			- [users](hosts/think/enviroment/users) system user and group definitions
 			- [variables](hosts/think/enviroment/variables) environment variables
 		- [filesystem](hosts/think/filesystem) filesystem and ZRAM swap configuration
 		- [hardware](hosts/think/hardware) hardware settings
+			- [default.nix](hosts/think/hardware/default.nix) imports all hardware settings categories
 			- [battery](hosts/think/hardware/battery) battery management services
 			- [graphic](hosts/think/hardware/graphic) graphics hardware settings (AMDGPU, VAAPI)
 			- [periphery](hosts/think/hardware/periphery) periphery hardware settings (Bluetooth, Pipewire)
