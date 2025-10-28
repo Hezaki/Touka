@@ -1,0 +1,3 @@
+{
+  programs.haguichi.enable = true;
+}

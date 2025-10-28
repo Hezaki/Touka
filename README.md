@@ -23,8 +23,6 @@ To make the home-manager work:
 doas chown -R hezaki:users /etc/nixos     # if you use this path
 ```
 
-Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com/wiki/Touka_Kirishima)  from TK)))
-
 ## 💻Hardware
 - Laptop — [Lenovo ThinkPad T14 gen 1](https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadt/t14-amd-g1/22tpt14t4a2)
 	- An excellent office laptop, there is a profile in [nixos-hardware](https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/t14/amd/gen1)
@@ -149,6 +147,8 @@ Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com
 			- [periphery](hosts/think/hardware/periphery) periphery hardware settings (Bluetooth, Pipewire)
 			- [tweaks](hosts/think/hardware/tweaks) system performance tweaks
 		- [systemd](hosts/think/systemd) Systemd service configurations
+
+Why Touka? I'm just a big fan of [Touka Kirishima](https://tokyoghoul.fandom.com/wiki/Touka_Kirishima)  from TK)))
 
  ## ❤️ Thanks 
 - [Thank you for your help <3](https://codeberg.org/ghosty)
