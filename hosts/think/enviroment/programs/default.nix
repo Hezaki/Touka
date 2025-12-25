@@ -17,13 +17,12 @@
     ./podman
     ./flatpak
     ./kubernetes
-    ./solaar
     ./gpu-screen-recorder
     # ./hamachi
     ./zapret
   ];
 
-  services.xserver.displayManager.gdm.enable = true;
+  environment.systemPackages = with pkgs; [ nix-tree ];
 
   documentation = {
     enable = true;

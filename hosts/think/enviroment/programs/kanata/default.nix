@@ -53,6 +53,7 @@
           )
 
           (deflayermap (extended)
+            caps (tap-hold-release $tt $ft caps lctl)
             h left
             j down
             k up

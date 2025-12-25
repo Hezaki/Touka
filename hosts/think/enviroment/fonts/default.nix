@@ -2,7 +2,6 @@
 {
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    emojione
     ipafont
     lato
     inter

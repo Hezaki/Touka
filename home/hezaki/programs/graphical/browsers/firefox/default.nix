@@ -236,7 +236,7 @@
           "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 250;
           "general.smoothScroll.currentVelocityWeighting" = "1";
           "general.smoothScroll.stopDecelerationWeighting" = "1";
-          "mousewheel.default.delta_multiplier_y" = 300;
+          "mousewheel.default.delta_multiplier_y" = 250;
 
           # other
           "browser.startup.homepage" = "https://duckduckgo.com/";
@@ -348,7 +348,7 @@
           "browser.search.geoSpecificDefaults.url" = "";
           "browser.search.modernConfig" = false;
           "privacy.resistFingerprinting" = true;
-          "webgl.disabled" = true;
+          # "webgl.disabled" = true;
           "privacy.trackingprotection.cryptomining.enabled" = true;
           "privacy.trackingprotection.fingerprinting.enabled" = true;
           "gecko.handlerService.schemes.mailto.0.name" = "";
@@ -455,69 +455,74 @@
     })
   ];
   home.file = {
-    ".mozilla/firefox/hezaki.default-release/chrome/userChrome.css".text = ''
-      * {
-        font-family: Inter !important;
-        font-size: 15px;
-        /* border-radius: 18px !important; */
-      }
-
-      .tab-background {
-        border-radius: 18px !important;
-        max-height: 24px !important;
-        min-height: 24px !important;
-      }
-
-      #tabbrowser-tabs {
-        border-radius: 0px !important;
-        border-inline-start: none !important;
-        max-height: 32px !important;
-        min-height: 32px !important;
-      }
-
-      #firefox-view-button,
-      #alltabs-button,
-      #tabs-newtab-button,
-      .titlebar-close,
-      .tab-close-button,
-      .titlebar-spacer,
-      .titlebar-button,
-      .titlebar-min {
-        display: none !important;
-      }
-
-      #urlbar-background {
-        border-radius: 18px !important;
-      }
-
-      :root:not([customizing]):has(#tabbrowser-tabs[orient="horizontal"]) {
-        #TabsToolbar {
-          z-index: 9999 !important;
-          background-color: inherit !important;
+    ".mozilla/firefox/hezaki.default-release/chrome/userChrome.css".text =
+      with config.lib.stylix.colors; ''
+        * {
+          font-family: Inter !important;
+          font-size: 15px;
+          /* border-radius: 18px !important; */
         }
 
-        #TabsToolbar:not(:focus) {
-          opacity: 1 !important;
+        .tab-background {
+          border-radius: 18px !important;
+          max-height: 24px !important;
+          min-height: 24px !important;
         }
 
-        #nav-bar {
-          transition: margin-top 0.3s ease !important;
-          margin-top: -30px !important;
-          & #urlbar {
-            visibility: collapse !important; /* hidden with the nav bar */
+        #browser-toolbox-background {
+          background-color: #${base00};
+        }
+
+        #tabbrowser-tabs {
+          border-radius: 0px !important;
+          border-inline-start: none !important;
+          max-height: 32px !important;
+          min-height: 32px !important;
+        }
+
+        #firefox-view-button,
+        #alltabs-button,
+        #tabs-newtab-button,
+        .titlebar-close,
+        .tab-close-button,
+        .titlebar-spacer,
+        .titlebar-button,
+        .titlebar-min {
+          display: none !important;
+        }
+
+        #urlbar-background {
+          border-radius: 18px !important;
+        }
+
+        :root:not([customizing]):has(#tabbrowser-tabs[orient="horizontal"]) {
+          #TabsToolbar {
+            z-index: 9999 !important;
+            background-color: inherit !important;
+          }
+
+          #TabsToolbar:not(:focus) {
+            opacity: 1 !important;
+          }
+
+          #nav-bar {
+            transition: margin-top 0.3s ease !important;
+            margin-top: -30px !important;
+            & #urlbar {
+              visibility: collapse !important; /* hidden with the nav bar */
+            }
+          }
+
+          #TabsToolbar:hover ~ #nav-bar,
+          #nav-bar:hover,
+          #nav-bar:focus-within {
+            margin-top: 0px !important;
+            & #urlbar {
+              visibility: visible !important; /* visible with the nav bar */
+            }
           }
         }
-
-        #TabsToolbar:hover ~ #nav-bar,
-        #nav-bar:hover,
-        #nav-bar:focus-within {
-          margin-top: 0px !important;
-          & #urlbar {
-            visibility: visible !important; /* visible with the nav bar */
-          }
-        }
-      }
-    '';
+      '';
     ".mozilla/firefox/hezaki.default-release/chrome/userContent.css".text =
       with config.lib.stylix.colors; ''
         * {}

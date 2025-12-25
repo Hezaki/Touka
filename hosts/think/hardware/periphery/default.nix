@@ -23,7 +23,10 @@
       enable = true;
       packages = with pkgs; [ qmk-udev-rules ];
     };
-    pulseaudio.enable = false;
+    pulseaudio = {
+      enable = false;
+      package = pkgs.pulseaudioFull;
+    };
     ratbagd.enable = true;
     pcscd.enable = true;
     pipewire = {

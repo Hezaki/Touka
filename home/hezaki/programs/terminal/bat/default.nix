@@ -3,7 +3,7 @@
   programs.bat = {
     enable = true;
     config = {
-      style = "numbers,changes";
+      style = "changes";
     };
     extraPackages = with pkgs.bat-extras; [ prettybat ];
   };

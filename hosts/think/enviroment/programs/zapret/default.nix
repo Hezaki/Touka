@@ -1,17 +1,13 @@
 { inputs, ... }:
 
 {
-  imports = with inputs; [
-    zapret-presets.nixosModules.presets
-  ];
+  imports = with inputs; [ zapret-presets.nixosModules.presets ];
 
-  services = {
-    zapret = {
+  services.zapret = {
+    enable = true;
+    sf_presets = {
       enable = true;
-      sf_presets = {
-        enable = true;
-        preset = "renixos";
-      };
+      preset = "general_alt2";
     };
   };
 }

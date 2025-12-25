@@ -14,6 +14,7 @@
     emmet-language-server
     nodejs
     vscode-langservers-extracted
+    gopls
 
     nixd
     nixfmt-rfc-style
