@@ -210,6 +210,11 @@
         require("lazy").setup({
           spec = {
             {
+              "folke/trouble.nvim",
+              opts = {},
+              cmd = "Trouble",
+            },
+            {
               'Abizrh/commit-ai.nvim',
               config = function()
                 require('commit-ai').setup {
@@ -685,6 +690,7 @@
                   css = { "prettierd" },
                   javascript = { "prettierd" },
                   json = { "prettierd" },
+                  go = { "gofmt" },
                 },
               },
             },
@@ -692,6 +698,20 @@
               'neovim/nvim-lspconfig',
               event = 'VeryLazy',
               config = function()
+                require'lspconfig'.gopls.setup{
+                  cmd = { "gopls" },
+                  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                  settings = {
+                    gopls = {
+                      analyses = {
+                        unusedparams = true,
+                        shadow = true,
+                      },
+                      staticcheck = true,
+                    },
+                  },
+                }
+
                 require'lspconfig'.emmet_language_server.setup {
                   cmd = { "vscode-css-language-server", "--stdio" },
                   filetypes = { "html", "css", "scss", "less" },
@@ -711,6 +731,7 @@
                     }
                   },
                 }
+
                 require'lspconfig'.emmet_language_server.setup {
                   filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
                   init_options = {
@@ -725,6 +746,7 @@
                     variables = {},
                   },
                 }
+
                 require'lspconfig'.nixd.setup {
                   cmd = { "nixd" },
                   filetypes = { "nix" },
@@ -748,6 +770,7 @@
                     },
                   },
                 }
+
                 require'lspconfig'.lua_ls.setup {
                   on_init = function(client)
                     if client.workspace_folders then

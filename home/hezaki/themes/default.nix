@@ -32,13 +32,13 @@
     };
 
     cursor = {
-      name = "GoogleDot-Custom";
-      package = inputs.nix-cursors.packages.${pkgs.system}.google-cursor.override {
+      name = "Bibata-Original-Custom";
+      package = inputs.nix-cursors.packages.${pkgs.system}.bibata-original-cursor.override {
         background_color = "#${config.lib.stylix.colors.base03}";
         outline_color = "#${config.lib.stylix.colors.base06}";
         accent_color = "#${config.lib.stylix.colors.base03}";
       };
-      size = 21;
+      size = 20;
     };
 
     fonts = {
@@ -48,7 +48,7 @@
       };
 
       monospace = config.stylix.fonts.serif;
-      emoji.package = pkgs.noto-fonts-emoji;
+      emoji.package = pkgs.noto-fonts-color-emoji;
       sizes.terminal = 16;
     };
 

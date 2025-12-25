@@ -5,17 +5,8 @@
     package = pkgs.chromium;
     extensions = [
       {
-        id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-      } # Ublock Origin
-      {
         id = "hfjbmagddngcpeloejdejnfgbamkjaeg";
       } # Vimium-C
-      {
-        id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-      } # Dark reader
-      {
-        id = "pfpolingmjapeepkjhnimfaofmlhhfbf";
-      } # Youboost
     ];
   };
 }

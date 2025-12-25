@@ -13,26 +13,27 @@
   home = {
     username = "hezaki";
     homeDirectory = "/home/hezaki";
-    stateVersion = "24.11";
+    stateVersion = "25.11";
 
     packages =
       with pkgs;
       with inputs;
       [
         # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
-        delta-shell.packages.${system}.default
-        yandex-browser.packages.x86_64-linux.yandex-browser-stable
-        zoom-us
-        teamspeak3
+        # mcpelauncher-client
+        # delta-shell.packages.${system}.default
+        krita
+        # yandex-browser.packages.x86_64-linux.yandex-browser-stable
+        # teamspeak3
         ppsspp-sdl-wayland
         obsidian
-        # badlion-client
+        lunar-client
         dua
         duf
         easyeffects
         gcr
         gdb
-        glfw-wayland
+        glfw
         jq
         libnotify
         libreoffice
@@ -66,6 +67,7 @@
         via
         gparted
         aider-chat
+        piper
       ];
   };
 
@@ -79,7 +81,9 @@
       "jitsi-meet-1.0.8043"
       "mbedtls-2.28.10"
     ];
-    overlays = with inputs; [ nur.overlay ];
+    overlays = with inputs; [
+      nur.overlay
+    ];
   };
 
   nix = {

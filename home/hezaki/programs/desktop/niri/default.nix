@@ -24,25 +24,23 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = pkgs.niri;
     config =
       with config.lib.stylix.colors; # kdl
       ''
         spawn-at-startup "swaybg" "-m" "fill" "-i" "/etc/nixos/home/hezaki/themes/images/wp.png";
-        spawn-at-startup "flatpak" "run" "pw.mmk.OpenFreebuds" "--client";
         spawn-at-startup "xwayland-satellite"
         spawn-at-startup "swaync"
         spawn-at-startup "batsignal"
         spawn-at-startup "powermode-indicator"
-        // spawn-at-startup "kdeconnect-indicator"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store";
         spawn-at-startup "udiskie"
         spawn-at-startup "tmux" "new-session" "-d"
         spawn-at-startup "firefox"
         spawn-at-startup "steam"
         spawn-at-startup "youtube-music"
-        spawn-at-startup "ayugram-desktop"
-        spawn-at-startup "obsidian"
+        spawn-at-startup "easyeffects"
+        spawn-at-startup "AyuGram"
         spawn-at-startup "waybar"
 
         environment {
@@ -64,11 +62,12 @@
 
           touchpad {
             tap
-            accel-speed 0.7
+            scroll-factor 0.4
+            accel-speed 0.5
           }
 
           mouse {
-            accel-speed -0.5
+            accel-speed -0.87
             accel-profile "flat"
             scroll-method "no-scroll"
           }
@@ -93,17 +92,16 @@
           }
         }
 
-        screenshot-path "~/Media/Screenshots/$(date +%Y%m%d_%Hh%Mm%Ss.png)"
+        screenshot-path "~/Media/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png"
         prefer-no-csd
 
         layer-rule {
           match at-startup=true
           match namespace="waybar"
-          match namespace="anyrun"
+          match namespace="rofi"
           match namespace="swaync"
           // match namespace="^wallpaper$"
 
-          geometry-corner-radius 13
           place-within-backdrop true
         }
 
@@ -132,12 +130,36 @@
           // }
         }
 
+        recent-windows {
+            debounce-ms 750
+            open-delay-ms 150
+
+            highlight {
+              active-color "#${base03}"
+              urgent-color "#${base08}"
+              padding 30
+              corner-radius 6
+            }
+
+            previews {
+              max-height 480
+              max-scale 0.5
+            }
+
+            binds {
+              Mod+Tab         { next-window; }
+              Mod+Shift+Tab   { previous-window; }
+              Mod+grave       { next-window     filter="app-id"; }
+              Mod+Shift+grave { previous-window filter="app-id"; }
+            }
+        }
+
         hotkey-overlay {
           skip-at-startup
         }
 
         layout {
-          gaps 16
+          gaps 10
           // center-focused-column "always"
           background-color "#${base00}"
           always-center-single-column
@@ -154,7 +176,9 @@
 
           shadow {
             on
-            softness 10
+            softness 30
+            spread 4
+            draw-behind-window true
           }
 
           default-column-width { proportion 0.33333; }
@@ -167,7 +191,7 @@
           }
 
           struts {
-            bottom -1
+            bottom -3
             top 1
           }
         }
@@ -213,13 +237,9 @@
           open-on-output "DP-2"
         }
 
-        workspace "10" {
-          open-on-output "DP-2"
-        }
-
         window-rule {
           open-focused true
-          geometry-corner-radius 13
+          geometry-corner-radius 6
           clip-to-geometry true
           draw-border-with-background true
           tiled-state true
@@ -238,7 +258,7 @@
         window-rule { 
           match app-id="firefox"
           open-on-workspace "2"
-          open-maximized true
+          default-column-width { proportion 0.5; }
           open-focused false
         }
 
@@ -255,7 +275,7 @@
         window-rule { 
           match app-id="com.ayugram.desktop"
           match app-id="vesktop"
-          default-column-width { proportion 0.66667; }
+          default-column-width { proportion 0.5; }
           open-focused false
           open-on-workspace "3"
         }
@@ -266,43 +286,33 @@
         }
 
         window-rule { 
-          match app-id="org.prismlauncher.Prismlauncher"
           match app-id="Badlion Client"
+          match app-id="org.prismlauncher.PrismLauncher"
           match app-id="libreoffice-writer"
           match app-id="net.lutris.Lutris"
-          open-maximized true
+          match app-id="steam"
+          open-focused false
+          default-column-width { proportion 0.5; }
           open-on-workspace "5"
         }
 
         window-rule { 
-          match app-id="steam"
+          match app-id="music"
           open-focused false
-          open-on-workspace "5"
-          default-column-width { proportion 0.5; }
+          default-column-width { proportion 0.66667; }
+          open-on-workspace "7"
         }
 
         window-rule { 
           match app-id="com.github.wwmm.easyeffects"
           match app-id="io.github.seadve.Mousai"
+          default-column-width { proportion 0.33333; }
           open-on-workspace "7"
         }
 
-        window-rule { 
-          match app-id="blender"
-          match app-id="Blockbench"
-          open-on-workspace "8"
-        }
-
-        window-rule { 
-          match app-id="transmission-gtk"
-          open-on-workspace "9"
-        }
-
-        window-rule { 
-          match app-id="music"
-          open-maximized true
+        window-rule {
+          match app-id="com.github.wwmm.easyeffects"
           open-focused false
-          open-on-workspace "10"
         }
 
         window-rule {
@@ -315,7 +325,7 @@
           Mod+Space { toggle-overview; }
 
           Mod+Return { spawn "kitty" "-e" "tmux" "attach-session"; }
-          Mod+D { spawn "anyrun"; }
+          Mod+D { spawn "rofi" "-show" "drun"; }
 
           F3 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
           F2 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
@@ -332,6 +342,7 @@
 
           Mod+W { close-window; }
           Mod+S { toggle-window-floating; }
+          Mod+Super+A { center-column; }
 
           Mod+Left  { focus-column-left; }
           Mod+Down  { focus-window-down; }
@@ -342,10 +353,10 @@
           Mod+K     { focus-window-up; }
           Mod+L     { focus-column-right; }
 
-          Mod+Ctrl+H     { focus-monitor-left; }
+          Mod+Ctrl+H     { consume-or-expel-window-left; }
           Mod+Ctrl+J     { focus-monitor-down; }
           Mod+Ctrl+K     { focus-monitor-up; }
-          Mod+Ctrl+L     { focus-monitor-right; }
+          Mod+Ctrl+L     { consume-or-expel-window-right; }
 
           Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
           Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
@@ -398,9 +409,8 @@
           Mod+Shift+E { quit; }
 
           F12 { spawn "hyprlock"; }
-          Mod+Insert { spawn "swaync-client" "-t" "-sw"; }
-
-          Mod+Shift+P { power-off-monitors; }
+          Mod+Backspace { spawn "swaync-client" "-t" "-sw"; }
+          Mod+Shift+Backspace { spawn "swaync-client" "--toglle-dnd"; }
         }
       '';
   };

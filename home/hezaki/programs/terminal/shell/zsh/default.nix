@@ -7,10 +7,10 @@
 {
   programs.zsh = {
     enable = true;
-    
-    # profileExtra = ''
-    #   [ "$(tty)" = "/dev/tty1" ] && exec niri-session
-    # '';
+
+    profileExtra = ''
+      [ "$(tty)" = "/dev/tty1" ] && exec niri-session -l
+    '';
 
     plugins = with inputs; [
       {
@@ -84,13 +84,15 @@
       setopt automenu
       setopt nobeep
 
-      QT_QPA_PLATFORMTHEME=gtk3
       export EDITOR='nvim'
       export AUTO_NOTIFY_THRESHOLD=60
       export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
       export GEMINI_API_KEY="AIzaSyDfTko2FQVo-5KMN4yfH7bBU51h8fMm1DU"
+
+      typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+      typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
       bindkey -v
       bindkey '^H' vi-backward-kill-word

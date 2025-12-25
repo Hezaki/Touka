@@ -8,11 +8,8 @@
       enable = true;
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
-      ];
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
       ];
     };
   };

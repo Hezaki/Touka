@@ -31,19 +31,11 @@
     loader = {
       systemd-boot.enable = true;
 
-      # grub = {
-      #   enable = true;
-      #   efiSupport = true;
-      #   timeoutStyle = "hidden";
-      #   splashImage = null;
-      #   device = "nodev";
-      # };
-
       efi.canTouchEfiVariables = true;
-      timeout = 1;
+      timeout = null;
     };
 
-    plymouth.enable = true;
+    # plymouth.enable = true;
 
     initrd = {
       systemd.enable = true;
@@ -58,7 +50,7 @@
       verbose = false;
     };
 
-    kernelPackages = pkgs.linuxPackages_lqx;
+    kernelPackages = pkgs.linuxPackages_cachyos;
 
     kernelParams = [
       "quiet"

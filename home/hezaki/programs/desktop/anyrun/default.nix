@@ -1,20 +1,22 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 {
   programs.anyrun = {
     enable = true;
     config = {
-      plugins = with pkgs; [
-        "${anyrun}/lib/libapplications.so"
-        "${anyrun}/lib/libsymbols.so"
-        "${anyrun}/lib/stdin.so"
-        "${anyrun}/lib/shell.so"
-        "${anyrun}/lib/rink.so"
+      plugins = with inputs.anyrun.packages.${pkgs.system}; [
+        applications
+        rink
+        shell
+        symbols
+        translate
+        dictionary
+        stdin
       ];
-
       closeOnClick = true;
       hidePluginInfo = true;
       hideIcons = false;

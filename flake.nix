@@ -39,7 +39,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
@@ -48,11 +48,6 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     delta-shell.url = "github:hezaki/delta-shell";
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     yandex-browser = {
       url = "github:miuirussia/yandex-browser.nix";
@@ -65,13 +60,8 @@
     };
 
     zapret-presets.url = "github:kotudemo/zapret-presets";
-
-    solaar = {
-      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     niri.url = "github:sodiboo/niri-flake";
+    # anyrun.url = "github:anyrun-org/anyrun";
 
     home-manager = {
       url = "github:nix-community/home-manager";

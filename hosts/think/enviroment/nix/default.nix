@@ -1,4 +1,6 @@
 {
+
+
   nix = {
     optimise.automatic = true;
     settings = {

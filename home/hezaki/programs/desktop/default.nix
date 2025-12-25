@@ -1,7 +1,8 @@
 {
   imports = [
     ./cliphist
-    ./anyrun
+    # ./anyrun
+    ./rofi
     ./hyprlock
     ./swaync
     ./swayimg
