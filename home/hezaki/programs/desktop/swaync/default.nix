@@ -17,13 +17,13 @@
       layer = "overlay";
       control-center-layer = "overlay";
 
-      positionX = "center";
+      positionX = "right";
       positionY = "bottom";
       notification-2fa-action = true;
       notification-inline-replies = false;
       notification-icon-size = 64;
-      notification-body-image-height = 100;
-      notification-body-image-width = 200;
+      # notification-body-image-height = 100;
+      # notification-body-image-width = 100;
       notification-window-width = 360;
 
       control-center-positionX = "right";
@@ -67,7 +67,7 @@
         @define-color background #${base00};
         @define-color background-alt #${base01};
         @define-color background-focus #${base02};
-        @define-color border #${base03};
+        @define-color border #${base02};
         @define-color red #${base08};
         @define-color orange #${base0A};
         @define-color yellow #${base09};

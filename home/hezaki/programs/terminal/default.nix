@@ -18,5 +18,6 @@
     ./yt-dlp
     ./pandoc
     ./lazygit
+    ./nix-search-tv
   ];
 }

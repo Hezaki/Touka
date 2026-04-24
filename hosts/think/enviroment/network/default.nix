@@ -1,20 +1,19 @@
-{ pkgs, ... }:
 {
   networking = {
     hostName = "think";
+    nameservers = [
+      "127.0.0.1"
+      "::1"
+    ];
 
     networkmanager = {
       enable = true;
-      # plugins = with pkgs; [ networkmanager-openvpn ];
-      # insertNameservers = [
-      #   "8.8.8.8"
-      #   "8.8.4.4"
-      #   "1.1.1.1"
-      #   "1.0.0.1"
-      #   "208.67.222.222"
-      #   "208.67.220.220"
-      #   "149.112.112.112"
-      # ];
+      dns = "none";
+
+      wifi = {
+        powersave = true;
+        macAddress = "random";
+      };
     };
 
     dhcpcd = {
@@ -22,19 +21,28 @@
       extraConfig = "noarp";
     };
 
-    # defaultGateway = {
-    #   address = "192.168.0.1";
-    #   interface = "wlp3s0";
-    # };
+    firewall = {
+      trustedInterfaces = [ "tailscale0" ];
+      allowedTCPPorts = [ 8000 ];
 
-    firewall = rec {
       allowedTCPPortRanges = [
         {
           from = 1714;
           to = 1764;
         }
       ];
-      allowedUDPPortRanges = allowedTCPPortRanges;
+
+      allowedUDPPortRanges = [
+        {
+          from = 52000;
+          to = 52100;
+        }
+      ];
     };
   };
+
+  services.tailscale.enable = true;
+
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 }

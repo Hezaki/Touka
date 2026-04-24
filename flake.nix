@@ -4,6 +4,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
+      firefox-addons,
       ...
     }@inputs:
     let
@@ -21,19 +22,18 @@
       nixosConfigurations = {
         think = nixpkgs.lib.nixosSystem {
           specialArgs = agrs;
-          modules = [
-            ./hosts/think
-          ];
+          modules = [ ./hosts/think ];
         };
       };
 
       homeConfigurations = {
         hezaki = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ firefox-addons.overlays.default ];
+          };
           extraSpecialArgs = agrs;
-          modules = [
-            ./home/hezaki
-          ];
+          modules = [ ./home/hezaki ];
         };
       };
     };
@@ -43,28 +43,50 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    delta-shell.url = "github:hezaki/delta-shell";
-
-    yandex-browser = {
-      url = "github:miuirussia/yandex-browser.nix";
+    jovian-steamdeck = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quickshell = {
-      url = "github:outfoxxed/quickshell";
+    nixcord.url = "github:FlameFlag/nixcord";
+
+    lsfg-vk-flake = {
+      url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zapret-presets.url = "github:kotudemo/zapret-presets";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+
+    firefox-addons = {
+      url = "github:petrkozorezov/firefox-addons-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vimium-options.url = "github:uimataso/vimium-nixos";
+
+    lunar-client.url = "github:clonidine/lunar-client-flake";
+
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+    zapret2.url = "github:dmfrpro/zapret2-flake";
+    tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
+
     niri.url = "github:sodiboo/niri-flake";
-    # anyrun.url = "github:anyrun-org/anyrun";
+    system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
+    niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -73,7 +95,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix/master";
+    stylix.url = "github:danth/stylix/release-25.11";
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
@@ -130,13 +152,8 @@
       flake = false;
     };
 
-    tmux-sessionx = {
-      url = "github:omerxx/tmux-sessionx";
-      flake = false;
-    };
-
-    tmux-fzf = {
-      url = "github:sainnhe/tmux-fzf";
+    tmux-continuum = {
+      url = "github:tmux-plugins/tmux-continuum";
       flake = false;
     };
   };

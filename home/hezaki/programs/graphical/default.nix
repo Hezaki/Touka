@@ -4,8 +4,9 @@
     ./kitty
     ./zathura
     ./browsers
-    ./vesktop
+    ./vimium
     ./telegram
+    ./discord
     ./blockbench
     ./prismlauncher
     ./mangohud

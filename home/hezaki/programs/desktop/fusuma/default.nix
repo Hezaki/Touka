@@ -8,6 +8,6 @@
           up:
             command: "sh $XDG_CONFIG_HOME/hypr/scripts/defSreenshot.sh"
           down:
-            command: "sh $XDG_CONFIG_HOME/hypr/scripts/defSreenshot.sh"
+            command: "niri msg action close-window"
     '';
 }

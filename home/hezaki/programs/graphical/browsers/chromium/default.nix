@@ -2,11 +2,11 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.chromium;
+    # package = pkgs.ungoogled-chromium;
     extensions = [
       {
-        id = "hfjbmagddngcpeloejdejnfgbamkjaeg";
-      } # Vimium-C
+        id = "dbepggeogbaibhgnhhndojpepiihcmeb";
+      } # Vimium
     ];
   };
 }

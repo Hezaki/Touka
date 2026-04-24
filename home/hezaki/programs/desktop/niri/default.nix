@@ -8,19 +8,26 @@
   imports = with inputs; [
     niri.homeModules.niri
     niri.homeModules.stylix
-  ];
-
-  home.packages = with pkgs; [
-    wl-clipboard
-    cliphist
-    hyprpicker
-    wl-clipboard
-    gpu-screen-recorder
-    gpu-screen-recorder-gtk
-    cliphist
+    noctalia.homeModules.default
+    system76-scheduler-niri.homeModules.default
   ];
 
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+
+  home.packages = with pkgs; with inputs; [
+    wl-clipboard
+    # wl-freeze
+    hyprpicker
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
+    niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
+  ];
+
+  services = {
+    system76-scheduler-niri.enable = true;
+    swayidle.enable = true;
+    playerctld.enable = true;
+  };
 
   programs.niri = {
     enable = true;
@@ -28,29 +35,27 @@
     config =
       with config.lib.stylix.colors; # kdl
       ''
-        spawn-at-startup "swaybg" "-m" "fill" "-i" "/etc/nixos/home/hezaki/themes/images/wp.png";
+        spawn-at-startup "noctalia-shell" "--no-duplicate"
         spawn-at-startup "xwayland-satellite"
-        spawn-at-startup "swaync"
         spawn-at-startup "batsignal"
-        spawn-at-startup "powermode-indicator"
+        spawn-at-startup "steam"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store";
         spawn-at-startup "udiskie"
         spawn-at-startup "tmux" "new-session" "-d"
         spawn-at-startup "firefox"
-        spawn-at-startup "steam"
-        spawn-at-startup "youtube-music"
-        spawn-at-startup "easyeffects"
         spawn-at-startup "AyuGram"
-        spawn-at-startup "waybar"
+        spawn-at-startup "tg-ws-proxy" "--port" "1917"
+        spawn-at-startup "niri-float-sticky" "-app-id" "firefox" "-title" "Picture-in-Picture"
 
         environment {
           DISPLAY ":0"
+          QT_QPA_PLATFORMTHEME "gtk3"
         }
 
         input {
           workspace-auto-back-and-forth
           warp-mouse-to-focus
-          // focus-follows-mouse
+          focus-follows-mouse max-scroll-amount="0%"
           keyboard {
             repeat-delay 500
             repeat-rate 50
@@ -98,9 +103,24 @@
         layer-rule {
           match at-startup=true
           match namespace="waybar"
-          match namespace="rofi"
-          match namespace="swaync"
+          match namespace="^swww-daemonoverview$"
+          match namespace="^noctalia-overview*"
           // match namespace="^wallpaper$"
+
+          place-within-backdrop true
+        }
+
+        layer-rule {
+          match namespace="rofi"
+          match namespace="waybar"
+          match namespace="noctalia-shell"
+
+          shadow {
+            on
+            softness 30
+            spread 4
+            draw-behind-window true
+          }
 
           place-within-backdrop true
         }
@@ -109,13 +129,14 @@
           mode "3440x1440@120"
           scale 1.0
           focus-at-startup
-          position x=6045 y=2205
+          variable-refresh-rate on-demand=true
+          // position x=6045 y=2205
         }
 
         output "eDP-1" {
           mode "1920x1080@60"
           scale 1.0
-          position x=6796 y=3645
+          // position x=6796 y=3645
         }
 
         cursor {
@@ -131,27 +152,27 @@
         }
 
         recent-windows {
-            debounce-ms 750
-            open-delay-ms 150
+          debounce-ms 750
+          open-delay-ms 150
 
-            highlight {
-              active-color "#${base03}"
-              urgent-color "#${base08}"
-              padding 30
-              corner-radius 6
-            }
+          highlight {
+            active-color "#${base03}"
+            urgent-color "#${base08}"
+            padding 30
+            corner-radius 20
+          }
 
-            previews {
-              max-height 480
-              max-scale 0.5
-            }
+          previews {
+            max-height 480
+            max-scale 0.5
+          }
 
-            binds {
-              Mod+Tab         { next-window; }
-              Mod+Shift+Tab   { previous-window; }
-              Mod+grave       { next-window     filter="app-id"; }
-              Mod+Shift+grave { previous-window filter="app-id"; }
-            }
+          binds {
+            Mod+Tab         { next-window; }
+            Mod+Shift+Tab   { previous-window; }
+            Mod+grave       { next-window     filter="app-id"; }
+            Mod+Shift+grave { previous-window filter="app-id"; }
+          }
         }
 
         hotkey-overlay {
@@ -159,8 +180,8 @@
         }
 
         layout {
-          gaps 10
-          // center-focused-column "always"
+          gaps 13
+          center-focused-column "always"
           background-color "#${base00}"
           always-center-single-column
           default-column-display "normal"
@@ -168,6 +189,7 @@
             proportion 0.33333
             proportion 0.5
             proportion 0.66667
+            proportion 0.8
           }
 
           focus-ring { 
@@ -181,26 +203,73 @@
             draw-behind-window true
           }
 
-          default-column-width { proportion 0.33333; }
+          default-column-width { proportion 0.8; }
 
           border {
             width 1
-            active-color "#${base03}"
+            active-color "#${base02}"
             inactive-color "#${base07}"
             urgent-color "#${base08}"
           }
 
           struts {
-            bottom -3
+            bottom 1
             top 1
           }
         }
 
         switch-events {
-          lid-close { spawn "hyprlock"; }
+          lid-close { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
         }
 
-        animations { }
+        animations {
+          workspace-switch {
+            spring damping-ratio=1.3 stiffness=1000 epsilon=0.0001
+          }
+
+          window-open {
+            duration-ms 150
+            curve "ease-out-expo"
+          }
+
+          window-close {
+            duration-ms 150
+            curve "ease-out-quad"
+          }
+
+          horizontal-view-movement {
+            spring damping-ratio=1.3 stiffness=1000 epsilon=0.0001
+          }
+
+          window-movement {
+            spring damping-ratio=1.3 stiffness=800 epsilon=0.0001
+          }
+
+          window-resize {
+            spring damping-ratio=1.3 stiffness=800 epsilon=0.0001
+          }
+
+          config-notification-open-close {
+            spring damping-ratio=0.8 stiffness=1000 epsilon=0.001
+          }
+
+          exit-confirmation-open-close {
+            spring damping-ratio=0.8 stiffness=500 epsilon=0.01
+          }
+
+          screenshot-ui-open {
+            duration-ms 200
+            curve "ease-out-quad"
+          }
+
+          overview-open-close {
+            spring damping-ratio=1.3 stiffness=800 epsilon=0.0001
+          }
+
+          recent-windows-close {
+            spring damping-ratio=1.3 stiffness=800 epsilon=0.001
+          }
+        }
 
         workspace "1" {
           open-on-output "DP-2"
@@ -247,37 +316,51 @@
 
         window-rule {
           match app-id="mpv"
+          variable-refresh-rate true
           open-maximized true
         }
 
         window-rule { 
-          match app-id="kitty"
-          default-column-width { proportion 0.66667; }
+          match app-id="obsidian"
         }
 
         window-rule { 
           match app-id="firefox"
           open-on-workspace "2"
-          default-column-width { proportion 0.5; }
+          default-column-width { proportion 0.8; }
+          open-focused false
+        }
+
+        window-rule { 
+          match app-id="com.github.th_ch.youtube_music"
+          open-on-workspace "2"
+          default-column-width { proportion 0.33333; }
           open-focused false
         }
 
         window-rule {
           match app-id="firefox$" title="^Picture-in-Picture$"
-          open-maximized true
+          open-floating true
+          default-column-width { fixed 600; }
+          default-window-height { fixed 350; }
+          default-floating-position x=16 y=48 relative-to="bottom-left"
         }
 
         window-rule {
           match app-id="firefox$" title="^Save Image$"
-          open-maximized true
         }
 
         window-rule { 
           match app-id="com.ayugram.desktop"
-          match app-id="vesktop"
-          default-column-width { proportion 0.5; }
+          match app-id="equibop"
+          default-column-width { proportion 0.8; }
           open-focused false
           open-on-workspace "3"
+        }
+
+        window-rule {
+          match app-id="Waydroid" title="Waydroid"
+          default-column-width { fixed 630; }
         }
 
         window-rule {
@@ -290,29 +373,28 @@
           match app-id="org.prismlauncher.PrismLauncher"
           match app-id="libreoffice-writer"
           match app-id="net.lutris.Lutris"
-          match app-id="steam"
           open-focused false
-          default-column-width { proportion 0.5; }
+          default-column-width { proportion 0.8; }
+          open-on-workspace "5"
+        }
+
+        window-rule {
+          match app-id="steam"
+          default-column-width { proportion 0.8; }
           open-on-workspace "5"
         }
 
         window-rule { 
           match app-id="music"
           open-focused false
-          default-column-width { proportion 0.66667; }
-          open-on-workspace "7"
+          default-column-width { fixed 630; }
+          open-on-workspace "2"
         }
 
         window-rule { 
           match app-id="com.github.wwmm.easyeffects"
           match app-id="io.github.seadve.Mousai"
-          default-column-width { proportion 0.33333; }
-          open-on-workspace "7"
-        }
-
-        window-rule {
-          match app-id="com.github.wwmm.easyeffects"
-          open-focused false
+          default-column-width { proportion 0.8; }
         }
 
         window-rule {
@@ -324,25 +406,28 @@
           Mod+Shift+Slash { show-hotkey-overlay; }
           Mod+Space { toggle-overview; }
 
+          Mod+O { toggle-windowed-fullscreen; }
+
           Mod+Return { spawn "kitty" "-e" "tmux" "attach-session"; }
-          Mod+D { spawn "rofi" "-show" "drun"; }
+          Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+          Mod+Shift+D { spawn "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle"; }
 
-          F3 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
-          F2 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
-          Mod+F1 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
-          MOd+F2 allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
-          F1        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-          F4     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-          F7 { spawn "bluetoothctl" "connect" "CC:FF:90:42:64:45"; }
+          XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
+          Mod+XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
+          MOd+XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
+          XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+          XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+          XF86Display { spawn "bluetoothctl" "connect" "CC:FF:90:42:64:45"; }
 
-          F5 { spawn "sudo" "${pkgs.light}/bin/light" "-U" "10"; }
-          F6 { spawn "sudo" "${pkgs.light}/bin/light" "-A" "10"; }
+          XF86MonBrightnessDown { spawn "sudo" "${pkgs.light}/bin/light" "-U" "10"; }
+          XF86MonBrightnessUp { spawn "sudo" "${pkgs.light}/bin/light" "-A" "10"; }
 
           Mod+P { spawn "hyprpicker" "-a"; }
+          Mod+Shift+E { spawn "smile"; }
 
           Mod+W { close-window; }
           Mod+S { toggle-window-floating; }
-          Mod+Super+A { center-column; }
 
           Mod+Left  { focus-column-left; }
           Mod+Down  { focus-window-down; }
@@ -398,19 +483,17 @@
           Mod+R { switch-preset-column-width; }
           Mod+Shift+R { switch-preset-window-height; }
           Mod+Ctrl+R { reset-window-height; }
-          Mod+M { maximize-column; }
+          Mod+M { maximize-window-to-edges; }
           Mod+Ctrl+F { fullscreen-window; }
 
           Print { screenshot-screen; }
           Mod+Print { screenshot; }
           Ctrl+Print { screenshot-window; }
-          // Ctrl+Tab { screenshot-screen; }
 
-          Mod+Shift+E { quit; }
-
-          F12 { spawn "hyprlock"; }
-          Mod+Backspace { spawn "swaync-client" "-t" "-sw"; }
-          Mod+Shift+Backspace { spawn "swaync-client" "--toglle-dnd"; }
+          F12 { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+          Mod+F12 { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+          Mod+Backspace { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
+          Mod+Shift+Backspace { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleDND"; }
         }
       '';
   };

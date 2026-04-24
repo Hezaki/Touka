@@ -18,11 +18,21 @@
     ./flatpak
     ./kubernetes
     ./gpu-screen-recorder
-    # ./hamachi
     ./zapret
+    # ./zapret2
+    ./dns-crypt
+    ./throne
+    ./localsend
+    ./apparmor
+    # ./pam
+    ./firejail
+    # ./tg-ws-proxy
   ];
 
-  environment.systemPackages = with pkgs; [ nix-tree ];
+  environment.systemPackages = with pkgs; [
+    nix-tree
+    nix-output-monitor
+  ];
 
   documentation = {
     enable = true;
@@ -30,6 +40,8 @@
     doc.enable = false;
     dev.enable = false;
   };
+
+  programs.haguichi.enable = true;
 
   virtualisation = {
     oci-containers.backend = "podman";
@@ -43,11 +55,17 @@
     flatpak.enable = true;
     gvfs.enable = true;
     nfs.server.enable = true;
+    earlyoom = {
+      enable = true;
+      enableNotifications = true;
+    };
   };
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    xdgOpenUsePortal = true;
+    config.common.default = "*";
+    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
 
   programs = {
@@ -57,7 +75,7 @@
     light.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true;
-    amnezia-vpn.enable = true;
+    # amnezia-vpn.enable = true;
 
     appimage = {
       enable = true;

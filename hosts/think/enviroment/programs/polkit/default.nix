@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  security.polkit.enable = true;
+  security = {
+    polkit.enable = true;
+    soteria.enable = true;
+  };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

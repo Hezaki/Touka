@@ -19,9 +19,16 @@
   security.rtkit.enable = true;
 
   services = {
+    system76-scheduler = {
+      enable = true;
+      useStockConfig = true;
+    };
     udev = {
       enable = true;
-      packages = with pkgs; [ qmk-udev-rules ];
+      packages = with pkgs; [
+        via
+        qmk-udev-rules
+      ];
     };
     pulseaudio = {
       enable = false;
@@ -33,10 +40,19 @@
       enable = true;
       audio.enable = true;
       pulse.enable = true;
-      lowLatency = {
-        enable = true;
-        quantum = 64;
-        rate = 48000;
+      extraConfig.pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.allowed-rates" = [
+            44100
+            48000
+            96000
+            192000
+          ];
+          "default.clock.min-quantum" = 512;
+          "default.clock.quantum" = 2048;
+          "default.clock.max-quantum" = 8192;
+        };
       };
       wireplumber = {
         enable = true;

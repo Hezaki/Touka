@@ -78,6 +78,8 @@
       "mpv" = "mpv --loop";
       "fb" = "fastboot";
       "si" = "swayimg";
+      "cd 206b-0B1E" = "cd /run/media/hezaki/206B-0B1E";
+      "neofetch" = "fastfetch -c neofetch";
     };
 
     initContent = with config.lib.stylix.colors; ''
@@ -101,17 +103,16 @@
       bindkey '^[[1;5D' vi-backward-word
       bindkey '^f' beginning-of-line
 
-      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${base03}"
-
       export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
       export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
       export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-      export FZF_DEFAULT_OPTS="--height 50% --layout=default --border --color=fg+:#${base02}"
+      export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
       export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
-      export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | head -200'"
+      export FZF_ALT_C_OPTS="--preview 'ls | head -200'"
       export FZF_TMUX_OPTS=" -p90%,70% "  
 
       zstyle ":completion:*" menu no
+      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
       zstyle ":fzf-tab:*" fzf-flags \
         -e \
         -i \
@@ -156,7 +157,7 @@
       }
 
       tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
-      
+
       [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
     '';
 

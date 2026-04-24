@@ -7,7 +7,7 @@
         monitor = "";
         path = "screenshot";
         blur_passes = 3;
-        blur_size = 3;
+        blur_size = 5;
         noise = 0.0117;
         contrast = 0.8916;
         brightness = 0.8172;

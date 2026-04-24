@@ -32,28 +32,28 @@
           )
 
           (deflayermap (default)
+            caps (tap-hold $tt $ht caps lctl)
             (template-expand double-tap-layer-switch ralt transparent)
             lalt (tap-hold $tt $ht lalt (layer-while-held extended))
           )
 
           (deflayermap (transparent)
-            q (tap-hold-release $tt $ft q 1)
-            w (tap-hold-release $tt $ft w 2)
-            e (tap-hold-release $tt $ft e 3)
-            r (tap-hold-release $tt $ft r 4)
-            z (tap-hold-release $tt $ft z 5)
-            x (tap-hold-release $tt $ft x 6)
-            c (tap-hold-release $tt $ft c 7)
-            v (tap-hold-release $tt $ft v 8) 
-            f (tap-hold-release $tt $ft f 9)
-            g (tap-hold-release $tt $ft g 0) 
-
-            lalt (tap-hold $tt $ht lalt (layer-while-held extended))
+          ;;  q (tap-hold-release $tt $ft q 1)
+          ;;  w (tap-hold-release $tt $ft w 2)
+          ;;  e (tap-hold-release $tt $ft e 3)
+          ;;  r (tap-hold-release $tt $ft r 4)
+          ;;  z (tap-hold-release $tt $ft z 5)
+          ;;  x (tap-hold-release $tt $ft x 6)
+          ;;  c (tap-hold-release $tt $ft c 7)
+          ;;  v (tap-hold-release $tt $ft v 8) 
+          ;;  f (tap-hold-release $tt $ft f 9)
+          ;;  g (tap-hold-release $tt $ft g 0) 
+          ;;
+          ;;  lalt (tap-hold $tt $ht lalt (layer-while-held extended))
             (template-expand double-tap-layer-switch ralt default)
           )
 
           (deflayermap (extended)
-            caps (tap-hold-release $tt $ft caps lctl)
             h left
             j down
             k up
@@ -67,6 +67,9 @@
             y C-c
             p C-v 
             v C-a
+            / C-f
+
+            enter C-n
           )
         '';
       };
