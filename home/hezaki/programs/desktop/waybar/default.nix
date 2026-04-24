@@ -147,15 +147,15 @@
         }
 
         window#waybar > box {
-          margin: 5px 0px 0px 0px;
+          margin: 0px 0px 0px 0px;
           background-color: #${base00};
           border-top: 1px;
           border-radius: 0px;
           border-style: solid;
-          border-color: #${base03};
+          border-color: #${base02};
           padding-right: 8px;
           padding-left: 8px;
-          box-shadow: 1 1 3 1px #1C1D1D;
+          /* box-shadow: 1 1 3 1px #1C1D1D; */
         }
 
         #workspaces button {
@@ -180,7 +180,7 @@
         }
 
         #workspaces button.active {
-          background: radial-gradient(circle, #${base0B} 0%, #${base0C} 50%, #${base0D} 100%); 
+          background: radial-gradient(circle, #${base04} 0%, #${base0A} 50%, #${base07} 100%); 
           background-size: 400% 400%;
           animation: gradient 5s linear infinite;
           transition: all 0.3s ease-in-out;

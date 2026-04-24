@@ -15,6 +15,8 @@
     nodejs
     vscode-langservers-extracted
     gopls
+    luajitPackages.jsregexp
+    lua-language-server
 
     nixd
     nixfmt-rfc-style

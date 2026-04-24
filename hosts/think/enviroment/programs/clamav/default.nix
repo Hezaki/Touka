@@ -1,7 +1,7 @@
 {
   services.clamav = {
-    daemon.enable = true;
-    scanner.enable = true;
+    daemon.enable = false;
+    scanner.enable = false;
     updater = {
       enable = true;
       interval = "daily";

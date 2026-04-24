@@ -19,15 +19,20 @@
       with pkgs;
       with inputs;
       [
-        # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
-        # mcpelauncher-client
-        # delta-shell.packages.${system}.default
+        pywalfox-native
+        tuba
+        tg-ws-proxy.packages.${stdenv.hostPlatform.system}.default
+        evtest
+        authenticator
+        microfetch
+        kdePackages.kdenlive
+        cpu-x
+        smile
         krita
-        # yandex-browser.packages.x86_64-linux.yandex-browser-stable
-        # teamspeak3
+        # (pkgs.callPackage ./programs/terminal/anicliru/anicli-ru.nix { })
         ppsspp-sdl-wayland
         obsidian
-        lunar-client
+        lunar-client.packages.${stdenv.hostPlatform.system}.default
         dua
         duf
         easyeffects
@@ -57,7 +62,7 @@
         element-desktop
         gradia
         mousai
-        czkawka
+        bleachbit
         xwayland-satellite
         batsignal
         powermode-indicator
@@ -65,7 +70,6 @@
         youtube-music
         nautilus
         via
-        gparted
         aider-chat
         piper
       ];
@@ -81,9 +85,7 @@
       "jitsi-meet-1.0.8043"
       "mbedtls-2.28.10"
     ];
-    overlays = with inputs; [
-      nur.overlay
-    ];
+    overlays = with inputs; [ nur.overlay ];
   };
 
   nix = {
@@ -93,14 +95,6 @@
     settings = {
       builders-use-substitutes = true;
       auto-optimise-store = true;
-
-      extra-substituters = [
-        "https://anyrun.cachix.org"
-      ];
-
-      extra-trusted-public-keys = [
-        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-      ];
 
       experimental-features = [
         "nix-command"

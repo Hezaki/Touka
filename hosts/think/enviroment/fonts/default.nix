@@ -3,8 +3,8 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     ipafont
-    lato
     inter
+    google-fonts
   ];
 
   console = {

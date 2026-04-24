@@ -319,30 +319,39 @@
               'nvim-treesitter/nvim-treesitter',
               event = "VeryLazy",
               build = ":TSUpdate",
-              config = function()
-                require'nvim-treesitter.configs'.setup {
-                  ensure_installed = { "lua", "nix", "css", "json", "html" },
-                  sync_install = true,
-                  auto_install = true,
-                  highlight = {
-                    enable = true,
-                    disable = function(lang, buf)
-                        local max_filesize = 100 * 1024 -- 100 KB
-                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                        if ok and stats and stats.size > max_filesize then
-                            return true
-                        end
-                    end,
-                    additional_vim_regex_highlighting = true,
-                  },
-                  indent = {
-                    enable = true,
-                  },
-                  incremental_selection = {
-                    enable = true,
-                  },
-                }
-              end
+              main = "nvim-treesitter.config",
+              opts = {
+                indent = { enable = true },
+                highlight = { enable = true },
+                folds = { enable = true },
+                auto_install = true,
+                ensure_installed = {
+                  "bash",
+                  "c",
+                  "diff",
+                  "html",
+                  "javascript",
+                  "jsdoc",
+                  "json",
+                  "lua",
+                  "luadoc",
+                  "luap",
+                  "markdown",
+                  "markdown_inline",
+                  "printf",
+                  "python",
+                  "query",
+                  "regex",
+                  "toml",
+                  "tsx",
+                  "typescript",
+                  "vim",
+                  "vimdoc",
+                  "xml",
+                  "yaml",
+                  "nix",
+                },
+              },
             },
             {
               'm-demare/hlargs.nvim',
@@ -696,23 +705,9 @@
             },
             {
               'neovim/nvim-lspconfig',
-              event = 'VeryLazy',
+              event = { "BufReadPre", "BufNewFile" },
               config = function()
-                require'lspconfig'.gopls.setup{
-                  cmd = { "gopls" },
-                  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                  settings = {
-                    gopls = {
-                      analyses = {
-                        unusedparams = true,
-                        shadow = true,
-                      },
-                      staticcheck = true,
-                    },
-                  },
-                }
-
-                require'lspconfig'.emmet_language_server.setup {
+                vim.lsp.enable('emmet_language_server', {
                   cmd = { "vscode-css-language-server", "--stdio" },
                   filetypes = { "html", "css", "scss", "less" },
                   init_options = {
@@ -730,24 +725,9 @@
                       validate = true
                     }
                   },
-                }
+                })
 
-                require'lspconfig'.emmet_language_server.setup {
-                  filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
-                  init_options = {
-                    includeLanguages = {},
-                    excludeLanguages = {},
-                    extensionsPath = {},
-                    preferences = {},
-                    showAbbreviationSuggestions = true,
-                    showExpandedAbbreviation = "always",
-                    showSuggestionsAsSnippets = false,
-                    syntaxProfiles = {},
-                    variables = {},
-                  },
-                }
-
-                require'lspconfig'.nixd.setup {
+                vim.lsp.enable('nixd', {
                   cmd = { "nixd" },
                   filetypes = { "nix" },
                   single_file_support = true,
@@ -769,9 +749,9 @@
                       },
                     },
                   },
-                }
+                })
 
-                require'lspconfig'.lua_ls.setup {
+                vim.lsp.enable('lua_ls', {
                   on_init = function(client)
                     if client.workspace_folders then
                       local path = client.workspace_folders[1].name
@@ -795,7 +775,7 @@
                   settings = {
                     Lua = {}
                   }
-                }
+                })
               end
             },
             {

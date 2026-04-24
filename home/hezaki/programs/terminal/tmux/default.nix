@@ -4,17 +4,30 @@
   pkgs,
   ...
 }:
+with pkgs;
 let
-  tilish = pkgs.tmuxPlugins.mkTmuxPlugin {
+  tilish = tmuxPlugins.mkTmuxPlugin {
     pluginName = "tilish";
     version = "fake";
     src = inputs.tmux-tilish;
   };
 
-  sessionx = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "tmux-sessionx";
+  resurrect = tmuxPlugins.mkTmuxPlugin {
+    pluginName = "resurrect";
     version = "fake";
-    src = inputs.tmux-sessionx;
+    src = fetchFromGitHub {
+      owner = "tmux-plugins";
+      repo = "tmux-resurrect";
+      rev = "ca6468e2deef11efadfe3a62832ae67742505432";
+      hash = "sha256-wl9/5XvFq+AjV8CwYgIZjPOE0/kIuEYBNQqNDidjNFo=";
+      fetchSubmodules = true;
+    };
+  };
+
+  continuum = tmuxPlugins.mkTmuxPlugin {
+    pluginName = "continuum";
+    version = "fake";
+    src = inputs.tmux-continuum;
   };
 in
 {
@@ -26,11 +39,16 @@ in
         plugin = tilish;
         extraConfig = "set -g @tilish-default 'main-vertical'";
       }
-      
+
       {
-        plugin = sessionx;
+        plugin = resurrect;
+      }
+
+      {
+        plugin = continuum;
         extraConfig = ''
-          set -g @sessionx-bind 'o'
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '15'
         '';
       }
     ];
@@ -72,8 +90,16 @@ in
       set -g @mode_indicator_sync_prompt " SYNC "
       set -g @mode_indicator_empty_prompt " TMUX "
 
+      set -g default-terminal "tmux-256color"
+      set-option -sa terminal-features ',xterm-kitty:RGB'
+      set-option -ga terminal-features ",xterm-kitty:usstyle"
+
+      set -g popup-border-lines "rounded"
+
+      set -g popup-style "fg=#${config.lib.stylix.colors.base0B}"
+      set -g popup-border-style "fg=#${config.lib.stylix.colors.base02}"
       set -g pane-border-style "fg=#${config.lib.stylix.colors.base02}"
-      set -g pane-active-border-style "fg=#${config.lib.stylix.colors.base02}"
+      set -g pane-active-border-style "fg=#${config.lib.stylix.colors.base03}"
       set -g mode-style "bg=#${config.lib.stylix.colors.base00} fg=yellow" 
       set -g status-style bg=#${config.lib.stylix.colors.base00}
 

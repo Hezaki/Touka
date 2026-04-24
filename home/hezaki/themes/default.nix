@@ -11,16 +11,17 @@
     enable = true;
     image = ./images/wp.png;
     polarity = "dark";
+    enableReleaseChecks = false;
 
     base16Scheme = {
-      base00 = "#222226";
-      base01 = "#28282C";
-      base02 = "#2E2E32";
-      base03 = "#36363a";
-      base04 = "#a6a6a6";
-      base05 = "#ffffff";
-      base06 = "#e6e6e6";
-      base07 = "#6f8396";
+      base00 = "#121316";
+      base01 = "#1e2022";
+      base02 = "#272A2F";
+      base03 = "#323539";
+      base04 = "#E0E2E8";
+      base05 = "#e9e1d9";
+      base06 = "#F2F3F9";
+      base07 = "#50462a";
       base08 = "#e62d42";
       base09 = "#ed5b00";
       base0A = "#c88800";
@@ -32,11 +33,11 @@
     };
 
     cursor = {
-      name = "Bibata-Original-Custom";
-      package = inputs.nix-cursors.packages.${pkgs.system}.bibata-original-cursor.override {
-        background_color = "#${config.lib.stylix.colors.base03}";
+      name = "Bibata-Modern-Custom";
+      package = inputs.nix-cursors.packages.${pkgs.system}.bibata-modern-cursor.override {
+        background_color = "#${config.lib.stylix.colors.base00}";
         outline_color = "#${config.lib.stylix.colors.base06}";
-        accent_color = "#${config.lib.stylix.colors.base03}";
+        accent_color = "#${config.lib.stylix.colors.base00}";
       };
       size = 20;
     };
@@ -58,6 +59,8 @@
       neovim.enable = false;
       qt.enable = true;
       mpv.enable = true;
+      noctalia-shell.enable = false;
+      firefox.profileNames = [ "hqzk" ];
 
       gtk.extraCss =
         with config.lib.stylix.colors; # css
@@ -74,6 +77,7 @@
 
   gtk = {
     enable = true;
+    gtk4.enable = true;
 
     gtk3.extraConfig = {
       gtk-xft-antialias = 1;
