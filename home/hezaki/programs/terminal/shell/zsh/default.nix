@@ -4,31 +4,24 @@
   config,
   ...
 }:
+
 {
   programs.zsh = {
     enable = true;
+    autocd = true;
+    syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;
+    enableCompletion = true;
 
-    profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && exec niri-session -l
-    '';
+    # profileExtra = ''
+    #   [ "$(tty)" = "/dev/tty1" ] && exec niri-session -l
+    # '';
 
     plugins = with inputs; [
       {
-        name = "powerlevel10k";
-        file = "powerlevel9k.zsh-theme";
-        src = powerlevel10k;
-      }
-
-      {
-        name = "zsh-autosuggestions";
-        file = "zsh-autosuggestions.plugin.zsh";
-        src = zsh-autosuggestions;
-      }
-
-      {
-        name = "zsh-syntax-highlighting";
-        file = "zsh-syntax-highlighting.plugin.zsh";
-        src = zsh-syntax-highlighting;
+        name = "zsh-vi-mode";
+        file = "zsh-vi-mode.plugins.zsh";
+        src = zsh-vi-mode;
       }
 
       {
@@ -80,9 +73,10 @@
       "si" = "swayimg";
       "cd 206b-0B1E" = "cd /run/media/hezaki/206B-0B1E";
       "neofetch" = "fastfetch -c neofetch";
+      "rm" = "gomi ";
     };
 
-    initContent = with config.lib.stylix.colors; ''
+    initContent = ''
       setopt automenu
       setopt nobeep
 
@@ -91,12 +85,15 @@
       export AUTO_NOTIFY_TITLE="Hey! "%command" has just finished"
       export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
       export ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline 
-      export GEMINI_API_KEY="AIzaSyDfTko2FQVo-5KMN4yfH7bBU51h8fMm1DU"
+
+      export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+      export ZVM_CLIPBOARD_COPY_CMD='wl-copy'
+      export ZVM_CLIPBOARD_PASTE_CMD='wl-paste'
+      export ZVM_VI_EDITOR=nvim
 
       typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
       typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 
-      bindkey -v
       bindkey '^H' vi-backward-kill-word
       bindkey '^w' vi-backward-kill-word
       bindkey '^[[1;5C' vi-forward-word
@@ -131,34 +128,8 @@
       }
       precmd_functions+=(_fix_cursor)
 
-      xf ()
-      {
-        if [ -f $1 ] ; then
-          case $1 in
-            *.tar.bz2)   tar xjf $1   ;;
-            *.tar.gz)    tar xzf $1   ;;
-            *.bz2)       bunzip2 $1   ;;
-            *.rar)       unrar x $1   ;;
-            *.gz)        gunzip $1    ;;
-            *.tar)       tar xf $1    ;;
-            *.tbz2)      tar xjf $1   ;;
-            *.tgz)       tar xzf $1   ;;
-            *.zip)       unzip $1     ;;
-            *.Z)         uncompress $1;;
-            *.7z)        7z x $1      ;;
-            *.deb)       ar x $1      ;;
-            *.tar.xz)    tar xf $1    ;;
-            *.tar.zst)   tar xf $1    ;;
-            *)           echo "'$1' cannot be extracted via ex()" ;;
-          esac
-        else
-          echo "'$1' is not a valid file"
-        fi
-      }
-
       tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
-
-      [[ ! -f /home/hezaki/.p10k.zsh ]] || source /home/hezaki/.p10k.zsh
+      tmux run-shell ${inputs.tmux-smooth-scroll}/share/tmux-plugins/smooth-scroll/smooth-scroll.tmux
     '';
 
     history.size = 10000;

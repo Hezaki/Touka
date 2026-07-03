@@ -11,9 +11,9 @@
     };
   };
 
-  # zramSwap = {
-  #   enable = true;
-  #   memoryPercent = 50;
-  #   algorithm = "lz4";
-  # };
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+    algorithm = "lz4";
+  };
 }

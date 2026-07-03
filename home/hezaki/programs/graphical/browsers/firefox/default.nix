@@ -13,29 +13,24 @@ with config.lib.stylix.colors;
     enable = true;
 
     profiles = {
-      hezaki = {
-        id = 0;
-        isDefault = false;
-        extensions.force = true;
-      };
-
       hqzk = {
-        id = 1;
+        id = 0;
         isDefault = true;
         extensions = {
           force = true;
+
           packages = with pkgs.firefox-addons; [
             ublock-origin
             sponsorblock
             vimium-ff
             vimium-new-tab-page
             clearurls
-            youtube-addon
-            violentmonkey
-            traduzir-paginas-web
             privacy-badger17
             ultrawideo
             pywalfox
+            w2g
+            firenvim
+            return-youtube-dislikes
           ];
 
           settings = {
@@ -44,7 +39,7 @@ with config.lib.stylix.colors;
                 uiTheme = "dark";
                 uiAccentCustom = true;
                 uiAccentCustom0 = "#${base00}";
-                cloudStorageEnabled = false;
+                cloudStorageEnabled = lib.mkForce false;
               };
 
               selectedFilterLists = [
@@ -75,25 +70,20 @@ with config.lib.stylix.colors;
             "{2339288d-f701-45d0-a57f-a847e9adc6cc}".settings = {
               mode = "normal";
             };
-
-            "{036a55b4-5e72-4d05-a06c-cba2dfcc134a}".settings = {
-              hotkey-toggle-translation = "Ctrl+Alt+X";
-              hotkey-translate-selected-text = "Ctrl+Alt+S";
-              hotkey-swap-page-translation-service = "Ctrl+Alt+Q";
-              hotkey-show-original = "Shift+Alt+0";
-              hotkey-translate-page-1 = "Shift+Alt+1";
-              hotkey-translate-page-2 = "Shift+Alt+2";
-              hotkey-translate-page-3 = "Shift+Alt+3";
-              hotkey-hot-translate-selected-text = "";
-              targetLanguage = "ru";
-            };
           };
         };
 
         settings = {
+          "browser.startup.homepage" = "https://vimium.github.io/new-tab/";
           "browser.ctrlTab.sortByRecentlyUsed" = true;
           "browser.uidensity" = 1;
           "browser.display.use_system_colors" = true;
+          "browser.nova.enabled" = false;
+
+          # Parfait theme
+          "parfait.window.borderless" = false;
+          "parfait.blur.enabled" = false;
+          "parfait.traffic-lights.enabled" = false;
 
           # disable geo & notify
           "permissions.default.geo" = 0;
@@ -109,21 +99,20 @@ with config.lib.stylix.colors;
           "extensions.formautofill.addresses.enabled" = false;
           "extensions.formautofill.creditCards.enabled" = false;
 
-          # Secure DNS
-          # "network.trr.uri" = "";
-          "network.trr.mode" = 3;
-          "network.trr.max-fails" = 5;
+          # DNS
+          "network.trr.mode" = 5;
         };
 
         search = {
           force = true;
+          default = "Brave";
 
-          default = "SearXNG";
           engines = {
-            "SearXNG" = {
+            "Brave" = {
               urls = [
                 {
-                  template = "https://priv.au/search";
+                  template = "https://search.brave.com/search";
+
                   params = [
                     {
                       name = "q";
@@ -135,102 +124,6 @@ with config.lib.stylix.colors;
             };
           };
         };
-
-        userChrome = ''
-          * {
-            font-family: Inter !important;
-            font-size: 15px;
-            /* border-radius: 18px !important; */
-          }
-
-          .tab-background {
-            border-radius: 18px !important;
-            max-height: 24px !important;
-            min-height: 24px !important;
-          }
-
-          #tabbrowser-tabs {
-            border-radius: 0px !important;
-            border-inline-start: none !important;
-            max-height: 32px !important;
-            min-height: 32px !important;
-
-          }
-
-          #firefox-view-button,
-          #alltabs-button,
-          #tabs-newtab-button,
-          .titlebar-close,
-          .tab-close-button,
-          .titlebar-spacer,
-          .titlebar-button,
-          .titlebar-min {
-            display: none !important;
-          }
-
-          #urlbar-background {
-            border-radius: 18px !important;
-          }
-
-          :root:not([customizing]):has(#tabbrowser-tabs[orient="horizontal"]) {
-            #TabsToolbar {
-              z-index: 9999 !important;
-              background-color: inherit !important;
-            }
-
-            #TabsToolbar:not(:focus) {
-              opacity: 1 !important;
-            }
-
-            #nav-bar {
-              transition: margin-top 0.3s ease !important;
-              margin-top: -30px !important;
-              & #urlbar {
-                visibility: collapse !important; /* hidden with the nav bar */
-              }
-            }
-
-            #TabsToolbar:hover ~ #nav-bar,
-            #nav-bar:hover,
-            #nav-bar:focus-within {
-              margin-top: 0px !important;
-              & #urlbar {
-                visibility: visible !important; /* visible with the nav bar */
-              }
-            }
-          }
-        '';
-
-        userContent =
-          with config.lib.stylix.colors.withHashtag;
-          # css
-          ''
-            /* background setting */
-            @-moz-document ${
-              lib.concatStringsSep ", " [
-                ''url("about:home")''
-                ''url("about:newtab")''
-              ]
-            } {
-              body {
-                background-image: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0)),
-                background-position: center !important;
-                background-repeat: no-repeat !important;
-                background-attachment: fixed !important;
-                backdrop-filter: blur(4px) saturate(180%) brightness(0.7) !important;
-              }
-            }
-
-            /* searchbar colorize */
-            .search-wrapper .search-handoff-button, .search-wrapper input {
-            	background: ${base01} !important;
-            	border-radius: 96px !important;
-            	color: ${base05} !important;
-            }
-
-            /* hide right-bottom button */
-            .personalizeButtonWrapper { display: none !important; }
-          '';
 
         extraConfig =
           with inputs;
@@ -246,7 +139,7 @@ with config.lib.stylix.colors;
       };
     };
     policies = {
-      Homepage.Startpage = "previous-session";
+      Homepage.Startpage = "https://vimium.github.io/new-tab/";
 
       AppAutoUpdate = false;
 
@@ -354,7 +247,6 @@ with config.lib.stylix.colors;
           "MetaGer"
           "Mojeek"
           "Perplexity"
-          "SearXNG - searx.be"
           "StartPage"
           "Twitter"
           "Wikipedia"
@@ -364,5 +256,11 @@ with config.lib.stylix.colors;
 
       ShowHomeButton = false;
     };
+  };
+
+  xdg.configFile = with inputs; {
+    "mozilla/firefox/hqzk/chrome/userChrome.css".source = "${parfait}/userChrome.css";
+    "mozilla/firefox/hqzk/chrome/userContent.css".source = "${parfait}/userContent.css";
+    "mozilla/firefox/hqzk/chrome/parfait".source = "${parfait}/parfait";
   };
 }

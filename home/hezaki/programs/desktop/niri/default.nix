@@ -8,48 +8,49 @@
   imports = with inputs; [
     niri.homeModules.niri
     niri.homeModules.stylix
-    noctalia.homeModules.default
-    system76-scheduler-niri.homeModules.default
   ];
 
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-
-  home.packages = with pkgs; with inputs; [
-    wl-clipboard
-    # wl-freeze
-    hyprpicker
-    gpu-screen-recorder
-    gpu-screen-recorder-gtk
-    niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
-  ];
-
-  services = {
-    system76-scheduler-niri.enable = true;
-    swayidle.enable = true;
-    playerctld.enable = true;
-  };
+  home.packages =
+    with pkgs;
+    with inputs;
+    [
+      wl-clipboard
+      wl-freeze
+      hyprpicker
+      gpu-screen-recorder
+      gpu-screen-recorder-gtk
+      niri-float-sticky.packages.${stdenv.hostPlatform.system}.default
+    ];
 
   programs.niri = {
     enable = true;
     package = pkgs.niri;
+
     config =
       with config.lib.stylix.colors; # kdl
       ''
-        spawn-at-startup "noctalia-shell" "--no-duplicate"
         spawn-at-startup "xwayland-satellite"
         spawn-at-startup "batsignal"
         spawn-at-startup "steam"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store";
         spawn-at-startup "udiskie"
-        spawn-at-startup "tmux" "new-session" "-d"
         spawn-at-startup "firefox"
         spawn-at-startup "AyuGram"
-        spawn-at-startup "tg-ws-proxy" "--port" "1917"
+        spawn-at-startup "tg-ws-proxy" "--port" "1917" "--secret" "3075abe65830f0325116bb0416cadf9f"
         spawn-at-startup "niri-float-sticky" "-app-id" "firefox" "-title" "Picture-in-Picture"
+        spawn-sh-at-startup r#"
+            tmux new-session -d -s main $SHELL
+            tmux new-window nvim
+            tmux new-window btop
+            tmux new-window opencode
+            tmux new-window wiremix
+            tmux select-window -t 1
+        "#
 
         environment {
           DISPLAY ":0"
-          QT_QPA_PLATFORMTHEME "gtk3"
+          QT_QPA_PLATFORMTHEME_QT6 "termfilechooser"
+          QT_QPA_PLATFORMTHEME "termfilechooser"
         }
 
         input {
@@ -97,46 +98,57 @@
           }
         }
 
-        screenshot-path "~/Media/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png"
+        screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
         prefer-no-csd
 
         layer-rule {
           match at-startup=true
-          match namespace="waybar"
-          match namespace="^swww-daemonoverview$"
-          match namespace="^noctalia-overview*"
-          // match namespace="^wallpaper$"
+          match namespace="dms:blurwallpaper"
 
           place-within-backdrop true
         }
 
         layer-rule {
-          match namespace="rofi"
-          match namespace="waybar"
-          match namespace="noctalia-shell"
+          match namespace="^dms:bar*"
 
           shadow {
             on
-            softness 30
-            spread 4
+            softness 40
+            spread 5
+            offset x=0 y=5
             draw-behind-window true
+            color "#00000064"
           }
-
-          place-within-backdrop true
         }
 
         output "DP-2" {
           mode "3440x1440@120"
           scale 1.0
-          focus-at-startup
-          variable-refresh-rate on-demand=true
-          // position x=6045 y=2205
+
+          layout { 
+            background-color "transparent"
+            center-focused-column "never"
+            always-center-single-column true
+            default-column-width { proportion 0.66667; }
+
+            preset-column-widths {
+              proportion 0.33333
+              proportion 0.5
+              proportion 0.66667
+              proportion 0.8
+            }
+          }
         }
 
         output "eDP-1" {
           mode "1920x1080@60"
           scale 1.0
-          // position x=6796 y=3645
+
+          layout {
+            default-column-width { proportion 0.8; }
+            center-focused-column "never"
+            always-center-single-column true
+          }
         }
 
         cursor {
@@ -146,9 +158,9 @@
         overview {
           zoom 0.7
           backdrop-color "#${base00}"
-          // workspace-shadow {
-          //   off
-          // }
+          workspace-shadow {
+            on
+          }
         }
 
         recent-windows {
@@ -180,16 +192,24 @@
         }
 
         layout {
-          gaps 13
+          gaps 10
           center-focused-column "always"
           background-color "#${base00}"
-          always-center-single-column
           default-column-display "normal"
+          default-column-width { proportion 0.8; }
+
           preset-column-widths {
             proportion 0.33333
             proportion 0.5
             proportion 0.66667
             proportion 0.8
+          }
+
+          preset-window-heights {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+            fixed 720
           }
 
           focus-ring { 
@@ -198,17 +218,17 @@
 
           shadow {
             on
-            softness 30
-            spread 4
+            softness 40
+            spread 5
+            offset x=0 y=5
             draw-behind-window true
+            color "#00000064"
           }
-
-          default-column-width { proportion 0.8; }
 
           border {
             width 1
             active-color "#${base02}"
-            inactive-color "#${base07}"
+            inactive-color "#${base03}"
             urgent-color "#${base08}"
           }
 
@@ -218,56 +238,76 @@
           }
         }
 
-        switch-events {
-          lid-close { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+        blur {
+          on
+          offset 12
+          noise 0.02
+          saturation 1.5
         }
 
         animations {
-          workspace-switch {
-            spring damping-ratio=1.3 stiffness=1000 epsilon=0.0001
-          }
+          slowdown 1.0
 
           window-open {
-            duration-ms 150
-            curve "ease-out-expo"
+            duration-ms 180
+            curve "cubic-bezier" 0.0 0.0 0.2 1.0
+            custom-shader r"
+              vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                float progress = niri_clamped_progress;
+                progress = pow(progress, 0.85);
+                float scale = 0.96 + progress * 0.04;
+                float alpha = progress;
+                vec2 uv = (coords_geo.xy - 0.5) * scale + 0.5;
+                if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) {
+                  return vec4(0.0);
+                }
+                vec4 color = texture(niri_tex, (niri_geo_to_tex * vec4(uv, coords_geo.z, 1.0)).xy);
+                return vec4(color.rgb, color.a * alpha);
+              }
+            "
           }
 
           window-close {
-            duration-ms 150
-            curve "ease-out-quad"
+            duration-ms 100
+            curve "cubic-bezier" 0.4 0.0 1.0 1.0
+            custom-shader r"
+              vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                float progress = niri_clamped_progress;
+                float scale = 1.0 - progress * 0.06;
+                float alpha = 1.0 - progress * 0.85;
+                vec2 uv = (coords_geo.xy - 0.5) * scale + 0.5;
+                if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) {
+                  return vec4(0.0);
+                }
+                vec4 color = texture(niri_tex, (niri_geo_to_tex * vec4(uv, coords_geo.z, 1.0)).xy);
+                return vec4(color.rgb, color.a * alpha);
+              }
+            "
+          }
+
+          workspace-switch {
+            spring damping-ratio=0.85 stiffness=400 epsilon=0.0001
           }
 
           horizontal-view-movement {
-            spring damping-ratio=1.3 stiffness=1000 epsilon=0.0001
+            spring damping-ratio=0.75 stiffness=380 epsilon=0.0001
           }
 
           window-movement {
-            spring damping-ratio=1.3 stiffness=800 epsilon=0.0001
+            spring damping-ratio=0.85 stiffness=450 epsilon=0.0001
           }
 
           window-resize {
-            spring damping-ratio=1.3 stiffness=800 epsilon=0.0001
-          }
-
-          config-notification-open-close {
-            spring damping-ratio=0.8 stiffness=1000 epsilon=0.001
-          }
-
-          exit-confirmation-open-close {
-            spring damping-ratio=0.8 stiffness=500 epsilon=0.01
-          }
-
-          screenshot-ui-open {
-            duration-ms 200
-            curve "ease-out-quad"
+            spring damping-ratio=0.9 stiffness=480 epsilon=0.0001
           }
 
           overview-open-close {
-            spring damping-ratio=1.3 stiffness=800 epsilon=0.0001
+            spring damping-ratio=0.85 stiffness=420 epsilon=0.0001
           }
 
-          recent-windows-close {
-            spring damping-ratio=1.3 stiffness=800 epsilon=0.001
+          screenshot-ui-open {
+            duration-ms 220
+            curve "cubic-bezier" 0.0 0.0 0.2 1.0
           }
         }
 
@@ -290,28 +330,19 @@
           open-on-output "DP-2"
         }
 
-        workspace "6" {
-          open-on-output "DP-2"
-        }
-
-        workspace "7" {
-          open-on-output "DP-2"
-        }
-
-        workspace "8" {
-          open-on-output "DP-2"
-        }
-
-        workspace "9" {
-          open-on-output "DP-2"
-        }
-
         window-rule {
           open-focused true
-          geometry-corner-radius 6
+          geometry-corner-radius 16
           clip-to-geometry true
           draw-border-with-background true
           tiled-state true
+        }
+
+        window-rule {
+          match title="Counter-Strike 2"
+          open-fullscreen true
+          min-width 1720
+          min-height 720
         }
 
         window-rule {
@@ -327,23 +358,26 @@
         window-rule { 
           match app-id="firefox"
           open-on-workspace "2"
-          default-column-width { proportion 0.8; }
           open-focused false
         }
 
         window-rule { 
           match app-id="com.github.th_ch.youtube_music"
           open-on-workspace "2"
-          default-column-width { proportion 0.33333; }
-          open-focused false
         }
 
         window-rule {
           match app-id="firefox$" title="^Picture-in-Picture$"
           open-floating true
           default-column-width { fixed 600; }
-          default-window-height { fixed 350; }
-          default-floating-position x=16 y=48 relative-to="bottom-left"
+          default-window-height { fixed 338; }
+          default-floating-position x=16 y=50 relative-to="bottom-left"
+        }
+
+        window-rule {
+          match app-id=".scrcpy-wrapped" title="^LE2100$"
+          default-column-width { fixed 637; }
+          default-window-height { fixed 1414; }
         }
 
         window-rule {
@@ -353,14 +387,12 @@
         window-rule { 
           match app-id="com.ayugram.desktop"
           match app-id="equibop"
-          default-column-width { proportion 0.8; }
           open-focused false
           open-on-workspace "3"
         }
 
         window-rule {
           match app-id="Waydroid" title="Waydroid"
-          default-column-width { fixed 630; }
         }
 
         window-rule {
@@ -373,33 +405,30 @@
           match app-id="org.prismlauncher.PrismLauncher"
           match app-id="libreoffice-writer"
           match app-id="net.lutris.Lutris"
-          open-focused false
-          default-column-width { proportion 0.8; }
           open-on-workspace "5"
         }
 
         window-rule {
           match app-id="steam"
-          default-column-width { proportion 0.8; }
+          open-focused false
           open-on-workspace "5"
         }
 
         window-rule { 
           match app-id="music"
           open-focused false
-          default-column-width { fixed 630; }
           open-on-workspace "2"
         }
 
         window-rule { 
           match app-id="com.github.wwmm.easyeffects"
           match app-id="io.github.seadve.Mousai"
-          default-column-width { proportion 0.8; }
         }
 
         window-rule {
           match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
           default-floating-position x=10 y=10 relative-to="bottom-right"
+          open-focused false
         }
 
         binds {
@@ -408,9 +437,7 @@
 
           Mod+O { toggle-windowed-fullscreen; }
 
-          Mod+Return { spawn "kitty" "-e" "tmux" "attach-session"; }
-          Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-          Mod+Shift+D { spawn "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle"; }
+          Mod+Return { spawn-sh "ghostty -e tmux attach -t main"; }
 
           XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
@@ -420,11 +447,10 @@
           XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
           XF86Display { spawn "bluetoothctl" "connect" "CC:FF:90:42:64:45"; }
 
-          XF86MonBrightnessDown { spawn "sudo" "${pkgs.light}/bin/light" "-U" "10"; }
-          XF86MonBrightnessUp { spawn "sudo" "${pkgs.light}/bin/light" "-A" "10"; }
+          Mod+Minus { spawn "dms" "ipc" "call" "brightness" "decrement" "10" ""; }
+          Mod+Equal { spawn "dms" "ipc" "call" "brightness" "increment" "10" ""; }
 
-          Mod+P { spawn "hyprpicker" "-a"; }
-          Mod+Shift+E { spawn "smile"; }
+          Mod+P { spawn-sh "dms ipc call color-picker toggle"; }
 
           Mod+W { close-window; }
           Mod+S { toggle-window-floating; }
@@ -490,10 +516,18 @@
           Mod+Print { screenshot; }
           Ctrl+Print { screenshot-window; }
 
-          F12 { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
-          Mod+F12 { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
-          Mod+Backspace { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
-          Mod+Shift+Backspace { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleDND"; }
+          Mod+Shift+S { spawn-sh "scrcpy --max-fps=120 --print-fps -KM"; }
+
+          Mod+Ctrl+P {
+            spawn-sh "wl-freeze -c 'niri msg --json focused-window | jq \".pid\"'"
+          }
+
+          F12 { spawn "dms" "ipc" "call" "lock" "lock"; }
+          Mod+Shift+Backslash { spawn-sh "dms ipc call powermenu toggle"; }
+          Mod+Shift+Backspace { spawn-sh "dms ipc call notifications toggleDoNotDisturb"; }
+          Mod+Backspace { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+          Mod+D { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+          Mod+Shift+D { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
         }
       '';
   };

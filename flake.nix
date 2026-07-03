@@ -3,90 +3,78 @@
     {
       home-manager,
       nixpkgs,
-      nixpkgs-unstable,
       firefox-addons,
+      ts3,
       ...
     }@inputs:
-    let
-      agrs = {
-        pkgsUnstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
-        inherit inputs;
-      };
-    in
-    {
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
 
+    {
       nixosConfigurations = {
         think = nixpkgs.lib.nixosSystem {
-          specialArgs = agrs;
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/think ];
         };
       };
 
       homeConfigurations = {
         hezaki = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
           pkgs = import nixpkgs {
             system = "x86_64-linux";
-            overlays = [ firefox-addons.overlays.default ];
+            overlays = [
+              firefox-addons.overlays.default
+              ts3.overlays.default
+            ];
           };
-          extraSpecialArgs = agrs;
           modules = [ ./home/hezaki ];
         };
       };
+
+      systems = [ "x86_64-linux" ];
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nur.url = "github:nix-community/NUR";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+    glide-browser.url = "github:glide-browser/glide.nix";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    ayugram-desktop.url = "github:ndfined-crp/ayugram-desktop/";
+    dms-calendar.url = "github:AvengeMedia/dankcalendar";
+    ts3.url = "github:Jokler/ts3client-noweb-nix";
+    nixcord.url = "github:FlameFlag/nixcord";
+    vimium-options.url = "github:uimataso/vimium-nixos";
+    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
+    tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
+    niri.url = "github:sodiboo/niri-flake";
+    niri-float-sticky.url = "github:probeldev/niri-float-sticky";
+    stylix.url = "github:nix-community/stylix/release-26.05";
+    plasma-manager.url = "github:nix-community/plasma-manager";
 
-    jovian-steamdeck = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixcord.url = "github:FlameFlag/nixcord";
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lsfg-vk-flake = {
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    betterfox = {
-      url = "github:yokoffing/Betterfox";
-      flake = false;
-    };
-
     firefox-addons = {
-      url = "github:petrkozorezov/firefox-addons-nix";
+      url = "github:xddxdd/firefox-addons-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    vimium-options.url = "github:uimataso/vimium-nixos";
-
-    lunar-client.url = "github:clonidine/lunar-client-flake";
-
-    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
-    zapret2.url = "github:dmfrpro/zapret2-flake";
-    tg-ws-proxy.url = "github:pialtor/tg-ws-proxy-flake";
-
-    niri.url = "github:sodiboo/niri-flake";
-    system76-scheduler-niri.url = "github:Kirottu/system76-scheduler-niri";
-    niri-float-sticky.url = "github:probeldev/niri-float-sticky";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,8 +82,6 @@
       url = "github:LilleAila/nix-cursors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    stylix.url = "github:danth/stylix/release-25.11";
 
     nix-ld = {
       url = "github:Mic92/nix-ld";
@@ -147,13 +133,33 @@
       flake = false;
     };
 
+    zsh-vi-mode = {
+      url = "github:jeffreytse/zsh-vi-mode";
+      flake = false;
+    };
+
+    tmux-smooth-scroll = {
+      url = "github:azorng/tmux-smooth-scroll";
+      flake = false;
+    };
+
     tmux-tilish = {
       url = "github:farzadmf/tmux-tilish";
       flake = false;
     };
 
-    tmux-continuum = {
-      url = "github:tmux-plugins/tmux-continuum";
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+
+    parfait = {
+      url = "github:reizumii/parfait";
+      flake = false;
+    };
+
+    ghostty-cursor-shaders = {
+      url = "github:sahaj-b/ghostty-cursor-shaders";
       flake = false;
     };
   };

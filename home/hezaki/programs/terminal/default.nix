@@ -9,7 +9,6 @@
     ./ripgrep
     ./tmux
     ./btop
-    ./espanso
     ./fzf
     ./lsd
     ./yazi
@@ -18,6 +17,7 @@
     ./yt-dlp
     ./pandoc
     ./lazygit
-    ./nix-search-tv
+    ./ollama
+    ./opencode
   ];
 }

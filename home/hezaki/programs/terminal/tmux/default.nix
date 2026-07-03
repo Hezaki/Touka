@@ -12,47 +12,25 @@ let
     src = inputs.tmux-tilish;
   };
 
-  resurrect = tmuxPlugins.mkTmuxPlugin {
-    pluginName = "resurrect";
+  smooth-scroll = tmuxPlugins.mkTmuxPlugin {
+    pluginName = "smooth-scroll";
     version = "fake";
-    src = fetchFromGitHub {
-      owner = "tmux-plugins";
-      repo = "tmux-resurrect";
-      rev = "ca6468e2deef11efadfe3a62832ae67742505432";
-      hash = "sha256-wl9/5XvFq+AjV8CwYgIZjPOE0/kIuEYBNQqNDidjNFo=";
-      fetchSubmodules = true;
-    };
-  };
-
-  continuum = tmuxPlugins.mkTmuxPlugin {
-    pluginName = "continuum";
-    version = "fake";
-    src = inputs.tmux-continuum;
+    src = inputs.tmux-smooth-scroll;
   };
 in
 {
   programs.tmux = {
     enable = true;
-
     plugins = [
-      {
-        plugin = tilish;
-        extraConfig = "set -g @tilish-default 'main-vertical'";
-      }
+      { plugin = tilish; }
 
       {
-        plugin = resurrect;
-      }
-
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '15'
-        '';
+        plugin = smooth-scroll;
+        extraConfig = "set -g @smooth-scroll-mouse true";
       }
     ];
 
+    mouse = true;
     prefix = "C-a";
     clock24 = true;
     escapeTime = 0;
@@ -64,7 +42,7 @@ in
     customPaneNavigationAndResize = true;
     focusEvents = true;
 
-    extraConfig = ''
+    extraConfig = with config.lib.stylix.colors; ''
       bind r set -g status
 
       bind-key -T copy-mode-vi "v" send -X begin-selection
@@ -72,8 +50,7 @@ in
 
       setw -g pane-base-index 2
       set -g status on
-      set -g status-justify left
-      # set -g status-justify absolute-centre
+      set -g status-justify absolute-centre
       set -g status-position bottom
       set -g status-style "default"
       set -g status-right-length 50
@@ -82,8 +59,9 @@ in
       set -gq allow-passthrough on
 
       set -g status-left-length 90
-      set -g status-left "#{tmux_mode_indicator} "
-      set -g status-right ' '
+      set -g status-right-length 90
+      set -g status-left "#{tmux_mode_indicator}"
+      set -g status-right " #(whoami) "
 
       set -g @mode_indicator_prefix_prompt " WAIT "
       set -g @mode_indicator_copy_prompt " COPY "
@@ -96,17 +74,23 @@ in
 
       set -g popup-border-lines "rounded"
 
-      set -g popup-style "fg=#${config.lib.stylix.colors.base0B}"
-      set -g popup-border-style "fg=#${config.lib.stylix.colors.base02}"
-      set -g pane-border-style "fg=#${config.lib.stylix.colors.base02}"
-      set -g pane-active-border-style "fg=#${config.lib.stylix.colors.base03}"
-      set -g mode-style "bg=#${config.lib.stylix.colors.base00} fg=yellow" 
-      set -g status-style bg=#${config.lib.stylix.colors.base00}
+      set-window-option -g window-status-current-format " #I:#W "
+      set-window-option -g window-status-format " #I:#W "
 
-      set -g @mode_indicator_prefix_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color13'
-      set -g @mode_indicator_copy_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color3'
-      set -g @mode_indicator_sync_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color14'
-      set -g @mode_indicator_empty_mode_style 'bg=#${config.lib.stylix.colors.base00},fg=color4'
+      set -g copy-mode-selection-style "fg=#${base04},bg=#${base02}"
+      set-window-option -g window-status-current-style fg=#${base04}
+      set-window-option -g window-status-style fg=#${base03}
+      set -g window-active-style fg=#${base04}
+      set -g popup-style "fg=#${base0B}"
+      set -g popup-border-style "fg=#${base02}"
+      set -g pane-border-style "fg=#${base02}"
+      set -g pane-active-border-style "fg=#${base03}"
+      set -g status-style bg=#${base00}
+
+      set -g @mode_indicator_prefix_mode_style 'bg=#${base00},fg=color13'
+      set -g @mode_indicator_copy_mode_style 'bg=#${base00},fg=color3'
+      set -g @mode_indicator_sync_mode_style 'bg=#${base00},fg=color14'
+      set -g @mode_indicator_empty_mode_style 'bg=#${base00},fg=color4'
     '';
   };
 }

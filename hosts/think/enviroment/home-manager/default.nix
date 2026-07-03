@@ -1,13 +1,9 @@
 { inputs, ... }:
 {
-  imports = with inputs; [
-    home-manager.nixosModules.home-manager
-  ];
+  imports = with inputs; [ home-manager.nixosModules.home-manager ];
 
   home-manager = {
     useGlobalPkgs = true;
-    extraSpecialArgs = {
-      inherit inputs;
-    };
+    extraSpecialArgs = { inherit inputs; };
   };
 }

@@ -1,37 +1,36 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
 {
   imports = with inputs; [
     nix-gaming.nixosModules.platformOptimizations
+    nix-index-database.nixosModules.nix-index
     ./nh
     ./kanata
     ./nix-ld
     ./clamav
     ./steam
     ./polkit
-    ./openvpn
     ./podman
     ./flatpak
-    ./kubernetes
     ./gpu-screen-recorder
     ./zapret
-    # ./zapret2
     ./dns-crypt
     ./throne
-    ./localsend
     ./apparmor
-    # ./pam
     ./firejail
-    # ./tg-ws-proxy
+    ./scx
+    ./dms
   ];
 
   environment.systemPackages = with pkgs; [
     nix-tree
-    nix-output-monitor
+    comma
+    impala
   ];
 
   documentation = {
@@ -40,8 +39,6 @@
     doc.enable = false;
     dev.enable = false;
   };
-
-  programs.haguichi.enable = true;
 
   virtualisation = {
     oci-containers.backend = "podman";
@@ -55,6 +52,9 @@
     flatpak.enable = true;
     gvfs.enable = true;
     nfs.server.enable = true;
+
+    kmscon.enable = lib.mkForce false;
+
     earlyoom = {
       enable = true;
       enableNotifications = true;
@@ -63,19 +63,30 @@
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
-    config.common.default = "*";
-    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-termfilechooser
+    ];
+
+    config = {
+      common = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+      };
+    };
   };
 
   programs = {
     zsh.enable = true;
-    adb.enable = true;
     dconf.enable = true;
-    light.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true;
-    # amnezia-vpn.enable = true;
+
+    nix-index-database = {
+      enable = true;
+      comma.enable = true;
+    };
 
     appimage = {
       enable = true;

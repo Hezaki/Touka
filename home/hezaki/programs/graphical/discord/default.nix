@@ -13,21 +13,16 @@
       useQuickCss = true;
 
       plugins = {
-        ClearURLs.enable = true;
-        MutualGroupDMs.enable = true;
-        RPCStats.enable = true;
-        betterFolders.enable = true;
+        clearUrls.enable = true;
+        mutualGroupDms.enable = true;
         blockKrisp.enable = true;
         callTimer.enable = true;
-        copyFileContents.enable = true;
         crashHandler.enable = true;
         declutter.enable = true;
         fixImagesQuality.enable = true;
         fixYoutubeEmbeds.enable = true;
         followVoiceUser.enable = true;
-        hideMessages.enable = true;
         quickReply.enable = true;
-        searchFix.enable = true;
       };
     };
   };
