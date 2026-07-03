@@ -1,7 +1,7 @@
 {
   imports = [
     ./mpv
-    ./kitty
+    ./ghostty
     ./zathura
     ./browsers
     ./vimium
@@ -13,7 +13,7 @@
     ./obs-studio
     ./games
     ./obsidian
-    # ./kdeconnect
+    ./kdeconnect
     ./easyeffects
   ];
 }

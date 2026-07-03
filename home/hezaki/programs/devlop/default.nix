@@ -1,11 +1,11 @@
 { pkgs, ... }:
+
 {
   home.packages = with pkgs; [
     gcc
     gnumake
     pkg-config
     glibc
-    python311Packages.ipython
     luarocks
     bun
     luajitPackages.jsregexp
@@ -19,7 +19,7 @@
     lua-language-server
 
     nixd
-    nixfmt-rfc-style
+    nixfmt
     prettierd
   ];
 }

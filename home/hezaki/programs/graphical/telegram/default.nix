@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+
 {
   home = {
-    packages = [ pkgs.ayugram-desktop ];
+    packages = [ inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop ];
 
     file = {
       ".local/share/AyuGramDesktop/tdata/shortcuts-custom.json".text = # json

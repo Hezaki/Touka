@@ -1,6 +1,7 @@
 {
   imports = [
     ./firefox
+    # ./glide
     ./chromium
   ];
 }

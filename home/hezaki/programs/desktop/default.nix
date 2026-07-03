@@ -1,16 +1,11 @@
 {
   imports = [
     ./cliphist
-    ./rofi
-    ./hyprlock
-    # ./swaync
     ./swayimg
     ./niri
+    ./plasma
     ./portals
-    ./waybar
-    ./fusuma
     ./udiskie
-    ./noctalia
-    # ./stasis
+    ./dms
   ];
 }

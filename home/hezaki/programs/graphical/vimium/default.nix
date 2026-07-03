@@ -8,7 +8,8 @@
     ignoreKeyboardLayout = true;
 
     searchEngines = {
-      yt = "https://www.youtube.com/results?search_query=%s YouTube";
+      yt = "https://www.youtube.com Open YouTube";
+      yts = "https://www.youtube.com/results?search_query=%s Search on YouTube";
       ytm = "https://music.youtube.com/search?q=%s YT Music";
       re = "https://www.reddit.com/search/?q=%s Reddit";
       wiki = "https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia";
@@ -17,6 +18,17 @@
       hs = "https://home-manager-options.extranix.com/?query=%s Home manager search";
       gh = "https://github.com/search?q=%s GitHub";
       fh = "https://flathub.org/en/apps/search?q=%s FlatHub";
+      exc = "https://excalidraw.com/ Excalidraw";
+    };
+
+    keyMappings = {
+      unmap = [
+        "shift+t"
+      ];
+      
+      map = {
+        "<space><space>" = "Vomnibar.activateTabSelection";
+      };
     };
 
     # https://github.com/lexesj/vimium-zen-theme <3
@@ -54,172 +66,168 @@
       }
 
       #vomnibar {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-        border-radius: 15px;
-        overflow: hidden;
-        left: 50%;
-        margin-left: -400px;
-        max-width: 800px;
+        background: var(--bg) !important;
+        border: 1px solid var(--border) !important;
+        box-shadow: var(--shadow) !important;
+        border-radius: 34px !important;
+        overflow: hidden !important;
+        left: 50% !important;
+        margin-left: -400px !important;
+        max-width: 800px !important;
+        backdrop-filter: blur(var(--blur)) !important;
       }
 
       #vomnibar #vomnibar-search-area,
       #vomnibar input {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        color: var(--fg);
-        font-family: var(--font);
-        font-size: var(--font-size);
-        font-weight: var(--font-weight-medium);
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: var(--fg) !important;
+        font-family: var(--font) !important;
+        font-size: var(--font-size) !important;
+        font-weight: var(--font-weight-medium) !important;
       }
 
       #vomnibar #vomnibar-search-area {
-        padding: 14px 50px;
-        border-radius: 6px;
+        padding: 14px 50px !important;
+        border-radius: 6px !important;
       }
 
       #vomnibar input {
-        border: none;
-        padding: var(--padding);
+        border: none !important;
+        padding: var(--padding) !important;
       }
 
       #vomnibar #vomnibar-search-area::before {
-        content: "";
-        position: absolute;
-        top: 22px;
-        left: 20px;
-        background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z' stroke='%23dfdfdf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 18px;
-        height: 18px;
+        content: "" !important;
+        position: absolute !important;
+        top: 22px !important;
+        left: 20px !important;
+        background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") !important;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        width: 18px !important;
+        height: 18px !important;
       }
 
       .no-insert-text {
-        display: none;
+        display: none !important;
       }
 
       #vomnibar ul {
-        background: transparent;
-        border-top: 2px solid var(--border);
-        margin: 0 15px;
-        margin-bottom: 5px;
-        padding: var(--padding-vomnibar);
+        background: transparent !important;
+        border-top: 2px solid var(--border) !important;
+        margin: 0 15px !important;
+        margin-bottom: 5px !important;
+        padding: var(--padding-vomnibar) !important;
       }
 
       #vomnibar li {
-        border-bottom: none;
-        padding: 15px;
+        border-bottom: none !important;
+        padding: 15px !important;
       }
 
       #vomnibar li .top-half {
-        padding: var(--padding);
+        padding: var(--padding) !important;
       }
 
       #vomnibar li .bottom-half {
-        padding: 0px 0px 0px 2px;
-        margin: 0;
+        padding: 0px 0px 0px 2px !important;
+        margin: 0 !important;
       }
 
       #vomnibar li .source {
-        color: var(--fg-dark);
-        font-family: var(--font);
-        font-size: var(--font-size-title);
-        font-weight: var(--font-weight-bold);
-        text-transform: capitalize;
+        color: var(--fg-dark) !important;
+        font-family: var(--font) !important;
+        font-size: var(--font-size-title) !important;
+        font-weight: var(--font-weight-bold) !important;
+        text-transform: capitalize !important;
       }
 
       #vomnibar li em,
       #vomnibar li .title {
-        color: var(--fg);
-        font-family: var(--font);
-        font-size: var(--font-size-title);
-        font-weight: var(--font-weight-medium);
+        color: var(--fg) !important;
+        font-family: var(--font) !important;
+        font-size: var(--font-size-title) !important;
+        font-weight: var(--font-weight-medium) !important;
       }
 
       #vomnibar li .url {
-        color: var(--fg-url);
-        font-family: var(--font);
-        font-size: var(--font-size-url);
-        font-weight: var(--font-weight-medium);
+        color: var(--fg-url) !important;
+        font-family: var(--font) !important;
+        font-size: var(--font-size-url) !important;
+        font-weight: var(--font-weight-medium) !important;
       }
 
       #vomnibar li .match {
-        color: var(--fg-match);
+        color: var(--fg-match) !important;
       }
 
       #vomnibar li .title .match {
-        color: var(--fg);
-        font-weight: bold;
+        color: var(--fg) !important;
+        font-weight: bold !important;
       }
 
       #vomnibar li.selected {
-        background-color: var(--bg-selected);
-        backdrop-filter: blur(20px);
-        border-radius: 8px;
+        background-color: var(--bg-selected) !important;
+        backdrop-filter: blur(20px) !important;
+        border-radius: 12px !important;
       }
 
       #vomnibar li.selected .url {
-        color: var(--fg-url);
+        color: var(--fg-url) !important;
       }
 
       #vomnibar li.selected .match {
-        color: var(--fg);
+        color: var(--fg) !important;
       }
-
-      /* Hints Marks*/
 
       #vimium-hint-marker-container div.internal-vimium-hint-marker,
       #vimium-hint-marker-container div.vimiumHintMarker {
-        background: var(--bg);
-        border: none;
-        box-shadow: var(--shadow);
-        padding: 3px 4px;
+        background: rgba(20, 20, 30, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3) !important;
+        padding: 4px 6px !important;
+        border-radius: 12px !important;
+        backdrop-filter: blur(15px) !important;
       }
 
       #vimium-hint-marker-container div span {
-        color: var(--fg-hints);
-        font-family: var(--font);
-        font-size: var(--font-size-hints);
-        font-weight: var(--font-weight-bold);
-        text-shadow: none;
+        color: #ffffff !important;
+        font-family: var(--font) !important;
+        font-size: var(--font-size-hints) !important;
+        font-weight: bold !important;
+        text-shadow: 0 0 5px rgba(0,0,0,0.5) !important;
       }
 
       #vimium-hint-marker-container div > .matchingCharacter {
-        opacity: 0.3;
+        opacity: 0.4 !important;
       }
-
-      #vimium-hint-marker-container div > .matchingCharacter ~ span {
-        color: var(--fg-hints);
-      }
-
-      /* Hud */
 
       #hud-container {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow);
-        border-radius: 6px;
+        background: rgba(20, 20, 30, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: var(--shadow) !important;
+        border-radius: 16px !important;
+        backdrop-filter: blur(20px) !important;
       }
 
       #hud-container span#hud-find-input,
       #hud-container #hud {
-        color: var(--fg);
-        font-family: var(--font);
-        font-size: 13;
-        font-weight: var(--font-weight-medium);
+        color: #ffffff !important;
+        font-family: var(--font) !important;
+        font-size: 14px !important;
+        font-weight: var(--font-weight-medium) !important;
       }
 
       #hud-container .hud-find {
-        background-color: transparent;
-        border: none;
+        background-color: transparent !important;
+        border: none !important;
       }
 
       #hud-container #search-area {
-        background-color: transparent;
-        padding: 6px;
+        background-color: transparent !important;
+        padding: 8px !important;
       }
     '';
   };

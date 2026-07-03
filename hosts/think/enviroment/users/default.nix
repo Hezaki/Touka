@@ -11,10 +11,13 @@ in
         isNormalUser = true;
         initialPassword = passuser;
         home = "/home/${user}";
+
         extraGroups = [
           "wheel"
           "user-with-access-to-virtualbox"
+          "i2c"
         ];
+
         shell = pkgs.zsh;
       };
 
@@ -23,7 +26,9 @@ in
         shell = pkgs.zsh;
       };
     };
+
     groups = {
+      video.members = [ "hezaki" ];
       uinput.members = [ "hezaki" ];
       input.members = [ "hezaki" ];
     };
