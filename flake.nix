@@ -1,27 +1,43 @@
 {
   outputs =
-    inputs@{ flake-parts, ... }:
+    inputs@{
+      home-manager,
+      nixpkgs,
+      firefox-addons,
+      ts3,
+      flake-parts,
+      ...
+    }:
 
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./hosts/think
-        ./home/hezaki
-      ];
+      flake = {
+        nixosConfigurations = {
+          think = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs; };
+            modules = [ ./hosts/think ];
+          };
+        };
+
+        homeConfigurations = {
+          hezaki = home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = { inherit inputs; };
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              overlays = [
+                firefox-addons.overlays.default
+                ts3.overlays.default
+              ];
+            };
+
+            modules = [ ./home/hezaki ];
+          };
+        };
+      };
 
       perSystem = { system, ... }: {
-        _module.args.pkgs = import inputs.nixpkgs {
+        _module.args.pkgs = import nixpkgs {
           inherit system;
-          config = {
-            allowUnfree = true;
-            allowBroken = true;
-
-            permittedInsecurePackages = [ ];
-          };
-
-          overlays = with inputs; [
-            firefox-addons.overlays.default
-            ts3.overlays.default
-          ];
+          config.allowUnfree = true;
         };
       };
 
@@ -37,14 +53,13 @@
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
     stylix.url = "github:nix-community/stylix/release-26.05";
     ts3.url = "github:Jokler/ts3client-noweb-nix";
-    nixcord.url = "github:FlameFlag/nixcord";
+    nixcord.url = "github:4evy/nixcord";
     vimium-options.url = "github:uimataso/vimium-nixos";
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     niri.url = "github:epireyn/niri-flake";
     proxy-suite.url = "github:FUFSoB/proxy-suite-flake";
     bluevein.url = "github:meowrch/BlueVein";
-    noctalia.url = "github:noctalia-dev/noctalia";
-    nom.url = "github:maralorn/nix-output-monitor/pull/321/head";
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";

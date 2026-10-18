@@ -26,7 +26,7 @@
     border = "on_secondary"
     compositor_blur = false
     contact_shadow = true
-    end = [ "audio_visualizer", "media", "tray", "keyboard_layout", "group:g1", "notifications" ]
+    end = [ "tray", "media", "keyboard_layout", "group:g1", "notifications" ]
     margin_ends = 200
     padding = 12
     position = "left"
@@ -131,9 +131,7 @@
         "lockscreen-login-box@eDP-1",
         "lockscreen-widget-0000000000000001",
         "lockscreen-login-box@DP-2",
-        "lockscreen-widget-0000000000000002",
-        "lockscreen-widget-0000000000000003",
-        "lockscreen-widget-0000000000000004"
+        "lockscreen-widget-0000000000000002"
     ]
 
         [lockscreen_widgets.grid]
@@ -272,42 +270,6 @@
             format = "{:%A, %d %B}"
             shadow = true
             timezone = ""
-
-        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
-        box_height = 256.0
-        box_width = 256.0
-        cx = 144.0
-        cy = 1296.0
-        output = "DP-2"
-        placement_height = 1440.0
-        placement_width = 3440.0
-        rotation = 0.0
-        type = "sticker"
-
-            [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
-            background_opacity = 0.0
-            background_padding = 0
-            background_radius = 0
-            image_path = "/home/hezaki/Downloads/Pictures/Antifalogo_alt2.svg"
-            opacity = 0.90000000000000002
-
-        [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
-        box_height = 184.0
-        box_width = 432.0
-        cx = 464.0
-        cy = 1340.0
-        output = "DP-2"
-        placement_height = 1440.0
-        placement_width = 3440.0
-        rotation = 0.0
-        type = "sticker"
-
-            [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
-            background_opacity = 0.0
-            background_padding = 0
-            background_radius = 0
-            image_path = "/home/hezaki/Downloads/Pictures/gplv3_logo1.png"
-            opacity = 0.90000000000000002
 
     [notification]
     background_opacity = 0.79999998211860657
@@ -485,12 +447,15 @@
     title_scroll = "always"
 
     [widget.audio_visualizer]
-    bands = 12
+    bands = 11
+    color_2 = "on_tertiary"
+    interactive = false
     mirrored = false
-    width = 30
+    reversed = true
+    width = 35
 
     [widget.battery]
-    show_label = false
+    show_tooltip = true
 
     [widget.brightness]
     show_label = false
@@ -518,7 +483,8 @@
     glyph = "noctalia"
 
     [widget.media]
-    rotate_album_art = true
+    hide_when_idle = true
+    hide_when_no_media = true
     scale = 1.2
     scroll_repeat = "gesture"
     title_scroll = "always"
@@ -528,6 +494,9 @@
 
     [widget.output_volume]
     show_label = false
+
+    [widget.power_profile]
+    scale = 1.05
 
     [widget.sysmon]
     stat = "cpu_temp"
@@ -554,7 +523,7 @@
     focused_output_only = true
     font_family = "JetBrains Mono"
     labels_only_when_occupied = true
-    pill_scale = 0.90000000000000002
+    pill_scale = 0.84999999999999998
     show_all_outputs = true
   '';
 }
