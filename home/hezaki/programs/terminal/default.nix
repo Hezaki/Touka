@@ -1,23 +1,23 @@
 {
   imports = [
-    ./fd
     ./bat
-    # ./cava
+    ./btop
+    ./distrobox
     ./editors
     ./fastfetch
-    ./git
-    ./ripgrep
-    ./tmux
-    ./btop
+    ./fd
     ./fzf
+    ./git
+    ./jujutsu
     ./lsd
-    ./yazi
-    ./shell
-    ./zoxide
-    ./yt-dlp
-    ./pandoc
-    ./lazygit
     ./ollama
     ./opencode
+    ./pandoc
+    ./ripgrep
+    ./shell
+    ./tmux
+    ./yazi
+    ./yt-dlp
+    ./zoxide
   ];
 }

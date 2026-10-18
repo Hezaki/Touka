@@ -1,0 +1,5 @@
+{
+  programs.keepassxc = {
+    enable = true;
+  };
+}

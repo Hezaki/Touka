@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 
@@ -13,9 +12,9 @@
     autosuggestion.enable = true;
     enableCompletion = true;
 
-    # profileExtra = ''
-    #   [ "$(tty)" = "/dev/tty1" ] && exec niri-session -l
-    # '';
+    profileExtra = ''
+      [ "$(tty)" = "/dev/tty1" ] && exec niri-session -l
+    '';
 
     plugins = with inputs; [
       {
@@ -73,6 +72,7 @@
       "si" = "swayimg";
       "cd 206b-0B1E" = "cd /run/media/hezaki/206B-0B1E";
       "neofetch" = "fastfetch -c neofetch";
+      "pizdafetch" = "fastfetch -c examples/13";
       "rm" = "gomi ";
     };
 
@@ -124,12 +124,11 @@
       zstyle ":fzf-tab:*" accept-line enter
 
       _fix_cursor() {
-         echo -ne "\033[4 q"
+        echo -ne "\033[5 q"
       }
       precmd_functions+=(_fix_cursor)
 
       tmux run-shell ${pkgs.tmuxPlugins.mode-indicator}/share/tmux-plugins/mode-indicator/mode_indicator.tmux
-      tmux run-shell ${inputs.tmux-smooth-scroll}/share/tmux-plugins/smooth-scroll/smooth-scroll.tmux
     '';
 
     history.size = 10000;
