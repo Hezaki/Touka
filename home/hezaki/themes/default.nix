@@ -71,7 +71,6 @@
       tmux.enable = false;
       swaync.enable = false;
       neovim.enable = false;
-      nixcord.enable = false;
       firefox.profileNames = [ "hqzk" ];
 
       # zen-browser.profileNames = [
