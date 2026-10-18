@@ -11,26 +11,11 @@ let
     version = "fake";
     src = inputs.tmux-tilish;
   };
-
-  smooth-scroll = tmuxPlugins.mkTmuxPlugin {
-    pluginName = "smooth-scroll";
-    version = "fake";
-    src = inputs.tmux-smooth-scroll;
-  };
 in
 {
   programs.tmux = {
     enable = true;
-    plugins = [
-      { plugin = tilish; }
-
-      {
-        plugin = smooth-scroll;
-        extraConfig = "set -g @smooth-scroll-mouse true";
-      }
-    ];
-
-    mouse = true;
+    plugins = [ { plugin = tilish; } ];
     prefix = "C-a";
     clock24 = true;
     escapeTime = 0;
@@ -49,7 +34,7 @@ in
       bind-key -T copy-mode-vi "y" send -X copy-selection
 
       setw -g pane-base-index 2
-      set -g status on
+      set -g status off
       set -g status-justify absolute-centre
       set -g status-position bottom
       set -g status-style "default"
@@ -57,6 +42,8 @@ in
       set -g status-left-length 20
       set -sa terminal-overrides "*:Tc"
       set -gq allow-passthrough on
+      set -g window-size latest
+      set -g aggressive-resize on
 
       set -g status-left-length 90
       set -g status-right-length 90

@@ -6,7 +6,7 @@
 }:
 
 let
-  terminal = "ghostty";
+  terminal = "foot";
   wrapperScript = "${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh";
 in
 {

@@ -8,12 +8,8 @@
     ignoreKeyboardLayout = true;
 
     searchEngines = {
-      yt = "https://www.youtube.com Open YouTube";
-      yts = "https://www.youtube.com/results?search_query=%s Search on YouTube";
-      ytm = "https://music.youtube.com/search?q=%s YT Music";
       re = "https://www.reddit.com/search/?q=%s Reddit";
       wiki = "https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia";
-      yat = "https://translate.yandex.com/?source_lang=en&target_lang=ru&text=%s Yandex Translate";
       ns = "https://search.nixos.org/packages?&query=%s Nixpkgs search";
       hs = "https://home-manager-options.extranix.com/?query=%s Home manager search";
       gh = "https://github.com/search?q=%s GitHub";
@@ -22,13 +18,7 @@
     };
 
     keyMappings = {
-      unmap = [
-        "shift+t"
-      ];
-      
-      map = {
-        "<space><space>" = "Vomnibar.activateTabSelection";
-      };
+      unmap = [ "shift+t" ];
     };
 
     # https://github.com/lexesj/vimium-zen-theme <3

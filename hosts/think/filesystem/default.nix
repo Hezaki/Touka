@@ -8,12 +8,17 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/AFD1-2C8D";
       fsType = "vfat";
+
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
   };
 
-  zramSwap = {
-    enable = true;
-    memoryPercent = 50;
-    algorithm = "lz4";
-  };
+  # zramSwap = {
+  #   enable = true;
+  #   algorithm = "zstd";
+  #   memoryPercent = 150;
+  # };
 }

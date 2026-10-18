@@ -1,109 +1,95 @@
-{ pkgs, inputs, ... }:
+{ inputs, withSystem, ... }:
 
 {
-  imports = [
-    ./programs
-    ./themes
-  ];
+  imports = [ inputs.home-manager.flakeModules.default ];
 
-  home = {
-    username = "hezaki";
-    homeDirectory = "/home/hezaki";
-    stateVersion = "26.05";
+  flake.homeConfigurations.hezaki = withSystem "x86_64-linux" (
+    { pkgs, ... }:
+    inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = { inherit inputs; };
+      modules = [
+        ({ pkgs, inputs, ... }: {
+          imports =  [
+            ./programs
+            ./themes
+          ];
 
-    packages =
-      with pkgs;
-      with inputs;
-      [
-        tuba
-        tesseract
-        multiplex
-        bluetui
-        wiremix
-        android-tools
-        teamspeak3
-        losslesscut-bin
-        parsec-bin
-        pywalfox-native
-        tg-ws-proxy.packages.${stdenv.hostPlatform.system}.default
-        evtest
-        authenticator
-        microfetch
-        kdePackages.kdenlive
-        cpu-x
-        krita
-        ppsspp-sdl-wayland
-        obsidian
-        dua
-        duf
-        gcr
-        gdb
-        glfw
-        jq
-        libnotify
-        libreoffice
-        lutgen
-        nix-init
-        onefetch
-        gnome-secrets
-        polkit_gnome
-        ripdrag
-        scrcpy
-        swaybg
-        swayimg
-        transmission_4-gtk
-        zenity
-        element-desktop
-        gradia
-        mousai
-        bleachbit
-        xwayland-satellite
-        gnome-decoder
-        nautilus
-        via
-        piper
-        gomi
-        dtrx
+          home = {
+            username = "hezaki";
+            homeDirectory = "/home/hezaki";
+            stateVersion = "26.05";
+
+            packages =
+              with pkgs;
+              with inputs;
+              [
+                android-tools
+                authenticator
+                bleachbit
+                bluetui
+                bottles
+                cpu-x
+                dtrx
+                dua
+                duf
+                element-desktop
+                evtest
+                gcr
+                gdb
+                gnome-decoder
+                gnome-secrets
+                gomi
+                gradia
+                jq
+                kdePackages.kdenlive
+                krita
+                libnotify
+                libreoffice
+                losslesscut-bin
+                lutgen
+                microfetch
+                mousai
+                nautilus
+                nix-init
+                obsidian
+                onefetch
+                piper
+                polkit_gnome
+                ppsspp-sdl-wayland
+                pywalfox-native
+                ripdrag
+                scrcpy
+                swaybg
+                swayimg
+                teamspeak3
+                tesseract
+                varia
+                via
+                wiremix
+                xwayland-satellite
+                zenity
+              ];
+          };
+
+          services.gnome-keyring.enable = true;
+          programs.home-manager.enable = true;
+
+          nix = {
+            package = pkgs.nix;
+            nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
+            settings = {
+              builders-use-substitutes = true;
+
+              experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
+            };
+          };
+        })
       ];
-  };
-
-  services.gnome-keyring.enable = true;
-
-  wayland.windowManager.sway = {
-    enable = true;
-    config = {
-      modifier = "Mod4";
-      terminal = "ghostty";
-    };
-  };
-
-  programs.home-manager.enable = true;
-
-  nixpkgs = {
-    config = {
-      allowBroken = true;
-      allowUnfree = true;
-
-      permittedInsecurePackages = [
-        "electron-28.3.1"
-        "jitsi-meet-1.0.8043"
-        "mbedtls-2.28.10"
-      ];
-    };
-  };
-
-  nix = {
-    package = pkgs.nix;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-
-    settings = {
-      builders-use-substitutes = true;
-      auto-optimise-store = true;
-
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-  };
+    }
+  );
 }

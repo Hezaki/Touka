@@ -1,19 +1,19 @@
 {
   imports = [
-    ./mpv
-    ./ghostty
-    ./zathura
     ./browsers
-    ./vimium
-    ./telegram
     ./discord
-    ./blockbench
-    ./prismlauncher
-    ./mangohud
-    ./obs-studio
-    ./games
-    ./obsidian
-    ./kdeconnect
     ./easyeffects
+    ./foot
+    ./games
+    ./kdeconnect
+    ./keepassxc
+    ./mangohud
+    ./mpv
+    ./obs-studio
+    ./obsidian
+    ./prismlauncher
+    ./telegram
+    ./vimium
+    ./zathura
   ];
 }

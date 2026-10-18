@@ -1,11 +1,12 @@
 {
   imports = [
+    # ./dms
     ./cliphist
-    ./swayimg
     ./niri
-    ./plasma
+    # ./umbriel
+    ./noctalia
     ./portals
+    ./swayimg
     ./udiskie
-    ./dms
   ];
 }

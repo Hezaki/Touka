@@ -1,18 +1,12 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }:
-
-let
-  neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in
 
 {
   programs.neovim = {
     enable = true;
-    package = neovim;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -77,7 +71,7 @@ in
         m("n", "<leader>ff", function() Snacks.picker.smart() end)
         m("n", "<leader>fd", function() Snacks.picker.zoxide() end)
         m("n", "<leader>fu", function() Snacks.picker.undo() end)
-        m("n", "<leader>fb", ":Yazi<CR>", { silent = true, noremap = true })
+        m("n", "<leader>fb", ":Fyler<CR>", { silent = true, noremap = true })
         m("n", "gq", function() require("conform").format() end, { silent = true, noremap = true })
         m("n", "<leader><space>", function() Snacks.picker.buffers() end, { desc = "Buffers" })
         m("n", "<leader>gb", "%", { silent = true, noremap = true })
@@ -184,6 +178,12 @@ in
             { "mrjones2014/smart-splits.nvim" },
 
             {
+              "OXY2DEV/markview.nvim",
+              lazy = false,
+            },
+
+
+            {
               "NeogitOrg/neogit",
               lazy = true,
               dependencies = {
@@ -212,7 +212,7 @@ in
             },
 
             {
-              "nvim-min/mini.notify",
+              "nvim-mini/mini.notify",
               event = "VeryLazy",
               opts = {
                 window = {

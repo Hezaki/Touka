@@ -1,15 +1,10 @@
-{ inputs, ... }:
-
 {
-  imports = with inputs; [ nix-gaming.nixosModules.pipewireLowLatency ];
-
   hardware = {
     bluetooth = {
       enable = true;
       settings = {
         General = {
           Experimental = true;
-          JustWorksRepairing = "always";
           Enable = "Source,Sink,Media,Socket";
           DiscoverableTimeout = 0;
           Class = "0x000100";
@@ -41,9 +36,9 @@
             96000
             192000
           ];
-          "default.clock.min-quantum" = 512;
-          "default.clock.quantum" = 2048;
-          "default.clock.max-quantum" = 8192;
+          "default.clock.min-quantum" = 32;
+          "default.clock.quantum" = 128;
+          "default.clock.max-quantum" = 2048;
         };
       };
 

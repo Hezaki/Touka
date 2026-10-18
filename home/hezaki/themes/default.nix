@@ -16,14 +16,14 @@
 
     base16Scheme = {
       # main colors
-      base00 = "#131318";
-      base01 = "#1b1b22";
-      base02 = "#202029";
-      base03 = "#464653";
-      base04 = "#e3e1f6";
-      base05 = "#c7c5d8";
-      base06 = "#e3e1f6";
-      base07 = "#f3f0ff";
+      base00 = "#141312";
+      base01 = "#1E1D1C";
+      base02 = "#242321";
+      base03 = "#32302f";
+      base04 = "#fdf8f6";
+      base05 = "#dad8d2";
+      base06 = "#fdf8f6";
+      base07 = "#fcefdd";
 
       # syntax colors
       base08 = "#ffb3ab";
@@ -50,11 +50,10 @@
 
     icons = {
       enable = true;
+      package = pkgs.papirus-icon-theme;
 
       dark = "Papirus-Dark";
       light = "Papirus-Light";
-
-      package = pkgs.papirus-icon-theme;
     };
 
     fonts = {
@@ -65,21 +64,20 @@
 
       monospace = config.stylix.fonts.serif;
       emoji.package = pkgs.noto-fonts-color-emoji;
-      sizes.terminal = 18;
+      sizes.terminal = 19;
     };
 
     targets = {
-      gtk.extraCss = ''
-        window {
-          border-radius: 16px;
-        }
-      '';
-
       tmux.enable = false;
       swaync.enable = false;
       neovim.enable = false;
       nixcord.enable = false;
       firefox.profileNames = [ "hqzk" ];
+
+      # zen-browser.profileNames = [
+      #   "hqzk"
+      #   # "russl"
+      # ];
     };
   };
 

@@ -1,28 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   home = {
-    packages = [ inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop ];
+    packages = [ pkgs.ayugram-desktop ];
 
     file = {
-      ".local/share/AyuGramDesktop/tdata/shortcuts-custom.json".text = # json
-        ''
-          [
-            {
-              "command": "show_archive",
-              "keys": "ctrl+b"
-            },
-            {
-              "command": "search",
-              "keys": "ctrl+/"
-            },
-            {
-              "command": "global_search",
-              "keys": "ctrl+f"
-            }
-          ]
-        '';
-
       ".local/share/AyuGramDesktop/tdata/experimental_options.json".text = # json
         ''
           {

@@ -1,7 +1,6 @@
 {
   imports = [
-    ./firefox
-    # ./glide
-    ./chromium
+    ./zen-browser
+    ./helium
   ];
 }
