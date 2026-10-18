@@ -7,10 +7,10 @@
         pad = "4x4 center";
       };
 
-      # cursor = {
-      #   style = "beam";
-      #   blink = "no";
-      # };
+      key-bindings = {
+        clipboard-copy = "Control+Shift+c";
+        clipboard-paste = "Control+Shift+v";
+      };
     };
   };
 }

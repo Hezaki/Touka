@@ -2,6 +2,6 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    flake = "/home/hezaki/.config/nixos-touka/";
+    flake = "/home/hezaki/Downloads/Repository/touka/";
   };
 }

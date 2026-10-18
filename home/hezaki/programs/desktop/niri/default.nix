@@ -117,16 +117,7 @@
 
           layout { 
             background-color "#12140e"
-            center-focused-column "always"
-            always-center-single-column true
             default-column-width { proportion 0.66667; }
-
-            preset-column-widths {
-              proportion 0.33333
-              proportion 0.5
-              proportion 0.66667
-              proportion 0.8
-            }
           }
         }
 
@@ -136,7 +127,6 @@
 
           layout {
             default-column-width { proportion 0.8; }
-            center-focused-column "always"
           }
         }
 
@@ -183,23 +173,27 @@
 
         layout {
           gaps 12
-          center-focused-column "always"
+          always-center-single-column
+          center-focused-column "never"
           background-color "#${base00}"
           default-column-display "normal"
           default-column-width { proportion 1.0; }
 
           preset-column-widths {
-            proportion 0.33333
+            proportion 0.4
             proportion 0.5
-            proportion 0.66667
+            proportion 0.6
             proportion 0.8
+            proportion 0.9
           }
 
           preset-window-heights {
-            proportion 0.33333
+            proportion 0.3
+            proportion 0.4
             proportion 0.5
-            proportion 0.66667
-            fixed 720
+            proportion 0.6
+            proportion 0.7
+            proportion 1.0
           }
 
           focus-ring { 
@@ -224,6 +218,8 @@
           struts {
             bottom 3
             top 3
+            left 40
+            right 40
           }
         }
 
@@ -411,14 +407,13 @@
 
         window-rule { 
           match app-id="equibop"
-          default-column-width { proportion 0.66667; }
           open-focused false
           open-on-workspace "2"
         }
 
         window-rule { 
           match app-id="com.ayugram.desktop"
-          default-column-width { fixed 790; }
+          default-column-width { fixed 760; }
           open-focused false
           open-on-workspace "2"
         }
@@ -487,7 +482,7 @@
 
           Mod+W { close-window; }
           Mod+S { toggle-window-floating; }
-          Mod+A { center-window; }
+          Mod+A { center-visible-columns; }
 
           Mod+Left  { focus-column-left; }
           Mod+Down  { focus-window-down; }
