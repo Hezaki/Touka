@@ -25,18 +25,17 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = inputs.niri-keybind.packages.${pkgs.system}.default;
 
     config =
       with config.lib.stylix.colors; # kdl
       ''
         spawn-at-startup "xwayland-satellite"
-        spawn-at-startup "steam"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store";
-        spawn-at-startup "udiskie"
         spawn-at-startup "zen-twilight"
         spawn-at-startup "AyuGram"
         spawn-at-startup "equibop"
+        spawn-at-startup "steam"
         spawn-sh-at-startup r#"
           tmux new-session -d -s main $SHELL \; \
                new-window nvim \; \
@@ -199,10 +198,6 @@
             proportion 1.0
           }
 
-          focus-ring { 
-            off
-          }
-
           shadow {
             on
             softness 20
@@ -211,7 +206,12 @@
             color "#000000"
           }
 
+          focus-ring { 
+            off
+          }
+
           border {
+            on
             width 1
             active-color "#${base00}"
             inactive-color "#${base03}"
@@ -224,14 +224,6 @@
             left 40
             right 40
           }
-        }
-
-        blur {
-          on
-          passes 2
-          offset 6.0
-          noise 0.09
-          saturation 1.5
         }
 
         animations {
@@ -358,8 +350,8 @@
           tiled-state true
 
           background-effect {
-            xray true
-            blur true
+            xray false
+            blur false
           }
         }
 
@@ -464,21 +456,21 @@
         }
 
         binds {
+          Mod {
+            release { spawn-sh "noctalia msg panel-toggle launcher"; }
+          }
+
           Mod+Shift+Slash { show-hotkey-overlay; }
           Mod+Space { toggle-overview; }
 
-Mod {
-    release { toggle-overview; }
-}
-
           Mod+O { spawn-sh "niri msg action toggle-windowed-fullscreen && niri msg action maximize-window-to-edges && noctalia msg bar-toggle"; }
 
-          Mod+Return { spawn-sh "foot -e tmux attach -t main"; }
+          Mod+Return { spawn-sh "rio -e tmux attach -t main"; }
 
           XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03+"; }
           XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.03-"; }
           Mod+XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10+"; }
-          MOd+XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
+          Mod+XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.10-"; }
           XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
           XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
@@ -556,7 +548,6 @@ Mod {
           Mod+Shift+Backslash { spawn-sh "noctalia msg panel-toggle session"; }
           Mod+Shift+Backspace { spawn-sh "noctalia msg notification-dnd-toggle"; }
           Mod+Backspace { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
-          Mod+D { spawn-sh "noctalia msg panel-toggle launcher"; }
           Mod+Shift+D { spawn-sh "noctalia msg panel-toggle clipboard"; }
         }
       '';

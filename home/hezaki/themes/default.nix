@@ -68,6 +68,7 @@
     };
 
     targets = {
+      rio.fonts.enable = false;
       tmux.enable = false;
       swaync.enable = false;
       neovim.enable = false;

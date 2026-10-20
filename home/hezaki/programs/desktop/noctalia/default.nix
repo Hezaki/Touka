@@ -52,8 +52,6 @@
     [brightness]
     enable_ddcutil = true
 
-    [calendar]
-
     [control_center]
     show_session_button = false
     show_shortcut_labels = false
@@ -120,7 +118,7 @@
     [lockscreen]
     allow_empty_password = true
     fingerprint = false
-    monitors = [ "DP-2" ]
+    monitors = [ "DP-2", "eDP-1" ]
     transition = [ "zoom" ]
 
     [lockscreen_widgets]
@@ -131,13 +129,14 @@
         "lockscreen-login-box@eDP-1",
         "lockscreen-widget-0000000000000001",
         "lockscreen-login-box@DP-2",
-        "lockscreen-widget-0000000000000002"
+        "lockscreen-widget-0000000000000002",
+        "lockscreen-widget-0000000000000003"
     ]
 
         [lockscreen_widgets.grid]
-        cell_size = 8
+        cell_size = 64
         major_interval = 4
-        visible = true
+        visible = false
 
         [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
         box_height = 196.0
@@ -196,10 +195,10 @@
             show_weather = true
 
         [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-        box_height = 196.0
-        box_width = 810.0
-        cx = 960.0001220703125
-        cy = 716.0
+        box_height = 70.0
+        box_width = 400.0
+        cx = 960.0
+        cy = 604.0
         output = "eDP-1"
         placement_height = 1080.0
         placement_width = 1920.0
@@ -208,12 +207,12 @@
 
             [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
             background_color = "surface_variant"
-            background_opacity = 0.88
-            background_radius = 12.0
+            background_opacity = 0.0
+            background_radius = 32.0
             center_password_text = false
             input_opacity = 1.0
-            input_radius = 6.0
-            layout = "regular"
+            input_radius = 32.0
+            layout = "compact"
             show_caps_lock = true
             show_keyboard_layout = true
             show_login_button = true
@@ -271,6 +270,22 @@
             shadow = true
             timezone = ""
 
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+        box_height = 448.0
+        box_width = 512.0
+        cx = 960.0
+        cy = 431.92578125
+        output = "eDP-1"
+        placement_height = 1080.0
+        placement_width = 1920.0
+        rotation = 0.0
+        type = "clock"
+
+            [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+            background = false
+            color = "primary"
+            font_family = "Abhaya Libre"
+
     [notification]
     background_opacity = 0.79999998211860657
     history_retention_hours = 24
@@ -327,8 +342,12 @@
         [shell.launcher]
         auto_paste = "off"
         categories = false
-        layout = "simple"
+        category_icons_only = true
+        search_position = "top"
         show_app_actions = true
+        show_session_button = false
+        show_settings_button = false
+        width = 560
 
             [shell.launcher.panels]
             ignored = [ "polkit", "setup-wizard", "test", "launcher", "clipboard" ]

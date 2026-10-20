@@ -64,16 +64,16 @@
         require('vim._core.ui2').enable()
         vim.g.mapleader = ' '
 
-        m("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true })
-        m("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
+        m("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true }) m("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
         m("n", "<leader>/", ":nohl<CR>", { silent = true, noremap = true })
         m("n", "<leader>fg", function() Snacks.picker.grep() end)
         m("n", "<leader>ff", function() Snacks.picker.smart() end)
         m("n", "<leader>fd", function() Snacks.picker.zoxide() end)
         m("n", "<leader>fu", function() Snacks.picker.undo() end)
-        m("n", "<leader>fb", ":Fyler<CR>", { silent = true, noremap = true })
+        m("n", "<C-A-w>", function() Snacks.bufdelete.invisible() end)
         m("n", "gq", function() require("conform").format() end, { silent = true, noremap = true })
-        m("n", "<leader><space>", function() Snacks.picker.buffers() end, { desc = "Buffers" })
+        m("n", "<S-t>", function() Snacks.picker.buffers() end, { desc = "Buffers" })
+        m("n", "<leader>fb", ":Fyler<CR>", { silent = true, noremap = true })
         m("n", "<leader>gb", "%", { silent = true, noremap = true })
         m("n", "<leader>t", "<CMD>Fyler kind=split_left_most<CR>", { silent = true, noremap = true })
         m('n', "<leader>gg", "<cmd>Neogit kind=floating<CR>", { silent = true, noremap = true })
@@ -338,10 +338,6 @@
                   enabled = true,
                 },
 
-                scroll = {
-                  enabled = true,
-                },
-
                 dashboard = {
                   enabled = true,
                 },
@@ -350,8 +346,7 @@
                   enabled = true,
                   layout = { preset = "telescope" },
                   sources = {
-                    zoxide = {
-                    },
+                    zoxide = { },
                   },
                 },
               },

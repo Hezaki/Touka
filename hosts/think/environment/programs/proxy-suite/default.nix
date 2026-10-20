@@ -25,7 +25,7 @@
       enable = true;
 
       zapret-discord-youtube = {
-        configName = "general(ALT12)";
+        configName = "general(ALT13)";
         gameFilter = "all";
       };
     };

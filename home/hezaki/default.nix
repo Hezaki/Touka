@@ -15,12 +15,13 @@
       with pkgs;
       with inputs;
       [
+        # parsec-bin
         # tuba
-        tesseract
         android-tools
         authenticator
         bleachbit
         bluetui
+        chafa
         cpu-x
         dtrx
         dua
@@ -39,6 +40,7 @@
         libnotify
         libreoffice
         losslesscut-bin
+        lunar-client
         lutgen
         microfetch
         mousai
@@ -46,7 +48,6 @@
         nix-init
         obsidian
         onefetch
-        # parsec-bin
         piper
         polkit_gnome
         ppsspp-sdl-wayland
@@ -56,9 +57,11 @@
         swaybg
         swayimg
         teamspeak3
+        tesseract
         varia
         via
         wiremix
+        xenia-canary
         xwayland-satellite
         zenity
       ];

@@ -18,12 +18,12 @@ in
           "i2c"
         ];
 
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
       };
 
       root = {
         initialPassword = passroot;
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
       };
     };
 
