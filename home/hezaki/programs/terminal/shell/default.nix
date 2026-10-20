@@ -1,7 +1,7 @@
 {
   imports = [
+    ./fish
     ./starship
-    ./zsh
     ./translate-shell
   ];
 }

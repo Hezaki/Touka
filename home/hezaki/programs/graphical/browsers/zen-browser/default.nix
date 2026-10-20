@@ -25,6 +25,7 @@ with config.lib.stylix.colors;
         presets.betterfox.enable = true;
 
         keyboardShortcuts = [
+          # zen-keyboard-shortcuts.json
           {
             id = "key_quitApplication";
             disabled = true;
@@ -44,13 +45,75 @@ with config.lib.stylix.colors;
             key = "s";
             modifiers.control = true;
           }
+
+          {
+            id = "zen-close-all-unpinned-tabs";
+            key = "w";
+            modifiers = {
+              control = true;
+              alt = true;
+            };
+          }
+
+          {
+            id = "key_selectTab1";
+            key = "1";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab2";
+            key = "2";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab3";
+            key = "3";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab4";
+            key = "4";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab5";
+            key = "z";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab6";
+            key = "x";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab7";
+            key = "c";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectTab8";
+            key = "v";
+            modifiers.alt = true;
+          }
+
+          {
+            id = "key_selectLastTab";
+            key = "f";
+            modifiers.alt = true;
+          }
         ];
 
         mods = [
           "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
           "642854b5-88b4-4c40-b256-e035532109df" # Zen transparent
           "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
-          "5941aefd-67b0-453d-9b62-9071a31cbb0d" # Smaller Compact Mode
         ];
 
         extensions = {
@@ -123,6 +186,7 @@ with config.lib.stylix.colors;
           "zen.urlbar.behavior" = "float";
           "zen.window-sync.enabled" = false;
           "zen.glance.enabled" = false;
+          "zen.theme.gradient.show-custom-colors" = "#${base00}";
 
           # disable geo & notify
           "permissions.default.geo" = 0;

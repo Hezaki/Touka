@@ -55,8 +55,8 @@
     ts3.url = "github:Jokler/ts3client-noweb-nix";
     nixcord.url = "github:4evy/nixcord";
     vimium-options.url = "github:uimataso/vimium-nixos";
-    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
     niri.url = "github:epireyn/niri-flake";
+    niri-keybind.url = "github:JustinSpedding/niri/up-down-keybinds";
     proxy-suite.url = "github:FUFSoB/proxy-suite-flake";
     bluevein.url = "github:meowrch/BlueVein";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
@@ -91,7 +91,7 @@
     };
 
     firefox-addons = {
-      url = "github:xddxdd/firefox-addons-nix";
+      url = "github:petrkozorezov/firefox-addons-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -108,41 +108,6 @@
     nix-ld = {
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zsh-syntax-highlighting = {
-      url = "github:zsh-users/zsh-syntax-highlighting";
-      flake = false;
-    };
-
-    fzf-tab = {
-      url = "github:Aloxaf/fzf-tab";
-      flake = false;
-    };
-
-    fzf-zsh-completions = {
-      url = "github:chitoku-k/fzf-zsh-completions";
-      flake = false;
-    };
-
-    zsh-history-substring-search = {
-      url = "github:zsh-users/zsh-history-substring-search";
-      flake = false;
-    };
-
-    zsh-auto-notify = {
-      url = "github:MichaelAquilina/zsh-auto-notify";
-      flake = false;
-    };
-
-    zsh-autopair = {
-      url = "github:hlissner/zsh-autopair";
-      flake = false;
-    };
-
-    zsh-vi-mode = {
-      url = "github:jeffreytse/zsh-vi-mode";
-      flake = false;
     };
 
     tmux-tilish = {

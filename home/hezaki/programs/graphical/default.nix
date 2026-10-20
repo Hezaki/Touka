@@ -3,7 +3,6 @@
     ./browsers
     ./discord
     ./easyeffects
-    ./foot
     ./games
     ./kdeconnect
     ./keepassxc
@@ -12,6 +11,7 @@
     ./obs-studio
     ./obsidian
     ./prismlauncher
+    ./rio
     ./telegram
     ./vimium
     ./zathura

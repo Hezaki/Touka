@@ -6,7 +6,7 @@
 }:
 
 let
-  terminal = "foot";
+  terminal = "rio";
   wrapperScript = "${config.home.homeDirectory}/.config/xdg-desktop-portal-termfilechooser/yazi-wrapper.sh";
 in
 {
@@ -123,13 +123,13 @@ in
       work_dir=$(get_work_dir "$path")
 
       if [ "$save" = "1" ]; then
-          exec $termcmd --working-directory="$work_dir" -e yazi --chooser-file="$(escape "$out")" "$(escape "$path")"
+          exec $termcmd --working-dir="$work_dir" -e yazi --chooser-file="$(escape "$out")" "$(escape "$path")"
       elif [ "$directory" = "1" ]; then
-          exec $termcmd --working-directory="$work_dir" -e yazi --chooser-file="$(escape "$out")" --cwd-file="$(escape "$out")" "$(escape "$path")"
+          exec $termcmd --working-dir="$work_dir" -e yazi --chooser-file="$(escape "$out")" --cwd-file="$(escape "$out")" "$(escape "$path")"
       elif [ "$multiple" = "1" ]; then
-          exec $termcmd --working-directory="$work_dir" -e yazi --chooser-file="$(escape "$out")" "$(escape "$path")"
+          exec $termcmd --working-dir="$work_dir" -e yazi --chooser-file="$(escape "$out")" "$(escape "$path")"
       else
-          exec $termcmd --working-directory="$work_dir" -e yazi --chooser-file="$(escape "$out")" "$(escape "$path")"
+          exec $termcmd --working-dir="$work_dir" -e yazi --chooser-file="$(escape "$out")" "$(escape "$path")"
       fi
     '';
   };
