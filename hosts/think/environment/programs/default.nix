@@ -7,22 +7,21 @@
 {
   imports = with inputs; [
     nix-index-database.nixosModules.nix-index
-    ./nh
-    ./kanata
-    ./nix-ld
+    ./apparmor
+    ./bluevien
     ./clamav
-    ./steam
-    ./polkit
-    ./podman
+    ./dns-crypt
     ./flatpak
     ./gpu-screen-recorder
+    ./kanata
+    ./nh
+    ./nix-ld
+    ./podman
+    ./polkit
     ./proxy-suite
-    ./dns-crypt
-    ./throne
-    ./apparmor
     ./scx
     ./sops
-    ./bluevien
+    ./steam
   ];
 
   environment.systemPackages = with pkgs; [

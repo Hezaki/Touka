@@ -54,13 +54,17 @@
         pywalfox-native
         ripdrag
         scrcpy
+        sops
         swaybg
         swayimg
         teamspeak3
         tesseract
+        unrar
+        unzip
         varia
         via
         wiremix
+        xdg-utils
         xenia-canary
         xwayland-satellite
         zenity

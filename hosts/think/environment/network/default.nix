@@ -68,7 +68,7 @@
     };
   };
 
-  services.tailscale.enable = true;
+  services.tailscale.enable = false;
 
   boot.initrd.systemd.network.wait-online.enable = false;
 }

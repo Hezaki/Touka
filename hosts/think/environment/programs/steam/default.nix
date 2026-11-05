@@ -11,9 +11,12 @@
   ];
 
   programs = {
+    gamescope.enable = true;
+
     steam = {
       enable = true;
       protontricks.enable = true;
+
       package = pkgs.steam.override {
         extraEnv = {
           OBS_VKCAPTURE = true;

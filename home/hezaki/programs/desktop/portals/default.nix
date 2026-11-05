@@ -47,7 +47,7 @@ in
       documents = "${homeDirectory}/Documents";
       videos = "${homeDirectory}/Videos";
       pictures = "${homeDirectory}/Pictures";
-      projects = "${homeDirectory}/Projects";
+      projects = null;
       templates = null;
       publicShare = null;
       extraConfig = {

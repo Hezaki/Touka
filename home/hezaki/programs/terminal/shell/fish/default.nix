@@ -24,10 +24,10 @@
           src = p.sponge.src;
         }
 
-        # {
-        #   name = "autopair";
-        #   src = p.autopair.src;
-        # }
+        {
+          name = "conf.d/autopair";
+          src = p.autopair.src;
+        }
       ];
 
     shellAbbrs = {

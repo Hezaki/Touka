@@ -5,6 +5,9 @@
   services.flatpak = {
     enable = true;
 
-    packages = [ "com.pojtinger.felicitas.Multiplex" ];
+    packages = [
+      "com.pojtinger.felicitas.Multiplex"
+      "space.x1z53.iris"
+    ];
   };
 }

@@ -1,38 +1,35 @@
-{ inputs, ... }:
-
+{ inputs, config, ... }:
 {
-  imports = with inputs; [ proxy-suite.nixosModules.default ];
+  imports = [ inputs.proxy-suite.nixosModules.default ];
 
   services.proxy-suite = {
     enable = true;
 
+    killSwitch = {
+      enable = true;
+      allowedSubnets = [ "192.168.0.0/16" ];
+    };
+
     proxy = {
       enable = true;
-
-      selection = "urltest";
-
+      autostart = "tun";
+      selection = "selector";
       tun.enable = true;
 
       subscriptions = [
         {
-          tag = "pig";
-          url = "https://gitlab.com/avencores/goida-vpn-configs/-/raw/main/githubmirror/6.txt";
-        } # https://gitlab.com/avencores/goida-vpn-configs
+          tag = "main";
+          updateInterval = "3h";
+          urlFile = "${config.sops.secrets."vepen".path}";
+        }
       ];
-    };
-
-    zapret = {
-      enable = true;
-
-      zapret-discord-youtube = {
-        configName = "general(ALT13)";
-        gameFilter = "all";
-      };
     };
 
     tgWsProxy = {
       enable = true;
-      secret = "2ebbe132a1cd7daa83901c9bc7b4c8d6";
+      secretFile = "${config.sops.secrets."tgwsp-secret".path}";
     };
   };
+
+  systemd.services.proxy-suite-socks.serviceConfig.PrivateTmp = true;
 }

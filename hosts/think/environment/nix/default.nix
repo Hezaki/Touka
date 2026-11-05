@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 {
   imports = with inputs; [ determinate.nixosModules.default ];
@@ -13,11 +13,11 @@
       builders-use-substitutes = true;
       max-jobs = "auto";
       cores = 0;
+      access-tokens = config.sops.secrets."github_token".path;
 
       substituters = [
         "https://cache.nixos.org"
         "https://noctalia.cachix.org"
-        "https://mirror.yandex.ru/nixos"
         "https://install.determinate.systems"
         "https://ayugram-desktop.cachix.org"
       ];

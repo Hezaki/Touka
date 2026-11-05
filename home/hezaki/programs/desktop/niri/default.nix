@@ -32,31 +32,33 @@
       ''
         spawn-at-startup "xwayland-satellite"
         spawn-at-startup "wl-paste" "--watch" "cliphist" "store";
+        spawn-at-startup "udiskie"
         spawn-at-startup "zen-twilight"
         spawn-at-startup "AyuGram"
         spawn-at-startup "equibop"
         spawn-at-startup "steam"
         spawn-sh-at-startup r#"
-          tmux new-session -d -s main $SHELL \; \
-               new-window nvim \; \
-               new-window btop \; \
-               new-window wiremix \; \
+          tmux new-session -d -s main $SHELL   \; \
+               new-window nvim                 \; \
+               new-window btop                 \; \
+               new-window wiremix              \; \
                select-window -t 1
         "#
 
         environment {
           DISPLAY ":0"
-          QT_QPA_PLATFORMTHEME_QT6 "termfilechooser"
-          QT_QPA_PLATFORMTHEME "termfilechooser"
+          QT_QPA_PLATFORMTHEME "xdgdesktopportal"
         }
 
         input {
           workspace-auto-back-and-forth
           warp-mouse-to-focus
           focus-follows-mouse max-scroll-amount="0%"
+
           keyboard {
             repeat-delay 500
             repeat-rate 50
+
             xkb {
               layout "us,ru"
               options "grp:caps_toggle,compose:ralt"
@@ -65,12 +67,12 @@
 
           touchpad {
             tap
-            scroll-factor 0.4
+            scroll-factor 0.2
             accel-speed 0.5
           }
 
           mouse {
-            accel-speed -0.87
+            accel-speed -0.89
             accel-profile "flat"
             scroll-method "no-scroll"
           }
@@ -457,11 +459,10 @@
 
         binds {
           Mod {
-            release { spawn-sh "noctalia msg panel-toggle launcher"; }
+            release { toggle-overview; }
           }
 
           Mod+Shift+Slash { show-hotkey-overlay; }
-          Mod+Space { toggle-overview; }
 
           Mod+O { spawn-sh "niri msg action toggle-windowed-fullscreen && niri msg action maximize-window-to-edges && noctalia msg bar-toggle"; }
 

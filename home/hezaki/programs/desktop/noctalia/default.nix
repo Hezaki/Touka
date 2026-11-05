@@ -8,7 +8,7 @@
   };
 
   home.file.".local/state/noctalia/settings.toml".text = ''
-    config_version = 15
+    config_version = 16
 
     [accessibility]
     ui_scale = 1.2000000104308128
@@ -43,7 +43,7 @@
         accordion_direction = "end"
         border_width = 1.0
         enabled = true
-        fill = "surface_variant"
+        fill = "surface_container"
         id = "g1"
         members = [ "brightness", "output_volume", "input_volume", "bluetooth", "network" ]
         opacity = 1.0
@@ -119,7 +119,7 @@
     allow_empty_password = true
     fingerprint = false
     monitors = [ "DP-2", "eDP-1" ]
-    transition = [ "zoom" ]
+    transition = [ "melt" ]
 
     [lockscreen_widgets]
     enabled = true
@@ -150,7 +150,7 @@
         type = "login_box"
 
             [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
-            background_color = "surface_variant"
+            background_color = "surface_container"
             background_opacity = 0.88
             background_radius = 12.0
             center_password_text = false
@@ -178,7 +178,7 @@
         type = "login_box"
 
             [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
-            background_color = "surface_variant"
+            background_color = "surface_container"
             background_opacity = 0.0
             background_radius = 32.0
             center_password_text = true
@@ -206,7 +206,7 @@
         type = "login_box"
 
             [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-            background_color = "surface_variant"
+            background_color = "surface_container"
             background_opacity = 0.0
             background_radius = 32.0
             center_password_text = false
@@ -331,6 +331,8 @@
     corner_radius_scale = 2.0
     font_family = "Inter"
     input_borders = false
+    niri_overview_close_on_launch_enabled = true
+    niri_overview_type_to_launch_enabled = true
     offline_mode = true
     panel_anchor_bar = "default"
     password_style = "random"
@@ -343,6 +345,8 @@
         auto_paste = "off"
         categories = false
         category_icons_only = true
+        layout = "simple"
+        provider_prefix = ":"
         search_position = "top"
         show_app_actions = true
         show_session_button = false
@@ -353,6 +357,7 @@
             ignored = [ "polkit", "setup-wizard", "test", "launcher", "clipboard" ]
 
             [shell.launcher.providers.emoji]
+            global = false
             prefix = ""
 
             [shell.launcher.providers.session]
@@ -367,7 +372,6 @@
         [shell.panel]
         control_center_position = "center"
         floating_offset = 100
-        list_item_background = true
         open_near_click_control_center = true
         session_placement = "floating"
         session_position = "center"
@@ -419,13 +423,6 @@
             shortcut = "1"
             variant = "default"
 
-            [[shell.session.actions]]
-            action = "command"
-            command = "notify-send 'Noctalia' 'Custom session entry'"
-            countdown_seconds = 0.0
-            enabled = false
-            variant = "default"
-
         [shell.shadow]
         alpha = 0.99999997764825821
         direction = "center"
@@ -442,6 +439,8 @@
 
         [theme.templates]
         community_ids = [ "discord" ]
+        enable_builtin_templates = false
+        enable_community_templates = false
 
     [wallpaper]
     directory = "/home/hezaki/Downloads"
@@ -544,5 +543,6 @@
     labels_only_when_occupied = true
     pill_scale = 0.84999999999999998
     show_all_outputs = true
+    show_labels = false
   '';
 }

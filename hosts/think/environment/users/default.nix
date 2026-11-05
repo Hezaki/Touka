@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   user = "hezaki";
-  passroot = "password";
-  passuser = "password";
+  passroot = "${config.sops.secrets."passroot".path}";
+  passuser = "${config.sops.secrets."passuser".path}";
 in
 {
   users = {

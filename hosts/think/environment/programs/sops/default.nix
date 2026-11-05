@@ -6,12 +6,16 @@ in
   imports = with inputs; [ sops-nix.nixosModules.sops ];
 
   sops = {
-    defaultSopsFile = ../../../../../secrets/secrets.yaml;
+    defaultSopsFile = /home/hezaki/Downloads/Repository/touka/secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "${path}/sops/age/keys.txt";
 
     secrets = {
       "github_token" = { };
+      "passroot" = { };
+      "passuser" = { };
+      "tgwsp-secret" = { };
+      "vepen" = { };
     };
   };
 

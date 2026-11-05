@@ -5,7 +5,7 @@
     variables = {
       ROC_ENABLE_PRE_VEGA = "1";
       LIBVA_DRIVER_NAME = "radeonsi";
-      QT_QPA_PLATFORMTHEME = lib.mkForce "termfilechooser";
+      QT_QPA_PLATFORMTHEME = lib.mkForce "xdgdesktopportal";
     };
 
     sessionVariables = {
