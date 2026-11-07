@@ -25,7 +25,7 @@
 
   programs.niri = {
     enable = true;
-    package = inputs.niri-keybind.packages.${pkgs.system}.default;
+    package = pkgs.niri-unstable;
 
     config =
       with config.lib.stylix.colors; # kdl
@@ -444,6 +444,18 @@
           match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
           default-floating-position x=10 y=10 relative-to="bottom-right"
           open-focused false
+        }
+
+        window-rule {
+          match app-id="steam_app_1284210"
+
+          border {
+              off
+          }
+
+          shadow {
+              off
+          }
         }
 
         window-rule { 

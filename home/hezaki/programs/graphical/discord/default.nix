@@ -5,7 +5,15 @@
   programs.nixcord = {
     enable = true;
     discord.enable = false;
-    vesktop.enable = true;
+    goofcord = {
+      enable = true;
+      clientMod = "equicord";
+
+      settings = {
+        minimizeToTray = true;
+        hardwareAcceleration = true;
+      };
+    };
 
     config = {
       frameless = true;
@@ -15,10 +23,13 @@
       plugins = {
         clearUrls.enable = true;
         mutualGroupDms.enable = true;
+        blockKrisp.enable = true;
         callTimer.enable = true;
         crashHandler.enable = true;
+        declutter.enable = true;
         fixImagesQuality.enable = true;
         fixYoutubeEmbeds.enable = true;
+        followVoiceUser.enable = true;
         quickReply.enable = true;
       };
     };

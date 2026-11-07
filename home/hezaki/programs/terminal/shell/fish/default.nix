@@ -56,6 +56,7 @@
       "neofetch" = "fastfetch -c neofetch";
       "pizdafetch" = "fastfetch -c examples/13";
       "rm" = "gomi";
+      "reboot-windows" = ''sudo bootctl set-oneshot "Windows Boot Manager" && systemctl reboot'';
     };
 
     interactiveShellInit = ''
