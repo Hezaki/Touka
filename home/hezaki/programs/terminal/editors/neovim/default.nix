@@ -44,11 +44,13 @@
         o.clipboard = "unnamedplus"
         o.virtualedit = "block"
         o.shiftwidth = 2
+        o.shiftwidth = 2
         o.cmdheight = 0
         o.numberwidth = 1
         o.scrolloff = 5
         o.laststatus = 3
         o.pumheight = 10
+        o.pumblend = 10
         o.tabstop = 2
         o.list = true
         o.breakindentopt = { shift = 2, min = 4 }
@@ -59,9 +61,76 @@
           extends = ">",
           precedes = "<"
         }
+        o.updatetime = 300
+        o.wildmode = "longest:full,full"
+        o.completeopt = "menuone,noinsert,noselect"
+
+        require("vim._core.ui2").enable({
+          enable = true,
+          msg = {
+            targets = {
+              [""] = "msg",
+              empty = "cmd",
+              bufwrite = "msg",
+              confirm = "cmd",
+              emsg = "pager",
+              echo = "msg",
+              echomsg = "msg",
+              echoerr = "pager",
+              completion = "cmd",
+              list_cmd = "pager",
+              lua_error = "pager",
+              lua_print = "msg",
+              progress = "pager",
+              rpc_error = "pager",
+              quickfix = "msg",
+              search_cmd = "cmd",
+              search_count = "cmd",
+              shell_cmd = "pager",
+              shell_err = "pager",
+              shell_out = "pager",
+              shell_ret = "msg",
+              undo = "msg",
+              verbose = "pager",
+              wildlist = "cmd",
+              wmsg = "msg",
+              typed_cmd = "cmd",
+            },
+            cmd = { height = 0.5 },
+            dialog = { height = 0.5 },
+            msg = { height = 0.3, timeout = 5000 },
+            pager = { height = 0.5 },
+          },
+        })
+
+        local augroup = vim.api.nvim_create_augroup("UserConfig", {})
+
+        api.nvim_create_autocmd("InsertLeave", {
+          group = augroup,
+          pattern = "*",
+          command = "set nopaste",
+        })
+
+        local cursorline_group = vim.api.nvim_create_augroup("CursorLine", { clear = true })
+        api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+          group = cursorline_group,
+          pattern = "*",
+          command = "setlocal cursorline",
+        })
+        api.nvim_create_autocmd("WinLeave", {
+          group = cursorline_group,
+          pattern = "*",
+          command = "setlocal nocursorline",
+        })
+
+        api.nvim_create_autocmd("TextYankPost", {
+          group = augroup,
+          callback = function()
+            vim.highlight.on_yank()
+          end,
+        })
 
         vim.loader.enable()
-        require('vim._core.ui2').enable()
         vim.g.mapleader = ' '
 
         m("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true }) m("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
@@ -90,6 +159,8 @@
           vim.fn.setreg("+", filePath) 
           print ("File path copied to clipboard: " .. filePath)
         end)
+        m("n", "<C-a>", "gg<S-v>G")
+
 
         statusline = function()
           local modes = {
@@ -251,36 +322,6 @@
                   }
                 }
               end,
-            },
-
-            {
-              'HiPhish/rainbow-delimiters.nvim',
-              config = function()
-                local rainbow_delimiters = require 'rainbow-delimiters'
-                vim.g.rainbow_delimiters = {
-                  strategy = {
-                    [""] = rainbow_delimiters.strategy['global'],
-                    vim = rainbow_delimiters.strategy['local'],
-                  },
-                  query = {
-                    [""] = 'rainbow-delimiters',
-                    lua = 'rainbow-blocks',
-                  },
-                  priority = {
-                    [""] = 110,
-                    lua = 210,
-                  },
-                  highlight = {
-                    'RainbowDelimiterRed',
-                    'RainbowDelimiterYellow',
-                    'RainbowDelimiterBlue',
-                    'RainbowDelimiterOrange',
-                    'RainbowDelimiterGreen',
-                    'RainbowDelimiterViolet',
-                    'RainbowDelimiterCyan',
-                  },
-                }
-              end
             },
 
             {

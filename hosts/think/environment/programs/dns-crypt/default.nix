@@ -44,7 +44,6 @@ in
 
         ipv4_servers = true;
         dnscrypt_servers = true;
-        force_tcp = true;
         doh_servers = true;
       };
     };

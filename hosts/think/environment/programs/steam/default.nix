@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 
@@ -36,11 +35,6 @@
   };
 
   jovian = {
-    decky-loader = {
-      enable = true;
-      user = "hezaki";
-    };
-
     steamos = {
       enableZram = true;
       enableEarlyOOM = true;
@@ -48,10 +42,4 @@
 
     hardware.has.amd.gpu = true;
   };
-
-  systemd.tmpfiles.settings."steam-cef-remote-debugging"."${config.users.users.hezaki.home}/.local/share/Steam/.cef-enable-remote-debugging".f =
-    {
-      user = "hezaki";
-      group = "users";
-    };
 }

@@ -101,6 +101,16 @@
     dbus.implementation = "broker";
   };
 
+  services.kmscon = {
+    enable = true;
+    useXkbConfig = true;
+
+    extraConfig = ''
+      font-size=20
+      multi-monitor=largest
+    '';
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "26.05";
 }

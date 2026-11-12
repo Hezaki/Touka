@@ -101,14 +101,13 @@
         prefer-no-csd
 
         layer-rule {
-          match at-startup=true
           match namespace="^noctalia-backdrop"
-
           place-within-backdrop true
         }
 
         layer-rule {
           match namespace="^noctalia-(notification-[^\"]+||dock|panel|attached-panel|osd)$"
+
           background-effect {
             xray false
             blur true
@@ -201,11 +200,11 @@
           }
 
           shadow {
-            on
-            softness 20
-            spread 2
-            offset x=0 y=4
-            color "#000000"
+              on
+              softness 30
+              spread 5
+              offset x=0 y=8
+              color "#000000A0"
           }
 
           focus-ring { 
@@ -214,9 +213,9 @@
 
           border {
             on
-            width 1
-            active-color "#${base00}"
-            inactive-color "#${base03}"
+            width 1.5
+            active-color "#${base01}"
+            inactive-color "#${base01}"
             urgent-color "#${base08}"
           }
 
@@ -346,7 +345,7 @@
 
         window-rule {
           open-focused true
-          geometry-corner-radius 23
+          geometry-corner-radius 26
           clip-to-geometry true
           draw-border-with-background false
           tiled-state true
@@ -362,7 +361,7 @@
           match app-id="zen-twilight"
 
           popups {
-            geometry-corner-radius 23
+            geometry-corner-radius 26
           }
         }
 

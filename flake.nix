@@ -59,6 +59,7 @@
     niri-keybind.url = "github:JustinSpedding/niri/up-down-keybinds";
     proxy-suite.url = "github:FUFSoB/proxy-suite-flake";
     bluevein.url = "github:meowrch/BlueVein";
+    nixos-millennium.url = "github:re1n0/nixos-millennium/release";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     lanzaboote = {

@@ -5,15 +5,7 @@
   programs.nixcord = {
     enable = true;
     discord.enable = false;
-    goofcord = {
-      enable = true;
-      clientMod = "equicord";
-
-      settings = {
-        minimizeToTray = true;
-        hardwareAcceleration = true;
-      };
-    };
+    equibop.enable = true;
 
     config = {
       frameless = true;

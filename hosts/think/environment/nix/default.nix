@@ -6,6 +6,9 @@
   nix = {
     optimise.automatic = true;
     daemonCPUSchedPolicy = "idle";
+    extraOptions = ''
+      !include ${config.sops.secrets."github_token".path}
+    '';
 
     settings = {
       warn-dirty = false;
@@ -13,7 +16,6 @@
       builders-use-substitutes = true;
       max-jobs = "auto";
       cores = 0;
-      access-tokens = config.sops.secrets."github_token".path;
 
       substituters = [
         "https://cache.nixos.org"

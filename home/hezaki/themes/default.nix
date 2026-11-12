@@ -37,9 +37,9 @@
     };
 
     cursor = {
-      name = "Bibata-Modern-Custom";
+      name = "GoogleDot-Custom";
       package =
-        inputs.nix-cursors.packages.${pkgs.stdenv.hostPlatform.system}.bibata-modern-cursor.override
+        inputs.nix-cursors.packages.${pkgs.stdenv.hostPlatform.system}.google-cursor.override
           {
             background_color = "#${config.lib.stylix.colors.base00}";
             outline_color = "#${config.lib.stylix.colors.base06}";

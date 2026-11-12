@@ -182,11 +182,12 @@ with config.lib.stylix.colors;
           # zen
           "zen.view.compact.hide-tabbar" = true;
           "zen.view.compact.hide-toolbar" = true;
-          "zen.urlbar.open-on-startup" = false;
+          "zen.urlbar.open-on-startup" = true;
           "zen.urlbar.behavior" = "float";
           "zen.window-sync.enabled" = false;
           "zen.glance.enabled" = false;
           "zen.theme.gradient.show-custom-colors" = "#${base00}";
+          "zen.theme.border-radius" = 26;
 
           # disable geo & notify
           "permissions.default.geo" = 0;

@@ -30,6 +30,7 @@
         evtest
         gcr
         gdb
+        gnome-control-center
         gnome-decoder
         gnome-secrets
         gomi
