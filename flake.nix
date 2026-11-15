@@ -60,6 +60,7 @@
     proxy-suite.url = "github:FUFSoB/proxy-suite-flake";
     bluevein.url = "github:meowrch/BlueVein";
     nixos-millennium.url = "github:re1n0/nixos-millennium/release";
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     lanzaboote = {

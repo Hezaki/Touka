@@ -28,6 +28,7 @@
         duf
         element-desktop
         evtest
+        foliate
         gcr
         gdb
         gnome-control-center

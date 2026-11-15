@@ -5,9 +5,8 @@
 }:
 
 {
-  imports = with inputs; [
-    chaotic.vendored.jovian.nixosModules.default
-  ];
+  imports = with inputs; [ chaotic.vendored.jovian.nixosModules.default ];
+  nixpkgs.overlays = [ inputs.millennium.overlays.default ];
 
   programs = {
     gamescope.enable = true;
@@ -16,7 +15,7 @@
       enable = true;
       protontricks.enable = true;
 
-      package = pkgs.steam.override {
+      package = pkgs.millennium-steam.override {
         extraEnv = {
           OBS_VKCAPTURE = true;
           RADV_TEX_ANISO = 16;

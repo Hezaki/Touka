@@ -41,7 +41,7 @@ with config.lib.stylix.colors;
           }
 
           {
-            id = "zen-toggle-sidebar";
+            id = "zen-compact-mode-show-sidebar";
             key = "s";
             modifiers.control = true;
           }
@@ -110,11 +110,15 @@ with config.lib.stylix.colors;
           }
         ];
 
-        mods = [
-          "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
-          "642854b5-88b4-4c40-b256-e035532109df" # Zen transparent
-          "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
-        ];
+        sine = {
+          enable = true;
+
+          mods = [
+            "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
+            "642854b5-88b4-4c40-b256-e035532109df" # Zen transparent
+            "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
+          ];
+        };
 
         extensions = {
           force = true;

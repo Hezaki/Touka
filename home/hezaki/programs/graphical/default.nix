@@ -7,7 +7,7 @@
     ./kdeconnect
     ./keepassxc
     ./mangohud
-    ./millenium
+    ./millennium
     ./mpv
     ./obs-studio
     ./obsidian

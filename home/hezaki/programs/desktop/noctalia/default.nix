@@ -28,8 +28,8 @@
     border = "surface_container_low"
     compositor_blur = false
     contact_shadow = true
-    end = [ "tray", "media", "keyboard_layout", "group:g1", "notifications", "status" ]
-    margin_ends = 200
+    end = [ "tray", "media", "keyboard_layout", "group:g1", "notifications" ]
+    margin_ends = 250
     padding = 12
     position = "left"
     radius = 80
@@ -41,7 +41,7 @@
         click_through = true
 
         [bar.default.monitor.eDP-1]
-        margin_ends = 100
+        margin_ends = 120
 
         [[bar.default.capsule_group]]
         accordion = false
@@ -121,6 +121,9 @@
         action = "screen_off"
         enabled = true
         timeout = 660.0
+
+    [location]
+    address = "Samara, Russia"
 
     [lockscreen]
     allow_empty_password = true
@@ -207,7 +210,7 @@
         box_height = 70.0
         box_width = 400.0
         cx = 960.0
-        cy = 604.0
+        cy = 616.91015625
         output = "eDP-1"
         placement_height = 1080.0
         placement_width = 1920.0
@@ -281,10 +284,10 @@
             timezone = ""
 
         [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
-        box_height = 448.0
-        box_width = 512.0
+        box_height = 350.55078125
+        box_width = 607.4931640625
         cx = 960.0
-        cy = 431.92578125
+        cy = 410.677734375
         output = "eDP-1"
         placement_height = 1080.0
         placement_width = 1920.0
@@ -293,11 +296,12 @@
 
             [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
             background = false
+            center_text = true
             color = "primary"
-            font_family = "Abhaya Libre"
+            font_family = "Hahmlet"
+            shadow = false
 
     [nightlight]
-    enabled = true
     temperature_day = 4000
 
     [notification]
@@ -354,6 +358,7 @@
     avatar_path = "/home/hezaki/Downloads/Pictures/icon.jpg"
     button_borders = false
     card_borders = false
+    clipboard_auto_paste = "off"
     corner_radius_scale = 2.0
     font_family = "Inter"
     input_borders = false
@@ -364,6 +369,7 @@
     polkit_colorize_icons = true
     screen_time_colorize_icons = true
     show_close_buttons = false
+    show_location = false
 
         [shell.animation]
         speed = 1.0500000156462193
@@ -399,6 +405,7 @@
 
         [shell.panel]
         border_width = 1.5
+        control_center_placement = "floating"
         control_center_position = "center"
         floating_offset = 100
         list_item_background = true
@@ -550,11 +557,6 @@
     [widget.power_profile]
     scale = 1.05
 
-    [widget.status]
-    font_scale = 0.20000000000000001
-    scale = 1.25
-    type = "icefish/phone-operate:status"
-
     [widget.sysmon]
     stat = "cpu_temp"
 
@@ -571,8 +573,8 @@
     drawer = true
 
     [widget.weather]
+    font_family = "JetBrains Mono"
     font_scale = 0.90000000000000013
-    font_weight = 100
     interactive = false
     scale = 1.1500000000000001
 
@@ -584,7 +586,7 @@
     font_family = "JetBrains Mono"
     labels_only_when_occupied = true
     monitors = [ "*" ]
-    pill_scale = 0.84999999999999998
+    pill_scale = 0.80000000000000004
     show_labels = false
   '';
 }
