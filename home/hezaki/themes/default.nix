@@ -38,13 +38,11 @@
 
     cursor = {
       name = "GoogleDot-Custom";
-      package =
-        inputs.nix-cursors.packages.${pkgs.stdenv.hostPlatform.system}.google-cursor.override
-          {
-            background_color = "#${config.lib.stylix.colors.base00}";
-            outline_color = "#${config.lib.stylix.colors.base06}";
-            accent_color = "#${config.lib.stylix.colors.base00}";
-          };
+      package = inputs.nix-cursors.packages.${pkgs.stdenv.hostPlatform.system}.google-cursor.override {
+        background_color = "#${config.lib.stylix.colors.base00}";
+        outline_color = "#${config.lib.stylix.colors.base06}";
+        accent_color = "#${config.lib.stylix.colors.base00}";
+      };
       size = 17;
     };
 
@@ -74,10 +72,12 @@
       neovim.enable = false;
       firefox.profileNames = [ "hqzk" ];
 
-      # zen-browser.profileNames = [
-      #   "hqzk"
-      #   # "russl"
-      # ];
+      qt = {
+        enable = true;
+        platform = "qtct";
+      };
+
+      zen-browser.enable = false;
     };
   };
 

@@ -54,9 +54,15 @@
         opacity = 1.0
         padding = 6.0
 
+    [bluetooth]
+    connect_when_enabled = true
+
     [brightness]
     enable_ddcutil = true
     sync_all_monitors = true
+
+    [calendar]
+    enabled = true
 
     [control_center]
     show_session_button = false
@@ -79,27 +85,10 @@
         [desktop_widgets.widget]
 
     [dock]
-    background_opacity = 0.79999998211860657
-    colorize_icons = true
-    concave_edge_corners = false
+    icon_saturation = 0.97999997809529305
     launcher_custom_image_colorize = true
-    launcher_position = "start"
-    layer = "overlay"
-    pinned = [
-        "com.mitchellh.ghostty",
-        "zen-twilight",
-        "helium",
-        "obsidian",
-        "com.ayugram.desktop",
-        "equibop",
-        "steam",
-        "com.belmoussaoui.Authenticator",
-        "org.bleachbit.BleachBit",
-        "org.gnome.Nautilus"
-    ]
     reserve_space = false
     show_dots = true
-    smart_auto_hide = true
 
     [hot_corners.top_left]
     action = "launcher"
@@ -127,8 +116,11 @@
 
     [lockscreen]
     allow_empty_password = true
+    blur_intensity = 0.0
+    edge_smoothness = 0.4999999888241291
     fingerprint = false
     monitors = [ "DP-2", "eDP-1" ]
+    tint_intensity = 0.0
     transition = [ "melt" ]
 
     [lockscreen_widgets]

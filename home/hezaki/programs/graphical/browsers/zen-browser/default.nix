@@ -12,6 +12,7 @@ with config.lib.stylix.colors;
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
+    nativeMessagingHosts = [ pkgs.tridactyl-native ];
 
     languagePacks = [
       "en-US"
@@ -179,9 +180,11 @@ with config.lib.stylix.colors;
         settings = {
           "browser.startup.homepage" = "https://vimium.github.io/new-tab/";
           "browser.ctrlTab.sortByRecentlyUsed" = true;
-          "layout.css.devPixelsPerPx" = 1.05;
           "browser.display.use_system_colors" = true;
+          "layout.css.devPixelsPerPx" = 1.05;
           "dom.webgpu.enabled" = true;
+          "nglayout.initialpaint.delay" = 2;
+          "nglayout.initialpaint.delay_in_oopif" = 2;
 
           # zen
           "zen.view.compact.hide-tabbar" = true;

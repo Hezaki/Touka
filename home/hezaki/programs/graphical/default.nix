@@ -14,7 +14,7 @@
     ./prismlauncher
     ./rio
     ./telegram
-    ./vimium
+    ./tridactyl
     ./zathura
   ];
 }

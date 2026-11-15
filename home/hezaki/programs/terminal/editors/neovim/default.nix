@@ -64,6 +64,13 @@
         o.updatetime = 300
         o.wildmode = "longest:full,full"
         o.completeopt = "menuone,noinsert,noselect"
+        o.foldmethod = 'expr'
+        o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        o.foldlevel = 99
+        o.foldlevelstart = 99
+        o.foldenable = true
+        o.spell = true
+        o.spelllang = "ru"
 
         require("vim._core.ui2").enable({
           enable = true,
@@ -145,7 +152,6 @@
         m("n", "<leader>fb", ":Fyler<CR>", { silent = true, noremap = true })
         m("n", "<leader>gb", "%", { silent = true, noremap = true })
         m("n", "<leader>t", "<CMD>Fyler kind=split_left_most<CR>", { silent = true, noremap = true })
-        m('n', "<leader>gg", "<cmd>Neogit kind=floating<CR>", { silent = true, noremap = true })
         m('n', '<leader>r', ":%s/\\<<C-r><C-w>\\>//g<Left><Left>" )
         m("n", "<PageDown>", "<S-}>zz")
         m("n", "<PageUp>", "<S-{>zz")
@@ -159,8 +165,6 @@
           vim.fn.setreg("+", filePath) 
           print ("File path copied to clipboard: " .. filePath)
         end)
-        m("n", "<C-a>", "gg<S-v>G")
-
 
         statusline = function()
           local modes = {
@@ -199,7 +203,7 @@
 
           return table.concat {
             sf("  %s ", m),
-            sf(" %s ", vim.fn.pathshorten(vim.fn.expand("%f"), 3)),
+            sf(" %s ", vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")),
             "%m",
             get_git_branch(),
             "%=",
@@ -253,15 +257,47 @@
               lazy = false,
             },
 
-
             {
-              "NeogitOrg/neogit",
-              lazy = true,
-              dependencies = {
-                "esmuellert/codediff.nvim",
-                "m00qek/baleia.nvim",
+              "obsidian-nvim/obsidian.nvim",
+              version = "*",
+              opts = {
+                legacy_commands = false,
+
+                workspaces = {
+                  {
+                    name = "main",
+                    path = "~/Downloads/Repository/Notes",
+                  },
+                },
+
+                templates = {
+                  folder = "templates",
+                  date_format = "%Y-%m-%d",
+                  time_format = "%H:%M",
+                },
+
+                daily_notes = {
+                  folder = "daily",
+                  date_format = "%Y-%m-%d",
+                  template = "dailyTemplate.md",
+                },
+
+                callbacks = {
+                  enter_note = function()
+                    local m = function(lhs, rhs, desc, mode)
+                      vim.keymap.set(mode or "n", lhs, rhs, {
+                        buffer = true,
+                        desc = desc,
+                      })
+                    end
+
+                    m("<leader>fo", "<cmd>Obsidian<cr>")
+                    m("<leader>ff", "<cmd>Obsidian quick_switch<cr>")
+                    m("<leader>fg", "<cmd>Obsidian search<cr>")
+                    m("<leader>ft", "<cmd>Obsidian template<cr>")
+                  end,
+                },
               },
-              cmd = "Neogit",
             },
 
             {
@@ -325,19 +361,54 @@
             },
 
             {
+              'HiPhish/rainbow-delimiters.nvim',
+              config = function()
+                local rainbow_delimiters = require 'rainbow-delimiters'
+                vim.g.rainbow_delimiters = {
+                  strategy = {
+                    [""] = rainbow_delimiters.strategy['global'],
+                    vim = rainbow_delimiters.strategy['local'],
+                  },
+                  query = {
+                    [""] = 'rainbow-delimiters',
+                    lua = 'rainbow-blocks',
+                  },
+                  priority = {
+                    [""] = 110,
+                    lua = 210,
+                  },
+                  highlight = {
+                    'RainbowDelimiterRed',
+                    'RainbowDelimiterYellow',
+                    'RainbowDelimiterBlue',
+                    'RainbowDelimiterOrange',
+                    'RainbowDelimiterGreen',
+                    'RainbowDelimiterViolet',
+                    'RainbowDelimiterCyan',
+                  },
+                }
+              end
+            },
+
+            {
               'nvim-treesitter/nvim-treesitter',
-              event = "VeryLazy",
-              build = ":TSUpdate",
-              dependencies = { 'neovim-treesitter/treesitter-parser-registry' },
-              main = "nvim-treesitter.config",
-              opts = {
-                indent = { enable = true },
-                highlight = {
-                  enable = true,
-                  additional_vim_regex_highlighting = false,
-                },
-                folds = { enable = true },
+              lazy = false,
+              build = ':TSUpdate',
+
+              dependencies = {
+                'neovim-treesitter/treesitter-parser-registry',
               },
+
+              config = function()
+                require('nvim-treesitter').setup()
+
+                vim.api.nvim_create_autocmd('FileType', {
+                  pattern = '*',
+                  callback = function(args)
+                    pcall(vim.treesitter.start, args.buf)
+                  end,
+                })
+              end,
             },
 
             {
@@ -400,14 +471,6 @@
             },
 
             {
-              'norcalli/nvim-colorizer.lua',
-              event = "VeryLazy",
-              config = function()
-                require"colorizer".setup()
-              end,
-            },
-
-            {
               'saghen/blink.cmp',
               version = '1.*',
               dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
@@ -424,6 +487,7 @@
                 },
 
                 completion = {
+                  keyword = { range = 'full' },
                   documentation = { auto_show = true, auto_show_delay_ms = 500 },
                   menu = {
                     draw = {
@@ -592,6 +656,21 @@
               opts = {
                 delay = 100,
               },
+            },
+
+            {
+              'echasnovski/mini.hipatterns',
+              event = "VeryLazy",
+              version = false,
+              opts = function()
+                local hipatterns = require('mini.hipatterns')
+
+                return {
+                  highlighters = {
+                    hex_color = hipatterns.gen_highlighter.hex_color(),
+                  },
+                }
+              end,
             },
 
             {

@@ -37,17 +37,22 @@
         spawn-at-startup "AyuGram"
         spawn-at-startup "equibop"
         spawn-at-startup "steam"
+        spawn-at-startup "Throne -tray"
         spawn-sh-at-startup r#"
-          tmux new-session -d -s main $SHELL   \; \
-               new-window nvim                 \; \
-               new-window btop                 \; \
-               new-window wiremix              \; \
+          tmux new-session -d -s main $SHELL                \; \
+               new-window nvim                              \; \
+               new-window nvim +'Obsidian quick_switch'     \; \
+               new-window btop                              \; \
+               new-window wiremix                           \; \
                select-window -t 1
         "#
 
         environment {
           DISPLAY ":0"
           QT_QPA_PLATFORMTHEME "xdgdesktopportal"
+          GDK_SCALE "1"
+          GDK_DPI_SCALE "1.05"
+          ELECTRON_FORCE_DEVICE_SCALE_FACTOR "1.05"
         }
 
         input {
@@ -357,6 +362,11 @@
         }
 
         window-rule {
+          match app-id="Throne"
+          default-column-width { proportion 0.4; }
+        }
+
+        window-rule {
           match app-id="Nautilus"
           match app-id="zen-twilight"
 
@@ -556,11 +566,13 @@
             spawn-sh "wl-freeze -c 'niri msg --json focused-window | jq \".pid\"'"
           }
 
+
           F12 { spawn-sh "noctalia msg session lock"; }
           Mod+Shift+Backslash { spawn-sh "noctalia msg panel-toggle session"; }
           Mod+Shift+Backspace { spawn-sh "noctalia msg notification-dnd-toggle"; }
           Mod+Backspace { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
           Mod+Shift+D { spawn-sh "noctalia msg panel-toggle clipboard"; }
+          Mod+Ctrl+N { spawn-sh "noctalia msg nightlight-toggle"; }
         }
       '';
   };

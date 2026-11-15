@@ -35,7 +35,6 @@
         gnome-decoder
         gnome-secrets
         gomi
-        gradia
         jq
         kdePackages.kdenlive
         krita
