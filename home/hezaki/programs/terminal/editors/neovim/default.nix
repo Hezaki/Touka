@@ -403,7 +403,7 @@
                 require('nvim-treesitter').setup()
 
                 vim.api.nvim_create_autocmd('FileType', {
-                  pattern = '*',
+                  pattern = { 'lua', 'nix', 'json', 'css', 'bash' },
                   callback = function(args)
                     pcall(vim.treesitter.start, args.buf)
                   end,
