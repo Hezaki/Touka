@@ -50,7 +50,7 @@
       verbose = false;
     };
 
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     kernelParams = [
       "page_alloc.shuffle=1"
