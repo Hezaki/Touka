@@ -3,6 +3,5 @@
     ./battery
     ./graphic
     ./periphery
-    ./tweaks
   ];
 }

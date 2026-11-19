@@ -50,7 +50,7 @@
       verbose = false;
     };
 
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_xanmod;
 
     kernelParams = [
       "page_alloc.shuffle=1"
@@ -99,16 +99,6 @@
   services = {
     fwupd.enable = true;
     dbus.implementation = "broker";
-  };
-
-  services.kmscon = {
-    enable = true;
-    useXkbConfig = true;
-
-    extraConfig = ''
-      font-size=20
-      multi-monitor=largest
-    '';
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
