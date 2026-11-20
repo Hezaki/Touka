@@ -23,6 +23,7 @@
         local o = vim.opt
         local m = vim.keymap.set
 
+        -- Basic settings
         o.title = true
         o.number = true
         o.relativenumber = true
@@ -69,77 +70,16 @@
         o.foldlevel = 99
         o.foldlevelstart = 99
         o.foldenable = true
-        o.spell = true
-        o.spelllang = "ru"
+        o.spell = false
+        o.spelllang = { "ru", "en_us" }
+        o.spelloptions = { "camel" }
+        o.spellcapcheck = ""
 
-        require("vim._core.ui2").enable({
-          enable = true,
-          msg = {
-            targets = {
-              [""] = "msg",
-              empty = "cmd",
-              bufwrite = "msg",
-              confirm = "cmd",
-              emsg = "pager",
-              echo = "msg",
-              echomsg = "msg",
-              echoerr = "pager",
-              completion = "cmd",
-              list_cmd = "pager",
-              lua_error = "pager",
-              lua_print = "msg",
-              progress = "pager",
-              rpc_error = "pager",
-              quickfix = "msg",
-              search_cmd = "cmd",
-              search_count = "cmd",
-              shell_cmd = "pager",
-              shell_err = "pager",
-              shell_out = "pager",
-              shell_ret = "msg",
-              undo = "msg",
-              verbose = "pager",
-              wildlist = "cmd",
-              wmsg = "msg",
-              typed_cmd = "cmd",
-            },
-            cmd = { height = 0.5 },
-            dialog = { height = 0.5 },
-            msg = { height = 0.3, timeout = 5000 },
-            pager = { height = 0.5 },
-          },
-        })
-
-        local augroup = vim.api.nvim_create_augroup("UserConfig", {})
-
-        api.nvim_create_autocmd("InsertLeave", {
-          group = augroup,
-          pattern = "*",
-          command = "set nopaste",
-        })
-
-        local cursorline_group = vim.api.nvim_create_augroup("CursorLine", { clear = true })
-        api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
-          group = cursorline_group,
-          pattern = "*",
-          command = "setlocal cursorline",
-        })
-        api.nvim_create_autocmd("WinLeave", {
-          group = cursorline_group,
-          pattern = "*",
-          command = "setlocal nocursorline",
-        })
-
-        api.nvim_create_autocmd("TextYankPost", {
-          group = augroup,
-          callback = function()
-            vim.highlight.on_yank()
-          end,
-        })
-
+        require("vim._core.ui2").enable()
         vim.loader.enable()
         vim.g.mapleader = ' '
 
+        -- Maps
         m("n", "<TAB>", ":bn<CR>", { silent = true, noremap = true }) m("n", "<S-TAB>", ":bp<CR>", { silent = true, noremap = true })
         m("n", "<leader>/", ":nohl<CR>", { silent = true, noremap = true })
         m("n", "<leader>fg", function() Snacks.picker.grep() end)
@@ -166,6 +106,7 @@
           print ("File path copied to clipboard: " .. filePath)
         end)
 
+        -- statusline settings
         statusline = function()
           local modes = {
             ["n"]  = "NORMAL",
@@ -214,6 +155,7 @@
 
         o.statusline = "%!v:lua.statusline()"
 
+        -- Diagnostics
         local sev = vim.diagnostic.severity
         vim.diagnostic.config {
           signs = {
@@ -240,6 +182,22 @@
           },
         }
 
+        -- Spellcheck
+        local group = api.nvim_create_augroup("SpellCheck", { clear = true, })
+
+        api.nvim_create_autocmd("FileType", {
+          group = group,
+          pattern = {
+            "markdown",
+            "text",
+            "gitcommit",
+          },
+          callback = function()
+            vim.opt_local.spell = true
+          end,
+        })
+
+        -- Plugins
         local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
         o.rtp:prepend(lazypath)
 

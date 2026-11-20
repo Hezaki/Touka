@@ -388,7 +388,7 @@
         window-rule { 
           match app-id="zen-twilight"
           open-on-workspace "1"
-          default-column-width { proportion 0.9; }
+          default-column-width { proportion 0.8; }
           open-focused false
         }
 
